@@ -3,6 +3,40 @@
   "intro": "Software engineer and product designer. I specialize in bringing clarity to complex systems through deliberate design and robust engineering.",
   "hero_primary_btn": "More about me",
   "hero_secondary_btn": "Explore concepts",
+  "explore": {
+    "kicker": "Explore",
+    "title": "Concepts, systems, and product experiments.",
+    "description": "A space for collected ideas, interface studies, and engineering notes that connect strategy, usability, and implementation detail.",
+    "home": "Home",
+    "gallery": [
+      {
+        "title": "Factory.app",
+        "subtitle": "Online tools for fabricators to create orders, collaborate on work, schedule jobs and track time from one location."
+      }
+    ]
+  },
+  "operating_principles": {
+    "title": "Operating Principles",
+    "headline": "Great software feels inevitable.",
+    "items": [
+      {
+        "title": "Clarity over cleverness",
+        "body": "An interface should explain itself. If it needs a tutorial, it's broken. I focus on removing cognitive load so users can do their actual work."
+      },
+      {
+        "title": "Systems thinking",
+        "body": "A button is never just a button. It's part of a state machine, an API boundary, and a design language. I build full vertical slices."
+      },
+      {
+        "title": "Crafted details",
+        "body": "The difference between good and great is a hundred tiny details. Micro-interactions, perfect typography, and zero layout shift."
+      },
+      {
+        "title": "Quiet execution",
+        "body": "No unnecessary animations. No scrolljacking. Just fast, accessible, and resilient applications that respect the user's platform."
+      }
+    ]
+  },
   "react_logo": "React logo",
   "vite_logo": "Vite logo"
 }

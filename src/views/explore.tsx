@@ -1,26 +1,48 @@
 import { Link } from "react-router";
 import { ArrowLeft } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import designGrid from "@/assets/design-grid.webp";
+
+type GalleryItem = {
+  title: string;
+  subtitle: string;
+};
 
 export function Explore() {
+  const { t } = useTranslation();
+  const gallery = t("explore.gallery", { returnObjects: true }) as GalleryItem[];
+
   return (
-    <main className="view-page">
-      <div className="view-copy">
-        <p className="view-kicker">Explore</p>
-        <h1>Concepts, systems, and product experiments.</h1>
-        <p>
-          A space for collected ideas, interface studies, and engineering notes
-          that connect strategy, usability, and implementation detail.
-        </p>
+    <main className="explore-page">
+      <div className="explore-header">
+        <div className="view-copy">
+          <p className="view-kicker">{t("explore.kicker")}</p>
+          <h1>{t("explore.title")}</h1>
+          <p>{t("explore.description")}</p>
+        </div>
+
+        <Button asChild variant="outline">
+          <Link to="/">
+            <ArrowLeft />
+            {t("explore.home")}
+          </Link>
+        </Button>
       </div>
 
-      <Button asChild variant="outline">
-        <Link to="/">
-          <ArrowLeft />
-          Home
-        </Link>
-      </Button>
+      <section className="subapp-gallery" aria-label={t("explore.kicker")}>
+        {gallery.map((item) => (
+          <Card className="subapp-card" key={item.title}>
+            <img className="subapp-card-bg" src={designGrid} alt="" aria-hidden="true" />
+            <div className="subapp-info">
+              <h2>{item.title}</h2>
+              <p>{item.subtitle}</p>
+            </div>
+          </Card>
+        ))}
+      </section>
     </main>
   );
 }

@@ -59,6 +59,142 @@
   text-transform: uppercase;
 }
 
+.explore-page {
+  display: grid;
+  gap: 56px;
+  min-height: 100svh;
+  padding: 64px 32px 96px;
+  box-sizing: border-box;
+}
+
+.explore-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 32px;
+  text-align: left;
+}
+
+.explore-header .view-copy {
+  max-width: 820px;
+}
+
+.subapp-gallery {
+  column-count: 2;
+  column-gap: 24px;
+  text-align: left;
+}
+
+.subapp-card {
+  position: relative;
+  display: inline-block;
+  width: min(100%, 520px);
+  height: clamp(420px, 58vw, 640px);
+  margin: 0 0 24px;
+  overflow: hidden;
+  border-radius: 8px;
+  background: var(--code-bg);
+  padding: 0;
+  vertical-align: top;
+}
+
+.subapp-card-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1);
+  transition: transform 420ms ease;
+}
+
+.subapp-card::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 45%;
+  background: linear-gradient(to top, rgb(0 0 0 / 0.62), transparent);
+  pointer-events: none;
+}
+
+.subapp-card:hover .subapp-card-bg,
+.subapp-card:focus-within .subapp-card-bg {
+  transform: scale(1.05);
+}
+
+.subapp-info {
+  position: absolute;
+  left: 24px;
+  bottom: 24px;
+  z-index: 1;
+  display: grid;
+  gap: 8px;
+  width: min(calc(100% - 48px), 360px);
+  padding: 18px;
+  border: 1px solid rgb(255 255 255 / 0.18);
+  border-radius: 8px;
+  background: rgb(8 6 13 / 0.72);
+  color: #fff;
+  backdrop-filter: blur(18px);
+}
+
+.subapp-info h2 {
+  margin: 0;
+  font-family: var(--heading);
+  font-size: 1.25rem;
+  font-weight: 650;
+  letter-spacing: 0;
+  line-height: 1.15;
+}
+
+.subapp-info p {
+  max-height: 0;
+  margin: 0;
+  overflow: hidden;
+  color: rgb(255 255 255 / 0.76);
+  font-size: 0.92rem;
+  line-height: 1.48;
+  opacity: 0;
+  transform: translateY(8px);
+  transition:
+    max-height 360ms ease-in,
+    opacity 260ms ease-in,
+    transform 360ms ease-in;
+}
+
+.subapp-card:hover .subapp-info p,
+.subapp-card:focus-within .subapp-info p {
+  max-height: 8rem;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 800px) {
+  .explore-page {
+    gap: 40px;
+    padding: 40px 20px 72px;
+  }
+
+  .explore-header {
+    flex-direction: column;
+  }
+
+  .subapp-gallery {
+    column-count: 1;
+  }
+
+  .subapp-card {
+    width: 100%;
+    height: clamp(360px, 120vw, 520px);
+  }
+
+  .subapp-info {
+    left: 16px;
+    bottom: 16px;
+    width: calc(100% - 32px);
+  }
+}
+
 #next-steps {
   display: flex;
   border-top: 1px solid var(--border);
@@ -169,5 +305,108 @@
   &::after {
     right: 0;
     border-right-color: var(--border);
+  }
+}
+
+.principles-section {
+  display: grid;
+  grid-template-columns: minmax(220px, 0.72fr) minmax(0, 1.28fr);
+  gap: 56px;
+  width: 100%;
+  padding: 96px 32px 112px;
+  border-top: 1px solid var(--border);
+  box-sizing: border-box;
+  text-align: left;
+}
+
+.principles-heading {
+  display: grid;
+  align-content: start;
+  gap: 18px;
+}
+
+.section-kicker {
+  margin: 0;
+  color: var(--primary);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.principles-heading h2 {
+  max-width: 420px;
+  margin: 0;
+  color: var(--text-h);
+  font-family: var(--heading);
+  font-size: clamp(2.25rem, 5vw, 4.75rem);
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: 0.98;
+}
+
+.principles-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border-top: 1px solid var(--border);
+}
+
+.principle {
+  min-height: 220px;
+  padding: 28px;
+  border-bottom: 1px solid var(--border);
+}
+
+.principle:nth-child(odd) {
+  border-right: 1px solid var(--border);
+}
+
+.principle h3 {
+  margin: 0 0 14px;
+  color: var(--text-h);
+  font-family: var(--heading);
+  font-size: 1.18rem;
+  font-weight: 650;
+  letter-spacing: 0;
+  line-height: 1.2;
+}
+
+.principle p {
+  max-width: 34rem;
+  margin: 0;
+  color: var(--text);
+  font-size: 0.98rem;
+  line-height: 1.6;
+}
+
+@media (max-width: 1024px) {
+  .principles-section {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding: 72px 20px 88px;
+  }
+
+  .principles-heading h2 {
+    max-width: 620px;
+  }
+}
+
+@media (max-width: 700px) {
+  .principles-section {
+    padding-block: 56px 72px;
+  }
+
+  .principles-list {
+    grid-template-columns: 1fr;
+  }
+
+  .principle {
+    min-height: auto;
+    padding: 24px 0;
+  }
+
+  .principle:nth-child(odd) {
+    border-right: none;
   }
 }

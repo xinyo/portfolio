@@ -9,9 +9,17 @@ import { Explore } from "@/views/explore";
 import heroImg from "./assets/logo.webp";
 import "./App.css";
 
+type PrincipleItem = {
+  title: string;
+  body: string;
+};
+
 function HomePage() {
   const { t } = useTranslation();
   const [count, setCount] = useState(0);
+  const principles = t("operating_principles.items", {
+    returnObjects: true,
+  }) as PrincipleItem[];
 
   const [isDark, setIsDark] = useState(() => {
     const stored = localStorage.getItem("theme");
@@ -69,6 +77,21 @@ function HomePage() {
       </section>
 
       <div className="ticks"></div>
+
+      <section className="principles-section" aria-labelledby="principles-title">
+        <div className="principles-heading">
+          <p className="section-kicker">{t("operating_principles.title")}</p>
+          <h2 id="principles-title">{t("operating_principles.headline")}</h2>
+        </div>
+        <div className="principles-list">
+          {principles.map((principle) => (
+            <article className="principle" key={principle.title}>
+              <h3>{principle.title}</h3>
+              <p>{principle.body}</p>
+            </article>
+          ))}
+        </div>
+      </section>
     </>
   );
 }
