@@ -3,6 +3,7 @@ import { useTranslation, Trans } from "react-i18next";
 import { BrowserRouter, Link, Route, Routes } from "react-router";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, ChevronRight } from "lucide-react";
+import { FactoryApp } from "@/apps/factory";
 import { About } from "@/views/about";
 import { Explore } from "@/views/explore";
 
@@ -103,6 +104,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/about" element={<About />} />
         <Route path="/explore" element={<Explore />} />
+        <Route path="/apps/factory" element={<FactoryApp />} />
       </Routes>
     </BrowserRouter>
   );

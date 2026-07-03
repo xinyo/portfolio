@@ -10,6 +10,7 @@
     "home": "Home",
     "gallery": [
       {
+        "slug": "factory",
         "title": "Factory.app",
         "subtitle": "Online tools for fabricators to create orders, collaborate on work, schedule jobs and track time from one location."
       }
@@ -36,7 +37,5 @@
         "body": "No unnecessary animations. No scrolljacking. Just fast, accessible, and resilient applications that respect the user's platform."
       }
     ]
-  },
-  "react_logo": "React logo",
-  "vite_logo": "Vite logo"
+  }
 }

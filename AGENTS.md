@@ -8,6 +8,12 @@
 
 - All functional changes should be covered by unit tests.
 
+# Apps
+
+- Each app in apps folder is an independent, self-contained unit.
+- CSS styles must be strictly scoped to their parent app.
+- Before writing or modifying any app, READ its corresponding design.md to understand its boundaries
+
 # frontend
 
 - prefer use `pnpm` instead of `npm`.

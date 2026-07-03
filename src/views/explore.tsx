@@ -1,19 +1,25 @@
 import { Link } from "react-router";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
 import designGrid from "@/assets/design-grid.webp";
 
 type GalleryItem = {
+  slug: string;
   title: string;
   subtitle: string;
 };
 
+const appRoutes: Record<string, string> = {
+  factory: "/apps/factory",
+};
+
 export function Explore() {
   const { t } = useTranslation();
-  const gallery = t("explore.gallery", { returnObjects: true }) as GalleryItem[];
+  const gallery = t("explore.gallery", {
+    returnObjects: true,
+  }) as GalleryItem[];
 
   return (
     <main className="explore-page">
@@ -34,13 +40,27 @@ export function Explore() {
 
       <section className="subapp-gallery" aria-label={t("explore.kicker")}>
         {gallery.map((item) => (
-          <Card className="subapp-card" key={item.title}>
-            <img className="subapp-card-bg" src={designGrid} alt="" aria-hidden="true" />
+          <Link
+            className="subapp-card"
+            key={item.slug}
+            to={appRoutes[item.slug] ?? "/explore"}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img
+              className="subapp-card-bg"
+              src={designGrid}
+              alt=""
+              aria-hidden="true"
+            />
             <div className="subapp-info">
               <h2>{item.title}</h2>
               <p>{item.subtitle}</p>
+              <span className="subapp-card-action" aria-hidden="true">
+                <ArrowUpRight />
+              </span>
             </div>
-          </Card>
+          </Link>
         ))}
       </section>
     </main>
