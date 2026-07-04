@@ -17,7 +17,7 @@
 # frontend
 
 - prefer use `pnpm` instead of `npm`.
-- Always run `npm test` after modifying JavaScript/Typescript files.
+- Always run `pnpm test` after modifying JavaScript/Typescript files.
 - Use `vitest` for the testing framework.
 
 <!-- - Mock external dependencies like `uuid` in tests. -->

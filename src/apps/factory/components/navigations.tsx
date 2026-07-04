@@ -24,7 +24,10 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
   DropdownMenuSeparator,
+  DropdownMenuShortcut,
   DropdownMenuSub,
   DropdownMenuSubContent,
   DropdownMenuSubTrigger,
@@ -32,6 +35,13 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { FactoryAvatar } from "@/apps/factory/components/Avatar";
 import mockData from "@/apps/factory/mock.json";
+import {
+  factoryLanguageOptions,
+  factoryTimezoneOptions,
+  useFactoryStore,
+  type FactoryLanguage,
+  type FactoryTimezone,
+} from "@/apps/factory/store";
 
 const navigationItems = [
   {
@@ -66,6 +76,10 @@ export function FactoryNavigations() {
   const { t } = useTranslation();
   const { user } = mockData;
   const { setIsDark } = useTheme(false);
+  const language = useFactoryStore((state) => state.language);
+  const timezone = useFactoryStore((state) => state.timezone);
+  const setLanguage = useFactoryStore((state) => state.setLanguage);
+  const setTimezone = useFactoryStore((state) => state.setTimezone);
 
   return (
     <>
@@ -157,23 +171,50 @@ export function FactoryNavigations() {
               <DropdownMenuSubTrigger>
                 <Languages />
                 {t("factory.account.menu.language")}
+                <DropdownMenuShortcut>{language}</DropdownMenuShortcut>
               </DropdownMenuSubTrigger>
               <DropdownMenuSubContent>
-                <DropdownMenuItem>English</DropdownMenuItem>
-                <DropdownMenuItem>Deutsch</DropdownMenuItem>
-                <DropdownMenuItem>中文</DropdownMenuItem>
+                <DropdownMenuRadioGroup
+                  value={language}
+                  onValueChange={(value) =>
+                    setLanguage(value as FactoryLanguage)
+                  }
+                >
+                  {factoryLanguageOptions.map((languageOption) => (
+                    <DropdownMenuRadioItem
+                      value={languageOption}
+                      key={languageOption}
+                    >
+                      {languageOption}
+                    </DropdownMenuRadioItem>
+                  ))}
+                </DropdownMenuRadioGroup>
               </DropdownMenuSubContent>
             </DropdownMenuSub>
             <DropdownMenuSub>
               <DropdownMenuSubTrigger>
                 <CalendarClock />
                 {t("factory.account.menu.timezone")}
+                <DropdownMenuShortcut>{timezone}</DropdownMenuShortcut>
               </DropdownMenuSubTrigger>
               <DropdownMenuSubContent>
-                <DropdownMenuItem>UTC</DropdownMenuItem>
-                <DropdownMenuItem>
-                  {t("factory.account.menu.local")}
-                </DropdownMenuItem>
+                <DropdownMenuRadioGroup
+                  value={timezone}
+                  onValueChange={(value) =>
+                    setTimezone(value as FactoryTimezone)
+                  }
+                >
+                  {factoryTimezoneOptions.map((timezoneOption) => (
+                    <DropdownMenuRadioItem
+                      value={timezoneOption}
+                      key={timezoneOption}
+                    >
+                      {timezoneOption === "Local"
+                        ? t("factory.account.menu.local")
+                        : timezoneOption}
+                    </DropdownMenuRadioItem>
+                  ))}
+                </DropdownMenuRadioGroup>
               </DropdownMenuSubContent>
             </DropdownMenuSub>
 
