@@ -103,7 +103,7 @@
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
-  padding: 0.75rem;
+  padding: 0.75rem 0.75rem 5rem;
 }
 
 .factory-nav-item {
@@ -162,6 +162,98 @@
   grid-template-columns: 1rem;
   justify-content: center;
   padding-inline: 0;
+}
+
+.factory-sidepanel-footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 0.75rem;
+  border-top: 1px solid var(--border);
+  background: var(--background);
+}
+
+.factory-account-trigger {
+  display: grid;
+  grid-template-columns: 2rem minmax(0, 1fr);
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  min-height: 48px;
+  padding: 0.5rem;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--foreground);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.factory-account-trigger:hover,
+.factory-account-trigger[data-state="open"] {
+  background: var(--muted);
+}
+
+.factory-account-trigger:focus-visible {
+  outline: 2px solid var(--foreground);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px var(--factory-primary);
+}
+
+.factory-account-avatar {
+  width: 2rem;
+  height: 2rem;
+}
+
+.factory-account-copy {
+  display: grid;
+  min-width: 0;
+  gap: 0.125rem;
+}
+
+.factory-account-name,
+.factory-account-type {
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.factory-account-name {
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
+.factory-account-type {
+  color: var(--muted-foreground);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+}
+
+.factory-sidepanel[data-state="closed"] .factory-sidepanel-footer {
+  padding-inline: 0.75rem;
+}
+
+.factory-sidepanel[data-state="closed"] .factory-account-trigger {
+  grid-template-columns: 2rem;
+  justify-content: center;
+  padding-inline: 0.25rem;
+}
+
+.factory-account-menu {
+  width: 260px;
+}
+
+.factory-account-upgrade {
+  color: var(--factory-primary);
+  font-weight: 800;
+}
+
+.factory-account-upgrade svg {
+  color: var(--factory-secondary);
+  fill: color-mix(in oklab, var(--factory-secondary) 20%, transparent);
 }
 
 .factory-app-workspace {

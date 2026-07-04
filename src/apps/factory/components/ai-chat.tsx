@@ -14,7 +14,10 @@ type AiChatProps = {
 };
 
 const initialMessages = new Map<string, ChatMessage>(
-  (mockMessages as ChatMessage[]).map((message) => [message.id, message]),
+  (mockMessages.chatMessages as ChatMessage[]).map((message) => [
+    message.id,
+    message,
+  ]),
 );
 
 export function AiChat({ isOpen }: AiChatProps) {

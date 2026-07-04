@@ -47,6 +47,23 @@
       "inputPlaceholder": "Ask about this factory",
       "send": "Send message",
       "resize": "Resize AI chat panel"
+    },
+    "account": {
+      "openMenu": "Open account menu for {{name}}",
+      "menu": {
+        "profile": "Profile",
+        "billing": "Billing",
+        "settings": "Settings",
+        "appearance": "Appearance",
+        "light": "Light",
+        "dark": "Dark",
+        "system": "System",
+        "language": "Language",
+        "timezone": "Timezone",
+        "local": "Local",
+        "upgrade": "Upgrade",
+        "logout": "Logout"
+      }
     }
   },
   "operating_principles": {

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useTranslation, Trans } from "react-i18next";
 import { BrowserRouter, Link, Route, Routes } from "react-router";
 import { Button } from "@/components/ui/button";
@@ -6,6 +6,7 @@ import { ArrowRight, ChevronRight } from "lucide-react";
 import { FactoryApp } from "@/apps/factory";
 import { About } from "@/views/about";
 import { Explore } from "@/views/explore";
+import { useTheme } from "@/hooks/use-theme";
 
 import heroImg from "./assets/logo.webp";
 import "./App.css";
@@ -21,21 +22,7 @@ function HomePage() {
   const principles = t("operating_principles.items", {
     returnObjects: true,
   }) as PrincipleItem[];
-
-  const [isDark, setIsDark] = useState(() => {
-    const stored = localStorage.getItem("theme");
-    return stored !== null ? stored === "dark" : true;
-  });
-
-  useEffect(() => {
-    const html = document.documentElement;
-    if (isDark) {
-      html.classList.add("dark");
-    } else {
-      html.classList.remove("dark");
-    }
-    localStorage.setItem("theme", isDark ? "dark" : "light");
-  }, [isDark]);
+  const { isDark, setIsDark } = useTheme();
 
   return (
     <>
@@ -53,7 +40,11 @@ function HomePage() {
         </div>
 
         <div className="button-group">
-          <Button asChild size="lg" onClick={() => setCount((count) => count + 1)}>
+          <Button
+            asChild
+            size="lg"
+            onClick={() => setCount((count) => count + 1)}
+          >
             <Link to="/about">
               {t("hero_primary_btn", { count })}
               <ArrowRight />
@@ -79,7 +70,10 @@ function HomePage() {
 
       <div className="ticks"></div>
 
-      <section className="principles-section" aria-labelledby="principles-title">
+      <section
+        className="principles-section"
+        aria-labelledby="principles-title"
+      >
         <div className="principles-heading">
           <p className="section-kicker">{t("operating_principles.title")}</p>
           <h2 id="principles-title">{t("operating_principles.headline")}</h2>

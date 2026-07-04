@@ -1,17 +1,27 @@
-[
-  {
-    "id": "assistant-welcome",
-    "role": "assistant",
-    "text": "I can help inspect schedules, tasks, and production notes when the real assistant is connected."
+{
+  "user": {
+    "name": "Avery Morgan",
+    "accountType": "Admin",
+    "email": "avery@factory.example",
+    "timezone": "Local",
+    "language": "English",
+    "avatar": "agent_avatar_20.svg"
   },
-  {
-    "id": "user-example",
-    "role": "user",
-    "text": "Show me what needs attention today."
-  },
-  {
-    "id": "assistant-example",
-    "role": "assistant",
-    "text": "There are no live factory signals yet, so this panel is using mock messages."
-  }
-]
+  "chatMessages": [
+    {
+      "id": "assistant-welcome",
+      "role": "assistant",
+      "text": "I can help inspect schedules, tasks, and production notes when the real assistant is connected."
+    },
+    {
+      "id": "user-example",
+      "role": "user",
+      "text": "Show me what needs attention today."
+    },
+    {
+      "id": "assistant-example",
+      "role": "assistant",
+      "text": "There are no live factory signals yet, so this panel is using mock messages."
+    }
+  ]
+}
