@@ -3,38 +3,19 @@ import { useTranslation } from "react-i18next";
 import { BotMessageSquare, LoaderCircle, Send } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
-import { ChatBubble, type ChatMessage } from "@/apps/factory/components/chat-bubble";
+import {
+  ChatBubble,
+  type ChatMessage,
+} from "@/apps/factory/components/chat-bubble";
+import mockMessages from "../mock.json";
 
 type AiChatProps = {
   isOpen: boolean;
 };
 
-const initialMessages = new Map<string, ChatMessage>([
-  [
-    "assistant-welcome",
-    {
-      id: "assistant-welcome",
-      role: "assistant",
-      text: "I can help inspect schedules, tasks, and production notes when the real assistant is connected.",
-    },
-  ],
-  [
-    "user-example",
-    {
-      id: "user-example",
-      role: "user",
-      text: "Show me what needs attention today.",
-    },
-  ],
-  [
-    "assistant-example",
-    {
-      id: "assistant-example",
-      role: "assistant",
-      text: "There are no live factory signals yet, so this panel is using mock messages.",
-    },
-  ],
-]);
+const initialMessages = new Map<string, ChatMessage>(
+  (mockMessages as ChatMessage[]).map((message) => [message.id, message]),
+);
 
 export function AiChat({ isOpen }: AiChatProps) {
   const { t } = useTranslation();
