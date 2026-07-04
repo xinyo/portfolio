@@ -22,17 +22,18 @@
       "overview": {
         "title": "Overview"
       },
-      "production": {
-        "title": "Production"
+      "products": {
+        "title": "Products"
       }
     },
     "navigation": {
+      "search": "Search...",
       "label": "Factory navigation",
       "collapse": "Collapse navigation panel",
       "expand": "Expand navigation panel",
       "items": {
         "overview": "Overview",
-        "production": "Production",
+        "products": "Products",
         "schedule": "Schedule",
         "tasks": "Tasks",
         "timers": "Timers"

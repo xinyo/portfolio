@@ -13,6 +13,7 @@ import {
   Monitor,
   Moon,
   Palette,
+  Search,
   Settings,
   Sparkles,
   Sun,
@@ -22,6 +23,8 @@ import {
 
 import { Badge } from "@/components/ui/badge";
 import { CollapsibleContent } from "@/components/ui/collapsible";
+import { Button } from "@/components/ui/button";
+import { SearchDialog } from "@/apps/factory/components/search-dialog";
 import { useTheme } from "@/hooks/use-theme";
 import {
   DropdownMenu,
@@ -54,8 +57,8 @@ const navigationItems = [
     end: true,
   },
   {
-    labelKey: "factory.navigation.items.production",
-    to: "/apps/factory/production",
+    labelKey: "factory.navigation.items.products",
+    to: "/apps/factory/products",
     icon: Factory,
   },
   {
@@ -79,6 +82,8 @@ export function FactoryNavigations() {
   const { t } = useTranslation();
   const { user, trial } = mockData;
   const { setIsDark } = useTheme(false);
+
+  const isNavPanelOpen = useFactoryStore((state) => state.isNavPanelOpen);
   const language = useFactoryStore((state) => state.language);
   const timezone = useFactoryStore((state) => state.timezone);
   const setLanguage = useFactoryStore((state) => state.setLanguage);
@@ -90,6 +95,30 @@ export function FactoryNavigations() {
         className="factory-sidepanel-nav"
         aria-label={t("factory.navigation.label")}
       >
+        <SearchDialog>
+          <Button
+            variant="ghost"
+            className="factory-search-button"
+            aria-label={t("factory.navigation.search")}
+          >
+            <span className="factory-search-button-content">
+              <span className="factory-search-button-label">
+                <Search aria-hidden="true" />
+                {isNavPanelOpen && (
+                  <span>{t("factory.navigation.search")}</span>
+                )}
+              </span>
+              {isNavPanelOpen && (
+                <span
+                  className="factory-search-button-shortcut"
+                  aria-hidden="true"
+                >
+                  ⌘K
+                </span>
+              )}
+            </span>
+          </Button>
+        </SearchDialog>
         {navigationItems.map(({ labelKey, to, icon: Icon, end }) => {
           const label = t(labelKey);
 

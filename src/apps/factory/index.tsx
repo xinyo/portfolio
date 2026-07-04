@@ -18,18 +18,19 @@ import logo from "./assets/logo.png";
 import { AiChat } from "@/apps/factory/components/ai-chat";
 import { FactoryNavigations } from "@/apps/factory/components/navigations";
 import { OverviewView } from "@/apps/factory/views/overview";
-import { ProductionView } from "@/apps/factory/views/production";
+import { ProductsView } from "@/apps/factory/views/products";
 import { Button } from "@/components/ui/button";
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
+import { useFactoryStore } from "@/apps/factory/store";
 
 const factoryViewTitles = [
   {
-    path: "/apps/factory/production",
-    titleKey: "factory.views.production.title",
+    path: "/apps/factory/products",
+    titleKey: "factory.views.products.title",
   },
   {
     path: "/apps/factory",
@@ -57,7 +58,8 @@ function clampChatPanelWidth(width: number) {
 export function FactoryApp() {
   const { t } = useTranslation();
   const { pathname } = useLocation();
-  const [isPanelOpen, setIsPanelOpen] = useState(true);
+  const isNavPanelOpen = useFactoryStore((state) => state.isNavPanelOpen);
+  const setIsNavPanelOpen = useFactoryStore((state) => state.setIsNavPanelOpen);
   const [isChatPanelOpen, setIsChatPanelOpen] = useState(false);
   const [chatPanelWidth, setChatPanelWidth] = useState(CHAT_PANEL_MIN_WIDTH);
   const [isResizingChatPanel, setIsResizingChatPanel] = useState(false);
@@ -117,13 +119,13 @@ export function FactoryApp() {
       style={pageStyle}
     >
       <Collapsible
-        open={isPanelOpen}
-        onOpenChange={setIsPanelOpen}
+        open={isNavPanelOpen}
+        onOpenChange={setIsNavPanelOpen}
         className="factory-sidepanel"
-        data-state={isPanelOpen ? "open" : "closed"}
+        data-state={isNavPanelOpen ? "open" : "closed"}
       >
         <div className="factory-sidepanel-top">
-          {isPanelOpen && (
+          {isNavPanelOpen && (
             <img
               src={logo}
               alt="Factory Logo"
@@ -140,12 +142,12 @@ export function FactoryApp() {
               size="icon"
               className="factory-panel-toggle"
               aria-label={
-                isPanelOpen
+                isNavPanelOpen
                   ? t("factory.navigation.collapse")
                   : t("factory.navigation.expand")
               }
             >
-              {isPanelOpen ? <PanelLeftClose /> : <Menu />}
+              {isNavPanelOpen ? <PanelLeftClose /> : <Menu />}
             </Button>
           </CollapsibleTrigger>
         </div>
@@ -180,7 +182,7 @@ export function FactoryApp() {
           <div className="app-view-content">
             <Routes>
               <Route index element={<OverviewView />} />
-              <Route path="production" element={<ProductionView />} />
+              <Route path="products" element={<ProductsView />} />
               <Route
                 path="*"
                 element={<Navigate to="/apps/factory" replace />}

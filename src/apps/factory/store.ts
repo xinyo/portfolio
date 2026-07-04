@@ -11,18 +11,24 @@ export type FactoryTimezone = (typeof factoryTimezoneOptions)[number];
 type FactoryStore = {
   language: FactoryLanguage;
   timezone: FactoryTimezone;
+  isNavPanelOpen: boolean;
   setLanguage: (language: FactoryLanguage) => void;
   setTimezone: (timezone: FactoryTimezone) => void;
+  setIsNavPanelOpen: (isOpen: boolean) => void;
 };
 
 function getInitialLanguage(): FactoryLanguage {
-  return factoryLanguageOptions.includes(mockData.user.language as FactoryLanguage)
+  return factoryLanguageOptions.includes(
+    mockData.user.language as FactoryLanguage,
+  )
     ? (mockData.user.language as FactoryLanguage)
     : "English";
 }
 
 function getInitialTimezone(): FactoryTimezone {
-  return factoryTimezoneOptions.includes(mockData.user.timezone as FactoryTimezone)
+  return factoryTimezoneOptions.includes(
+    mockData.user.timezone as FactoryTimezone,
+  )
     ? (mockData.user.timezone as FactoryTimezone)
     : "Local";
 }
@@ -30,6 +36,8 @@ function getInitialTimezone(): FactoryTimezone {
 export const useFactoryStore = create<FactoryStore>((set) => ({
   language: getInitialLanguage(),
   timezone: getInitialTimezone(),
+  isNavPanelOpen: true,
   setLanguage: (language) => set({ language }),
   setTimezone: (timezone) => set({ timezone }),
+  setIsNavPanelOpen: (isNavPanelOpen) => set({ isNavPanelOpen }),
 }));
