@@ -1,7 +1,7 @@
 ---
 version: alpha
 name: Cloudflare
-description: "An internet infrastructure platform anchored in Cloudflare's distinctive orange (#F6821F) on a dark navy canvas (#1D1D1F / #0C0D11) for marketing and clean white for the dashboard. The system reads as serious infrastructure with an approachable brand: the orange is warm and human rather than corporate, contrasting with the technical depth of the product. Dashboard typography uses Inter at functional sizes; marketing uses a custom display variant at bold weights. The orange represents speed, fire, and protection — Cloudflare's three core value propositions materialized as a single accent color used across every touchpoint with unwavering consistency."
+description: "An internet infrastructure platform anchored in a deep violet primary (#190041) on a dark indigo canvas (#14111F / #1D1930) for marketing and a clean pale canvas for the dashboard. The system reads as serious infrastructure with an approachable brand: the violet is calm and precise rather than loud, contrasting with the technical depth of the product. Dashboard typography uses Inter at functional sizes; marketing uses a custom display variant at bold weights. The violet represents focus, trust, and clarity — the product's core value propositions materialized as a single accent color used across every touchpoint with unwavering consistency."
 
 colors:
   primary: "#190041"
@@ -58,11 +58,11 @@ motion:
 
 ## Rationale
 
-**Orange as speed, fire, and protection** — #F6821F encodes three of Cloudflare's core value propositions into a single color. Warm orange evokes combustion speed (CDN performance), a protective flame (DDoS mitigation), and solar energy (global network reach). No other brand color in infrastructure communicates all three simultaneously with the same efficiency.
+**Violet as focus, trust, and clarity** — #190041 encodes the product's core values into a single brand color. Deep violet feels composed and technical, supporting a calm sense of precision rather than spectacle. It signals confidence, control, and thoughtful execution across every interface moment.
 
-**Using orange for warnings, not just alerts** — The dual assignment of orange to both "brand primary" and "warning state" is a clever constraint: it means warnings feel on-brand rather than alarming, which is psychologically appropriate for infrastructure that should feel monitored, not panicked. Red is reserved for actual errors.
+**Using violet for signals, not just emphasis** — The dual assignment of violet to both "brand primary" and "warning state" is a deliberate constraint: it means alerts feel on-brand without becoming alarming, which is appropriate for infrastructure that should feel monitored and steady. Red remains reserved for actual errors.
 
-**Clean white dashboard, dramatic dark marketing** — The split between light product surfaces and dark marketing pages reflects different audiences. Engineers checking Workers deployments need data clarity; prospective customers need to feel Cloudflare's scale and power. The two registers serve different conversion goals without visual contradiction.
+**Clean pale dashboard, dramatic dark marketing** — The split between light product surfaces and dark marketing pages reflects different audiences. Engineers checking deployments need data clarity; prospective customers need to feel the product's scale and confidence. The two registers serve different conversion goals without visual contradiction.
 
 **Minimal radius as infrastructure seriousness** — Cloudflare's 4–6px radius scale is less rounded than consumer products, signaling technical precision rather than consumer friendliness. This is calibrated for an audience of developers and DevOps engineers who associate very rounded UI with consumer apps and sharper edges with professional tools.
 
@@ -74,12 +74,12 @@ Cloudflare sits at an interesting design intersection: infrastructure company wi
 
 ## 2. Color System
 
-- **Orange**: #F6821F — the singular brand color; used for primary CTAs, active states, and the logo across all contexts
-- **Secondary amber**: #FBAD41 — lighter orange for gradient partner and decorative accents
-- **Dark marketing**: #0C0D11 — very dark navy-black for dramatic marketing surfaces
-- **Dashboard canvas**: White with very light gray surfaces — enterprise clarity
-- **Warning**: Cloudflare uses orange for warnings (matches brand) — a clever dual-use of the primary color
-- **Danger**: Red #FF4040 only for errors, keeping orange non-alarming
+- **Primary violet**: #190041 — the singular brand color; used for primary CTAs, active states, and the logo across all contexts
+- **Secondary indigo**: #7550E8 — lighter violet for gradients, partner moments, and decorative accents
+- **Dark marketing**: #14111F — very dark slate for dramatic marketing surfaces
+- **Dashboard canvas**: #FDFDFF with very light gray surfaces — enterprise clarity
+- **Warning**: #9A6700 for warnings (paired with the brand system) — a calm, on-brand signal
+- **Danger**: #B42318 only for errors, keeping the system grounded and precise
 
 ## 3. Typography
 
@@ -87,10 +87,10 @@ Maison Neue (or Inter equivalent) — humanist grotesque at bold display weights
 
 ## 4. Components & Patterns
 
-- **Dashboard nav**: Left sidebar with product areas (Workers, Pages, D1, etc.), orange active indicator
+- **Dashboard nav**: Left sidebar with product areas (Workers, Pages, D1, etc.), violet active indicator
 - **Worker editor**: Code editor (Monaco-based), route configuration panel, logs panel
-- **Analytics charts**: Traffic volume over time, geographic heatmap, orange-accented data points
-- **Status badge**: Healthy (green) / Degraded (orange) / Error (red) — Cloudflare's three states
+- **Analytics charts**: Traffic volume over time, geographic heatmap, violet-accented data points
+- **Status badge**: Healthy (green) / Degraded (amber) / Error (red) — the product's three states
 - **Zone selector**: Top-of-page domain switcher dropdown
 - **Documentation**: Two-column layout with code examples, orange inline links
 
@@ -106,14 +106,14 @@ Dashboard is functional and fast — hover highlights, no animation. Worker logs
 
 ### Contrast Ratios
 
-- **Primary on background** (#F6821F on #FFFFFF): 2.6:1 — decorative only
-- **Text on background** (#1D1D1D on #FFFFFF): 16.9:1 — passes AA, passes AAA
-- **Muted on background** (#6B7280 on #FFFFFF): 4.8:1 — passes AA, fails AAA
+- **Primary on background** (#190041 on #FDFDFF): strong contrast for brand moments
+- **Text on background** (#1C1830 on #FDFDFF): passes AA and AAA
+- **Muted on background** (#625D75 on #FDFDFF): passes AA
 
 ### Minimum Requirements
 
 - **Touch target**: 44×44px minimum for all interactive elements
-- **Focus indicator**: #F6821F outline, 2px, 2px offset
+- **Focus indicator**: #190041 outline, 2px, 2px offset
 - **Focus contrast**: 2.6:1 against #FFFFFF background
 
 ### Motion
@@ -123,7 +123,7 @@ Dashboard is functional and fast — hover highlights, no animation. Worker logs
 
 ### Notes
 
-- The orange primary #F6821F has only 2.6:1 contrast against white — it must not be used as text color or a sole interactive indicator on white backgrounds; restrict it to large decorative elements, icon fills, and brand moments.
-- Focus rings using the orange on white are below the 3:1 minimum for UI components; supplement with a dark offset shadow (e.g. `0 0 0 2px #1D1D1D`) to make focus perceivable.
-- On the dark navy marketing canvas, the orange reverses well — verify the ratio against the specific dark surface value used rather than assuming white-page values apply.
+- The deep primary #190041 is reserved for large decorative moments, icon fills, and brand emphasis rather than body text.
+- Focus rings using the deep violet on pale backgrounds should be supplemented with a dark offset shadow (e.g. `0 0 0 2px #1C1830`) to make focus perceivable.
+- On the dark marketing canvas, the violet remains legible and restrained — verify the ratio against the specific dark surface value used rather than assuming white-page values apply.
 - Worker log streaming and deployment progress animations should be suppressed under `prefers-reduced-motion`; show static state instead.
