@@ -61,6 +61,8 @@
         "language": "Language",
         "timezone": "Timezone",
         "local": "Local",
+        "helpSupport": "Help & Support",
+        "keyboardShortcuts": "Keyboard Shortcuts",
         "upgrade": "Upgrade",
         "logout": "Logout"
       }

@@ -7,6 +7,9 @@
     "language": "English",
     "avatar": "agent_avatar_20.svg"
   },
+  "trial": {
+    "badgeLabel": "14-day trial"
+  },
   "chatMessages": [
     {
       "id": "assistant-welcome",

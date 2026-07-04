@@ -5,6 +5,8 @@ import {
   ClipboardList,
   CreditCard,
   Factory,
+  HelpCircleIcon,
+  KeyboardIcon,
   Languages,
   LayoutDashboard,
   LogOut,
@@ -18,6 +20,7 @@ import {
   User,
 } from "lucide-react";
 
+import { Badge } from "@/components/ui/badge";
 import { CollapsibleContent } from "@/components/ui/collapsible";
 import { useTheme } from "@/hooks/use-theme";
 import {
@@ -74,7 +77,7 @@ const navigationItems = [
 
 export function FactoryNavigations() {
   const { t } = useTranslation();
-  const { user } = mockData;
+  const { user, trial } = mockData;
   const { setIsDark } = useTheme(false);
   const language = useFactoryStore((state) => state.language);
   const timezone = useFactoryStore((state) => state.timezone);
@@ -144,9 +147,7 @@ export function FactoryNavigations() {
               <Settings />
               {t("factory.account.menu.settings")}
             </DropdownMenuItem>
-
             <DropdownMenuSeparator />
-
             <DropdownMenuSub>
               <DropdownMenuSubTrigger>
                 <Palette />
@@ -217,16 +218,24 @@ export function FactoryNavigations() {
                 </DropdownMenuRadioGroup>
               </DropdownMenuSubContent>
             </DropdownMenuSub>
-
             <DropdownMenuSeparator />
-
+            <DropdownMenuItem>
+              <HelpCircleIcon />
+              {t("factory.account.menu.helpSupport")}
+            </DropdownMenuItem>
+            <DropdownMenuItem>
+              <KeyboardIcon />
+              {t("factory.account.menu.keyboardShortcuts")}
+            </DropdownMenuItem>
+            <DropdownMenuSeparator />
             <DropdownMenuItem className="factory-account-upgrade">
               <Sparkles />
               {t("factory.account.menu.upgrade")}
+              <Badge variant="secondary" className="ml-2">
+                {trial.badgeLabel}
+              </Badge>
             </DropdownMenuItem>
-
             <DropdownMenuSeparator />
-
             <DropdownMenuItem variant="destructive">
               <LogOut />
               {t("factory.account.menu.logout")}
