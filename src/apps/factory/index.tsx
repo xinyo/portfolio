@@ -13,6 +13,7 @@ import {
 import { useTranslation } from "react-i18next";
 import { Navigate, Route, Routes, useLocation } from "react-router";
 import "./styles.css";
+import logo from "./assets/logo.png";
 
 import { AiChat } from "@/apps/factory/components/ai-chat";
 import { FactoryNavigations } from "@/apps/factory/components/navigations";
@@ -122,6 +123,13 @@ export function FactoryApp() {
         data-state={isPanelOpen ? "open" : "closed"}
       >
         <div className="factory-sidepanel-top">
+          {isPanelOpen && (
+            <img
+              src={logo}
+              alt="Factory Logo"
+              className="factory-sidepanel-logo"
+            />
+          )}
           <CollapsibleContent className="factory-sidepanel-title">
             <span>{t("factory.title")}</span>
           </CollapsibleContent>

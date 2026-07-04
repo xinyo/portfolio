@@ -57,12 +57,18 @@
 
 .factory-sidepanel-top {
   display: grid;
-  grid-template-columns:minmax(0, 1fr) 40px;
+  grid-template-columns: 40px 1fr 40px;
   align-items: center;
   gap: 0.5rem;
   min-height: 60px;
   padding: 0.625rem 0.75rem;
   border-bottom: 1px solid var(--border);
+}
+
+.factory-sidepanel-logo {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
 }
 
 .factory-sidepanel[data-state="closed"] .factory-sidepanel-top {
@@ -79,6 +85,9 @@
   font-size: 0.95rem;
   font-weight: 700;
   white-space: nowrap;
+  text-align: center;
+  display: flex;
+  justify-content: center;
 }
 
 .factory-sidepanel[data-state="closed"] .factory-back-button {
