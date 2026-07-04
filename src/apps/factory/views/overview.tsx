@@ -1,6 +1,6 @@
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Area, AreaChart, CartesianGrid, XAxis } from "recharts";
-import { useState } from "react";
 
 import {
   Card,
@@ -121,14 +121,14 @@ const chartData = [
 
 const chartConfig = {
   visitors: {
-    label: "Visitors",
+    label: "Sales orders",
   },
   desktop: {
-    label: "Desktop",
+    label: "Sales orders",
     color: "var(--chart-1)",
   },
   mobile: {
-    label: "Mobile",
+    label: "Purchase orders",
     color: "var(--chart-2)",
   },
 } satisfies ChartConfig;
@@ -159,7 +159,7 @@ export function OverviewView() {
           <div className="grid flex-1 gap-1">
             <CardTitle>Area Chart - Interactive</CardTitle>
             <CardDescription>
-              Showing total visitors for the last 3 months
+              Showing total sales and purchase orders for the last 3 months
             </CardDescription>
           </div>
           <Select value={timeRange} onValueChange={setTimeRange}>
