@@ -1,0 +1,74 @@
+/*
+  Color tokens derived from the logo's indigo-violet (#190041, HSL 263°/100%/13%).
+  Every pairing noted below was checked against WCAG 2.2 contrast math
+  (relative luminance formula, §1.4.3 / §1.4.11).
+
+  AA text   = 4.5:1   AA large text / UI components = 3:1   AAA text = 7:1
+*/
+
+:root {
+  /* Light theme --------------------------------------------------- */
+  --primary:        #190041; /* on-primary 18.79:1 (AAA) */
+  --on-primary:      #FFFFFF;
+  --primary-hover:  #280561; /* on-primary 16.35:1 (AAA) */
+  --secondary:      #5610C6; /* on white 9.19:1 (AAA), on-secondary 9.19:1 */
+  --on-secondary:    #FFFFFF;
+
+  --ink:            #161221; /* on canvas 18.38:1 (AAA) */
+  --ink-muted:      #70677E; /* on canvas 5.34:1  (AA)  */
+  --canvas:         #FFFFFF;
+  --surface-1:      #F8F7FB;
+  --surface-2:      #F0EDF5;
+  --border:         #DFD9E8; /* decorative divider, not a contrast-bearing token */
+
+  --success:        #0E8138; /* on canvas 4.98:1 (AA)  */
+  --danger:         #D93226; /* on canvas 4.74:1 (AA)  */
+  --warning:        #9C6D1C; /* on canvas 4.55:1 (AA)  */
+
+  /* Dark theme ------------------------------------------------------
+     Raw --primary is ~L13% and nearly disappears against a near-black
+     background (contrast ~1.06:1), so dark mode gets its own lighter
+     accent pair rather than reusing the light-mode primary directly. */
+  --dark-bg:         #0C0616;
+  --dark-surface:    #170F24;
+  --dark-border:     #302541; /* decorative divider */
+  --dark-ink:        #EFEBF4; /* on dark-bg 16.96:1 (AAA) */
+
+  --dark-primary:    #8B4CF0; /* vs dark-bg 4.17:1, vs dark-surface 3.88:1 (AA/UI) */
+  --dark-secondary:  #B99DE7; /* vs dark-bg 8.58:1 (AAA) — dark-mode links/text accent */
+
+  --dark-success:    #20B657; /* vs dark-bg 7.49:1 (AAA) */
+  --dark-danger:     #F0574B; /* vs dark-bg 5.86:1 (AA)  */
+  --dark-warning:    #CC8E24; /* vs dark-bg 7.08:1 (AAA) */
+}
+
+/* Apply automatically when the OS is in dark mode */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --primary:    var(--dark-primary);
+    --secondary:  var(--dark-secondary);
+    --ink:        var(--dark-ink);
+    --canvas:     var(--dark-bg);
+    --surface-1:  var(--dark-surface);
+    --surface-2:  var(--dark-surface);
+    --border:     var(--dark-border);
+    --success:    var(--dark-success);
+    --danger:     var(--dark-danger);
+    --warning:    var(--dark-warning);
+  }
+}
+
+/* Or toggle manually with [data-theme="dark"] on <html> if you prefer
+   a user-controlled switch instead of only following the OS setting. */
+[data-theme="dark"] {
+  --primary:    var(--dark-primary);
+  --secondary:  var(--dark-secondary);
+  --ink:        var(--dark-ink);
+  --canvas:     var(--dark-bg);
+  --surface-1:  var(--dark-surface);
+  --surface-2:  var(--dark-surface);
+  --border:     var(--dark-border);
+  --success:    var(--dark-success);
+  --danger:     var(--dark-danger);
+  --warning:    var(--dark-warning);
+}

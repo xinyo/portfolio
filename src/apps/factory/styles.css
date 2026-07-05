@@ -1,54 +1,22 @@
-.factory-app-page {
-  --factory-primary: #190041;
-  --factory-on-primary: #ffffff;
-  --factory-primary-hover: #2b0a6a;
-  --factory-secondary: #7550e8;
-  --factory-ink: #1c1830;
-  --factory-ink-muted: #625d75;
-  --factory-canvas: #fdfdff;
-  --factory-surface-1: #f7f5fc;
-  --factory-surface-2: #f1ecfa;
-  --factory-border: #938aae;
-  --factory-dark-bg: #14111f;
-  --factory-dark-surface: #1d1930;
-  --factory-dark-border: #6d6780;
-  --factory-dark-ink: #eae7f5;
-  --factory-success: #067647;
-  --factory-danger: #b42318;
-  --factory-warning: #9a6700;
-  .dark & {
-    --factory-primary: #d6bbff;
-    --factory-on-primary: #190041;
-    --factory-primary-hover: #e5ccff;
-    --factory-secondary: #c4b0ff;
-    --factory-ink: #eae7f5;
-    --factory-ink-muted: #938aae;
-    --factory-canvas: #14111f;
-    --factory-surface-1: #1d1930;
-    --factory-surface-2: #2a223f;
-    --factory-border: #6d6780;
-    --factory-dark-bg: #fdfdff;
-    --factory-dark-surface: #f7f5fc;
-    --factory-dark-border: #938aae;
-    --factory-dark-ink: #1c1830;
-  }
+@import "./shadcn-theme.css";
 
-  background: var(--bg);
+.factory-app-page {
+  background: var(--background);
   min-height: 100vh;
   color: var(--foreground);
-  --factory-panel-open-width: min(300px, 82vw);
-  --factory-panel-closed-width: 64px;
-  --factory-panel-width: var(--factory-panel-open-width);
-  --factory-chat-panel-width: 300px;
-  --factory-chat-workspace-offset: var(--factory-chat-panel-width);
+  --panel-open-width: min(300px, 82vw);
+  --panel-closed-width: 64px;
+  --panel-width: var(--panel-open-width);
+  --chat-panel-width: 300px;
+  --chat-workspace-offset: var(--chat-panel-width);
 }
 
 .factory-app-page:has(.factory-sidepanel[data-state="closed"]) {
-  --factory-panel-width: var(--factory-panel-closed-width);
+  --panel-width: var(--panel-closed-width);
 }
 
 .factory-app-page[data-chat-state="closed"] {
-  --factory-chat-workspace-offset: 0px;
+  --chat-workspace-offset: 0px;
 }
 
 .factory-app-page button[data-variant="ghost"][aria-expanded="true"] {
@@ -62,7 +30,7 @@
   position: fixed;
   inset: 0 auto 0 0;
   z-index: 20;
-  width: var(--factory-panel-width);
+  width: var(--panel-width);
   max-width: 300px;
   height: 100vh;
   overflow: hidden;
@@ -192,13 +160,13 @@
 .factory-sidepanel [data-slot="button"]:focus-visible {
   outline: 2px solid var(--foreground);
   outline-offset: 2px;
-  box-shadow: 0 0 0 4px var(--factory-primary);
+  box-shadow: 0 0 0 4px var(--primary);
 }
 
 .factory-nav-item svg {
   width: 1rem;
   height: 1rem;
-  color: var(--factory-primary);
+  color: var(--primary);
 }
 
 .factory-nav-item span {
@@ -249,7 +217,7 @@
 .factory-account-trigger:focus-visible {
   outline: 2px solid var(--foreground);
   outline-offset: 2px;
-  box-shadow: 0 0 0 4px var(--factory-primary);
+  box-shadow: 0 0 0 4px var(--primary);
 }
 
 .factory-account-avatar {
@@ -297,19 +265,19 @@
 }
 
 .factory-account-upgrade {
-  color: var(--factory-primary);
+  color: var(--primary);
   font-weight: 800;
 }
 
 .factory-account-upgrade svg {
-  color: var(--factory-secondary);
-  fill: color-mix(in oklab, var(--factory-secondary) 20%, transparent);
+  color: var(--secondary);
+  fill: color-mix(in oklab, var(--secondary) 20%, transparent);
 }
 
 .factory-app-workspace {
   min-height: 100vh;
-  margin-left: var(--factory-panel-width);
-  margin-right: var(--factory-chat-workspace-offset);
+  margin-left: var(--panel-width);
+  margin-right: var(--chat-workspace-offset);
   transition:
     margin-left 160ms ease,
     margin-right 160ms ease;
@@ -356,7 +324,7 @@
   z-index: 20;
   display: flex;
   flex-direction: column;
-  width: var(--factory-chat-panel-width);
+  width: var(--chat-panel-width);
   min-width: 300px;
   max-width: 50vw;
   height: 100vh;
@@ -391,7 +359,7 @@
 .factory-chat-resize-handle:hover::after,
 .factory-chat-resize-handle:focus-visible::after,
 .factory-chat-resizing .factory-chat-resize-handle::after {
-  background: var(--factory-primary);
+  background: var(--primary);
 }
 
 .factory-chat-resize-handle:focus-visible {
@@ -423,7 +391,7 @@
 .factory-chat-panel-header svg {
   width: 1rem;
   height: 1rem;
-  color: var(--factory-primary);
+  color: var(--primary);
 }
 
 .factory-ai-chat {
@@ -447,7 +415,7 @@
 .factory-ai-chat-loading svg:first-child {
   width: 1.5rem;
   height: 1.5rem;
-  color: var(--factory-primary);
+  color: var(--primary);
   animation: factory-chat-spin 900ms linear infinite;
 }
 
@@ -488,9 +456,9 @@
 }
 
 .factory-chat-message[data-role="user"] .factory-chat-bubble {
-  border-color: var(--factory-primary);
-  background: var(--factory-primary);
-  color: var(--factory-on-primary);
+  border-color: var(--primary);
+  background: var(--primary);
+  color: var(--primary-foreground);
 }
 
 .factory-chat-input {
@@ -516,7 +484,7 @@
 .factory-chat-input input:focus-visible {
   outline: 2px solid var(--foreground);
   outline-offset: 2px;
-  box-shadow: 0 0 0 4px var(--factory-primary);
+  box-shadow: 0 0 0 4px var(--primary);
 }
 
 @keyframes factory-chat-spin {

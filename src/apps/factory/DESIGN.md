@@ -1,26 +1,26 @@
 ---
 version: alpha
-name: Cloudflare
-description: "An internet infrastructure platform anchored in a deep violet primary (#190041) on a dark indigo canvas (#14111F / #1D1930) for marketing and a clean pale canvas for the dashboard. The system reads as serious infrastructure with an approachable brand: the violet is calm and precise rather than loud, contrasting with the technical depth of the product. Dashboard typography uses Inter at functional sizes; marketing uses a custom display variant at bold weights. The violet represents focus, trust, and clarity — the product's core value propositions materialized as a single accent color used across every touchpoint with unwavering consistency."
+name: Factory.app
+description: "An internet infrastructure platform anchored in a deep violet primary token sourced from the shared shadcn theme system on a dark indigo canvas for marketing and a clean pale canvas for the dashboard. The system reads as serious infrastructure with an approachable brand: the violet is calm and precise rather than loud, contrasting with the technical depth of the product. Dashboard typography uses Inter at functional sizes; marketing uses a custom display variant at bold weights. The primary token represents focus, trust, and clarity — the product's core value propositions materialized as a single accent color used across every touchpoint with unwavering consistency."
 
 colors:
-  primary: "#190041"
-  on-primary: "#FFFFFF"
-  primary-hover: "#2B0A6A"
-  secondary: "#7550E8"
-  ink: "#1C1830"
-  ink-muted: "#625D75"
-  canvas: "#FDFDFF"
-  surface-1: "#F7F5FC"
-  surface-2: "#F1ECFA"
-  border: "#938AAE"
-  dark-bg: "#14111F"
-  dark-surface: "#1D1930"
-  dark-border: "#6D6780"
-  dark-ink: "#EAE7F5"
-  success: "#067647"
-  danger: "#B42318"
-  warning: "#9A6700"
+  primary: "var(--primary)"
+  on-primary: "var(--primary-foreground)"
+  primary-hover: "var(--ring)"
+  secondary: "var(--secondary)"
+  ink: "var(--foreground)"
+  ink-muted: "var(--muted-foreground)"
+  canvas: "var(--background)"
+  surface-1: "var(--card)"
+  surface-2: "var(--muted)"
+  border: "var(--border)"
+  dark-bg: "var(--background)"
+  dark-surface: "var(--card)"
+  dark-border: "var(--border)"
+  dark-ink: "var(--foreground)"
+  success: "var(--chart-3)"
+  danger: "var(--destructive)"
+  warning: "var(--chart-1)"
 
 typography:
   display:
@@ -70,16 +70,21 @@ motion:
 
 ## 1. Visual Theme & Atmosphere
 
-Cloudflare sits at an interesting design intersection: infrastructure company with consumer-legible branding. The orange is everywhere — Cloudflare's orange is as distinctive as Stripe's blue or GitHub's dark. The dashboard (Workers, R2, D1, Pages, etc.) uses a clean white product surface where orange appears on the primary "Create" button, active navigation indicators, and status warnings (orange = "check this"). Marketing goes darker and more dramatic. The brand consistently communicates speed and protection through warm, energetic color.
+Cloudflare sits at an interesting design intersection: infrastructure company with consumer-legible branding. The primary violet token is everywhere — the shared shadcn `--primary` token is as distinctive as a strong brand accent should be. The dashboard uses the light-mode canvas and foreground tokens to keep product surfaces calm and readable, while marketing uses the darker surface tokens for a more dramatic presentation. The system consistently communicates focus and confidence through the shared color token set rather than through ad-hoc accent colors.
 
 ## 2. Color System
 
-- **Primary violet**: #190041 — the singular brand color; used for primary CTAs, active states, and the logo across all contexts
-- **Secondary indigo**: #7550E8 — lighter violet for gradients, partner moments, and decorative accents
-- **Dark marketing**: #14111F — very dark slate for dramatic marketing surfaces
-- **Dashboard canvas**: #FDFDFF with very light gray surfaces — enterprise clarity
-- **Warning**: #9A6700 for warnings (paired with the brand system) — a calm, on-brand signal
-- **Danger**: #B42318 only for errors, keeping the system grounded and precise
+The colors in this app are intentionally sourced from the shared shadcn theme tokens in the theme stylesheet so the product and the factory experience stay visually aligned.
+
+- **Primary**: `--primary` (#190041 in light mode, #D6BBFF in dark mode) — the singular brand color; used for primary CTAs, active states, and the logo across all contexts
+- **Primary foreground**: `--primary-foreground` (#FFFFFF in light mode, #190041 in dark mode) — contrast color for primary surfaces
+- **Secondary**: `--secondary` (#7550E8 in light mode, #C4B0FF in dark mode) — lighter violet for gradients, partner moments, and decorative accents
+- **Background / canvas**: `--background` and `--bg` (#FFFFFF / #FDFDFF light, #0C0616 / #14111F dark) — used for the app shell and dashboard surfaces
+- **Foreground / ink**: `--foreground` and `--text` (#1C1830 light, #EAE7F5 dark) — primary text color
+- **Muted**: `--muted` / `--muted-foreground` — used for subdued surfaces and supporting content
+- **Border**: `--border` / `--input` — used for structural separation and form controls
+- **Warning**: `--warning` or the semantic warning token in the design system (#9A6700) — used sparingly for non-blocking alerts
+- **Danger**: `--danger` or the semantic danger token (#B42318) — reserved for errors and destructive states
 
 ## 3. Typography
 
@@ -87,16 +92,16 @@ Maison Neue (or Inter equivalent) — humanist grotesque at bold display weights
 
 ## 4. Components & Patterns
 
-- **Dashboard nav**: Left sidebar with product areas (Workers, Pages, D1, etc.), violet active indicator
+- **Dashboard nav**: Left sidebar with product areas (Workers, Pages, D1, etc.), active state driven by `--primary`
 - **Worker editor**: Code editor (Monaco-based), route configuration panel, logs panel
-- **Analytics charts**: Traffic volume over time, geographic heatmap, violet-accented data points
-- **Status badge**: Healthy (green) / Degraded (amber) / Error (red) — the product's three states
+- **Analytics charts**: Traffic volume over time, geographic heatmap, accent data points using `--chart-1` and `--chart-2`
+- **Status badge**: Healthy (green) / Degraded (amber) / Error (red) — the product's three states, using semantic colors that pair with the shared token system
 - **Zone selector**: Top-of-page domain switcher dropdown
 - **Documentation**: Two-column layout with code examples, orange inline links
 
 ## 5. Spacing & Layout
 
-Dashboard: 220px sidebar + content area, max 1200px. Workers editor: split-pane code/preview. Marketing: 1440px max, dramatic full-bleed sections with orange gradient moments.
+Dashboard: 220px sidebar + content area, max 1200px. Workers editor: split-pane code/preview. Marketing: 1440px max, dramatic full-bleed sections with surface depth and `--accent` moments.
 
 ## 6. Motion & Interaction
 
@@ -106,15 +111,15 @@ Dashboard is functional and fast — hover highlights, no animation. Worker logs
 
 ### Contrast Ratios
 
-- **Primary on background** (#190041 on #FDFDFF): strong contrast for brand moments
-- **Text on background** (#1C1830 on #FDFDFF): passes AA and AAA
-- **Muted on background** (#625D75 on #FDFDFF): passes AA
+- **Primary on background** (light mode primary #190041 on light canvas): strong contrast for brand moments
+- **Text on background** (light mode foreground #1C1830 on light canvas): passes AA and AAA
+- **Muted on background** (light mode muted text #625D75 on light canvas): passes AA
 
 ### Minimum Requirements
 
 - **Touch target**: 44×44px minimum for all interactive elements
-- **Focus indicator**: #190041 outline, 2px, 2px offset
-- **Focus contrast**: 2.6:1 against #FFFFFF background
+- **Focus indicator**: `--primary` outline, 2px, 2px offset
+- **Focus contrast**: sufficient against the current `--background` and `--foreground` pairings
 
 ### Motion
 
@@ -123,7 +128,7 @@ Dashboard is functional and fast — hover highlights, no animation. Worker logs
 
 ### Notes
 
-- The deep primary #190041 is reserved for large decorative moments, icon fills, and brand emphasis rather than body text.
-- Focus rings using the deep violet on pale backgrounds should be supplemented with a dark offset shadow (e.g. `0 0 0 2px #1C1830`) to make focus perceivable.
-- On the dark marketing canvas, the violet remains legible and restrained — verify the ratio against the specific dark surface value used rather than assuming white-page values apply.
+- The deep primary token is reserved for large decorative moments, icon fills, and brand emphasis rather than body text.
+- Focus rings using the primary token should be supplemented with a dark offset shadow (e.g. `0 0 0 2px #1C1830`) to make focus perceivable on light surfaces.
+- On the dark marketing canvas, the primary token is inverted to a lighter value for legibility — verify the ratio against the specific dark surface value used rather than assuming light-mode values apply.
 - Worker log streaming and deployment progress animations should be suppressed under `prefers-reduced-motion`; show static state instead.
