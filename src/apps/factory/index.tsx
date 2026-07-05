@@ -11,7 +11,7 @@ import {
   type PointerEvent,
 } from "react";
 import { useTranslation } from "react-i18next";
-import { Navigate, Route, Routes, useLocation } from "react-router";
+import { Navigate, Route, Routes } from "react-router";
 import logo from "./assets/logo.png";
 import "./styles.css";
 
@@ -44,56 +44,6 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-const factoryViewTitles = [
-  {
-    path: "/apps/factory/product-categories",
-    titleKey: "factory.views.productCategories.title",
-  },
-  {
-    path: "/apps/factory/materials",
-    titleKey: "factory.views.materials.title",
-  },
-  {
-    path: "/apps/factory/sales-orders",
-    titleKey: "factory.views.salesOrders.title",
-  },
-  {
-    path: "/apps/factory/customers",
-    titleKey: "factory.views.customers.title",
-  },
-  {
-    path: "/apps/factory/price-level-manager",
-    titleKey: "factory.views.priceLevelManager.title",
-  },
-  {
-    path: "/apps/factory/purchase-orders",
-    titleKey: "factory.views.purchaseOrders.title",
-  },
-  {
-    path: "/apps/factory/suppliers",
-    titleKey: "factory.views.suppliers.title",
-  },
-  {
-    path: "/apps/factory/workflow",
-    titleKey: "factory.views.workflow.title",
-  },
-  {
-    path: "/apps/factory/planners",
-    titleKey: "factory.views.planners.title",
-  },
-  {
-    path: "/apps/factory/delivery-scheduling",
-    titleKey: "factory.views.deliveryScheduling.title",
-  },
-  {
-    path: "/apps/factory/timesheets",
-    titleKey: "factory.views.timesheets.title",
-  },
-  {
-    path: "/apps/factory",
-    titleKey: "factory.views.overview.title",
-  },
-];
 
 const CHAT_PANEL_MIN_WIDTH = 300;
 
@@ -113,8 +63,7 @@ function clampChatPanelWidth(width: number) {
 }
 
 export function FactoryApp() {
-  const { t } = useTranslation();
-  const { pathname } = useLocation();
+  const { t } = useTranslation(); 
   const isNavPanelOpen = useFactoryStore((state) => state.isNavPanelOpen);
   const setIsNavPanelOpen = useFactoryStore((state) => state.setIsNavPanelOpen);
   const currentCompany = useFactoryStore((state) => state.currentCompany);
@@ -122,8 +71,6 @@ export function FactoryApp() {
   const [isChatPanelOpen, setIsChatPanelOpen] = useState(false);
   const [chatPanelWidth, setChatPanelWidth] = useState(CHAT_PANEL_MIN_WIDTH);
   const [isResizingChatPanel, setIsResizingChatPanel] = useState(false);
-  const activeView = factoryViewTitles.find(({ path }) => pathname === path);
-  const viewTitle = t(activeView?.titleKey ?? "factory.views.overview.title");
   const pageStyle = {
     "--factory-chat-panel-width": `${chatPanelWidth}px`,
   } as CSSProperties;
