@@ -339,6 +339,7 @@
 .factory-app-page .app-view-content {
   padding: 1.5rem;
   text-align: left;
+
 }
 
 .factory-view h2 {
@@ -347,6 +348,13 @@
   font-size: 1.5rem;
   font-weight: 700;
   line-height: 1.25;
+}
+
+@media (min-width: 1920px) {
+  .factory-view {
+    max-width: 1440px;
+    margin: 0 auto;
+  }
 }
 
 .factory-chat-toggle {
@@ -546,7 +554,7 @@
   align-items: flex-start;
   justify-content: space-between;
   gap: 1rem;
-  margin-bottom: 1.5rem;
+  margin: 2.5rem 0;
 }
 
 .factory-view-header-start {

@@ -1,15 +1,15 @@
-import { useState } from "react";
-import { useTranslation, Trans } from "react-i18next";
-import { BrowserRouter, Link, Route, Routes } from "react-router";
-import { Button } from "@/components/ui/button";
-import { ArrowRight, ChevronRight } from "lucide-react";
 import { FactoryApp } from "@/apps/factory";
+import { Button } from "@/components/ui/button";
+import { useTheme } from "@/hooks/use-theme";
 import { About } from "@/views/about";
 import { Explore } from "@/views/explore";
-import { useTheme } from "@/hooks/use-theme";
+import { ArrowRight, ChevronRight } from "lucide-react";
+import { useState } from "react";
+import { Trans, useTranslation } from "react-i18next";
+import { BrowserRouter, Link, Route, Routes } from "react-router";
 
-import heroImg from "./assets/logo.webp";
 import "./App.css";
+import heroImg from "./assets/logo.webp";
 
 type PrincipleItem = {
   title: string;
@@ -26,6 +26,7 @@ function HomePage() {
 
   return (
     <>
+      <div className="profolio-home flex flex-col items-center justify-center gap-8 max-w-[1440px] mx-auto px-4">
       <section id="center">
         <div className="hero">
           <img src={heroImg} alt="Hero" className="logo" />
@@ -33,8 +34,7 @@ function HomePage() {
         <div>
           <h1>{t("get_started")}</h1>
           <p>
-            <Trans i18nKey="intro">
-              Edit <code>src/App.tsx</code> and save to test <code>HMR</code>
+            <Trans i18nKey="intro"> 
             </Trans>
           </p>
         </div>
@@ -87,6 +87,7 @@ function HomePage() {
           ))}
         </div>
       </section>
+    </div>
     </>
   );
 }

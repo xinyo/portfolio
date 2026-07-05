@@ -12,23 +12,24 @@ import {
 } from "react";
 import { useTranslation } from "react-i18next";
 import { Navigate, Route, Routes, useLocation } from "react-router";
-import "./styles.css";
 import logo from "./assets/logo.png";
+import "./styles.css";
 
 import { AiChat } from "@/apps/factory/components/ai-chat";
 import { FactoryNavigations } from "@/apps/factory/components/navigations";
-import { OverviewView } from "@/apps/factory/views/overview";
-import { ProductCategoriesView } from "@/apps/factory/views/product-categories";
-import { MaterialsView } from "@/apps/factory/views/materials";
-import { SalesOrdersView } from "@/apps/factory/views/sales-orders";
+import { companyNameMap, useFactoryStore } from "@/apps/factory/store";
 import { CustomersView } from "@/apps/factory/views/customers";
-import { PriceLevelManagerView } from "@/apps/factory/views/price-level-manager";
-import { PurchaseOrdersView } from "@/apps/factory/views/purchase-orders";
-import { SuppliersView } from "@/apps/factory/views/suppliers";
-import { WorkflowView } from "@/apps/factory/views/workflow";
-import { PlannersView } from "@/apps/factory/views/planners";
 import { DeliverySchedulingView } from "@/apps/factory/views/delivery-scheduling";
+import { MaterialsView } from "@/apps/factory/views/materials";
+import { OverviewView } from "@/apps/factory/views/overview";
+import { PlannersView } from "@/apps/factory/views/planners";
+import { PriceLevelManagerView } from "@/apps/factory/views/price-level-manager";
+import { ProductCategoriesView } from "@/apps/factory/views/product-categories";
+import { PurchaseOrdersView } from "@/apps/factory/views/purchase-orders";
+import { SalesOrdersView } from "@/apps/factory/views/sales-orders";
+import { SuppliersView } from "@/apps/factory/views/suppliers";
 import { TimesheetsView } from "@/apps/factory/views/timesheets";
+import { WorkflowView } from "@/apps/factory/views/workflow";
 import { Button } from "@/components/ui/button";
 import {
   Collapsible,
@@ -42,7 +43,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { useFactoryStore, companyNameMap } from "@/apps/factory/store";
 
 const factoryViewTitles = [
   {

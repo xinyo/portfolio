@@ -115,15 +115,6 @@
   scrollbar-width: thin;
 }
 
-h1 {
-  font-family: var(--heading);
-  font-weight: 500;
-  font-size: 5.5rem;
-  letter-spacing: -0.25rem;
-  line-height: 118%;
-}
-
-
 
 .dark {
   --text: #9ca3af;
