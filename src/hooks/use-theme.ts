@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export function useTheme(defaultIsDark = true) {
+export function useTheme(defaultIsDark = false) {
   const [isDark, setIsDark] = useState(() => {
     if (typeof window === "undefined") {
       return defaultIsDark;
