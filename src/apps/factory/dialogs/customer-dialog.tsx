@@ -169,8 +169,13 @@ export function CustomerDialog({
   }
 
   function handleOpenChange(open: boolean) {
-    if (!open && !suppressUnsavedRef.current && hasChanges()) {
-      setShowUnsavedDialog(true);
+    if (!open && hasChanges()) {
+      if (!suppressUnsavedRef.current) {
+        suppressUnsavedRef.current = true;
+        setShowUnsavedDialog(true);
+        return;
+      }
+      suppressUnsavedRef.current = false;
       return;
     }
     suppressUnsavedRef.current = false;
@@ -179,13 +184,11 @@ export function CustomerDialog({
 
   function handleUnsavedDiscard() {
     setShowUnsavedDialog(false);
-    suppressUnsavedRef.current = true;
     onOpenChange(false);
   }
 
   function handleUnsavedCancel() {
     setShowUnsavedDialog(false);
-    suppressUnsavedRef.current = true;
   }
 
   return (
