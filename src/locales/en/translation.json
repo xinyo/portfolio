@@ -39,7 +39,16 @@
         "delete": "Delete"
       },
       "materials": {
-        "title": "Materials"
+        "title": "Materials",
+        "subtitle": "Track raw materials, consumables, and supplies used in production.",
+        "addMaterial": "Add Material",
+        "searchPlaceholder": "Search materials...",
+        "filterByLabel": "Filter by label",
+        "allLabels": "All labels",
+        "cancel": "Cancel",
+        "save": "Save",
+        "duplicate": "Duplicate",
+        "delete": "Delete"
       },
       "salesOrders": {
         "title": "Sales Orders"

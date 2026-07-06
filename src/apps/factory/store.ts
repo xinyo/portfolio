@@ -33,9 +33,17 @@ export type FactoryProductKit = {
   productIds: string[];
 };
 
+export type FactoryMaterial = {
+  id: string;
+  name: string;
+  code: string;
+  image: string;
+};
+
 export const factoryProducts: FactoryProduct[] = mockData.products;
 export const factoryCategories: FactoryCategory[] = mockData.categories;
 export const factoryProductKits: FactoryProductKit[] = mockData.productKits;
+export const factoryMaterials: FactoryMaterial[] = mockData.materials;
 
 type FactoryStore = {
   language: FactoryLanguage;

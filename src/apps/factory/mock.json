@@ -28,16 +28,66 @@
     }
   ],
   "products": [
-    { "id": "prod-1", "name": "Steel Bracket 304", "code": "BRK-304-SS", "image": "https://picsum.photos/seed/steel-bracket/80/80" },
-    { "id": "prod-2", "name": "Aluminum Extrusion 40x40", "code": "EXT-4040-AL", "image": "https://picsum.photos/seed/aluminum-ext/80/80" },
-    { "id": "prod-3", "name": "CNC Milled Base Plate", "code": "CNC-BP-01", "image": "https://picsum.photos/seed/cnc-plate/80/80" },
-    { "id": "prod-4", "name": "Acrylic Lens Cover", "code": "LNS-ACR-55", "image": "https://picsum.photos/seed/acrylic-lens/80/80" },
-    { "id": "prod-5", "name": "Nylon Spacer M6", "code": "SPC-NYL-M6", "image": "https://picsum.photos/seed/nylon-spacer/80/80" },
-    { "id": "prod-6", "name": "Stainless Steel Bolt M8x30", "code": "BLT-SS-M830", "image": "https://picsum.photos/seed/ss-bolt/80/80" },
-    { "id": "prod-7", "name": "Rubber Gasket DN50", "code": "GSK-RBR-50", "image": "https://picsum.photos/seed/rubber-gasket/80/80" },
-    { "id": "prod-8", "name": "Copper Connector 90°", "code": "CNN-CU-90", "image": "https://picsum.photos/seed/copper-conn/80/80" },
-    { "id": "prod-9", "name": "Linear Rail 600mm", "code": "RL-LNR-600", "image": "https://picsum.photos/seed/linear-rail/80/80" },
-    { "id": "prod-10", "name": "Polycarbonate Sheet 3mm", "code": "SHT-PC-3", "image": "https://picsum.photos/seed/pc-sheet/80/80" }
+    {
+      "id": "prod-1",
+      "name": "Steel Bracket 304",
+      "code": "BRK-304-SS",
+      "image": "https://picsum.photos/seed/steel-bracket/80/80"
+    },
+    {
+      "id": "prod-2",
+      "name": "Aluminum Extrusion 40x40",
+      "code": "EXT-4040-AL",
+      "image": "https://picsum.photos/seed/aluminum-ext/80/80"
+    },
+    {
+      "id": "prod-3",
+      "name": "CNC Milled Base Plate",
+      "code": "CNC-BP-01",
+      "image": "https://picsum.photos/seed/cnc-plate/80/80"
+    },
+    {
+      "id": "prod-4",
+      "name": "Acrylic Lens Cover",
+      "code": "LNS-ACR-55",
+      "image": "https://picsum.photos/seed/acrylic-lens/80/80"
+    },
+    {
+      "id": "prod-5",
+      "name": "Nylon Spacer M6",
+      "code": "SPC-NYL-M6",
+      "image": "https://picsum.photos/seed/nylon-spacer/80/80"
+    },
+    {
+      "id": "prod-6",
+      "name": "Stainless Steel Bolt M8x30",
+      "code": "BLT-SS-M830",
+      "image": "https://picsum.photos/seed/ss-bolt/80/80"
+    },
+    {
+      "id": "prod-7",
+      "name": "Rubber Gasket DN50",
+      "code": "GSK-RBR-50",
+      "image": "https://picsum.photos/seed/rubber-gasket/80/80"
+    },
+    {
+      "id": "prod-8",
+      "name": "Copper Connector 90°",
+      "code": "CNN-CU-90",
+      "image": "https://picsum.photos/seed/copper-conn/80/80"
+    },
+    {
+      "id": "prod-9",
+      "name": "Linear Rail 600mm",
+      "code": "RL-LNR-600",
+      "image": "https://picsum.photos/seed/linear-rail/80/80"
+    },
+    {
+      "id": "prod-10",
+      "name": "Polycarbonate Sheet 3mm",
+      "code": "SHT-PC-3",
+      "image": "https://picsum.photos/seed/pc-sheet/80/80"
+    }
   ],
   "categories": [
     { "id": "cat-1", "name": "Structural Components" },
@@ -47,10 +97,68 @@
     { "id": "cat-5", "name": "Covers & Enclosures" }
   ],
   "productKits": [
-    { "id": "kit-1", "name": "Frame Assembly Kit A", "productIds": ["prod-1", "prod-2", "prod-5"] },
-    { "id": "kit-2", "name": "Mounting Hardware Set", "productIds": ["prod-6", "prod-5", "prod-8"] },
-    { "id": "kit-3", "name": "Enclosure Pack", "productIds": ["prod-3", "prod-4", "prod-10"] },
-    { "id": "kit-4", "name": "Rail System Bundle", "productIds": ["prod-9", "prod-2", "prod-7"] },
-    { "id": "kit-5", "name": "Gasket Service Kit", "productIds": ["prod-7", "prod-5"] }
+    {
+      "id": "kit-1",
+      "name": "Frame Assembly Kit A",
+      "productIds": ["prod-1", "prod-2", "prod-5"]
+    },
+    {
+      "id": "kit-2",
+      "name": "Mounting Hardware Set",
+      "productIds": ["prod-6", "prod-5", "prod-8"]
+    },
+    {
+      "id": "kit-3",
+      "name": "Enclosure Pack",
+      "productIds": ["prod-3", "prod-4", "prod-10"]
+    },
+    {
+      "id": "kit-4",
+      "name": "Rail System Bundle",
+      "productIds": ["prod-9", "prod-2", "prod-7"]
+    },
+    {
+      "id": "kit-5",
+      "name": "Gasket Service Kit",
+      "productIds": ["prod-7", "prod-5"]
+    }
+  ],
+  "materials": [
+    {
+      "id": "mat-1",
+      "name": "Carbon Steel Sheet 2mm",
+      "code": "CSS-2MM-01",
+      "image": "https://picsum.photos/seed/carbon-steel/80/80"
+    },
+    {
+      "id": "mat-2",
+      "name": "ABS Filament 1.75mm",
+      "code": "ABS-175-01",
+      "image": "https://picsum.photos/seed/abs-filament/80/80"
+    },
+    {
+      "id": "mat-3",
+      "name": "6061 Aluminum Bar 25mm",
+      "code": "ALB-6061-25",
+      "image": "https://picsum.photos/seed/aluminum-bar/80/80"
+    },
+    {
+      "id": "mat-4",
+      "name": "PLA Resin Clear 1L",
+      "code": "PLA-CLR-1L",
+      "image": "https://picsum.photos/seed/pla-resin/80/80"
+    },
+    {
+      "id": "mat-5",
+      "name": "HDPE Granulate 5kg",
+      "code": "HDPE-5KG-01",
+      "image": "https://picsum.photos/seed/hdpe-granulate/80/80"
+    },
+    {
+      "id": "mat-6",
+      "name": "Brass Rod Ø10mm",
+      "code": "BRS-R10-01",
+      "image": "https://picsum.photos/seed/brass-rod/80/80"
+    }
   ]
 }
