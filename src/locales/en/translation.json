@@ -60,7 +60,35 @@
         "save": "Save"
       },
       "customers": {
-        "title": "Customers"
+        "title": "Customers",
+        "subtitle": "Manage customer accounts, contact details, and business information.",
+        "addCustomer": "Add Customer",
+        "searchPlaceholder": "Search customers...",
+        "cancel": "Cancel",
+        "create": "Create",
+        "edit": "Edit",
+        "delete": "Delete",
+        "country": "Country",
+        "customerName": "Customer Name",
+        "customerNameHint": "Full name of the customer or company",
+        "phone": "Phone",
+        "abn": "ABN",
+        "abnHint": "Australian Business Number (if applicable)",
+        "address": "Address",
+        "suburbCity": "Suburb / City",
+        "postCode": "Post Code / ZIP Code",
+        "state": "State",
+        "selectState": "Select a state",
+        "states": {
+          "NSW": "New South Wales",
+          "VIC": "Victoria",
+          "QLD": "Queensland",
+          "WA": "Western Australia",
+          "SA": "South Australia",
+          "TAS": "Tasmania",
+          "ACT": "Australian Capital Territory",
+          "NT": "Northern Territory"
+        }
       },
       "priceLevelManager": {
         "title": "Price Level Manager"

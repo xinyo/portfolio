@@ -40,6 +40,19 @@ export type FactoryMaterial = {
   image: string;
 };
 
+export type FactoryCustomer = {
+  id: string;
+  name: string;
+  country: string;
+  phone: string;
+  abn: string;
+  address: string;
+  city: string;
+  postCode: string;
+  state: string;
+  image: string;
+};
+
 export type FactorySalesOrder = {
   id: string;
   orderNumber: string;
@@ -85,6 +98,7 @@ export const factoryProducts: FactoryProduct[] = mockData.products;
 export const factoryCategories: FactoryCategory[] = mockData.categories;
 export const factoryProductKits: FactoryProductKit[] = mockData.productKits;
 export const factoryMaterials: FactoryMaterial[] = mockData.materials;
+export const factoryCustomers: FactoryCustomer[] = mockData.customers;
 export const factorySalesOrders: FactorySalesOrder[] = mockData.salesOrders;
 
 export type FactoryColumnView = {
@@ -108,12 +122,14 @@ type FactoryStore = {
   currentCompany: string;
   salesOrderColumnViews: FactoryColumnView[];
   activeSalesOrderViewId: string;
+  customers: FactoryCustomer[];
   setLanguage: (language: FactoryLanguage) => void;
   setTimezone: (timezone: FactoryTimezone) => void;
   setIsNavPanelOpen: (isOpen: boolean) => void;
   setCurrentCompany: (company: string) => void;
   setSalesOrderColumnViews: (views: FactoryColumnView[]) => void;
   setActiveSalesOrderViewId: (id: string) => void;
+  addCustomer: (customer: FactoryCustomer) => void;
 };
 
 function getInitialLanguage(): FactoryLanguage {
@@ -141,6 +157,7 @@ export const useFactoryStore = create<FactoryStore>((set) => {
     currentCompany: initialCompany,
     salesOrderColumnViews: defaultSalesOrderColumnViews,
     activeSalesOrderViewId: "default",
+    customers: [...factoryCustomers],
     setLanguage: (language) => set({ language }),
     setTimezone: (timezone) => set({ timezone }),
     setIsNavPanelOpen: (isNavPanelOpen) => set({ isNavPanelOpen }),
@@ -149,5 +166,7 @@ export const useFactoryStore = create<FactoryStore>((set) => {
       set({ salesOrderColumnViews }),
     setActiveSalesOrderViewId: (activeSalesOrderViewId) =>
       set({ activeSalesOrderViewId }),
+    addCustomer: (customer) =>
+      set((state) => ({ customers: [...state.customers, customer] })),
   };
 });
