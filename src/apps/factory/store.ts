@@ -130,6 +130,7 @@ type FactoryStore = {
   setSalesOrderColumnViews: (views: FactoryColumnView[]) => void;
   setActiveSalesOrderViewId: (id: string) => void;
   addCustomer: (customer: FactoryCustomer) => void;
+  updateCustomer: (id: string, data: Partial<FactoryCustomer>) => void;
 };
 
 function getInitialLanguage(): FactoryLanguage {
@@ -168,5 +169,11 @@ export const useFactoryStore = create<FactoryStore>((set) => {
       set({ activeSalesOrderViewId }),
     addCustomer: (customer) =>
       set((state) => ({ customers: [...state.customers, customer] })),
+    updateCustomer: (id, data) =>
+      set((state) => ({
+        customers: state.customers.map((c) =>
+          c.id === id ? { ...c, ...data } : c,
+        ),
+      })),
   };
 });

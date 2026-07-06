@@ -26,7 +26,27 @@ import {
 export function CustomersView() {
   const { t } = useTranslation();
   const [customerDialogOpen, setCustomerDialogOpen] = useState(false);
+  const [editingCustomerId, setEditingCustomerId] = useState<string | null>(
+    null,
+  );
   const customers = useFactoryStore((s) => s.customers);
+
+  function handleAdd() {
+    setEditingCustomerId(null);
+    setCustomerDialogOpen(true);
+  }
+
+  function handleEdit(id: string) {
+    setEditingCustomerId(id);
+    setCustomerDialogOpen(true);
+  }
+
+  function handleDialogOpenChange(open: boolean) {
+    if (!open) {
+      setEditingCustomerId(null);
+    }
+    setCustomerDialogOpen(open);
+  }
 
   return (
     <section className="factory-view">
@@ -37,7 +57,7 @@ export function CustomersView() {
             {t("factory.views.customers.subtitle")}
           </p>
         </div>
-        <Button onClick={() => setCustomerDialogOpen(true)}>
+        <Button onClick={handleAdd}>
           <Plus className="size-4" />
           {t("factory.views.customers.addCustomer")}
         </Button>
@@ -49,12 +69,8 @@ export function CustomersView() {
             <Search className="factory-search-input-icon" />
             <Input
               className="factory-search-input"
-              placeholder={t(
-                "factory.views.customers.searchPlaceholder",
-              )}
-              aria-label={t(
-                "factory.views.customers.searchPlaceholder",
-              )}
+              placeholder={t("factory.views.customers.searchPlaceholder")}
+              aria-label={t("factory.views.customers.searchPlaceholder")}
             />
           </div>
         </div>
@@ -62,13 +78,19 @@ export function CustomersView() {
 
       <div className="factory-product-list">
         {customers.map((customer: FactoryCustomer) => (
-          <CustomerItem key={customer.id} customer={customer} t={t} />
+          <CustomerItem
+            key={customer.id}
+            customer={customer}
+            t={t}
+            onEdit={handleEdit}
+          />
         ))}
       </div>
 
       <CustomerDialog
         open={customerDialogOpen}
-        onOpenChange={setCustomerDialogOpen}
+        onOpenChange={handleDialogOpenChange}
+        customerId={editingCustomerId}
       />
     </section>
   );
@@ -77,9 +99,11 @@ export function CustomersView() {
 function CustomerItem({
   customer,
   t,
+  onEdit,
 }: {
   customer: FactoryCustomer;
   t: (key: string) => string;
+  onEdit: (id: string) => void;
 }) {
   return (
     <Item variant="outline" size="default">
@@ -99,7 +123,7 @@ function CustomerItem({
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end">
-          <DropdownMenuItem>
+          <DropdownMenuItem onClick={() => onEdit(customer.id)}>
             {t("factory.views.customers.edit")}
           </DropdownMenuItem>
           <DropdownMenuItem variant="destructive">
