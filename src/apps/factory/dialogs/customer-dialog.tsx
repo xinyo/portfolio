@@ -216,6 +216,7 @@ export function CustomerDialog({
             <div className="grid gap-2">
               <Label htmlFor="cust-name">
                 {t("factory.views.customers.customerName")}
+                <span className="text-destructive">*</span>
               </Label>
               <Input
                 id="cust-name"
