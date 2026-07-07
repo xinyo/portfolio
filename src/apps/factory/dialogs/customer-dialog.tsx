@@ -52,7 +52,7 @@ const AVATAR_COUNT = 24;
 function randomAvatar(): string {
   const n = Math.floor(Math.random() * AVATAR_COUNT) + 1;
   const padded = String(n).padStart(2, "0");
-  return `/src/assets/avatar/agent_avatar_${padded}.svg`;
+  return `/src/assets/customer/${padded}.webp`;
 }
 
 const EMPTY_FORM = {

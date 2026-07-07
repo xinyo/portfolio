@@ -172,7 +172,7 @@
       "city": "Melbourne",
       "postCode": "3000",
       "state": "VIC",
-      "image": "/src/assets/avatar/agent_avatar_01.svg"
+      "image": "/src/assets/customer/01.webp"
     },
     {
       "id": "cust-2",
@@ -184,7 +184,7 @@
       "city": "Sydney",
       "postCode": "2000",
       "state": "NSW",
-      "image": "/src/assets/avatar/agent_avatar_02.svg"
+      "image": "/src/assets/customer/02.webp"
     },
     {
       "id": "cust-3",
@@ -196,7 +196,7 @@
       "city": "Brisbane",
       "postCode": "4000",
       "state": "QLD",
-      "image": "/src/assets/avatar/agent_avatar_03.svg"
+      "image": "/src/assets/customer/03.webp"
     },
     {
       "id": "cust-4",
@@ -208,7 +208,7 @@
       "city": "Perth",
       "postCode": "6000",
       "state": "WA",
-      "image": "/src/assets/avatar/agent_avatar_04.svg"
+      "image": "/src/assets/customer/04.webp"
     },
     {
       "id": "cust-5",
@@ -220,7 +220,7 @@
       "city": "Geelong",
       "postCode": "3220",
       "state": "VIC",
-      "image": "/src/assets/avatar/agent_avatar_05.svg"
+      "image": "/src/assets/customer/05.webp"
     },
     {
       "id": "cust-6",
@@ -232,7 +232,7 @@
       "city": "Newcastle",
       "postCode": "2300",
       "state": "NSW",
-      "image": "/src/assets/avatar/agent_avatar_06.svg"
+      "image": "/src/assets/customer/06.webp"
     }
   ],
   "salesOrders": [
