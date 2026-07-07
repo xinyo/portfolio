@@ -1,6 +1,7 @@
 import { EllipsisVertical, Plus, Search } from "lucide-react";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router";
 
 import { CustomerDialog } from "@/apps/factory/dialogs/customer-dialog";
 import {
@@ -107,15 +108,20 @@ function CustomerItem({
 }) {
   return (
     <Item variant="outline" size="default">
-      <ItemMedia variant="image">
-        <img src={customer.image} alt={customer.name} />
-      </ItemMedia>
-      <ItemContent>
-        <ItemTitle>{customer.name}</ItemTitle>
-        <ItemDescription>
-          {customer.city}, {customer.state}
-        </ItemDescription>
-      </ItemContent>
+      <Link
+        className="factory-customer-item-link"
+        to={`/apps/factory/customers/${customer.id}/order-history`}
+      >
+        <ItemMedia variant="image">
+          <img src={customer.image} alt={customer.name} />
+        </ItemMedia>
+        <ItemContent>
+          <ItemTitle>{customer.name}</ItemTitle>
+          <ItemDescription>
+            {customer.city}, {customer.state}
+          </ItemDescription>
+        </ItemContent>
+      </Link>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button variant="ghost" size="icon-sm" aria-label="More options">

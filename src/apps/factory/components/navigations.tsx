@@ -1,31 +1,20 @@
-import { NavLink } from "react-router";
+import { NavLink, useLocation } from "react-router";
 import { useTranslation } from "react-i18next";
 import {
-  Boxes,
-  Building2,
   CalendarClock,
-  CalendarDays,
-  Clock,
   CreditCard,
-  DollarSign,
   HelpCircleIcon,
   KeyboardIcon,
   Languages,
-  LayoutDashboard,
-  LayoutGrid,
   LogOut,
   Monitor,
   Moon,
   Palette,
-  ReceiptText,
   Search,
   Settings,
   Sparkles,
   Sun,
-  Truck,
   User,
-  Users,
-  Workflow,
 } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
@@ -55,110 +44,14 @@ import {
   type FactoryLanguage,
   type FactoryTimezone,
 } from "@/apps/factory/store";
-
-interface NavSection {
-  labelKey: string;
-  items: {
-    labelKey: string;
-    to: string;
-    icon: React.ComponentType<{ "aria-hidden"?: boolean | "true" }>;
-    end?: boolean;
-  }[];
-}
-
-const navigationSections: NavSection[] = [
-  {
-    labelKey: "factory.navigation.sections.general",
-    items: [
-      {
-        labelKey: "factory.navigation.items.overview",
-        to: "/apps/factory",
-        icon: LayoutDashboard,
-        end: true,
-      },
-    ],
-  },
-  {
-    labelKey: "factory.navigation.sections.products",
-    items: [
-      {
-        labelKey: "factory.navigation.items.productCategories",
-        to: "/apps/factory/product-categories",
-        icon: LayoutGrid,
-      },
-      {
-        labelKey: "factory.navigation.items.materials",
-        to: "/apps/factory/materials",
-        icon: Boxes,
-      },
-    ],
-  },
-  {
-    labelKey: "factory.navigation.sections.sales",
-    items: [
-      {
-        labelKey: "factory.navigation.items.salesOrders",
-        to: "/apps/factory/sales-orders",
-        icon: ReceiptText,
-      },
-      {
-        labelKey: "factory.navigation.items.customers",
-        to: "/apps/factory/customers",
-        icon: Users,
-      },
-      {
-        labelKey: "factory.navigation.items.priceLevelManager",
-        to: "/apps/factory/price-level-manager",
-        icon: DollarSign,
-      },
-    ],
-  },
-  {
-    labelKey: "factory.navigation.sections.purchasing",
-    items: [
-      {
-        labelKey: "factory.navigation.items.purchaseOrders",
-        to: "/apps/factory/purchase-orders",
-        icon: ReceiptText,
-      },
-      {
-        labelKey: "factory.navigation.items.suppliers",
-        to: "/apps/factory/suppliers",
-        icon: Building2,
-      },
-    ],
-  },
-  {
-    labelKey: "factory.navigation.sections.productivity",
-    items: [
-      {
-        labelKey: "factory.navigation.items.workflow",
-        to: "/apps/factory/workflow",
-        icon: Workflow,
-      },
-      {
-        labelKey: "factory.navigation.items.planners",
-        to: "/apps/factory/planners",
-        icon: CalendarDays,
-      },
-      {
-        labelKey: "factory.navigation.items.deliveryScheduling",
-        to: "/apps/factory/delivery-scheduling",
-        icon: Truck,
-      },
-      {
-        labelKey: "factory.navigation.items.timesheets",
-        to: "/apps/factory/timesheets",
-        icon: Clock,
-      },
-    ],
-  },
-];
+import { getFactoryNavigationSections } from "@/apps/factory/components/navigation-model";
 
 export function FactoryNavigations() {
   const { t } = useTranslation();
+  const location = useLocation();
   const { user, trial } = mockData;
   const { setIsDark } = useTheme(false);
+  const navigationSections = getFactoryNavigationSections(location.pathname);
 
   const isNavPanelOpen = useFactoryStore((state) => state.isNavPanelOpen);
   const language = useFactoryStore((state) => state.language);
@@ -197,11 +90,18 @@ export function FactoryNavigations() {
           </Button>
         </SearchDialog>
         {navigationSections.map((section) => (
-          <div className="factory-nav-section" key={section.labelKey}>
-            <CollapsibleContent asChild>
-              <p className="factory-nav-section-label">{t(section.labelKey)}</p>
-            </CollapsibleContent>
-            {section.items.map(({ labelKey, to, icon: Icon, end }) => {
+          <div
+            className="factory-nav-section"
+            key={section.labelKey ?? section.items[0]?.labelKey}
+          >
+            {section.labelKey && (
+              <CollapsibleContent asChild>
+                <p className="factory-nav-section-label">
+                  {t(section.labelKey)}
+                </p>
+              </CollapsibleContent>
+            )}
+            {section.items.map(({ labelKey, to, icon: Icon, end, variant }) => {
               const label = t(labelKey);
 
               return (
@@ -211,6 +111,7 @@ export function FactoryNavigations() {
                   end={end}
                   title={label}
                   key={labelKey}
+                  data-variant={variant}
                 >
                   <Icon aria-hidden="true" />
                   <CollapsibleContent asChild>
