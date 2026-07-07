@@ -60,7 +60,63 @@
         "save": "Save"
       },
       "customers": {
-        "title": "Customers"
+        "title": "Customers",
+        "subtitle": "Manage customer accounts, contact details, and business information.",
+        "addCustomer": "Add Customer",
+        "editCustomer": "Edit Customer",
+        "searchPlaceholder": "Search customers...",
+        "cancel": "Cancel",
+        "create": "Create",
+        "save": "Save",
+        "edit": "Edit",
+        "delete": "Delete",
+        "country": "Country",
+        "customerName": "Customer Name",
+        "customerNameHint": "Full name of the customer or company",
+        "phone": "Phone",
+        "abn": "ABN",
+        "abnHint": "Australian Business Number (if applicable)",
+        "address": "Address",
+        "suburbCity": "Suburb / City",
+        "postCode": "Post Code / ZIP Code",
+        "state": "State",
+        "selectState": "Select a state",
+        "unsavedTitle": "Unsaved changes",
+        "unsavedDescription": "You have unsaved changes. Are you sure you want to discard them?",
+        "keepEditing": "Keep editing",
+        "discard": "Discard",
+        "states": {
+          "NSW": "New South Wales",
+          "VIC": "Victoria",
+          "QLD": "Queensland",
+          "WA": "Western Australia",
+          "SA": "South Australia",
+          "TAS": "Tasmania",
+          "ACT": "Australian Capital Territory",
+          "NT": "Northern Territory"
+        }
+      },
+      "customerDetail": {
+        "orderHistory": {
+          "title": "Order History",
+          "empty": "No orders have been recorded for this customer yet."
+        },
+        "billingAddress": {
+          "title": "Billing Address"
+        },
+        "deliveryAddress": {
+          "title": "Delivery Address"
+        },
+        "contacts": {
+          "title": "Contacts"
+        },
+        "settings": {
+          "title": "Settings"
+        },
+        "notFound": {
+          "title": "Customer not found",
+          "description": "The selected customer could not be found."
+        }
       },
       "priceLevelManager": {
         "title": "Price Level Manager"
@@ -109,6 +165,16 @@
         "planners": "Planners",
         "deliveryScheduling": "Delivery Scheduling",
         "timesheets": "Timesheets"
+      },
+      "contextual": {
+        "customers": {
+          "back": "Back to Customers",
+          "orderHistory": "Order History",
+          "billingAddress": "Billing Address",
+          "deliveryAddress": "Delivery Address",
+          "contacts": "Contacts",
+          "settings": "Settings"
+        }
       }
     },
     "chat": {

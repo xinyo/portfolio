@@ -16,6 +16,7 @@
 .profolio-home{
   width: min(100%, 1200px);
   margin: 0 auto;
+  height: 100vh;
 }
 
 #center {
@@ -24,8 +25,7 @@
   gap: 25px;
   place-content: center;
   place-items: center;
-  flex-grow: 1;
-  margin-top: 6rem;
+  flex-grow: 1; 
 
   & h1 {
     margin: 0;
@@ -36,7 +36,14 @@
   }
 
   .hero-title {
-    max-width: min(80vw, 800px);
+    max-width: min(80vw, 1200px);
+    h1 {
+      margin-bottom: 2rem;
+    }
+    p {
+      max-width: min(80vw, 800px);
+      margin: 0 auto;
+    }
   }
 
   @media (max-width: 1024px) {
@@ -152,6 +159,7 @@
   border: 1px solid rgb(255 255 255 / 0.18);
   border-radius: 8px;
   background: rgb(8 6 13 / 0.72);
+  transition: background 420ms ease, background-position 420ms ease;
   color: #fff;
   backdrop-filter: blur(18px);
 }
@@ -185,6 +193,19 @@
   max-height: 8rem;
   opacity: 1;
   transform: translateY(0);
+}
+
+.subapp-info:hover,
+.subapp-card:hover .subapp-info,
+.subapp-card:focus-within .subapp-info {
+  background: linear-gradient(
+    to bottom,
+    #223344 0%,
+    #1e2833 30%,
+    #1a1a1a 50%,
+    #211d2e 70%,
+    #2a2340 100%
+  );
 }
 
 @media (max-width: 800px) {

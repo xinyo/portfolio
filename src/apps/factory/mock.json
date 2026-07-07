@@ -161,6 +161,80 @@
       "image": "https://picsum.photos/seed/brass-rod/80/80"
     }
   ],
+  "customers": [
+    {
+      "id": "cust-1",
+      "name": "BuildCorp Industries",
+      "country": "Australia",
+      "phone": "+61 3 9555 0123",
+      "abn": "12 345 678 901",
+      "address": "1200 Industrial Pkwy",
+      "city": "Melbourne",
+      "postCode": "3000",
+      "state": "VIC",
+      "image": "/src/assets/avatar/agent_avatar_01.svg"
+    },
+    {
+      "id": "cust-2",
+      "name": "TechFab Solutions",
+      "country": "Australia",
+      "phone": "+61 2 8222 0456",
+      "abn": "98 765 432 109",
+      "address": "455 Market St, Suite 300",
+      "city": "Sydney",
+      "postCode": "2000",
+      "state": "NSW",
+      "image": "/src/assets/avatar/agent_avatar_02.svg"
+    },
+    {
+      "id": "cust-3",
+      "name": "Precision Parts Ltd.",
+      "country": "Australia",
+      "phone": "+61 7 3111 0789",
+      "abn": "55 123 987 654",
+      "address": "2100 Precision Ct",
+      "city": "Brisbane",
+      "postCode": "4000",
+      "state": "QLD",
+      "image": "/src/assets/avatar/agent_avatar_03.svg"
+    },
+    {
+      "id": "cust-4",
+      "name": "Global Manufacturing Co.",
+      "country": "Australia",
+      "phone": "+61 8 6444 0321",
+      "abn": "77 456 321 789",
+      "address": "5500 Energy Pkwy",
+      "city": "Perth",
+      "postCode": "6000",
+      "state": "WA",
+      "image": "/src/assets/avatar/agent_avatar_04.svg"
+    },
+    {
+      "id": "cust-5",
+      "name": "SteelWorks Engineering",
+      "country": "Australia",
+      "phone": "+61 3 8777 0654",
+      "abn": "33 789 456 123",
+      "address": "88 Foundry Rd",
+      "city": "Geelong",
+      "postCode": "3220",
+      "state": "VIC",
+      "image": "/src/assets/avatar/agent_avatar_05.svg"
+    },
+    {
+      "id": "cust-6",
+      "name": "AusGrid Fabrication",
+      "country": "Australia",
+      "phone": "+61 2 4999 0111",
+      "abn": "44 321 654 987",
+      "address": "17 Steel Lane",
+      "city": "Newcastle",
+      "postCode": "2300",
+      "state": "NSW",
+      "image": "/src/assets/avatar/agent_avatar_06.svg"
+    }
+  ],
   "salesOrders": [
     {
       "id": "so-1",

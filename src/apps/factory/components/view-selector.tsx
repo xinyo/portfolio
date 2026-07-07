@@ -105,7 +105,7 @@ export function ViewSelector({
               <span className="truncate">{triggerLabel}</span>
               {isModified && (
                 <span
-                  className="h-1.5 w-1.5 shrink-0 rounded-full bg-primary"
+                  className="h-1.5 w-1.5 shrink-0 rounded-full bg-destructive"
                   title="Unsaved changes"
                 />
               )}

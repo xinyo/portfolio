@@ -18,6 +18,7 @@ import "./styles.css";
 import { AiChat } from "@/apps/factory/components/ai-chat";
 import { FactoryNavigations } from "@/apps/factory/components/navigations";
 import { companyNameMap, useFactoryStore } from "@/apps/factory/store";
+import { CustomerDetailView } from "@/apps/factory/views/customer-detail";
 import { CustomersView } from "@/apps/factory/views/customers";
 import { DeliverySchedulingView } from "@/apps/factory/views/delivery-scheduling";
 import { MaterialsView } from "@/apps/factory/views/materials";
@@ -206,6 +207,30 @@ export function FactoryApp() {
               <Route path="materials" element={<MaterialsView />} />
               <Route path="sales-orders" element={<SalesOrdersView />} />
               <Route path="customers" element={<CustomersView />} />
+              <Route
+                path="customers/:customerId"
+                element={<Navigate to="order-history" replace />}
+              />
+              <Route
+                path="customers/:customerId/order-history"
+                element={<CustomerDetailView view="orderHistory" />}
+              />
+              <Route
+                path="customers/:customerId/billing-address"
+                element={<CustomerDetailView view="billingAddress" />}
+              />
+              <Route
+                path="customers/:customerId/delivery-address"
+                element={<CustomerDetailView view="deliveryAddress" />}
+              />
+              <Route
+                path="customers/:customerId/contacts"
+                element={<CustomerDetailView view="contacts" />}
+              />
+              <Route
+                path="customers/:customerId/settings"
+                element={<CustomerDetailView view="settings" />}
+              />
               <Route
                 path="price-level-manager"
                 element={<PriceLevelManagerView />}
