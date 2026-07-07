@@ -139,13 +139,13 @@ function ContactItem({
         </Avatar>
       </ItemMedia>
 
-      <ItemContent>
+      <ItemContent className="factory-contact-primary">
         <ItemTitle>{contact.contactName}</ItemTitle>
         <ItemDescription>{primaryPhone || "-"}</ItemDescription>
       </ItemContent>
 
       {contact.email && (
-        <ItemContent className="factory-contact-meta">
+        <ItemContent className="factory-contact-meta factory-contact-email">
           <ItemTitle>
             <Mail className="size-4" />
             {t("factory.views.customerDetail.contacts.email")}
@@ -155,7 +155,7 @@ function ContactItem({
       )}
 
       {(contact.phone || contact.mobile) && (
-        <ItemContent className="factory-contact-meta">
+        <ItemContent className="factory-contact-meta factory-contact-phone">
           <ItemTitle>
             {contact.mobile ? (
               <Smartphone className="size-4" />

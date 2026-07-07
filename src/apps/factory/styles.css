@@ -712,10 +712,6 @@ div:has(> .factory-customer-item-link:hover) {
   gap: 0.5rem;
 }
 
-.factory-product-list [data-slot="item"] [data-slot="item-media"] {
-  border-radius: var(--radius-md);
-  flex-basis: 25%;
-}
 
 .factory-contacts-toolbar {
   justify-content: space-between;
@@ -723,7 +719,12 @@ div:has(> .factory-customer-item-link:hover) {
 }
 
 .factory-contact-item {
+  display: grid;
+  grid-template-columns:
+    2.5rem minmax(120px, 0.7fr) minmax(220px, 1.4fr)
+    minmax(180px, 1fr) auto;
   align-items: center;
+  column-gap: 1rem;
 }
 
 .factory-contact-avatar {
@@ -731,8 +732,26 @@ div:has(> .factory-customer-item-link:hover) {
   height: 2.5rem;
 }
 
+
+
+.factory-contact-primary,
 .factory-contact-meta {
-  max-width: 240px;
+  min-width: 0;
+  max-width: none;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.factory-contact-email {
+  grid-column: 3;
+}
+
+.factory-contact-phone {
+  grid-column: 4;
+}
+
+.factory-contact-item > [data-slot="item-actions"] {
+  justify-self: end;
 }
 
 .factory-contact-meta [data-slot="item-title"] {
@@ -741,6 +760,21 @@ div:has(> .factory-customer-item-link:hover) {
   font-weight: 600;
 }
 
+.factory-contact-primary [data-slot="item-title"],
+.factory-contact-primary [data-slot="item-description"],
+.factory-contact-meta [data-slot="item-title"],
+.factory-contact-meta [data-slot="item-description"] {
+  width: 100%;
+  max-width: 100%;
+}
+
+.factory-contact-primary [data-slot="item-title"],
+.factory-contact-primary [data-slot="item-description"],
+.factory-contact-meta [data-slot="item-description"] {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 
 .factory-avatar-picker {
   display: grid;
@@ -793,4 +827,26 @@ div:has(> .factory-customer-item-link:hover) {
   border-radius: 999px;
   background: var(--primary);
   color: var(--primary-foreground);
+}
+
+@media (max-width: 900px) {
+  .factory-contact-item {
+    grid-template-columns: 2.5rem minmax(0, 1fr) auto;
+    row-gap: 0.75rem;
+  }
+
+  .factory-contact-primary {
+    grid-column: 2;
+  }
+
+  .factory-contact-email,
+  .factory-contact-phone {
+    grid-column: 1 / -1;
+    padding-left: 3.5rem;
+  }
+
+  .factory-contact-item > [data-slot="item-actions"] {
+    grid-column: 3;
+    grid-row: 1;
+  }
 }
