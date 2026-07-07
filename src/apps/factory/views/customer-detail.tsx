@@ -1,11 +1,12 @@
-import { Navigate, useParams } from "react-router";
 import { useTranslation } from "react-i18next";
+import { Navigate, useParams } from "react-router";
 
 import {
   factorySalesOrders,
   useFactoryStore,
   type FactoryCustomer,
 } from "@/apps/factory/store";
+import { ContactsPanel } from "@/apps/factory/views/customers/contacts";
 import { Badge } from "@/components/ui/badge";
 
 export type CustomerDetailViewKey =
@@ -114,16 +115,6 @@ function AddressPanel({ customer }: { customer: FactoryCustomer }) {
       <DetailField label="State" value={customer.state} />
       <DetailField label="Post Code" value={customer.postCode} />
       <DetailField label="Country" value={customer.country} />
-    </div>
-  );
-}
-
-function ContactsPanel({ customer }: { customer: FactoryCustomer }) {
-  return (
-    <div className="factory-detail-card">
-      <DetailField label="Primary Contact" value={customer.name} />
-      <DetailField label="Phone" value={customer.phone} />
-      <DetailField label="ABN" value={customer.abn} />
     </div>
   );
 }
