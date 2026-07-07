@@ -139,6 +139,7 @@ export function getCustomerNavigationSections(customerId: string): NavSection[] 
           labelKey: "factory.navigation.contextual.customers.back",
           to: "/apps/factory/customers",
           icon: Undo2,
+          end: true,
           variant: "back",
         },
       ],

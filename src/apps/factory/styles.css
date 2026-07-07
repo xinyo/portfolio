@@ -191,7 +191,6 @@
 
 .factory-nav-item[data-variant="back"] {
   margin-bottom: 0.5rem;
-  color: var(--muted-foreground);
 }
 
 .factory-nav-item[data-variant="back"] svg {
@@ -374,6 +373,12 @@
   min-width: 0;
   color: inherit;
   text-decoration: none;
+  border-radius: 6px;
+  transition: background-color 160ms ease, border-color 160ms ease;
+}
+
+.factory-customer-item-link:hover {
+  background-color: var(--muted);
 }
 
 .factory-customer-item-link:focus-visible {

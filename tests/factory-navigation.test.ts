@@ -33,6 +33,7 @@ describe("factory navigation model", () => {
     expect(sections[0]?.items[0]).toMatchObject({
       labelKey: "factory.navigation.contextual.customers.back",
       to: "/apps/factory/customers",
+      end: true,
       variant: "back",
     });
     expect(sections[1]?.items.map((item) => item.to)).toEqual([
