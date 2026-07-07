@@ -58,7 +58,6 @@ function randomAvatar(): string {
 const EMPTY_FORM = {
   country: "Australia",
   name: "",
-  phone: "",
   abn: "",
   address: "",
   city: "",
@@ -78,7 +77,6 @@ export function CustomerDialog({
 
   const [country, setCountry] = useState(EMPTY_FORM.country);
   const [name, setName] = useState(EMPTY_FORM.name);
-  const [phone, setPhone] = useState(EMPTY_FORM.phone);
   const [abn, setAbn] = useState(EMPTY_FORM.abn);
   const [address, setAddress] = useState(EMPTY_FORM.address);
   const [city, setCity] = useState(EMPTY_FORM.city);
@@ -97,7 +95,6 @@ export function CustomerDialog({
       if (existing) {
         setCountry(existing.country);
         setName(existing.name);
-        setPhone(existing.phone);
         setAbn(existing.abn);
         setAddress(existing.address);
         setCity(existing.city);
@@ -109,7 +106,6 @@ export function CustomerDialog({
     // Create mode — reset
     setCountry(EMPTY_FORM.country);
     setName(EMPTY_FORM.name);
-    setPhone(EMPTY_FORM.phone);
     setAbn(EMPTY_FORM.abn);
     setAddress(EMPTY_FORM.address);
     setCity(EMPTY_FORM.city);
@@ -122,7 +118,6 @@ export function CustomerDialog({
       return (
         country !== EMPTY_FORM.country ||
         name !== EMPTY_FORM.name ||
-        phone !== EMPTY_FORM.phone ||
         abn !== EMPTY_FORM.abn ||
         address !== EMPTY_FORM.address ||
         city !== EMPTY_FORM.city ||
@@ -135,7 +130,6 @@ export function CustomerDialog({
     return (
       country !== existing.country ||
       name !== existing.name ||
-      phone !== existing.phone ||
       abn !== existing.abn ||
       address !== existing.address ||
       city !== existing.city ||
@@ -151,7 +145,6 @@ export function CustomerDialog({
       updateCustomer(customerId!, {
         name: name.trim(),
         country,
-        phone,
         abn,
         address,
         city,
@@ -163,13 +156,13 @@ export function CustomerDialog({
         id: `cust-${Date.now()}`,
         name: name.trim(),
         country,
-        phone,
         abn,
         address,
         city,
         postCode,
         state,
         image: randomAvatar(),
+        contacts: [],
       };
       addCustomer(customer);
     }
@@ -224,18 +217,6 @@ export function CustomerDialog({
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 required
-              />
-            </div>
-
-            <div className="grid gap-2">
-              <Label htmlFor="cust-phone">
-                {t("factory.views.customers.phone")}
-              </Label>
-              <Input
-                id="cust-phone"
-                type="tel"
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
               />
             </div>
 

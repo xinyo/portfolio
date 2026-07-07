@@ -54,13 +54,23 @@ export type FactoryCustomer = {
   id: string;
   name: string;
   country: string;
-  phone: string;
   abn: string;
   address: string;
   city: string;
   postCode: string;
   state: string;
   image: string;
+  contacts: FactoryCustomerContact[];
+};
+
+export type FactoryCustomerContact = {
+  id: string;
+  contactName: string;
+  email: string;
+  phone: string;
+  mobile: string;
+  avatar: string;
+  archived: boolean;
 };
 
 export type FactorySalesOrder = {
@@ -108,10 +118,53 @@ export const factoryProducts: FactoryProduct[] = mockData.products;
 export const factoryCategories: FactoryCategory[] = mockData.categories;
 export const factoryProductKits: FactoryProductKit[] = mockData.productKits;
 export const factoryMaterials: FactoryMaterial[] = mockData.materials;
+export const factoryAvatarOptions = Array.from({ length: 24 }, (_, index) => {
+  const id = String(index + 1).padStart(2, "0");
+  const path = `/src/assets/avatar/agent_avatar_${id}.svg`;
+
+  return {
+    id,
+    path,
+    src: resolveImage(path),
+  };
+});
+
 export const factoryCustomers: FactoryCustomer[] = mockData.customers.map(
-  (c) => ({ ...c, image: resolveImage(c.image) }),
+  (c) => ({
+    ...c,
+    image: resolveImage(c.image),
+    contacts: c.contacts.map((contact) => ({
+      ...contact,
+      avatar: resolveImage(contact.avatar),
+    })),
+  }),
 );
 export const factorySalesOrders: FactorySalesOrder[] = mockData.salesOrders;
+
+export function getActiveCustomerContacts(customer: FactoryCustomer) {
+  return customer.contacts.filter((contact) => !contact.archived);
+}
+
+export function filterCustomerContacts(
+  contacts: FactoryCustomerContact[],
+  query: string,
+) {
+  const normalizedQuery = query.trim().toLowerCase();
+  const activeContacts = contacts.filter((contact) => !contact.archived);
+
+  if (!normalizedQuery) {
+    return activeContacts;
+  }
+
+  return activeContacts.filter((contact) =>
+    [
+      contact.contactName,
+      contact.email,
+      contact.phone,
+      contact.mobile,
+    ].some((value) => value.toLowerCase().includes(normalizedQuery)),
+  );
+}
 
 export type FactoryColumnView = {
   id: string;
@@ -143,6 +196,16 @@ type FactoryStore = {
   setActiveSalesOrderViewId: (id: string) => void;
   addCustomer: (customer: FactoryCustomer) => void;
   updateCustomer: (id: string, data: Partial<FactoryCustomer>) => void;
+  addCustomerContact: (
+    customerId: string,
+    contact: FactoryCustomerContact,
+  ) => void;
+  updateCustomerContact: (
+    customerId: string,
+    contactId: string,
+    data: Partial<FactoryCustomerContact>,
+  ) => void;
+  archiveCustomerContact: (customerId: string, contactId: string) => void;
 };
 
 function getInitialLanguage(): FactoryLanguage {
@@ -185,6 +248,44 @@ export const useFactoryStore = create<FactoryStore>((set) => {
       set((state) => ({
         customers: state.customers.map((c) =>
           c.id === id ? { ...c, ...data } : c,
+        ),
+      })),
+    addCustomerContact: (customerId, contact) =>
+      set((state) => ({
+        customers: state.customers.map((customer) =>
+          customer.id === customerId
+            ? { ...customer, contacts: [...customer.contacts, contact] }
+            : customer,
+        ),
+      })),
+    updateCustomerContact: (customerId, contactId, data) =>
+      set((state) => ({
+        customers: state.customers.map((customer) =>
+          customer.id === customerId
+            ? {
+                ...customer,
+                contacts: customer.contacts.map((contact) =>
+                  contact.id === contactId
+                    ? { ...contact, ...data }
+                    : contact,
+                ),
+              }
+            : customer,
+        ),
+      })),
+    archiveCustomerContact: (customerId, contactId) =>
+      set((state) => ({
+        customers: state.customers.map((customer) =>
+          customer.id === customerId
+            ? {
+                ...customer,
+                contacts: customer.contacts.map((contact) =>
+                  contact.id === contactId
+                    ? { ...contact, archived: true }
+                    : contact,
+                ),
+              }
+            : customer,
         ),
       })),
   };

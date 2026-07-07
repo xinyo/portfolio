@@ -108,7 +108,18 @@
           "title": "Delivery Address"
         },
         "contacts": {
-          "title": "Contacts"
+          "title": "Contacts",
+          "addContact": "Add Contact",
+          "editContact": "Edit Contact",
+          "searchPlaceholder": "Search contacts...",
+          "empty": "No active contacts match this customer.",
+          "contactName": "Contact Name",
+          "email": "Email",
+          "phone": "Phone",
+          "mobile": "Mobile",
+          "avatar": "Avatar",
+          "selectAvatar": "Select avatar",
+          "archive": "Archive"
         },
         "settings": {
           "title": "Settings"

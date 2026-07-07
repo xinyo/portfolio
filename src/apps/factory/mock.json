@@ -166,73 +166,214 @@
       "id": "cust-1",
       "name": "BuildCorp Industries",
       "country": "Australia",
-      "phone": "+61 3 9555 0123",
       "abn": "12 345 678 901",
       "address": "1200 Industrial Pkwy",
       "city": "Melbourne",
       "postCode": "3000",
       "state": "VIC",
-      "image": "/src/assets/customer/01.webp"
+      "image": "/src/assets/customer/01.webp",
+      "contacts": [
+        {
+          "id": "contact-1-1",
+          "contactName": "John Anderson",
+          "email": "john.anderson@buildcorp.example",
+          "phone": "+61 3 9555 0148",
+          "mobile": "+61 412 555 147",
+          "avatar": "/src/assets/avatar/agent_avatar_01.svg",
+          "archived": false
+        },
+        {
+          "id": "contact-1-2",
+          "contactName": "Nina Patel",
+          "email": "nina.patel@buildcorp.example",
+          "phone": "+61 3 9555 0152",
+          "mobile": "+61 418 555 152",
+          "avatar": "/src/assets/avatar/agent_avatar_02.svg",
+          "archived": false
+        },
+        {
+          "id": "contact-1-3",
+          "contactName": "Owen Hughes",
+          "email": "owen.hughes@buildcorp.example",
+          "phone": "+61 3 9555 0160",
+          "mobile": "+61 421 555 160",
+          "avatar": "/src/assets/avatar/agent_avatar_03.svg",
+          "archived": false
+        }
+      ]
     },
     {
       "id": "cust-2",
       "name": "TechFab Solutions",
       "country": "Australia",
-      "phone": "+61 2 8222 0456",
       "abn": "98 765 432 109",
       "address": "455 Market St, Suite 300",
       "city": "Sydney",
       "postCode": "2000",
       "state": "NSW",
-      "image": "/src/assets/customer/02.webp"
+      "image": "/src/assets/customer/02.webp",
+      "contacts": [
+        {
+          "id": "contact-2-1",
+          "contactName": "Lisa Wong",
+          "email": "lisa.wong@techfab.example",
+          "phone": "+61 2 8222 0222",
+          "mobile": "+61 409 555 221",
+          "avatar": "/src/assets/avatar/agent_avatar_04.svg",
+          "archived": false
+        },
+        {
+          "id": "contact-2-2",
+          "contactName": "Mason Lee",
+          "email": "mason.lee@techfab.example",
+          "phone": "+61 2 8222 0230",
+          "mobile": "+61 411 555 230",
+          "avatar": "/src/assets/avatar/agent_avatar_05.svg",
+          "archived": false
+        }
+      ]
     },
     {
       "id": "cust-3",
       "name": "Precision Parts Ltd.",
       "country": "Australia",
-      "phone": "+61 7 3111 0789",
       "abn": "55 123 987 654",
       "address": "2100 Precision Ct",
       "city": "Brisbane",
       "postCode": "4000",
       "state": "QLD",
-      "image": "/src/assets/customer/03.webp"
+      "image": "/src/assets/customer/03.webp",
+      "contacts": [
+        {
+          "id": "contact-3-1",
+          "contactName": "Robert Clark",
+          "email": "robert.clark@preciseparts.example",
+          "phone": "+61 7 3111 0392",
+          "mobile": "+61 422 555 391",
+          "avatar": "/src/assets/avatar/agent_avatar_06.svg",
+          "archived": false
+        },
+        {
+          "id": "contact-3-2",
+          "contactName": "Aisha Roberts",
+          "email": "aisha.roberts@preciseparts.example",
+          "phone": "+61 7 3111 0404",
+          "mobile": "+61 423 555 404",
+          "avatar": "/src/assets/avatar/agent_avatar_07.svg",
+          "archived": false
+        },
+        {
+          "id": "contact-3-3",
+          "contactName": "Daniel Young",
+          "email": "daniel.young@preciseparts.example",
+          "phone": "+61 7 3111 0410",
+          "mobile": "+61 424 555 410",
+          "avatar": "/src/assets/avatar/agent_avatar_08.svg",
+          "archived": false
+        }
+      ]
     },
     {
       "id": "cust-4",
       "name": "Global Manufacturing Co.",
       "country": "Australia",
-      "phone": "+61 8 6444 0321",
       "abn": "77 456 321 789",
       "address": "5500 Energy Pkwy",
       "city": "Perth",
       "postCode": "6000",
       "state": "WA",
-      "image": "/src/assets/customer/04.webp"
+      "image": "/src/assets/customer/04.webp",
+      "contacts": [
+        {
+          "id": "contact-4-1",
+          "contactName": "Maria Garcia",
+          "email": "maria.garcia@globalmfg.example",
+          "phone": "+61 8 6444 0467",
+          "mobile": "+61 425 555 466",
+          "avatar": "/src/assets/avatar/agent_avatar_09.svg",
+          "archived": false
+        },
+        {
+          "id": "contact-4-2",
+          "contactName": "Ethan Brooks",
+          "email": "ethan.brooks@globalmfg.example",
+          "phone": "+61 8 6444 0475",
+          "mobile": "+61 426 555 475",
+          "avatar": "/src/assets/avatar/agent_avatar_10.svg",
+          "archived": false
+        }
+      ]
     },
     {
       "id": "cust-5",
       "name": "SteelWorks Engineering",
       "country": "Australia",
-      "phone": "+61 3 8777 0654",
       "abn": "33 789 456 123",
       "address": "88 Foundry Rd",
       "city": "Geelong",
       "postCode": "3220",
       "state": "VIC",
-      "image": "/src/assets/customer/05.webp"
+      "image": "/src/assets/customer/05.webp",
+      "contacts": [
+        {
+          "id": "contact-5-1",
+          "contactName": "Grace Turner",
+          "email": "grace.turner@steelworks.example",
+          "phone": "+61 3 8777 0655",
+          "mobile": "+61 427 555 655",
+          "avatar": "/src/assets/avatar/agent_avatar_11.svg",
+          "archived": false
+        },
+        {
+          "id": "contact-5-2",
+          "contactName": "Samuel Price",
+          "email": "samuel.price@steelworks.example",
+          "phone": "+61 3 8777 0662",
+          "mobile": "+61 428 555 662",
+          "avatar": "/src/assets/avatar/agent_avatar_12.svg",
+          "archived": false
+        }
+      ]
     },
     {
       "id": "cust-6",
       "name": "AusGrid Fabrication",
       "country": "Australia",
-      "phone": "+61 2 4999 0111",
       "abn": "44 321 654 987",
       "address": "17 Steel Lane",
       "city": "Newcastle",
       "postCode": "2300",
       "state": "NSW",
-      "image": "/src/assets/customer/06.webp"
+      "image": "/src/assets/customer/06.webp",
+      "contacts": [
+        {
+          "id": "contact-6-1",
+          "contactName": "Harper Nguyen",
+          "email": "harper.nguyen@ausgridfab.example",
+          "phone": "+61 2 4999 0112",
+          "mobile": "+61 429 555 112",
+          "avatar": "/src/assets/avatar/agent_avatar_13.svg",
+          "archived": false
+        },
+        {
+          "id": "contact-6-2",
+          "contactName": "Thomas Evans",
+          "email": "thomas.evans@ausgridfab.example",
+          "phone": "+61 2 4999 0120",
+          "mobile": "+61 430 555 120",
+          "avatar": "/src/assets/avatar/agent_avatar_14.svg",
+          "archived": false
+        },
+        {
+          "id": "contact-6-3",
+          "contactName": "Sofia Martinez",
+          "email": "sofia.martinez@ausgridfab.example",
+          "phone": "+61 2 4999 0133",
+          "mobile": "+61 431 555 133",
+          "avatar": "/src/assets/avatar/agent_avatar_15.svg",
+          "archived": false
+        }
+      ]
     }
   ],
   "salesOrders": [
