@@ -2,6 +2,16 @@ import { create } from "zustand";
 
 import mockData from "@/apps/factory/mock.json";
 
+const avatarModules = import.meta.glob("@/assets/avatar/*.svg", {
+  eager: true,
+  query: "?url",
+  import: "default",
+}) as Record<string, string>;
+
+function resolveImage(path: string): string {
+  return avatarModules[path] ?? path;
+}
+
 export const factoryLanguageOptions = ["English", "Deutsch", "中文"] as const;
 export const factoryTimezoneOptions = ["UTC", "Local"] as const;
 
@@ -98,7 +108,9 @@ export const factoryProducts: FactoryProduct[] = mockData.products;
 export const factoryCategories: FactoryCategory[] = mockData.categories;
 export const factoryProductKits: FactoryProductKit[] = mockData.productKits;
 export const factoryMaterials: FactoryMaterial[] = mockData.materials;
-export const factoryCustomers: FactoryCustomer[] = mockData.customers;
+export const factoryCustomers: FactoryCustomer[] = mockData.customers.map(
+  (c) => ({ ...c, image: resolveImage(c.image) }),
+);
 export const factorySalesOrders: FactorySalesOrder[] = mockData.salesOrders;
 
 export type FactoryColumnView = {
