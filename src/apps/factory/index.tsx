@@ -11,7 +11,7 @@ import {
   type PointerEvent,
 } from "react";
 import { useTranslation } from "react-i18next";
-import { Navigate, Route, Routes } from "react-router";
+import { Link, Navigate, Route, Routes } from "react-router";
 import logo from "./assets/logo.png";
 import "./styles.css";
 
@@ -133,11 +133,13 @@ export function FactoryApp() {
       >
         <div className="factory-sidepanel-top">
           {isNavPanelOpen && (
-            <img
-              src={logo}
-              alt="Factory Logo"
-              className="factory-sidepanel-logo"
-            />
+            <Link to="/apps/factory" aria-label="Home">
+              <img
+                src={logo}
+                alt="Factory Logo"
+                className="factory-sidepanel-logo"
+              />
+            </Link>
           )}
           <CollapsibleContent className="factory-sidepanel-title">
             <span>{t("factory.title")}</span>
