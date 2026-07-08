@@ -228,6 +228,14 @@
   display: none;
 }
 
+.factory-sidepanel-custom-section {
+  display: flex;
+  min-height: 0;
+  flex: 1;
+  flex-direction: column;
+  margin-top: 0.25rem;
+}
+
 .factory-sidepanel-footer {
   flex-shrink: 0;
   padding: 0.75rem;
@@ -352,7 +360,7 @@
 .factory-app-page .app-view-content {
   flex: 1;
   overflow-y: auto;
-  padding: 1.5rem;
+  /* padding: 1.5rem; */
   text-align: left;
 }
 
@@ -716,21 +724,18 @@ div:has(> .factory-customer-item-link:hover) {
 
 .factory-planner-view {
   display: flex;
-  min-height: calc(100vh - 112px);
+  width: 100%;
+  max-width: none;
+  height: calc(100vh - 64px);
+  min-height: calc(100vh - 64px);
+  box-sizing: border-box;
   flex-direction: column;
+  margin: 0;
 }
 
-.factory-planner-shell {
-  display: grid;
-  grid-template-columns: minmax(260px, 320px) minmax(0, 1fr);
-  gap: 1rem;
-  min-height: 680px;
-}
-
-.factory-planner-sidebar,
 .factory-planner-calendar-panel {
   min-width: 0;
-  border: 1px solid var(--border);
+  /* border: 1px solid var(--border); */
   border-radius: 6px;
   background: var(--card);
 }
@@ -738,8 +743,10 @@ div:has(> .factory-customer-item-link:hover) {
 .factory-planner-sidebar {
   display: flex;
   min-height: 0;
+  flex: 1;
   flex-direction: column;
-  padding: 1rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--border);
 }
 
 .factory-planner-sidebar-header {
@@ -810,6 +817,7 @@ div:has(> .factory-customer-item-link:hover) {
 .factory-planner-calendar-panel {
   display: flex;
   min-height: 0;
+  flex: 1;
   flex-direction: column;
   overflow: hidden;
 }
@@ -859,7 +867,6 @@ div:has(> .factory-customer-item-link:hover) {
 .factory-calendar-frame {
   min-height: 0;
   flex: 1;
-  padding: 1rem;
 }
 
 .factory-calendar-frame .fc {
@@ -916,20 +923,13 @@ div:has(> .factory-customer-item-link:hover) {
 }
 
 @media (max-width: 1120px) {
-  .factory-planner-shell {
-    grid-template-columns: 1fr;
-  }
-
-  .factory-planner-sidebar {
-    max-height: 340px;
-  }
-
   .factory-planner-calendar-panel {
     min-height: 640px;
   }
 }
 
 @media (max-width: 760px) {
+
   .factory-planner-calendar-toolbar {
     align-items: stretch;
     flex-direction: column;
@@ -939,10 +939,6 @@ div:has(> .factory-customer-item-link:hover) {
   .factory-planner-view-toggle {
     justify-content: flex-start;
     flex-wrap: wrap;
-  }
-
-  .factory-calendar-frame {
-    padding: 0.75rem;
   }
 }
 

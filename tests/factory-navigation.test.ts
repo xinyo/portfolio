@@ -1,19 +1,22 @@
 import { describe, expect, it } from "vitest";
+import { Undo2 } from "lucide-react";
 
 import {
   defaultNavigationSections,
   getCustomerIdFromPathname,
-  getFactoryNavigationSections,
+  getFactoryLeftPanelModel,
 } from "@/apps/factory/components/navigation-model";
 
 describe("factory navigation model", () => {
   it("uses the default navigation for list-level factory routes", () => {
-    expect(getFactoryNavigationSections("/apps/factory")).toBe(
-      defaultNavigationSections,
-    );
-    expect(getFactoryNavigationSections("/apps/factory/customers")).toBe(
-      defaultNavigationSections,
-    );
+    expect(getFactoryLeftPanelModel("/apps/factory")).toMatchObject({
+      sections: defaultNavigationSections,
+      showSearch: true,
+    });
+    expect(getFactoryLeftPanelModel("/apps/factory/customers")).toMatchObject({
+      sections: defaultNavigationSections,
+      showSearch: true,
+    });
   });
 
   it("detects customer detail routes", () => {
@@ -25,11 +28,14 @@ describe("factory navigation model", () => {
   });
 
   it("uses customer navigation for customer detail routes", () => {
-    const sections = getFactoryNavigationSections(
+    const model = getFactoryLeftPanelModel(
       "/apps/factory/customers/customer-1/order-history",
     );
+    const sections = model.sections;
 
     expect(sections).not.toBe(defaultNavigationSections);
+    expect(model.showSearch).toBe(true);
+    expect(model.customSection).toBeUndefined();
     expect(sections[0]?.items[0]).toMatchObject({
       labelKey: "factory.navigation.contextual.customers.back",
       to: "/apps/factory/customers",
@@ -43,5 +49,19 @@ describe("factory navigation model", () => {
       "/apps/factory/customers/customer-1/contacts",
       "/apps/factory/customers/customer-1/settings",
     ]);
+  });
+
+  it("uses planner custom content for the planners route", () => {
+    const model = getFactoryLeftPanelModel("/apps/factory/planners");
+
+    expect(model.showSearch).toBe(false);
+    expect(model.customSection).toEqual({ id: "plannerCustomers" });
+    expect(model.sections[0]?.items[0]).toMatchObject({
+      labelKey: "factory.navigation.contextual.planners.back",
+      to: "/apps/factory",
+      end: true,
+      variant: "back",
+    });
+    expect(model.sections[0]?.items[0]?.icon).toBe(Undo2);
   });
 });

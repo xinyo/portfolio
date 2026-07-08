@@ -44,14 +44,19 @@ import {
   type FactoryLanguage,
   type FactoryTimezone,
 } from "@/apps/factory/store";
-import { getFactoryNavigationSections } from "@/apps/factory/components/navigation-model";
+import { PlannerCustomerSidebar } from "@/apps/factory/components/planner-customer-sidebar";
+import {
+  getFactoryLeftPanelModel,
+  type FactoryLeftPanelCustomSection,
+  type NavSection,
+} from "@/apps/factory/components/navigation-model";
 
 export function FactoryNavigations() {
   const { t } = useTranslation();
   const location = useLocation();
   const { user, trial } = mockData;
   const { setIsDark } = useTheme(false);
-  const navigationSections = getFactoryNavigationSections(location.pathname);
+  const leftPanelModel = getFactoryLeftPanelModel(location.pathname);
 
   const isNavPanelOpen = useFactoryStore((state) => state.isNavPanelOpen);
   const language = useFactoryStore((state) => state.language);
@@ -65,63 +70,36 @@ export function FactoryNavigations() {
         className="factory-sidepanel-nav"
         aria-label={t("factory.navigation.label")}
       >
-        <SearchDialog>
-          <Button
-            variant="ghost"
-            className="factory-search-button"
-            aria-label={t("factory.navigation.search")}
-          >
-            <span className="factory-search-button-content">
-              <span className="factory-search-button-label">
-                <Search aria-hidden="true" />
+        {leftPanelModel.showSearch && (
+          <SearchDialog>
+            <Button
+              variant="ghost"
+              className="factory-search-button"
+              aria-label={t("factory.navigation.search")}
+            >
+              <span className="factory-search-button-content">
+                <span className="factory-search-button-label">
+                  <Search aria-hidden="true" />
+                  {isNavPanelOpen && (
+                    <span>{t("factory.navigation.search")}</span>
+                  )}
+                </span>
                 {isNavPanelOpen && (
-                  <span>{t("factory.navigation.search")}</span>
+                  <span
+                    className="factory-search-button-shortcut"
+                    aria-hidden="true"
+                  >
+                    ⌘K
+                  </span>
                 )}
               </span>
-              {isNavPanelOpen && (
-                <span
-                  className="factory-search-button-shortcut"
-                  aria-hidden="true"
-                >
-                  ⌘K
-                </span>
-              )}
-            </span>
-          </Button>
-        </SearchDialog>
-        {navigationSections.map((section) => (
-          <div
-            className="factory-nav-section"
-            key={section.labelKey ?? section.items[0]?.labelKey}
-          >
-            {section.labelKey && (
-              <CollapsibleContent asChild>
-                <p className="factory-nav-section-label">
-                  {t(section.labelKey)}
-                </p>
-              </CollapsibleContent>
-            )}
-            {section.items.map(({ labelKey, to, icon: Icon, end, variant }) => {
-              const label = t(labelKey);
-
-              return (
-                <NavLink
-                  className="factory-nav-item"
-                  to={to}
-                  end={end}
-                  title={label}
-                  key={labelKey}
-                  data-variant={variant}
-                >
-                  <Icon aria-hidden="true" />
-                  <CollapsibleContent asChild>
-                    <span>{label}</span>
-                  </CollapsibleContent>
-                </NavLink>
-              );
-            })}
-          </div>
-        ))}
+            </Button>
+          </SearchDialog>
+        )}
+        <NavSections sections={leftPanelModel.sections} />
+        {leftPanelModel.customSection && isNavPanelOpen && (
+          <CustomLeftPanelSection section={leftPanelModel.customSection} />
+        )}
       </nav>
 
       <footer className="factory-sidepanel-footer">
@@ -258,5 +236,56 @@ export function FactoryNavigations() {
         </DropdownMenu>
       </footer>
     </>
+  );
+}
+
+function NavSections({ sections }: { sections: NavSection[] }) {
+  const { t } = useTranslation();
+
+  return sections.map((section) => (
+    <div
+      className="factory-nav-section"
+      key={section.labelKey ?? section.items[0]?.labelKey}
+    >
+      {section.labelKey && (
+        <CollapsibleContent asChild>
+          <p className="factory-nav-section-label">{t(section.labelKey)}</p>
+        </CollapsibleContent>
+      )}
+      {section.items.map(({ labelKey, to, icon: Icon, end, variant }) => {
+        const label = t(labelKey);
+
+        return (
+          <NavLink
+            className="factory-nav-item"
+            to={to}
+            end={end}
+            title={label}
+            key={labelKey}
+            data-variant={variant}
+          >
+            <Icon aria-hidden="true" />
+            <CollapsibleContent asChild>
+              <span>{label}</span>
+            </CollapsibleContent>
+          </NavLink>
+        );
+      })}
+    </div>
+  ));
+}
+
+function CustomLeftPanelSection({
+  section,
+}: {
+  section: FactoryLeftPanelCustomSection;
+}) {
+  return (
+    <CollapsibleContent
+      className="factory-sidepanel-custom-section"
+      data-custom-section={section.id}
+    >
+      <PlannerCustomerSidebar />
+    </CollapsibleContent>
   );
 }

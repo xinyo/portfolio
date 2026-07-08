@@ -198,6 +198,9 @@
           "deliveryAddress": "Delivery Address",
           "contacts": "Contacts",
           "settings": "Settings"
+        },
+        "planners": {
+          "back": "Back to Overview"
         }
       }
     },

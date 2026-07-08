@@ -51,7 +51,11 @@ async function runSmoke() {
 
   try {
     await page.goto(`${baseUrl}/apps/factory/planners`);
-    await page.getByRole("heading", { name: "Planners" }).waitFor();
+    await page.getByRole("link", { name: "Back to Overview" }).waitFor();
+    await page
+      .getByRole("navigation", { name: "Factory navigation" })
+      .getByRole("heading", { name: "Customers" })
+      .waitFor();
     await page.getByRole("textbox", { name: "Search customers..." }).fill("BuildCorp");
     await page.getByRole("listitem", { name: /BuildCorp Industries/ }).waitFor();
 
