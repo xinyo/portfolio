@@ -9,6 +9,7 @@ import { useTranslation } from "react-i18next";
 
 import { useFactoryStore } from "@/apps/factory/store";
 import { Button } from "@/components/ui/button";
+import { ButtonGroup } from "@/components/ui/button-group";
 
 type PlannerView = "timeGridDay" | "timeGridWeek" | "dayGridMonth";
 
@@ -138,10 +139,7 @@ export function PlannersView() {
             </Button>
           </div>
 
-          <div
-            className="factory-planner-view-toggle"
-            aria-label={t("factory.views.planners.viewToggle")}
-          >
+          <ButtonGroup aria-label={t("factory.views.planners.viewToggle")}>
             {plannerViews.map((view) => (
               <Button
                 key={view.id}
@@ -153,7 +151,7 @@ export function PlannersView() {
                 {t(view.labelKey)}
               </Button>
             ))}
-          </div>
+          </ButtonGroup>
         </div>
 
         <div className="factory-calendar-frame">
