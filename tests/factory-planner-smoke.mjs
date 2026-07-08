@@ -50,6 +50,31 @@ async function runSmoke() {
   const page = await browser.newPage({ viewport: { width: 1440, height: 1000 } });
 
   try {
+    await page.goto(`${baseUrl}/apps/factory/workflow`);
+    await page.getByRole("link", { name: "Back to Overview" }).waitFor();
+    await page
+      .getByRole("textbox", { name: "New workflow name" })
+      .fill("Smoke workflow");
+    await page.getByRole("button", { name: "Create workflow" }).click();
+    const initialContainerCount = await page.locator(".react-flow__node-container").count();
+    const initialItemCount = await page.locator(".react-flow__node-item").count();
+    await page.getByRole("button", { name: "Add container" }).click();
+    await page.waitForFunction(
+      (count) => document.querySelectorAll(".react-flow__node-container").length > count,
+      initialContainerCount,
+    );
+    await page.getByText("Container", { exact: true }).last().dblclick();
+    await page
+      .getByRole("textbox", { name: "Workflow node label" })
+      .fill("Shipping");
+    await page.keyboard.press("Enter");
+    await page.getByText("Shipping", { exact: true }).waitFor();
+    await page.getByRole("button", { name: "Add item" }).click();
+    await page.waitForFunction(
+      (count) => document.querySelectorAll(".react-flow__node-item").length > count,
+      initialItemCount,
+    );
+
     await page.goto(`${baseUrl}/apps/factory/planners`);
     await page.getByRole("link", { name: "Back to Overview" }).waitFor();
     await page

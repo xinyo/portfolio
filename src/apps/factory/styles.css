@@ -926,6 +926,182 @@ div:has(> .factory-customer-item-link:hover) {
   background: color-mix(in oklch, var(--primary), transparent 88%);
 }
 
+.factory-workflow-sidebar {
+  display: flex;
+  min-height: 0;
+  flex: 1;
+  flex-direction: column;
+  gap: 1rem;
+  overflow-y: auto;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--border);
+}
+
+.factory-workflow-sidebar-group {
+  display: grid;
+  gap: 0.625rem;
+}
+
+.factory-workflow-sidebar-heading {
+  display: grid;
+  grid-template-columns: 1rem minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--foreground);
+  font-size: 0.9375rem;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.factory-workflow-sidebar-heading span {
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.factory-workflow-sidebar-heading svg {
+  color: var(--primary);
+}
+
+.factory-workflow-dirty {
+  border-radius: 4px;
+  background: var(--muted);
+  color: var(--muted-foreground);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  line-height: 1;
+  padding: 0.25rem 0.375rem;
+  text-transform: uppercase;
+}
+
+.factory-workflow-inline-control {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0.5rem;
+}
+
+.factory-workflow-sidebar-label {
+  margin: 0;
+  color: var(--muted-foreground);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.factory-workflow-view {
+  width: 100%;
+  height: calc(100vh - 64px);
+  min-height: calc(100vh - 64px);
+  background: var(--background);
+}
+
+.factory-workflow-canvas {
+  width: 100%;
+  height: 100%;
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in oklch, var(--muted), transparent 45%),
+      var(--background)
+    );
+}
+
+.factory-workflow-canvas .react-flow__controls,
+.factory-workflow-minimap {
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--card);
+  box-shadow: var(--shadow-card, 0 1px 4px rgba(0, 0, 0, 0.08));
+}
+
+.factory-workflow-canvas .react-flow__controls-button {
+  border-color: var(--border);
+  background: var(--card);
+  color: var(--foreground);
+}
+
+.factory-workflow-canvas .react-flow__edge-path {
+  stroke: var(--primary);
+  stroke-width: 2;
+}
+
+.factory-workflow-node {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+  align-items: flex-start;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--card);
+  color: var(--foreground);
+  font-size: 0.875rem;
+  box-shadow: var(--shadow-card, 0 1px 4px rgba(0, 0, 0, 0.08));
+}
+
+.factory-workflow-node[data-selected="true"] {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px color-mix(in oklch, var(--primary), transparent 80%);
+}
+
+.factory-workflow-node[data-node-type="container"] {
+  align-items: flex-start;
+  background: color-mix(in oklch, var(--primary), var(--card) 94%);
+  border-color: color-mix(in oklch, var(--primary), var(--border) 60%);
+  padding: 0.625rem;
+}
+
+.factory-workflow-node[data-node-type="item"] {
+  align-items: center;
+  border-color: color-mix(in oklch, var(--secondary), var(--border) 55%);
+  padding: 0.5rem;
+}
+
+.factory-workflow-node-label,
+.factory-workflow-node-editor {
+  display: flex;
+  width: 100%;
+  min-width: 0;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.factory-workflow-node-label span {
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-weight: 700;
+}
+
+.factory-workflow-node-label svg {
+  width: 0.875rem;
+  height: 0.875rem;
+  flex-shrink: 0;
+  color: var(--muted-foreground);
+  opacity: 0;
+}
+
+.factory-workflow-node:hover .factory-workflow-node-label svg,
+.factory-workflow-node[data-selected="true"] .factory-workflow-node-label svg {
+  opacity: 1;
+}
+
+.factory-workflow-node-editor input {
+  height: 2rem;
+}
+
+.factory-workflow-node .react-flow__handle {
+  width: 0.625rem;
+  height: 0.625rem;
+  border: 2px solid var(--card);
+  background: var(--primary);
+}
+
 @media (max-width: 1120px) {
   .factory-planner-calendar-panel {
     min-height: 640px;

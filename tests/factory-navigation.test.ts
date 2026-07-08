@@ -64,4 +64,23 @@ describe("factory navigation model", () => {
     });
     expect(model.sections[0]?.items[0]?.icon).toBe(Undo2);
   });
+
+  it("uses workflow custom content for the workflow route", () => {
+    const model = getFactoryLeftPanelModel("/apps/factory/workflow");
+
+    expect(model.showSearch).toBe(false);
+    expect(model.customSection).toEqual({ id: "workflowSidebar" });
+    expect(model.sections[0]?.items[0]).toMatchObject({
+      labelKey: "factory.navigation.contextual.workflow.back",
+      to: "/apps/factory",
+      end: true,
+      variant: "back",
+    });
+    expect(model.sections[0]?.items[0]?.icon).toBe(Undo2);
+    expect(model.sections[1]?.items.map((item) => item.labelKey)).toEqual([
+      "factory.navigation.contextual.workflow.new",
+      "factory.navigation.contextual.workflow.save",
+      "factory.navigation.contextual.workflow.open",
+    ]);
+  });
 });

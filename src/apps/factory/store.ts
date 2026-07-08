@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import type { Edge, Node, XYPosition } from "@xyflow/react";
 
 import mockData from "@/apps/factory/mock.json";
 
@@ -85,6 +86,28 @@ export type FactoryCustomerBooking = {
   customerName: string;
   start: string;
   end: string;
+};
+
+export type FactoryWorkflowNodeType = "container" | "item";
+
+export type FactoryWorkflowNodeData = {
+  label: string;
+  nodeType: FactoryWorkflowNodeType;
+};
+
+export type FactoryWorkflowNode = Node<
+  FactoryWorkflowNodeData,
+  FactoryWorkflowNodeType
+>;
+
+export type FactoryWorkflowEdge = Edge;
+
+export type FactoryWorkflow = {
+  id: string;
+  name: string;
+  nodes: FactoryWorkflowNode[];
+  edges: FactoryWorkflowEdge[];
+  savedAt: string | null;
 };
 
 export type FactorySalesOrder = {
@@ -213,6 +236,142 @@ export function hasCustomerBookingOverlap(
   });
 }
 
+const WORKFLOW_CONTAINER_WIDTH = 280;
+const WORKFLOW_CONTAINER_HEIGHT = 180;
+const WORKFLOW_ITEM_WIDTH = 160;
+const WORKFLOW_ITEM_HEIGHT = 72;
+const WORKFLOW_CONTAINER_PADDING = 32;
+
+let workflowIdCounter = 1;
+let workflowNodeCounter = 0;
+let workflowEdgeCounter = 0;
+
+export const defaultWorkflow: FactoryWorkflow = {
+  id: "workflow-default",
+  name: "Production workflow",
+  nodes: [
+    createWorkflowNode("container", { x: 80, y: 80 }, "Assembly"),
+    createWorkflowNode("item", { x: 32, y: 72 }, "Cut panels", {
+      parentId: "workflow-node-container-1",
+    }),
+    createWorkflowNode("item", { x: 208, y: 72 }, "Quality check", {
+      parentId: "workflow-node-container-1",
+    }),
+  ],
+  edges: [],
+  savedAt: null,
+};
+
+export function createWorkflowNode(
+  type: FactoryWorkflowNodeType,
+  position: XYPosition,
+  label?: string,
+  options?: { id?: string; parentId?: string },
+): FactoryWorkflowNode {
+  const nodeId =
+    options?.id ?? `workflow-node-${type}-${++workflowNodeCounter}`;
+  const isContainer = type === "container";
+
+  return {
+    id: nodeId,
+    type,
+    position,
+    parentId: options?.parentId,
+    data: {
+      label: label ?? (isContainer ? "Container" : "Item"),
+      nodeType: type,
+    },
+    style: isContainer
+      ? {
+          width: WORKFLOW_CONTAINER_WIDTH,
+          height: WORKFLOW_CONTAINER_HEIGHT,
+        }
+      : {
+          width: WORKFLOW_ITEM_WIDTH,
+          height: WORKFLOW_ITEM_HEIGHT,
+        },
+  };
+}
+
+function getNodeWidth(node: FactoryWorkflowNode) {
+  const width = node.measured?.width ?? node.width ?? node.style?.width;
+
+  return typeof width === "number"
+    ? width
+    : node.data.nodeType === "container"
+      ? WORKFLOW_CONTAINER_WIDTH
+      : WORKFLOW_ITEM_WIDTH;
+}
+
+function getNodeHeight(node: FactoryWorkflowNode) {
+  const height = node.measured?.height ?? node.height ?? node.style?.height;
+
+  return typeof height === "number"
+    ? height
+    : node.data.nodeType === "container"
+      ? WORKFLOW_CONTAINER_HEIGHT
+      : WORKFLOW_ITEM_HEIGHT;
+}
+
+export function getAutoGrownWorkflowNodes(
+  nodes: FactoryWorkflowNode[],
+): FactoryWorkflowNode[] {
+  return nodes.map((node) => {
+    if (node.data.nodeType !== "container") {
+      return node;
+    }
+
+    const children = nodes.filter((child) => child.parentId === node.id);
+    if (children.length === 0) {
+      return node;
+    }
+
+    const requiredWidth = Math.max(
+      WORKFLOW_CONTAINER_WIDTH,
+      ...children.map(
+        (child) => child.position.x + getNodeWidth(child) + WORKFLOW_CONTAINER_PADDING,
+      ),
+    );
+    const requiredHeight = Math.max(
+      WORKFLOW_CONTAINER_HEIGHT,
+      ...children.map(
+        (child) =>
+          child.position.y + getNodeHeight(child) + WORKFLOW_CONTAINER_PADDING,
+      ),
+    );
+
+    return {
+      ...node,
+      style: {
+        ...node.style,
+        width: requiredWidth,
+        height: requiredHeight,
+      },
+    };
+  });
+}
+
+export function getWorkflowNodeParent(
+  nodes: FactoryWorkflowNode[],
+  position: XYPosition,
+) {
+  return nodes.find((node) => {
+    if (node.data.nodeType !== "container") {
+      return false;
+    }
+
+    const width = getNodeWidth(node);
+    const height = getNodeHeight(node);
+
+    return (
+      position.x >= node.position.x &&
+      position.x <= node.position.x + width &&
+      position.y >= node.position.y &&
+      position.y <= node.position.y + height
+    );
+  });
+}
+
 export type FactoryColumnView = {
   id: string;
   name: string;
@@ -236,6 +395,10 @@ type FactoryStore = {
   activeSalesOrderViewId: string;
   customers: FactoryCustomer[];
   customerBookings: Record<string, FactoryCustomerBooking>;
+  workflows: FactoryWorkflow[];
+  activeWorkflowId: string;
+  workflowDraftDirty: boolean;
+  selectedWorkflowElementId: string | null;
   setLanguage: (language: FactoryLanguage) => void;
   setTimezone: (timezone: FactoryTimezone) => void;
   setIsNavPanelOpen: (isOpen: boolean) => void;
@@ -257,6 +420,22 @@ type FactoryStore = {
     data: Partial<FactoryCustomerContact>,
   ) => void;
   archiveCustomerContact: (customerId: string, contactId: string) => void;
+  createWorkflow: (name?: string) => string;
+  openWorkflow: (id: string) => void;
+  saveActiveWorkflow: () => void;
+  setWorkflowNodes: (nodes: FactoryWorkflowNode[]) => void;
+  setWorkflowEdges: (edges: FactoryWorkflowEdge[]) => void;
+  addWorkflowNode: (
+    type: FactoryWorkflowNodeType,
+    position: XYPosition,
+    options?: { label?: string; parentId?: string },
+  ) => string;
+  updateWorkflowNodeLabel: (id: string, label: string) => void;
+  addWorkflowEdge: (edge: Omit<FactoryWorkflowEdge, "id">) => string;
+  deleteWorkflowElements: (ids: string[]) => void;
+  duplicateSelectedWorkflowNode: () => void;
+  clearActiveWorkflow: () => void;
+  setSelectedWorkflowElementId: (id: string | null) => void;
 };
 
 function getInitialLanguage(): FactoryLanguage {
@@ -286,6 +465,10 @@ export const useFactoryStore = create<FactoryStore>((set) => {
     activeSalesOrderViewId: "default",
     customers: [...factoryCustomers],
     customerBookings: {},
+    workflows: [defaultWorkflow],
+    activeWorkflowId: defaultWorkflow.id,
+    workflowDraftDirty: false,
+    selectedWorkflowElementId: null,
     setLanguage: (language) => set({ language }),
     setTimezone: (timezone) => set({ timezone }),
     setIsNavPanelOpen: (isNavPanelOpen) => set({ isNavPanelOpen }),
@@ -378,5 +561,208 @@ export const useFactoryStore = create<FactoryStore>((set) => {
             : customer,
         ),
       })),
+    createWorkflow: (name) => {
+      const id = `workflow-${++workflowIdCounter}`;
+      const workflowName = name?.trim() || `Workflow ${workflowIdCounter}`;
+
+      set((state) => ({
+        workflows: [
+          ...state.workflows,
+          {
+            id,
+            name: workflowName,
+            nodes: [],
+            edges: [],
+            savedAt: null,
+          },
+        ],
+        activeWorkflowId: id,
+        workflowDraftDirty: false,
+        selectedWorkflowElementId: null,
+      }));
+
+      return id;
+    },
+    openWorkflow: (id) =>
+      set((state) =>
+        state.workflows.some((workflow) => workflow.id === id)
+          ? {
+              activeWorkflowId: id,
+              workflowDraftDirty: false,
+              selectedWorkflowElementId: null,
+            }
+          : state,
+      ),
+    saveActiveWorkflow: () =>
+      set((state) => ({
+        workflows: state.workflows.map((workflow) =>
+          workflow.id === state.activeWorkflowId
+            ? { ...workflow, savedAt: new Date().toISOString() }
+            : workflow,
+        ),
+        workflowDraftDirty: false,
+      })),
+    setWorkflowNodes: (nodes) =>
+      set((state) => ({
+        workflows: state.workflows.map((workflow) =>
+          workflow.id === state.activeWorkflowId
+            ? {
+                ...workflow,
+                nodes: getAutoGrownWorkflowNodes(nodes),
+              }
+            : workflow,
+        ),
+        workflowDraftDirty: true,
+      })),
+    setWorkflowEdges: (edges) =>
+      set((state) => ({
+        workflows: state.workflows.map((workflow) =>
+          workflow.id === state.activeWorkflowId
+            ? { ...workflow, edges }
+            : workflow,
+        ),
+        workflowDraftDirty: true,
+      })),
+    addWorkflowNode: (type, position, options) => {
+      let addedId = "";
+
+      set((state) => ({
+        workflows: state.workflows.map((workflow) => {
+          if (workflow.id !== state.activeWorkflowId) {
+            return workflow;
+          }
+
+          const parent =
+            options?.parentId && type === "item"
+              ? workflow.nodes.find((node) => node.id === options.parentId)
+              : type === "item"
+                ? getWorkflowNodeParent(workflow.nodes, position)
+                : undefined;
+          const nextPosition = parent
+            ? {
+                x: Math.max(16, position.x - parent.position.x),
+                y: Math.max(48, position.y - parent.position.y),
+              }
+            : position;
+          const node = createWorkflowNode(type, nextPosition, options?.label, {
+            parentId: parent?.id,
+          });
+          addedId = node.id;
+
+          return {
+            ...workflow,
+            nodes: getAutoGrownWorkflowNodes([...workflow.nodes, node]),
+          };
+        }),
+        workflowDraftDirty: true,
+        selectedWorkflowElementId: addedId,
+      }));
+
+      return addedId;
+    },
+    updateWorkflowNodeLabel: (id, label) =>
+      set((state) => ({
+        workflows: state.workflows.map((workflow) =>
+          workflow.id === state.activeWorkflowId
+            ? {
+                ...workflow,
+                nodes: workflow.nodes.map((node) =>
+                  node.id === id
+                    ? { ...node, data: { ...node.data, label } }
+                    : node,
+                ),
+              }
+            : workflow,
+        ),
+        workflowDraftDirty: true,
+      })),
+    addWorkflowEdge: (edge) => {
+      const id = `workflow-edge-${++workflowEdgeCounter}`;
+
+      set((state) => ({
+        workflows: state.workflows.map((workflow) =>
+          workflow.id === state.activeWorkflowId
+            ? {
+                ...workflow,
+                edges: [...workflow.edges, { ...edge, id }],
+              }
+            : workflow,
+        ),
+        workflowDraftDirty: true,
+      }));
+
+      return id;
+    },
+    deleteWorkflowElements: (ids) =>
+      set((state) => ({
+        workflows: state.workflows.map((workflow) =>
+          workflow.id === state.activeWorkflowId
+            ? {
+                ...workflow,
+                nodes: workflow.nodes.filter(
+                  (node) => !ids.includes(node.id) && !ids.includes(node.parentId ?? ""),
+                ),
+                edges: workflow.edges.filter(
+                  (edge) =>
+                    !ids.includes(edge.id) &&
+                    !ids.includes(edge.source) &&
+                    !ids.includes(edge.target),
+                ),
+              }
+            : workflow,
+        ),
+        workflowDraftDirty: true,
+        selectedWorkflowElementId: null,
+      })),
+    duplicateSelectedWorkflowNode: () =>
+      set((state) => {
+        let selectedWorkflowElementId = state.selectedWorkflowElementId;
+
+        return {
+          workflows: state.workflows.map((workflow) => {
+            if (workflow.id !== state.activeWorkflowId) {
+              return workflow;
+            }
+
+            const node = workflow.nodes.find(
+              (item) => item.id === state.selectedWorkflowElementId,
+            );
+
+            if (!node) {
+              return workflow;
+            }
+
+            const duplicate = createWorkflowNode(
+              node.data.nodeType,
+              {
+                x: node.position.x + 32,
+                y: node.position.y + 32,
+              },
+              `${node.data.label} copy`,
+              { parentId: node.parentId },
+            );
+            selectedWorkflowElementId = duplicate.id;
+
+            return {
+              ...workflow,
+              nodes: getAutoGrownWorkflowNodes([...workflow.nodes, duplicate]),
+            };
+          }),
+          workflowDraftDirty: true,
+          selectedWorkflowElementId,
+        };
+      }),
+    clearActiveWorkflow: () =>
+      set((state) => ({
+        workflows: state.workflows.map((workflow) =>
+          workflow.id === state.activeWorkflowId
+            ? { ...workflow, nodes: [], edges: [] }
+            : workflow,
+        ),
+        workflowDraftDirty: true,
+        selectedWorkflowElementId: null,
+      })),
+    setSelectedWorkflowElementId: (selectedWorkflowElementId) =>
+      set({ selectedWorkflowElementId }),
   };
 });

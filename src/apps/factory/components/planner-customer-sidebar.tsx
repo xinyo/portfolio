@@ -48,6 +48,13 @@ export function PlannerCustomerSidebar() {
       className="factory-planner-sidebar"
       aria-label={t("factory.views.planners.customerList")}
     >
+      <div className="factory-planner-sidebar-header">
+        <div>
+          <h3>{t("factory.views.planners.customers")}</h3>
+          <p>{t("factory.views.planners.dragHint")}</p>
+        </div>
+      </div>
+
       <div className="factory-search-input-wrapper factory-planner-search">
         <Search className="factory-search-input-icon" />
         <Input
