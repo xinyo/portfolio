@@ -139,7 +139,26 @@
         "title": "Suppliers"
       },
       "workflow": {
-        "title": "Workflow"
+        "title": "Workflow",
+        "sidebarLabel": "Workflow tools",
+        "canvasLabel": "Workflow canvas",
+        "newWorkflowName": "New workflow name",
+        "newWorkflowPlaceholder": "Workflow name",
+        "newWorkflow": "Create workflow",
+        "openWorkflow": "Open workflow",
+        "saveWorkflow": "Save workflow",
+        "unsaved": "Unsaved workflow changes",
+        "unsavedShort": "Unsaved",
+        "nodeTools": "Nodes",
+        "canvasTools": "Canvas",
+        "addContainer": "Add container",
+        "addItem": "Add item",
+        "fitView": "Fit view",
+        "duplicateSelected": "Duplicate selected",
+        "deleteSelected": "Delete selected",
+        "clearCanvas": "Clear canvas",
+        "nodeLabel": "Workflow node label",
+        "saveLabel": "Save node label"
       },
       "planners": {
         "title": "Planners",
@@ -201,6 +220,13 @@
         },
         "planners": {
           "back": "Back to Overview"
+        },
+        "workflow": {
+          "back": "Back to Overview",
+          "actions": "Workflow",
+          "new": "New workflow",
+          "save": "Save workflow",
+          "open": "Open workflow"
         }
       }
     },

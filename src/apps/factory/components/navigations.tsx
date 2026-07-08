@@ -45,6 +45,7 @@ import {
   type FactoryTimezone,
 } from "@/apps/factory/store";
 import { PlannerCustomerSidebar } from "@/apps/factory/components/planner-customer-sidebar";
+import { WorkflowSidebar } from "@/apps/factory/components/workflow-sidebar";
 import {
   getFactoryLeftPanelModel,
   type FactoryLeftPanelCustomSection,
@@ -280,12 +281,19 @@ function CustomLeftPanelSection({
 }: {
   section: FactoryLeftPanelCustomSection;
 }) {
+  const content =
+    section.id === "plannerCustomers" ? (
+      <PlannerCustomerSidebar />
+    ) : (
+      <WorkflowSidebar />
+    );
+
   return (
     <CollapsibleContent
       className="factory-sidepanel-custom-section"
       data-custom-section={section.id}
     >
-      <PlannerCustomerSidebar />
+      {content}
     </CollapsibleContent>
   );
 }

@@ -35,7 +35,7 @@ export type NavSection = {
 };
 
 export type FactoryLeftPanelCustomSection = {
-  id: "plannerCustomers";
+  id: "plannerCustomers" | "workflowSidebar";
 };
 
 export type FactoryLeftPanelModel = {
@@ -139,7 +139,9 @@ export function getCustomerIdFromPathname(pathname: string) {
   return match?.[1] ?? null;
 }
 
-export function getCustomerNavigationSections(customerId: string): NavSection[] {
+export function getCustomerNavigationSections(
+  customerId: string,
+): NavSection[] {
   const basePath = `/apps/factory/customers/${customerId}`;
 
   return [
@@ -202,6 +204,22 @@ export function getPlannerNavigationSections(): NavSection[] {
   ];
 }
 
+export function getWorkflowNavigationSections(): NavSection[] {
+  return [
+    {
+      items: [
+        {
+          labelKey: "factory.navigation.contextual.workflow.back",
+          to: "/apps/factory",
+          icon: Undo2,
+          end: true,
+          variant: "back",
+        },
+      ],
+    },
+  ];
+}
+
 export function getFactoryLeftPanelModel(
   pathname: string,
 ): FactoryLeftPanelModel {
@@ -218,6 +236,14 @@ export function getFactoryLeftPanelModel(
     return {
       sections: getPlannerNavigationSections(),
       customSection: { id: "plannerCustomers" },
+      showSearch: false,
+    };
+  }
+
+  if (pathname === "/apps/factory/workflow") {
+    return {
+      sections: getWorkflowNavigationSections(),
+      customSection: { id: "workflowSidebar" },
       showSearch: false,
     };
   }
