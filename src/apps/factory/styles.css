@@ -459,10 +459,6 @@ div:has(> .factory-customer-item-link:hover) {
   font-size: 0.9rem;
 }
 
-.factory-chat-toggle {
-  margin-left: auto;
-}
-
 .factory-chat-panel {
   position: fixed;
   inset: 0 0 0 auto;

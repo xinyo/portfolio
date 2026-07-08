@@ -1,4 +1,5 @@
 import {
+  BellRing,
   BotMessageSquare,
   Menu,
   PanelLeftClose,
@@ -45,7 +46,6 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-
 const CHAT_PANEL_MIN_WIDTH = 300;
 
 function getChatPanelMaxWidth() {
@@ -64,7 +64,7 @@ function clampChatPanelWidth(width: number) {
 }
 
 export function FactoryApp() {
-  const { t } = useTranslation(); 
+  const { t } = useTranslation();
   const isNavPanelOpen = useFactoryStore((state) => state.isNavPanelOpen);
   const setIsNavPanelOpen = useFactoryStore((state) => state.setIsNavPanelOpen);
   const currentCompany = useFactoryStore((state) => state.currentCompany);
@@ -183,21 +183,30 @@ export function FactoryApp() {
                 ))}
               </SelectContent>
             </Select>
-            <CollapsibleTrigger asChild>
+            <div className="flex gap-2 ml-auto">
               <Button
                 type="button"
                 variant="ghost"
                 size="icon"
-                className="factory-chat-toggle"
-                aria-label={
-                  isChatPanelOpen
-                    ? t("factory.chat.collapse")
-                    : t("factory.chat.expand")
-                }
+                aria-label="Notifications"
               >
-                {isChatPanelOpen ? <PanelRightClose /> : <BotMessageSquare />}
+                <BellRing className="size-4" />
               </Button>
-            </CollapsibleTrigger>
+              <CollapsibleTrigger asChild>
+                <Button
+                  type="button"
+                  variant="ghost"
+                  size="icon"
+                  aria-label={
+                    isChatPanelOpen
+                      ? t("factory.chat.collapse")
+                      : t("factory.chat.expand")
+                  }
+                >
+                  {isChatPanelOpen ? <PanelRightClose /> : <BotMessageSquare />}
+                </Button>
+              </CollapsibleTrigger>
+            </div>
           </header>
           <div className="app-view-content">
             <Routes>
