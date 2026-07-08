@@ -67,7 +67,7 @@ export function ContactsPanel({ customer }: ContactsPanelProps) {
   }
 
   return (
-    <section className="factory-view">
+    <section>
       <div className="factory-view-toolbar factory-contacts-toolbar">
         <div className="factory-view-toolbar-start">
           <div className="factory-search-input-wrapper">
@@ -146,29 +146,24 @@ function ContactItem({
 
       {contact.email && (
         <ItemContent className="factory-contact-meta factory-contact-email">
-          <ItemTitle>
-            <Mail className="size-4" />
-            {t("factory.views.customerDetail.contacts.email")}
-          </ItemTitle>
-          <ItemDescription>{contact.email}</ItemDescription>
-        </ItemContent>
-      )}
-
-      {(contact.phone || contact.mobile) && (
-        <ItemContent className="factory-contact-meta factory-contact-phone">
-          <ItemTitle>
-            {contact.mobile ? (
+          
+          <ItemDescription >
+            <span className="inline-flex items-center gap-2" aria-label="Email">
+            <Mail className="size-4" /> {contact.email} 
+            </span>
+          </ItemDescription>
+          <ItemDescription>
+            <span className="inline-flex items-center gap-2" aria-label="Phone">
+              {contact.mobile ? (
               <Smartphone className="size-4" />
             ) : (
               <Phone className="size-4" />
-            )}
-            {contact.mobile
-              ? t("factory.views.customerDetail.contacts.mobile")
-              : t("factory.views.customerDetail.contacts.phone")}
-          </ItemTitle>
-          <ItemDescription>{contact.mobile || contact.phone}</ItemDescription>
+            )} {contact.mobile || contact.phone}
+            </span>
+          </ItemDescription>
         </ItemContent>
       )}
+
 
       <ItemActions>
         <DropdownMenu>
