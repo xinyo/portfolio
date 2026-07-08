@@ -34,6 +34,16 @@ export type NavSection = {
   items: NavItem[];
 };
 
+export type FactoryLeftPanelCustomSection = {
+  id: "plannerCustomers";
+};
+
+export type FactoryLeftPanelModel = {
+  sections: NavSection[];
+  customSection?: FactoryLeftPanelCustomSection;
+  showSearch: boolean;
+};
+
 export const defaultNavigationSections: NavSection[] = [
   {
     labelKey: "factory.navigation.sections.general",
@@ -176,12 +186,44 @@ export function getCustomerNavigationSections(customerId: string): NavSection[] 
   ];
 }
 
-export function getFactoryNavigationSections(pathname: string) {
+export function getPlannerNavigationSections(): NavSection[] {
+  return [
+    {
+      items: [
+        {
+          labelKey: "factory.navigation.contextual.planners.back",
+          to: "/apps/factory",
+          icon: Undo2,
+          end: true,
+          variant: "back",
+        },
+      ],
+    },
+  ];
+}
+
+export function getFactoryLeftPanelModel(
+  pathname: string,
+): FactoryLeftPanelModel {
   const customerId = getCustomerIdFromPathname(pathname);
 
   if (customerId) {
-    return getCustomerNavigationSections(customerId);
+    return {
+      sections: getCustomerNavigationSections(customerId),
+      showSearch: true,
+    };
   }
 
-  return defaultNavigationSections;
+  if (pathname === "/apps/factory/planners") {
+    return {
+      sections: getPlannerNavigationSections(),
+      customSection: { id: "plannerCustomers" },
+      showSearch: false,
+    };
+  }
+
+  return {
+    sections: defaultNavigationSections,
+    showSearch: true,
+  };
 }

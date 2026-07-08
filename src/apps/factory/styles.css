@@ -228,6 +228,14 @@
   display: none;
 }
 
+.factory-sidepanel-custom-section {
+  display: flex;
+  min-height: 0;
+  flex: 1;
+  flex-direction: column;
+  margin-top: 0.25rem;
+}
+
 .factory-sidepanel-footer {
   flex-shrink: 0;
   padding: 0.75rem;
@@ -318,7 +326,10 @@
 }
 
 .factory-app-workspace {
-  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
   margin-left: var(--panel-width);
   margin-right: var(--chat-workspace-offset);
   transition:
@@ -327,8 +338,10 @@
 }
 
 .factory-app-page .app-view-header {
+  flex-shrink: 0;
   height: 64px;
   border-bottom: 1px solid var(--border);
+  background: var(--background);
   font-size: 1.25rem;
   font-weight: 600;
   display: flex;
@@ -345,9 +358,14 @@
 }
 
 .factory-app-page .app-view-content {
-  padding: 1.5rem;
+  flex: 1;
+  overflow-y: auto;
+  /* padding: 1.5rem; */
   text-align: left;
+}
 
+.factory-view {
+  padding: 1.5rem;
 }
 
 .factory-view h2 {
@@ -706,6 +724,226 @@ div:has(> .factory-customer-item-link:hover) {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+}
+
+.factory-planner-view {
+  display: flex;
+  width: 100%;
+  max-width: none;
+  height: calc(100vh - 64px);
+  min-height: calc(100vh - 64px);
+  box-sizing: border-box;
+  flex-direction: column;
+  margin: 0;
+}
+
+.factory-planner-calendar-panel {
+  min-width: 0;
+  /* border: 1px solid var(--border); */
+  border-radius: 6px;
+  background: var(--card);
+}
+
+.factory-planner-sidebar {
+  display: flex;
+  min-height: 0;
+  flex: 1;
+  flex-direction: column;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--border);
+}
+
+.factory-planner-sidebar-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.factory-planner-sidebar-header h3 {
+  margin: 0;
+  color: var(--foreground);
+  font-size: 0.95rem;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.factory-planner-sidebar-header p {
+  margin: 0.25rem 0 0;
+  color: var(--muted-foreground);
+  font-size: 0.8125rem;
+  line-height: 1.45;
+}
+
+.factory-planner-search {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.factory-planner-customer-list {
+  display: flex;
+  min-height: 0;
+  flex: 1;
+  flex-direction: column;
+  gap: 0.5rem;
+  overflow-y: auto;
+  padding-right: 0.125rem;
+}
+
+.factory-planner-customer {
+  cursor: grab;
+  background: var(--background);
+}
+
+.factory-planner-customer:active {
+  cursor: grabbing;
+}
+
+.factory-planner-customer-drag-icon {
+  width: 1rem;
+  height: 1rem;
+  color: var(--muted-foreground);
+}
+
+.factory-planner-empty {
+  display: grid;
+  min-height: 120px;
+  place-items: center;
+  padding: 1rem;
+  border: 1px dashed var(--border);
+  border-radius: 6px;
+  color: var(--muted-foreground);
+  font-size: 0.875rem;
+  text-align: center;
+}
+
+.factory-planner-calendar-panel {
+  display: flex;
+  min-height: 0;
+  flex: 1;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.factory-planner-calendar-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.875rem 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.factory-planner-calendar-title,
+.factory-planner-calendar-actions,
+.factory-planner-view-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.factory-planner-calendar-title {
+  min-width: 0;
+  color: var(--foreground);
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.factory-planner-calendar-title svg {
+  color: var(--primary);
+}
+
+.factory-planner-calendar-title span {
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.factory-planner-view-toggle {
+  padding: 0.125rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--background);
+}
+
+.factory-calendar-frame {
+  min-height: 0;
+  flex: 1;
+}
+
+.factory-calendar-frame .fc {
+  height: 100%;
+  color: var(--foreground);
+  font-family: inherit;
+  --fc-border-color: var(--border);
+  --fc-page-bg-color: var(--card);
+  --fc-neutral-bg-color: var(--muted);
+  --fc-today-bg-color: color-mix(in oklch, var(--primary), transparent 92%);
+  --fc-event-bg-color: var(--primary);
+  --fc-event-border-color: var(--primary);
+  --fc-event-text-color: var(--primary-foreground);
+  --fc-now-indicator-color: var(--primary);
+}
+
+.factory-calendar-frame .fc-scrollgrid,
+.factory-calendar-frame .fc-theme-standard td,
+.factory-calendar-frame .fc-theme-standard th {
+  border-color: var(--border);
+}
+
+.factory-calendar-frame .fc-col-header-cell {
+  background: var(--muted);
+  color: var(--muted-foreground);
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.factory-calendar-frame .fc-timegrid-slot-label,
+.factory-calendar-frame .fc-daygrid-day-number {
+  color: var(--muted-foreground);
+  font-size: 0.75rem;
+}
+
+.factory-calendar-frame .fc-event {
+  border-radius: 4px;
+  box-shadow: none;
+  cursor: pointer;
+}
+
+.factory-calendar-frame .fc-event-main {
+  padding: 0.125rem 0.25rem;
+}
+
+.factory-calendar-frame .fc-timegrid-event .fc-event-main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.factory-calendar-frame .fc-highlight {
+  background: color-mix(in oklch, var(--primary), transparent 88%);
+}
+
+@media (max-width: 1120px) {
+  .factory-planner-calendar-panel {
+    min-height: 640px;
+  }
+}
+
+@media (max-width: 760px) {
+
+  .factory-planner-calendar-toolbar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .factory-planner-calendar-actions,
+  .factory-planner-view-toggle {
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
 }
 
 

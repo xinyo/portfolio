@@ -79,6 +79,14 @@ export type FactoryCustomerContact = {
   archived: boolean;
 };
 
+export type FactoryCustomerBooking = {
+  id: string;
+  customerId: string;
+  customerName: string;
+  start: string;
+  end: string;
+};
+
 export type FactorySalesOrder = {
   id: string;
   orderNumber: string;
@@ -169,6 +177,42 @@ export function filterCustomerContacts(
   );
 }
 
+export function filterPlannerCustomers(
+  customers: FactoryCustomer[],
+  query: string,
+) {
+  const normalizedQuery = query.trim().toLowerCase();
+
+  if (!normalizedQuery) {
+    return customers;
+  }
+
+  return customers.filter((customer) =>
+    [customer.name, customer.city, customer.state, customer.country].some(
+      (value) => value.toLowerCase().includes(normalizedQuery),
+    ),
+  );
+}
+
+export function hasCustomerBookingOverlap(
+  bookings: Record<string, FactoryCustomerBooking>,
+  booking: Pick<FactoryCustomerBooking, "start" | "end">,
+) {
+  const start = new Date(booking.start).getTime();
+  const end = new Date(booking.end).getTime();
+
+  if (!Number.isFinite(start) || !Number.isFinite(end) || start >= end) {
+    return true;
+  }
+
+  return Object.values(bookings).some((existing) => {
+    const existingStart = new Date(existing.start).getTime();
+    const existingEnd = new Date(existing.end).getTime();
+
+    return start < existingEnd && end > existingStart;
+  });
+}
+
 export type FactoryColumnView = {
   id: string;
   name: string;
@@ -191,6 +235,7 @@ type FactoryStore = {
   salesOrderColumnViews: FactoryColumnView[];
   activeSalesOrderViewId: string;
   customers: FactoryCustomer[];
+  customerBookings: Record<string, FactoryCustomerBooking>;
   setLanguage: (language: FactoryLanguage) => void;
   setTimezone: (timezone: FactoryTimezone) => void;
   setIsNavPanelOpen: (isOpen: boolean) => void;
@@ -199,6 +244,9 @@ type FactoryStore = {
   setActiveSalesOrderViewId: (id: string) => void;
   addCustomer: (customer: FactoryCustomer) => void;
   updateCustomer: (id: string, data: Partial<FactoryCustomer>) => void;
+  deleteCustomer: (id: string) => void;
+  addCustomerBooking: (booking: FactoryCustomerBooking) => boolean;
+  deleteCustomerBooking: (id: string) => void;
   addCustomerContact: (
     customerId: string,
     contact: FactoryCustomerContact,
@@ -237,6 +285,7 @@ export const useFactoryStore = create<FactoryStore>((set) => {
     salesOrderColumnViews: defaultSalesOrderColumnViews,
     activeSalesOrderViewId: "default",
     customers: [...factoryCustomers],
+    customerBookings: {},
     setLanguage: (language) => set({ language }),
     setTimezone: (timezone) => set({ timezone }),
     setIsNavPanelOpen: (isNavPanelOpen) => set({ isNavPanelOpen }),
@@ -253,6 +302,46 @@ export const useFactoryStore = create<FactoryStore>((set) => {
           c.id === id ? { ...c, ...data } : c,
         ),
       })),
+    deleteCustomer: (id) =>
+      set((state) => ({
+        customers: state.customers.filter((customer) => customer.id !== id),
+        customerBookings: Object.fromEntries(
+          Object.entries(state.customerBookings).filter(
+            ([, booking]) => booking.customerId !== id,
+          ),
+        ),
+      })),
+    addCustomerBooking: (booking) => {
+      let added = false;
+      set((state) => {
+        if (
+          state.customerBookings[booking.id] ||
+          hasCustomerBookingOverlap(state.customerBookings, booking)
+        ) {
+          return state;
+        }
+
+        added = true;
+        return {
+          customerBookings: {
+            ...state.customerBookings,
+            [booking.id]: booking,
+          },
+        };
+      });
+
+      return added;
+    },
+    deleteCustomerBooking: (id) =>
+      set((state) => {
+        if (!state.customerBookings[id]) {
+          return state;
+        }
+
+        const { [id]: _deleted, ...customerBookings } =
+          state.customerBookings;
+        return { customerBookings };
+      }),
     addCustomerContact: (customerId, contact) =>
       set((state) => ({
         customers: state.customers.map((customer) =>

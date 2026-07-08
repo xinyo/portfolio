@@ -31,6 +31,7 @@ export function CustomersView() {
     null,
   );
   const customers = useFactoryStore((s) => s.customers);
+  const deleteCustomer = useFactoryStore((s) => s.deleteCustomer);
 
   function handleAdd() {
     setEditingCustomerId(null);
@@ -81,11 +82,12 @@ export function CustomersView() {
         {customers.map((customer: FactoryCustomer) => (
           <CustomerItem
             key={customer.id}
-            customer={customer}
-            t={t}
-            onEdit={handleEdit}
-          />
-        ))}
+          customer={customer}
+          t={t}
+          onEdit={handleEdit}
+          onDelete={deleteCustomer}
+        />
+      ))}
       </div>
 
       <CustomerDialog
@@ -101,10 +103,12 @@ function CustomerItem({
   customer,
   t,
   onEdit,
+  onDelete,
 }: {
   customer: FactoryCustomer;
   t: (key: string) => string;
   onEdit: (id: string) => void;
+  onDelete: (id: string) => void;
 }) {
   return (
     <Item variant="outline" size="default">
@@ -132,7 +136,10 @@ function CustomerItem({
           <DropdownMenuItem onClick={() => onEdit(customer.id)}>
             {t("factory.views.customers.edit")}
           </DropdownMenuItem>
-          <DropdownMenuItem variant="destructive">
+          <DropdownMenuItem
+            variant="destructive"
+            onClick={() => onDelete(customer.id)}
+          >
             {t("factory.views.customers.delete")}
           </DropdownMenuItem>
         </DropdownMenuContent>

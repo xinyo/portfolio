@@ -142,7 +142,20 @@
         "title": "Workflow"
       },
       "planners": {
-        "title": "Planners"
+        "title": "Planners",
+        "subtitle": "Schedule customer bookings by dragging customers into available calendar slots.",
+        "customers": "Customers",
+        "customerList": "Customer scheduling list",
+        "dragHint": "Drag a customer into an open slot.",
+        "searchPlaceholder": "Search customers...",
+        "noCustomers": "No customers match your search.",
+        "viewToggle": "Calendar view",
+        "day": "Day",
+        "week": "Week",
+        "month": "Month",
+        "today": "Today",
+        "previous": "Previous period",
+        "next": "Next period"
       },
       "deliveryScheduling": {
         "title": "Delivery Scheduling"
@@ -185,6 +198,9 @@
           "deliveryAddress": "Delivery Address",
           "contacts": "Contacts",
           "settings": "Settings"
+        },
+        "planners": {
+          "back": "Back to Overview"
         }
       }
     },
