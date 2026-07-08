@@ -17,9 +17,6 @@ import {
   Workflow,
   CalendarDays,
   Clock,
-  FilePlus2,
-  Save,
-  FolderOpen,
 } from "lucide-react";
 
 type NavIcon = ComponentType<{ "aria-hidden"?: boolean | "true" }>;
