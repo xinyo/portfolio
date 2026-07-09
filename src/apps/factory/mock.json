@@ -10,6 +10,78 @@
   "trial": {
     "badgeLabel": "14-day trial"
   },
+  "employees": [
+    {
+      "id": "emp-1",
+      "image": "agent_avatar_01.svg",
+      "name": "Alex Rivera",
+      "accountType": "Admin",
+      "email": "alex.rivera@factory.example"
+    },
+    {
+      "id": "emp-2",
+      "image": "agent_avatar_02.svg",
+      "name": "Jordan Kim",
+      "accountType": "Manager",
+      "email": "jordan.kim@factory.example"
+    },
+    {
+      "id": "emp-3",
+      "image": "agent_avatar_03.svg",
+      "name": "Samira Osei",
+      "accountType": "Operator",
+      "email": "samira.osei@factory.example"
+    },
+    {
+      "id": "emp-4",
+      "image": "agent_avatar_04.svg",
+      "name": "Taylor Wright",
+      "accountType": "Manager",
+      "email": "taylor.wright@factory.example"
+    },
+    {
+      "id": "emp-5",
+      "image": "agent_avatar_05.svg",
+      "name": "Morgan Liu",
+      "accountType": "Operator",
+      "email": "morgan.liu@factory.example"
+    },
+    {
+      "id": "emp-6",
+      "image": "agent_avatar_06.svg",
+      "name": "Riley Patel",
+      "accountType": "Operator",
+      "email": "riley.patel@factory.example"
+    },
+    {
+      "id": "emp-7",
+      "image": "agent_avatar_07.svg",
+      "name": "Casey Henderson",
+      "accountType": "Admin",
+      "email": "casey.henderson@factory.example"
+    },
+    {
+      "id": "emp-8",
+      "image": "agent_avatar_08.svg",
+      "name": "Quinn Nakamura",
+      "accountType": "Manager",
+      "email": "quinn.nakamura@factory.example"
+    },
+    {
+      "id": "emp-9",
+      "image": "agent_avatar_09.svg",
+      "name": "Drew McCarthy",
+      "accountType": "Operator",
+      "email": "drew.mccarthy@factory.example"
+    },
+    {
+      "id": "emp-10",
+      "image": "agent_avatar_10.svg",
+      "name": "Avery Santos",
+      "accountType": "Operator",
+      "email": "avery.santos@factory.example"
+    }
+  ],
   "chatMessages": [
     {
       "id": "assistant-welcome",
