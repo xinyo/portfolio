@@ -55,13 +55,6 @@ export function TimesheetEmployeeSidebar() {
       className="factory-timesheet-employee-sidebar"
       aria-label={t("factory.views.timesheets.employeeList")}
     >
-      {/* <div className="factory-planner-sidebar-header">
-        <div>
-          <h3>{t("factory.views.timesheets.employees")}</h3>
-          <p>{t("factory.views.timesheets.employeeHint")}</p>
-        </div>
-      </div> */}
-
       <div className="factory-search-input-wrapper factory-planner-search">
         <Search className="factory-search-input-icon" />
         <Input

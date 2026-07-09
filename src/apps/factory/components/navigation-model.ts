@@ -1,5 +1,6 @@
 import type { ComponentType } from "react";
 import {
+  Blend,
   Boxes,
   Building2,
   Contact,
@@ -128,6 +129,11 @@ export const defaultNavigationSections: NavSection[] = [
         labelKey: "factory.navigation.items.timesheets",
         to: "/apps/factory/timesheets",
         icon: Clock,
+      },
+      {
+        labelKey: "factory.navigation.items.integrations",
+        to: "/apps/factory/integrations",
+        icon: Blend,
       },
     ],
   },

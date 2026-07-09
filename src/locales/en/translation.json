@@ -179,6 +179,9 @@
       "deliveryScheduling": {
         "title": "Delivery Scheduling"
       },
+      "integrations": {
+        "title": "Integrations"
+      },
       "timesheets": {
         "title": "Timesheets",
         "subtitle": "Review employee timesheets by date range, location, and employee.",
@@ -220,7 +223,8 @@
         "workflow": "Workflow",
         "planners": "Planners",
         "deliveryScheduling": "Delivery Scheduling",
-        "timesheets": "Timesheets"
+        "timesheets": "Timesheets",
+        "integrations": "Integrations"
       },
       "contextual": {
         "customers": {
