@@ -818,6 +818,159 @@ div:has(> .factory-customer-item-link:hover) {
   text-align: center;
 }
 
+.factory-timesheet-employee-sidebar {
+  display: flex;
+  min-height: 0;
+  flex: 1;
+  flex-direction: column;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--border);
+}
+
+.factory-timesheet-employee-list {
+  display: flex;
+  min-height: 0;
+  flex: 1;
+  flex-direction: column;
+  gap: 0;
+  overflow-y: auto;
+  padding-right: 0.125rem;
+}
+
+.factory-timesheet-employee {
+  width: 100%;
+  border-radius: 0;
+  background: var(--background);
+  cursor: pointer;
+  text-align: left;
+}
+
+.factory-timesheet-employee:first-child {
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+}
+
+.factory-timesheet-employee:last-child {
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+}
+
+.factory-timesheet-employee + .factory-timesheet-employee {
+  border-top-color: transparent;
+}
+
+.factory-timesheet-employee:hover,
+.factory-timesheet-employee[data-selected="true"] {
+  position: relative;
+  border-color: var(--primary);
+  background: var(--muted);
+}
+
+.factory-timesheets-view {
+  display: flex;
+  min-height: calc(100vh - 64px);
+  flex-direction: column;
+}
+
+.factory-timesheets-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.factory-timesheets-date-trigger {
+  min-width: 280px;
+  justify-content: flex-start;
+  font-weight: 400;
+}
+
+.factory-timesheets-location-trigger {
+  min-width: 220px;
+}
+
+.factory-timesheet-list {
+  gap: 0.75rem;
+}
+
+.factory-timesheet-item {
+  border-left-width: 4px;
+  background: var(--card);
+}
+
+.factory-timesheet-item[data-status="pending"] {
+  border-left-color: var(--muted-foreground);
+}
+
+.factory-timesheet-item[data-status="time"] {
+  border-left-color: var(--warning, #9a6700);
+}
+
+.factory-timesheet-item[data-status="pay"] {
+  border-left-color: var(--success, #1a7f37);
+}
+
+.factory-timesheet-item[data-status="muted"] {
+  border-left-color: var(--border);
+}
+
+.factory-timesheet-item-actions {
+  margin-left: auto;
+}
+
+.factory-timesheet-status-tag[data-status="pending"] {
+  background: var(--muted);
+  color: var(--muted-foreground);
+}
+
+.factory-timesheet-status-tag[data-status="time"] {
+  background: color-mix(in srgb, var(--warning, #9a6700) 14%, transparent);
+  color: var(--warning, #9a6700);
+}
+
+.factory-timesheet-status-tag[data-status="pay"] {
+  background: color-mix(in srgb, var(--success, #1a7f37) 14%, transparent);
+  color: var(--success, #1a7f37);
+}
+
+.factory-timesheet-status-tag[data-status="muted"] {
+  background: var(--muted);
+  color: var(--muted-foreground);
+}
+
+.factory-timesheet-date-time {
+  display: flex;
+  min-width: 150px;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.125rem;
+  text-align: right;
+}
+
+.factory-timesheet-date-time span:first-child {
+  color: var(--foreground);
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
+.factory-timesheet-date-time span:last-child {
+  color: var(--muted-foreground);
+  font-size: 0.8125rem;
+}
+
+.factory-timesheet-empty {
+  display: grid;
+  min-height: 240px;
+  place-items: center;
+  padding: 1rem;
+  border: 1px dashed var(--border);
+  border-radius: 6px;
+  color: var(--muted-foreground);
+  font-size: 0.875rem;
+  text-align: center;
+}
+
 .factory-planner-calendar-panel {
   display: flex;
   min-height: 0;

@@ -19,6 +19,14 @@ function resolveImage(path: string): string {
   return avatarModules[path] ?? customerImageModules[path] ?? path;
 }
 
+function resolveAvatarImage(path: string): string {
+  const normalizedPath = path.startsWith("/")
+    ? path
+    : `/src/assets/avatar/${path}`;
+
+  return resolveImage(normalizedPath);
+}
+
 export const factoryLanguageOptions = ["English", "Deutsch", "中文"] as const;
 export const factoryTimezoneOptions = ["UTC", "Local"] as const;
 
@@ -86,6 +94,52 @@ export type FactoryCustomerBooking = {
   customerName: string;
   start: string;
   end: string;
+};
+
+export type FactoryEmployee = {
+  id: string;
+  image: string;
+  name: string;
+  accountType: string;
+  email: string;
+};
+
+export type FactoryLocation = {
+  id: string;
+  name: string;
+};
+
+export type FactoryTimesheet = {
+  id: string;
+  startTime: string;
+  endTime: string;
+  empId: string;
+  breakStart: string;
+  breakEnd: string;
+  location: string;
+  comments: string[];
+  status: string;
+};
+
+export type FactoryTimesheetStatusVariant = "pending" | "time" | "pay" | "muted";
+
+export type FactoryTimesheetDateRange = {
+  from: Date | null;
+  to: Date | null;
+};
+
+export type FactoryTimesheetFilters = {
+  dateRange: FactoryTimesheetDateRange;
+  locationId: string;
+  selectedEmployeeId: string | null;
+  employeeQuery: string;
+};
+
+export type FactoryTimesheetIndexes = {
+  employeesById: Record<string, FactoryEmployee>;
+  locationsById: Record<string, FactoryLocation>;
+  timesheetsByEmployeeId: Record<string, FactoryTimesheet[]>;
+  timesheetsByLocationId: Record<string, FactoryTimesheet[]>;
 };
 
 export type FactoryWorkflowNodeType = "container" | "item";
@@ -177,6 +231,162 @@ export const factoryCustomers: FactoryCustomer[] = mockData.customers.map(
   }),
 );
 export const factorySalesOrders: FactorySalesOrder[] = mockData.salesOrders;
+export const factoryEmployees: FactoryEmployee[] = mockData.employees.map(
+  (employee) => ({
+    ...employee,
+    image: resolveAvatarImage(employee.image),
+  }),
+);
+export const factoryLocations: FactoryLocation[] = mockData.locations;
+export const factoryTimesheets: FactoryTimesheet[] = mockData.timesheets;
+
+export function createTimesheetIndexes(
+  employees: FactoryEmployee[],
+  locations: FactoryLocation[],
+  timesheets: FactoryTimesheet[],
+): FactoryTimesheetIndexes {
+  return {
+    employeesById: Object.fromEntries(
+      employees.map((employee) => [employee.id, employee]),
+    ),
+    locationsById: Object.fromEntries(
+      locations.map((location) => [location.id, location]),
+    ),
+    timesheetsByEmployeeId: timesheets.reduce<
+      Record<string, FactoryTimesheet[]>
+    >((index, timesheet) => {
+      index[timesheet.empId] = [...(index[timesheet.empId] ?? []), timesheet];
+      return index;
+    }, {}),
+    timesheetsByLocationId: timesheets.reduce<
+      Record<string, FactoryTimesheet[]>
+    >((index, timesheet) => {
+      index[timesheet.location] = [
+        ...(index[timesheet.location] ?? []),
+        timesheet,
+      ];
+      return index;
+    }, {}),
+  };
+}
+
+export const factoryTimesheetIndexes = createTimesheetIndexes(
+  factoryEmployees,
+  factoryLocations,
+  factoryTimesheets,
+);
+
+function getStartOfLocalDay(date: Date) {
+  return new Date(date.getFullYear(), date.getMonth(), date.getDate());
+}
+
+function getEndOfLocalDay(date: Date) {
+  return new Date(
+    date.getFullYear(),
+    date.getMonth(),
+    date.getDate(),
+    23,
+    59,
+    59,
+    999,
+  );
+}
+
+export function isTimesheetInDateRange(
+  timesheet: FactoryTimesheet,
+  dateRange: FactoryTimesheetDateRange,
+) {
+  const start = new Date(timesheet.startTime).getTime();
+
+  if (!Number.isFinite(start)) {
+    return false;
+  }
+
+  if (dateRange.from && start < getStartOfLocalDay(dateRange.from).getTime()) {
+    return false;
+  }
+
+  if (dateRange.to && start > getEndOfLocalDay(dateRange.to).getTime()) {
+    return false;
+  }
+
+  return true;
+}
+
+export function getTimesheetStatusVariant(
+  status: string,
+): FactoryTimesheetStatusVariant {
+  switch (status.trim().toLowerCase()) {
+    case "pending":
+      return "pending";
+    case "time approved":
+      return "time";
+    case "pay approved":
+      return "pay";
+    default:
+      return "muted";
+  }
+}
+
+export function filterTimesheets(
+  timesheets: FactoryTimesheet[],
+  filters: Pick<
+    FactoryTimesheetFilters,
+    "dateRange" | "locationId" | "selectedEmployeeId"
+  >,
+) {
+  return timesheets.filter((timesheet) => {
+    if (!isTimesheetInDateRange(timesheet, filters.dateRange)) {
+      return false;
+    }
+
+    if (filters.locationId !== "all" && timesheet.location !== filters.locationId) {
+      return false;
+    }
+
+    if (
+      filters.selectedEmployeeId &&
+      timesheet.empId !== filters.selectedEmployeeId
+    ) {
+      return false;
+    }
+
+    return true;
+  });
+}
+
+export function filterTimesheetEmployees(
+  employees: FactoryEmployee[],
+  timesheets: FactoryTimesheet[],
+  filters: Pick<FactoryTimesheetFilters, "dateRange" | "locationId" | "employeeQuery">,
+) {
+  const normalizedQuery = filters.employeeQuery.trim().toLowerCase();
+  const eligibleEmployeeIds = new Set(
+    timesheets
+      .filter((timesheet) =>
+        filterTimesheets([timesheet], {
+          dateRange: filters.dateRange,
+          locationId: filters.locationId,
+          selectedEmployeeId: null,
+        }).length > 0,
+      )
+      .map((timesheet) => timesheet.empId),
+  );
+
+  return employees.filter((employee) => {
+    if (!eligibleEmployeeIds.has(employee.id)) {
+      return false;
+    }
+
+    if (!normalizedQuery) {
+      return true;
+    }
+
+    return [employee.name, employee.accountType, employee.email].some((value) =>
+      value.toLowerCase().includes(normalizedQuery),
+    );
+  });
+}
 
 export function getActiveCustomerContacts(customer: FactoryCustomer) {
   return customer.contacts.filter((contact) => !contact.archived);
@@ -394,6 +604,11 @@ type FactoryStore = {
   salesOrderColumnViews: FactoryColumnView[];
   activeSalesOrderViewId: string;
   customers: FactoryCustomer[];
+  employees: FactoryEmployee[];
+  locations: FactoryLocation[];
+  timesheets: FactoryTimesheet[];
+  timesheetIndexes: FactoryTimesheetIndexes;
+  timesheetFilters: FactoryTimesheetFilters;
   customerBookings: Record<string, FactoryCustomerBooking>;
   workflows: FactoryWorkflow[];
   activeWorkflowId: string;
@@ -408,6 +623,10 @@ type FactoryStore = {
   addCustomer: (customer: FactoryCustomer) => void;
   updateCustomer: (id: string, data: Partial<FactoryCustomer>) => void;
   deleteCustomer: (id: string) => void;
+  setTimesheetDateRange: (dateRange: FactoryTimesheetDateRange) => void;
+  setTimesheetLocationId: (locationId: string) => void;
+  setTimesheetSelectedEmployeeId: (employeeId: string | null) => void;
+  setTimesheetEmployeeQuery: (query: string) => void;
   addCustomerBooking: (booking: FactoryCustomerBooking) => boolean;
   deleteCustomerBooking: (id: string) => void;
   addCustomerContact: (
@@ -464,6 +683,19 @@ export const useFactoryStore = create<FactoryStore>((set) => {
     salesOrderColumnViews: defaultSalesOrderColumnViews,
     activeSalesOrderViewId: "default",
     customers: [...factoryCustomers],
+    employees: [...factoryEmployees],
+    locations: [...factoryLocations],
+    timesheets: [...factoryTimesheets],
+    timesheetIndexes: factoryTimesheetIndexes,
+    timesheetFilters: {
+      dateRange: {
+        from: null,
+        to: null,
+      },
+      locationId: "all",
+      selectedEmployeeId: null,
+      employeeQuery: "",
+    },
     customerBookings: {},
     workflows: [defaultWorkflow],
     activeWorkflowId: defaultWorkflow.id,
@@ -493,6 +725,34 @@ export const useFactoryStore = create<FactoryStore>((set) => {
             ([, booking]) => booking.customerId !== id,
           ),
         ),
+      })),
+    setTimesheetDateRange: (dateRange) =>
+      set((state) => ({
+        timesheetFilters: {
+          ...state.timesheetFilters,
+          dateRange,
+        },
+      })),
+    setTimesheetLocationId: (locationId) =>
+      set((state) => ({
+        timesheetFilters: {
+          ...state.timesheetFilters,
+          locationId,
+        },
+      })),
+    setTimesheetSelectedEmployeeId: (selectedEmployeeId) =>
+      set((state) => ({
+        timesheetFilters: {
+          ...state.timesheetFilters,
+          selectedEmployeeId,
+        },
+      })),
+    setTimesheetEmployeeQuery: (employeeQuery) =>
+      set((state) => ({
+        timesheetFilters: {
+          ...state.timesheetFilters,
+          employeeQuery,
+        },
       })),
     addCustomerBooking: (booking) => {
       let added = false;

@@ -45,6 +45,7 @@ import {
   type FactoryTimezone,
 } from "@/apps/factory/store";
 import { PlannerCustomerSidebar } from "@/apps/factory/components/planner-customer-sidebar";
+import { TimesheetEmployeeSidebar } from "@/apps/factory/components/timesheet-employee-sidebar";
 import { WorkflowSidebar } from "@/apps/factory/components/workflow-sidebar";
 import {
   getFactoryLeftPanelModel,
@@ -284,6 +285,8 @@ function CustomLeftPanelSection({
   const content =
     section.id === "plannerCustomers" ? (
       <PlannerCustomerSidebar />
+    ) : section.id === "timesheetEmployees" ? (
+      <TimesheetEmployeeSidebar />
     ) : (
       <WorkflowSidebar />
     );
