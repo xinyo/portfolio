@@ -182,10 +182,7 @@ export function TimesheetsView() {
         {filteredTimesheets.length > 0 ? (
           filteredTimesheets.map((timesheet) => (
             <TimesheetItem
-              employeeName={
-                employeesById[timesheet.empId]?.name ??
-                t("factory.views.timesheets.unknownEmployee")
-              }
+              employee={employeesById[timesheet.empId] ?? null}
               timesheet={timesheet}
               key={timesheet.id}
             />
@@ -201,14 +198,15 @@ export function TimesheetsView() {
 }
 
 function TimesheetItem({
-  employeeName,
+  employee,
   timesheet,
 }: {
-  employeeName: string;
+  employee: { image: string; name: string } | null;
   timesheet: FactoryTimesheet;
 }) {
   const { t } = useTranslation();
   const statusVariant = getTimesheetStatusVariant(timesheet.status);
+  const employeeName = employee?.name ?? t("factory.views.timesheets.unknownEmployee");
 
   return (
     <Item
@@ -217,7 +215,14 @@ function TimesheetItem({
       data-status={statusVariant}
     >
       <ItemContent>
-        <ItemTitle>{employeeName}</ItemTitle>
+        <ItemTitle>
+          {employee && (
+            <span className="factory-timesheet-employee-avatar">
+              <img src={employee.image} alt="" />
+            </span>
+          )}
+          {employeeName}
+        </ItemTitle>
         <ItemDescription>{timesheet.comments[0] ?? timesheet.id}</ItemDescription>
       </ItemContent>
       <ItemActions className="factory-timesheet-item-actions">
