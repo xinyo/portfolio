@@ -41,9 +41,9 @@ function HomePage() {
           </div>
           <div className="hero-title">
             <h1>{t("get_started")}</h1>
-            <p>
+            {/* <p>
               <Trans i18nKey="intro"></Trans>
-            </p>
+            </p> */}
           </div>
 
           <div className="button-group">
