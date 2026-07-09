@@ -1430,3 +1430,9 @@ div:has(> .factory-customer-item-link:hover) {
     grid-row: 1;
   }
 }
+
+.factory-view__dev-image{
+  overflow: hidden;
+  border-radius: var(--radius);
+  opacity: 0.8;
+}

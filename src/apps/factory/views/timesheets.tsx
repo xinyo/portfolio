@@ -34,16 +34,12 @@ import {
 } from "@/components/ui/select";
 import { useFormattedTemporalDate } from "@/hooks/use-Instant";
 
-function getCurrentLocalWeekRange() {
+function getCurrentLocalMonthRange() {
   const today = new Date();
-  const day = today.getDay();
-  const daysSinceMonday = day === 0 ? 6 : day - 1;
-  const from = new Date(today);
-  from.setDate(today.getDate() - daysSinceMonday);
+  const from = new Date(today.getFullYear(), today.getMonth(), 1);
   from.setHours(0, 0, 0, 0);
 
-  const to = new Date(from);
-  to.setDate(from.getDate() + 6);
+  const to = new Date(today.getFullYear(), today.getMonth() + 1, 0);
   to.setHours(23, 59, 59, 999);
 
   return { from, to };
@@ -90,7 +86,7 @@ export function TimesheetsView() {
       return;
     }
 
-    setTimesheetDateRange(getCurrentLocalWeekRange());
+    setTimesheetDateRange(getCurrentLocalMonthRange());
   }, [filters.dateRange.from, filters.dateRange.to, setTimesheetDateRange]);
 
   const filteredTimesheets = useMemo(
