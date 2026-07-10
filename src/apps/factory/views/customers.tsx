@@ -4,10 +4,7 @@ import { useTranslation } from "react-i18next";
 import { Link } from "react-router";
 
 import { CustomerDialog } from "@/apps/factory/dialogs/customer-dialog";
-import {
-  useFactoryStore,
-  type FactoryCustomer,
-} from "@/apps/factory/store";
+import { useFactoryStore, type FactoryCustomer } from "@/apps/factory/store";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -82,12 +79,12 @@ export function CustomersView() {
         {customers.map((customer: FactoryCustomer) => (
           <CustomerItem
             key={customer.id}
-          customer={customer}
-          t={t}
-          onEdit={handleEdit}
-          onDelete={deleteCustomer}
-        />
-      ))}
+            customer={customer}
+            t={t}
+            onEdit={handleEdit}
+            onDelete={deleteCustomer}
+          />
+        ))}
       </div>
 
       <CustomerDialog
@@ -111,7 +108,7 @@ function CustomerItem({
   onDelete: (id: string) => void;
 }) {
   return (
-    <Item variant="outline" size="default">
+    <Item className="factory-customer-item" variant="outline" size="default">
       <Link
         className="factory-customer-item-link"
         to={`/apps/factory/customers/${customer.id}/order-history`}

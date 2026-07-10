@@ -1,0 +1,6 @@
+.u-press {
+  transition: scale 0.15s ease; /* Add this for a smooth press! */
+  &:active {
+    scale: 0.97;
+  }
+}

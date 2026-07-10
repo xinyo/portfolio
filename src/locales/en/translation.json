@@ -179,8 +179,24 @@
       "deliveryScheduling": {
         "title": "Delivery Scheduling"
       },
+      "integrations": {
+        "title": "Integrations"
+      },
       "timesheets": {
-        "title": "Timesheets"
+        "title": "Timesheets",
+        "subtitle": "Review employee timesheets by date range, location, and employee.",
+        "employees": "Employees",
+        "employeeList": "Timesheet employee list",
+        "employeeHint": "Select an employee to filter timesheets.",
+        "searchEmployees": "Search employees...",
+        "noEmployees": "No employees match these filters.",
+        "selectDateRange": "Select date range",
+        "selectLocation": "Select location",
+        "allLocations": "All locations",
+        "unknownEmployee": "Unknown employee",
+        "dateLabel": "Timesheet date",
+        "timeLabel": "Shift time",
+        "noTimesheets": "No timesheets match these filters."
       }
     },
     "navigation": {
@@ -207,7 +223,8 @@
         "workflow": "Workflow",
         "planners": "Planners",
         "deliveryScheduling": "Delivery Scheduling",
-        "timesheets": "Timesheets"
+        "timesheets": "Timesheets",
+        "integrations": "Integrations"
       },
       "contextual": {
         "customers": {
@@ -219,6 +236,9 @@
           "settings": "Settings"
         },
         "planners": {
+          "back": "Back to Overview"
+        },
+        "timesheets": {
           "back": "Back to Overview"
         },
         "workflow": {

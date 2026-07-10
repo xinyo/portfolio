@@ -65,6 +65,20 @@ describe("factory navigation model", () => {
     expect(model.sections[0]?.items[0]?.icon).toBe(Undo2);
   });
 
+  it("uses timesheet custom content for the timesheets route", () => {
+    const model = getFactoryLeftPanelModel("/apps/factory/timesheets");
+
+    expect(model.showSearch).toBe(false);
+    expect(model.customSection).toEqual({ id: "timesheetEmployees" });
+    expect(model.sections[0]?.items[0]).toMatchObject({
+      labelKey: "factory.navigation.contextual.timesheets.back",
+      to: "/apps/factory",
+      end: true,
+      variant: "back",
+    });
+    expect(model.sections[0]?.items[0]?.icon).toBe(Undo2);
+  });
+
   it("uses workflow custom content for the workflow route", () => {
     const model = getFactoryLeftPanelModel("/apps/factory/workflow");
 

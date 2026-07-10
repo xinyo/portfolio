@@ -1,5 +1,6 @@
 import type { ComponentType } from "react";
 import {
+  Blend,
   Boxes,
   Building2,
   Contact,
@@ -35,7 +36,7 @@ export type NavSection = {
 };
 
 export type FactoryLeftPanelCustomSection = {
-  id: "plannerCustomers" | "workflowSidebar";
+  id: "plannerCustomers" | "timesheetEmployees" | "workflowSidebar";
 };
 
 export type FactoryLeftPanelModel = {
@@ -129,6 +130,11 @@ export const defaultNavigationSections: NavSection[] = [
         to: "/apps/factory/timesheets",
         icon: Clock,
       },
+      {
+        labelKey: "factory.navigation.items.integrations",
+        to: "/apps/factory/integrations",
+        icon: Blend,
+      },
     ],
   },
 ];
@@ -204,6 +210,22 @@ export function getPlannerNavigationSections(): NavSection[] {
   ];
 }
 
+export function getTimesheetNavigationSections(): NavSection[] {
+  return [
+    {
+      items: [
+        {
+          labelKey: "factory.navigation.contextual.timesheets.back",
+          to: "/apps/factory",
+          icon: Undo2,
+          end: true,
+          variant: "back",
+        },
+      ],
+    },
+  ];
+}
+
 export function getWorkflowNavigationSections(): NavSection[] {
   return [
     {
@@ -236,6 +258,14 @@ export function getFactoryLeftPanelModel(
     return {
       sections: getPlannerNavigationSections(),
       customSection: { id: "plannerCustomers" },
+      showSearch: false,
+    };
+  }
+
+  if (pathname === "/apps/factory/timesheets") {
+    return {
+      sections: getTimesheetNavigationSections(),
+      customSection: { id: "timesheetEmployees" },
       showSearch: false,
     };
   }

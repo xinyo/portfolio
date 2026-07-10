@@ -20,5 +20,6 @@
 - Always run `pnpm test` after modifying JavaScript/Typescript files.
 - Use `vitest` for the testing framework.
 - Form component should always have aria to meet WACG requirement.
+- Use javascript Date is forbidden in src and tests. Always use Temporal.
 
 <!-- - Mock external dependencies like `uuid` in tests. -->

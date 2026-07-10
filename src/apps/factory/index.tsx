@@ -14,7 +14,7 @@ import {
 import { useTranslation } from "react-i18next";
 import { Link, Navigate, Route, Routes } from "react-router";
 import logo from "./assets/logo.png";
-import "./styles.css";
+import "./css/styles.css";
 
 import { AiChat } from "@/apps/factory/components/ai-chat";
 import { FactoryNavigations } from "@/apps/factory/components/navigations";
@@ -22,6 +22,7 @@ import { companyNameMap, useFactoryStore } from "@/apps/factory/store";
 import { CustomerDetailView } from "@/apps/factory/views/customer-detail";
 import { CustomersView } from "@/apps/factory/views/customers";
 import { DeliverySchedulingView } from "@/apps/factory/views/delivery-scheduling";
+import { IntegrationsView } from "@/apps/factory/views/integrations";
 import { MaterialsView } from "@/apps/factory/views/materials";
 import { OverviewView } from "@/apps/factory/views/overview";
 import { PlannersView } from "@/apps/factory/views/planners";
@@ -255,6 +256,7 @@ export function FactoryApp() {
                 element={<DeliverySchedulingView />}
               />
               <Route path="timesheets" element={<TimesheetsView />} />
+              <Route path="integrations" element={<IntegrationsView />} />
               <Route
                 path="*"
                 element={<Navigate to="/apps/factory" replace />}
