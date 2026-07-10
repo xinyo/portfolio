@@ -162,37 +162,71 @@
     }
   ],
   "categories": [
-    { "id": "cat-1", "name": "Structural Components" },
-    { "id": "cat-2", "name": "Fasteners" },
-    { "id": "cat-3", "name": "Seals & Gaskets" },
-    { "id": "cat-4", "name": "Motion & Rails" },
-    { "id": "cat-5", "name": "Covers & Enclosures" }
+    {
+      "id": "cat-1",
+      "name": "Structural Components"
+    },
+    {
+      "id": "cat-2",
+      "name": "Fasteners"
+    },
+    {
+      "id": "cat-3",
+      "name": "Seals & Gaskets"
+    },
+    {
+      "id": "cat-4",
+      "name": "Motion & Rails"
+    },
+    {
+      "id": "cat-5",
+      "name": "Covers & Enclosures"
+    }
   ],
   "productKits": [
     {
       "id": "kit-1",
       "name": "Frame Assembly Kit A",
-      "productIds": ["prod-1", "prod-2", "prod-5"]
+      "productIds": [
+        "prod-1",
+        "prod-2",
+        "prod-5"
+      ]
     },
     {
       "id": "kit-2",
       "name": "Mounting Hardware Set",
-      "productIds": ["prod-6", "prod-5", "prod-8"]
+      "productIds": [
+        "prod-6",
+        "prod-5",
+        "prod-8"
+      ]
     },
     {
       "id": "kit-3",
       "name": "Enclosure Pack",
-      "productIds": ["prod-3", "prod-4", "prod-10"]
+      "productIds": [
+        "prod-3",
+        "prod-4",
+        "prod-10"
+      ]
     },
     {
       "id": "kit-4",
       "name": "Rail System Bundle",
-      "productIds": ["prod-9", "prod-2", "prod-7"]
+      "productIds": [
+        "prod-9",
+        "prod-2",
+        "prod-7"
+      ]
     },
     {
       "id": "kit-5",
       "name": "Gasket Service Kit",
-      "productIds": ["prod-7", "prod-5"]
+      "productIds": [
+        "prod-7",
+        "prod-5"
+      ]
     }
   ],
   "materials": [
@@ -478,10 +512,15 @@
       "hoursWorked": 36,
       "installAddress": "1200 Industrial Pkwy, Chicago, IL 60607",
       "invoicedDate": "2024-02-20",
-      "labels": ["Priority", "Repeat Client"],
+      "labels": [
+        "Priority",
+        "Repeat Client"
+      ],
       "lastModifiedBy": "Avery Morgan",
       "lastModifiedDate": "2024-02-22",
-      "linkedOrders": ["SO-2024-003"],
+      "linkedOrders": [
+        "SO-2024-003"
+      ],
       "margin": 3600.0,
       "notes": "Client requested expedited delivery on frame assemblies.",
       "orderType": "Standard",
@@ -518,7 +557,9 @@
       "hoursWorked": 23,
       "installAddress": "455 Market St, Suite 300, San Francisco, CA 94105",
       "invoicedDate": "2024-02-10",
-      "labels": ["Completed"],
+      "labels": [
+        "Completed"
+      ],
       "lastModifiedBy": "Marcus Webb",
       "lastModifiedDate": "2024-02-12",
       "linkedOrders": [],
@@ -558,10 +599,15 @@
       "hoursWorked": 0,
       "installAddress": "3800 Manufacturing Dr, Detroit, MI 48201",
       "invoicedDate": "",
-      "labels": ["New", "Large Order"],
+      "labels": [
+        "New",
+        "Large Order"
+      ],
       "lastModifiedBy": "Avery Morgan",
       "lastModifiedDate": "2024-02-28",
-      "linkedOrders": ["SO-2024-001"],
+      "linkedOrders": [
+        "SO-2024-001"
+      ],
       "margin": 5500.0,
       "notes": "New expansion project — phase 2.",
       "orderType": "Standard",
@@ -598,7 +644,10 @@
       "hoursWorked": 11,
       "installAddress": "2100 Precision Ct, Columbus, OH 43215",
       "invoicedDate": "2024-01-20",
-      "labels": ["Overdue", "Disputed"],
+      "labels": [
+        "Overdue",
+        "Disputed"
+      ],
       "lastModifiedBy": "Marcus Webb",
       "lastModifiedDate": "2024-03-01",
       "linkedOrders": [],
@@ -638,7 +687,9 @@
       "hoursWorked": 0,
       "installAddress": "5500 Energy Pkwy, Houston, TX 77002",
       "invoicedDate": "",
-      "labels": ["New"],
+      "labels": [
+        "New"
+      ],
       "lastModifiedBy": "Avery Morgan",
       "lastModifiedDate": "2024-03-05",
       "linkedOrders": [],
@@ -678,7 +729,9 @@
       "hoursWorked": 22,
       "installAddress": "88 Foundry Rd, Geelong VIC 3220",
       "invoicedDate": "2024-04-01",
-      "labels": ["Priority"],
+      "labels": [
+        "Priority"
+      ],
       "lastModifiedBy": "Avery Morgan",
       "lastModifiedDate": "2024-04-02",
       "linkedOrders": [],
@@ -718,7 +771,10 @@
       "hoursWorked": 52,
       "installAddress": "17 Steel Lane, Newcastle NSW 2300",
       "invoicedDate": "2024-03-15",
-      "labels": ["Completed", "Repeat Client"],
+      "labels": [
+        "Completed",
+        "Repeat Client"
+      ],
       "lastModifiedBy": "Marcus Webb",
       "lastModifiedDate": "2024-03-16",
       "linkedOrders": [],
@@ -758,7 +814,10 @@
       "hoursWorked": 0,
       "installAddress": "88 Foundry Rd, Geelong VIC 3220",
       "invoicedDate": "",
-      "labels": ["New", "Custom Order"],
+      "labels": [
+        "New",
+        "Custom Order"
+      ],
       "lastModifiedBy": "Avery Morgan",
       "lastModifiedDate": "2024-04-01",
       "linkedOrders": [],
@@ -798,10 +857,14 @@
       "hoursWorked": 9,
       "installAddress": "5500 Energy Pkwy, Houston, TX 77002",
       "invoicedDate": "2024-02-15",
-      "labels": ["Overdue"],
+      "labels": [
+        "Overdue"
+      ],
       "lastModifiedBy": "Marcus Webb",
       "lastModifiedDate": "2024-04-05",
-      "linkedOrders": ["SO-2024-005"],
+      "linkedOrders": [
+        "SO-2024-005"
+      ],
       "margin": 1100.0,
       "notes": "Small connector order — payment overdue since March.",
       "orderType": "Standard",
@@ -838,10 +901,15 @@
       "hoursWorked": 55,
       "installAddress": "455 Market St, Suite 300, San Francisco, CA 94105",
       "invoicedDate": "2024-04-10",
-      "labels": ["Priority", "Large Order"],
+      "labels": [
+        "Priority",
+        "Large Order"
+      ],
       "lastModifiedBy": "Avery Morgan",
       "lastModifiedDate": "2024-04-12",
-      "linkedOrders": ["SO-2024-002"],
+      "linkedOrders": [
+        "SO-2024-002"
+      ],
       "margin": 9000.0,
       "notes": "Phase 2 of TechFab expansion — precision components.",
       "orderType": "Rush",
@@ -878,7 +946,9 @@
       "hoursWorked": 18,
       "installAddress": "2100 Precision Ct, Columbus, OH 43215",
       "invoicedDate": "2024-03-01",
-      "labels": ["Repeat Client"],
+      "labels": [
+        "Repeat Client"
+      ],
       "lastModifiedBy": "Marcus Webb",
       "lastModifiedDate": "2024-03-02",
       "linkedOrders": [],
@@ -918,7 +988,9 @@
       "hoursWorked": 0,
       "installAddress": "17 Steel Lane, Newcastle NSW 2300",
       "invoicedDate": "",
-      "labels": ["New"],
+      "labels": [
+        "New"
+      ],
       "lastModifiedBy": "Avery Morgan",
       "lastModifiedDate": "2024-04-08",
       "linkedOrders": [],
@@ -958,10 +1030,17 @@
       "hoursWorked": 0,
       "installAddress": "5500 Energy Pkwy, Houston, TX 77002",
       "invoicedDate": "",
-      "labels": ["New", "Large Order", "Custom Order"],
+      "labels": [
+        "New",
+        "Large Order",
+        "Custom Order"
+      ],
       "lastModifiedBy": "Avery Morgan",
       "lastModifiedDate": "2024-04-12",
-      "linkedOrders": ["SO-2024-005", "SO-2024-009"],
+      "linkedOrders": [
+        "SO-2024-005",
+        "SO-2024-009"
+      ],
       "margin": 5500.0,
       "notes": "Conveyor system upgrade — full assembly and on-site installation.",
       "orderType": "Custom",
@@ -998,7 +1077,9 @@
       "hoursWorked": 15,
       "installAddress": "1200 Industrial Pkwy, Chicago, IL 60607",
       "invoicedDate": "2024-03-22",
-      "labels": ["Completed"],
+      "labels": [
+        "Completed"
+      ],
       "lastModifiedBy": "Marcus Webb",
       "lastModifiedDate": "2024-03-22",
       "linkedOrders": [],
@@ -1038,10 +1119,16 @@
       "hoursWorked": 30,
       "installAddress": "2100 Precision Ct, Columbus, OH 43215",
       "invoicedDate": "2024-04-14",
-      "labels": ["Priority", "Repeat Client"],
+      "labels": [
+        "Priority",
+        "Repeat Client"
+      ],
       "lastModifiedBy": "Avery Morgan",
       "lastModifiedDate": "2024-04-15",
-      "linkedOrders": ["SO-2024-011", "SO-2024-004"],
+      "linkedOrders": [
+        "SO-2024-011",
+        "SO-2024-004"
+      ],
       "margin": 3400.0,
       "notes": "Custom tooling fixtures — partial delivery completed.",
       "orderType": "Custom",
@@ -1051,16 +1138,46 @@
     }
   ],
   "locations": [
-    { "id": "loc-1", "name": "Warehouse A" },
-    { "id": "loc-2", "name": "Assembly Bay 2" },
-    { "id": "loc-3", "name": "Finishing Dept" },
-    { "id": "loc-4", "name": "Dispatch Office" },
-    { "id": "loc-5", "name": "CNC Area 1" },
-    { "id": "loc-6", "name": "Raw Materials Store" },
-    { "id": "loc-7", "name": "Admin Building" },
-    { "id": "loc-8", "name": "Assembly Bay 1" },
-    { "id": "loc-9", "name": "Welding Station 2" },
-    { "id": "loc-10", "name": "Quality Lab" }
+    {
+      "id": "loc-1",
+      "name": "Warehouse A"
+    },
+    {
+      "id": "loc-2",
+      "name": "Assembly Bay 2"
+    },
+    {
+      "id": "loc-3",
+      "name": "Finishing Dept"
+    },
+    {
+      "id": "loc-4",
+      "name": "Dispatch Office"
+    },
+    {
+      "id": "loc-5",
+      "name": "CNC Area 1"
+    },
+    {
+      "id": "loc-6",
+      "name": "Raw Materials Store"
+    },
+    {
+      "id": "loc-7",
+      "name": "Admin Building"
+    },
+    {
+      "id": "loc-8",
+      "name": "Assembly Bay 1"
+    },
+    {
+      "id": "loc-9",
+      "name": "Welding Station 2"
+    },
+    {
+      "id": "loc-10",
+      "name": "Quality Lab"
+    }
   ],
   "timesheets": [
     {
@@ -1071,7 +1188,9 @@
       "breakStart": "2026-07-01T12:00:00Z",
       "breakEnd": "2026-07-01T12:30:00Z",
       "location": "loc-1",
-      "comments": ["Production line 3 maintenance completed"],
+      "comments": [
+        "Production line 3 maintenance completed"
+      ],
       "status": "Time Approved"
     },
     {
@@ -1082,7 +1201,9 @@
       "breakStart": "2026-07-01T11:30:00Z",
       "breakEnd": "2026-07-01T12:00:00Z",
       "location": "loc-2",
-      "comments": ["Shift handover note: check conveyor belt alignment"],
+      "comments": [
+        "Shift handover note: check conveyor belt alignment"
+      ],
       "status": "Pending"
     },
     {
@@ -1093,7 +1214,9 @@
       "breakStart": "2026-07-02T02:00:00Z",
       "breakEnd": "2026-07-02T02:45:00Z",
       "location": "loc-3",
-      "comments": ["Night shift - quality inspection run"],
+      "comments": [
+        "Night shift - quality inspection run"
+      ],
       "status": "Pay Approved"
     },
     {
@@ -1104,7 +1227,10 @@
       "breakStart": "2026-07-02T12:30:00Z",
       "breakEnd": "2026-07-02T13:00:00Z",
       "location": "loc-4",
-      "comments": ["Prepared outbound shipments for priority orders", "Signed carrier paperwork"],
+      "comments": [
+        "Prepared outbound shipments for priority orders",
+        "Signed carrier paperwork"
+      ],
       "status": "Time Approved"
     },
     {
@@ -1115,7 +1241,9 @@
       "breakStart": "2026-07-02T11:45:00Z",
       "breakEnd": "2026-07-02T12:15:00Z",
       "location": "loc-5",
-      "comments": ["Retooled CNC-04 for upcoming extrusion job"],
+      "comments": [
+        "Retooled CNC-04 for upcoming extrusion job"
+      ],
       "status": "Pending"
     },
     {
@@ -1126,7 +1254,9 @@
       "breakStart": "2026-07-02T10:30:00Z",
       "breakEnd": "2026-07-02T11:00:00Z",
       "location": "loc-6",
-      "comments": ["Inventory count and restock of steel sheets"],
+      "comments": [
+        "Inventory count and restock of steel sheets"
+      ],
       "status": "Discarded"
     },
     {
@@ -1137,7 +1267,9 @@
       "breakStart": "2026-07-03T12:00:00Z",
       "breakEnd": "2026-07-03T12:45:00Z",
       "location": "loc-7",
-      "comments": ["Weekly safety audit walkthrough"],
+      "comments": [
+        "Weekly safety audit walkthrough"
+      ],
       "status": "Time Approved"
     },
     {
@@ -1159,7 +1291,9 @@
       "breakStart": "2026-07-03T18:00:00Z",
       "breakEnd": "2026-07-03T18:30:00Z",
       "location": "loc-9",
-      "comments": ["Afternoon shift - welded bracket batches for SO-2024-015"],
+      "comments": [
+        "Afternoon shift - welded bracket batches for SO-2024-015"
+      ],
       "status": "Pending"
     },
     {
@@ -1170,8 +1304,1455 @@
       "breakStart": "2026-07-03T12:00:00Z",
       "breakEnd": "2026-07-03T12:30:00Z",
       "location": "loc-10",
-      "comments": ["Tested tensile strength on 3 material batches", "Logged results in QMS"],
+      "comments": [
+        "Tested tensile strength on 3 material batches",
+        "Logged results in QMS"
+      ],
       "status": "Time Approved"
+    }
+  ],
+  "integrations": [
+    {
+      "id": "int-1",
+      "name": "7shifts",
+      "description": "Employee scheduling for restaurants",
+      "category": "Time & Scheduling",
+      "image": "7shifts.webp"
+    },
+    {
+      "id": "int-2",
+      "name": "Abacus",
+      "description": "Automated employee expense management",
+      "category": "Payroll & Expenses",
+      "image": "Abacus.webp"
+    },
+    {
+      "id": "int-3",
+      "name": "ADP Run",
+      "description": "Payroll and HR for small businesses",
+      "category": "Payroll & Expenses",
+      "image": "ADPRun.webp"
+    },
+    {
+      "id": "int-4",
+      "name": "ADP Workforce Now",
+      "description": "Enterprise HR and payroll platform",
+      "category": "Payroll & Expenses",
+      "image": "ADPWFN.webp"
+    },
+    {
+      "id": "int-5",
+      "name": "AlexisHR",
+      "description": "People operations and HR management",
+      "category": "HR & People",
+      "image": "AlexisHR.webp"
+    },
+    {
+      "id": "int-6",
+      "name": "Allara Global",
+      "description": "Global employment and compliance platform",
+      "category": "Payroll & Expenses",
+      "image": "AllaraGlobal.webp"
+    },
+    {
+      "id": "int-7",
+      "name": "Alliance HCM",
+      "description": "Human capital management solution",
+      "category": "HR & People",
+      "image": "AllianceHCM.webp"
+    },
+    {
+      "id": "int-8",
+      "name": "Altera Payroll",
+      "description": "Streamlined payroll processing services",
+      "category": "Payroll & Expenses",
+      "image": "AlteraPayroll.webp"
+    },
+    {
+      "id": "int-9",
+      "name": "BambooHR",
+      "description": "Cloud-based HR platform for growing teams",
+      "category": "HR & People",
+      "image": "BambooHR.webp"
+    },
+    {
+      "id": "int-10",
+      "name": "Bepoz",
+      "description": "All-in-one POS and hospitality management",
+      "category": "POS & Retail",
+      "image": "Bepoz.webp"
+    },
+    {
+      "id": "int-11",
+      "name": "Box",
+      "description": "Cloud content management and file sharing",
+      "category": "File Storage",
+      "image": "Box.webp"
+    },
+    {
+      "id": "int-12",
+      "name": "Breathe",
+      "description": "Simple HR software for small businesses",
+      "category": "HR & People",
+      "image": "Breathe.webp"
+    },
+    {
+      "id": "int-13",
+      "name": "Buildxact",
+      "description": "Construction estimating and project management",
+      "category": "Industry Specific",
+      "image": "Buildxact.webp"
+    },
+    {
+      "id": "int-14",
+      "name": "Charlie",
+      "description": "HR software for small and medium teams",
+      "category": "HR & People",
+      "image": "Charlie.webp"
+    },
+    {
+      "id": "int-15",
+      "name": "ChartHop",
+      "description": "People analytics and workforce planning",
+      "category": "HR & People",
+      "image": "ChartHop.webp"
+    },
+    {
+      "id": "int-16",
+      "name": "ClayHR",
+      "description": "Talent management and HR platform",
+      "category": "HR & People",
+      "image": "ClayHR.webp"
+    },
+    {
+      "id": "int-17",
+      "name": "Clover",
+      "description": "Cloud-based POS and business management",
+      "category": "POS & Retail",
+      "image": "Clover.webp"
+    },
+    {
+      "id": "int-18",
+      "name": "Command",
+      "description": "HR and workforce management platform",
+      "category": "HR & People",
+      "image": "Command.webp"
+    },
+    {
+      "id": "int-19",
+      "name": "Darwinbox",
+      "description": "End-to-end human capital management",
+      "category": "HR & People",
+      "image": "Darwinbox.webp"
+    },
+    {
+      "id": "int-20",
+      "name": "Dash Time Clock",
+      "description": "Employee time tracking and attendance",
+      "category": "Time & Scheduling",
+      "image": "dash-timeclock.webp"
+    },
+    {
+      "id": "int-21",
+      "name": "Dayforce",
+      "description": "HCM, payroll, and workforce management",
+      "category": "Payroll & Expenses",
+      "image": "Dayforce.webp"
+    },
+    {
+      "id": "int-22",
+      "name": "Deel",
+      "description": "Global payroll and contractor management",
+      "category": "Payroll & Expenses",
+      "image": "Deel.webp"
+    },
+    {
+      "id": "int-23",
+      "name": "Deputy",
+      "description": "Workforce scheduling and time tracking",
+      "category": "Time & Scheduling",
+      "image": "Deputy.webp"
+    },
+    {
+      "id": "int-24",
+      "name": "Doshii",
+      "description": "Hospitality integration and order management",
+      "category": "POS & Retail",
+      "image": "Doshii.webp"
+    },
+    {
+      "id": "int-25",
+      "name": "Dropbox",
+      "description": "Cloud storage and file synchronization",
+      "category": "File Storage",
+      "image": "Dropbox.webp"
+    },
+    {
+      "id": "int-26",
+      "name": "EdApp",
+      "description": "Mobile-first microlearning training platform",
+      "category": "HR & People",
+      "image": "EdApp.webp"
+    },
+    {
+      "id": "int-27",
+      "name": "Employment Hero",
+      "description": "All-in-one HR, payroll and benefits",
+      "category": "HR & People",
+      "image": "EmploymentHero.webp"
+    },
+    {
+      "id": "int-28",
+      "name": "Enable HR",
+      "description": "Cloud HR and people management software",
+      "category": "HR & People",
+      "image": "enablehr.webp"
+    },
+    {
+      "id": "int-29",
+      "name": "Epos Now",
+      "description": "Cloud-based POS for retail and hospitality",
+      "category": "POS & Retail",
+      "image": "Eposnow.webp"
+    },
+    {
+      "id": "int-30",
+      "name": "Factorial",
+      "description": "HR software for small to mid-size teams",
+      "category": "HR & People",
+      "image": "Factorial.webp"
+    },
+    {
+      "id": "int-31",
+      "name": "Flare HR",
+      "description": "HR platform with employee benefits hub",
+      "category": "HR & People",
+      "image": "FlareHR.webp"
+    },
+    {
+      "id": "int-32",
+      "name": "FoodStorm",
+      "description": "Food ordering and pre-order management",
+      "category": "POS & Retail",
+      "image": "FoodStorm.webp"
+    },
+    {
+      "id": "int-33",
+      "name": "Freshteam",
+      "description": "Recruiting and onboarding HR platform",
+      "category": "HR & People",
+      "image": "Freshteam.webp"
+    },
+    {
+      "id": "int-34",
+      "name": "Google Workspaces",
+      "description": "Cloud collaboration and identity management",
+      "category": "Identity & Security",
+      "image": "GoogleWorkspaces.webp"
+    },
+    {
+      "id": "int-35",
+      "name": "Gusto",
+      "description": "Payroll, benefits, and HR for small biz",
+      "category": "Payroll & Expenses",
+      "image": "Gusto.webp"
+    },
+    {
+      "id": "int-36",
+      "name": "Hailey HR",
+      "description": "People-centric HR management platform",
+      "category": "HR & People",
+      "image": "HaileyHR.webp"
+    },
+    {
+      "id": "int-37",
+      "name": "Happy HR",
+      "description": "Simple and intuitive HR software",
+      "category": "HR & People",
+      "image": "Happyhr.webp"
+    },
+    {
+      "id": "int-38",
+      "name": "HiBob",
+      "description": "Modern HR platform for people management",
+      "category": "HR & People",
+      "image": "Hibob.webp"
+    },
+    {
+      "id": "int-39",
+      "name": "HR Partner",
+      "description": "HR management for growing businesses",
+      "category": "HR & People",
+      "image": "HRPartner.webp"
+    },
+    {
+      "id": "int-40",
+      "name": "Humaans",
+      "description": "Modern HRIS for fast-growing companies",
+      "category": "HR & People",
+      "image": "Humaans.webp"
+    },
+    {
+      "id": "int-41",
+      "name": "Humi",
+      "description": "Canadian HR, payroll and benefits platform",
+      "category": "HR & People",
+      "image": "Humi.webp"
+    },
+    {
+      "id": "int-42",
+      "name": "Idealpos",
+      "description": "POS system for hospitality and retail",
+      "category": "POS & Retail",
+      "image": "Idealpos.webp"
+    },
+    {
+      "id": "int-43",
+      "name": "Idexx Neo",
+      "description": "Practice management for veterinary clinics",
+      "category": "Industry Specific",
+      "image": "Idexxneo.webp"
+    },
+    {
+      "id": "int-44",
+      "name": "Impos",
+      "description": "Cloud POS for hospitality venues",
+      "category": "POS & Retail",
+      "image": "Impos.webp"
+    },
+    {
+      "id": "int-45",
+      "name": "Indeed",
+      "description": "Job posting and recruitment platform",
+      "category": "HR & People",
+      "image": "Indeed_2021_Logo_RGB_Blue.webp"
+    },
+    {
+      "id": "int-46",
+      "name": "Insperity Premier",
+      "description": "Full-service HR and payroll solution",
+      "category": "Payroll & Expenses",
+      "image": "InsperityPremier.webp"
+    },
+    {
+      "id": "int-47",
+      "name": "IntelliHR",
+      "description": "People analytics and HR management",
+      "category": "HR & People",
+      "image": "IntelliHR.webp"
+    },
+    {
+      "id": "int-48",
+      "name": "IRIS Cascade",
+      "description": "HR and payroll software for UK businesses",
+      "category": "HR & People",
+      "image": "IRISCascade.webp"
+    },
+    {
+      "id": "int-49",
+      "name": "JumpCloud",
+      "description": "Cloud directory and identity management",
+      "category": "Identity & Security",
+      "image": "JumpCloud.webp"
+    },
+    {
+      "id": "int-50",
+      "name": "JustWorks",
+      "description": "HR, payroll, and benefits platform",
+      "category": "HR & People",
+      "image": "JustWorks.webp"
+    },
+    {
+      "id": "int-51",
+      "name": "Kallidus",
+      "description": "HR, learning, and talent management",
+      "category": "HR & People",
+      "image": "Kallidus.webp"
+    },
+    {
+      "id": "int-52",
+      "name": "Keka",
+      "description": "HR and payroll platform for India",
+      "category": "HR & People",
+      "image": "Keka.webp"
+    },
+    {
+      "id": "int-53",
+      "name": "Kenjo",
+      "description": "HR software for employee management",
+      "category": "HR & People",
+      "image": "Kenjo.webp"
+    },
+    {
+      "id": "int-54",
+      "name": "Lano",
+      "description": "Global payroll and compliance platform",
+      "category": "Payroll & Expenses",
+      "image": "Lano.webp"
+    },
+    {
+      "id": "int-55",
+      "name": "Lightspeed",
+      "description": "POS and e-commerce for retail and hospitality",
+      "category": "POS & Retail",
+      "image": "Lightspeed.webp"
+    },
+    {
+      "id": "int-56",
+      "name": "Lucca",
+      "description": "French HR and expense management platform",
+      "category": "HR & People",
+      "image": "Lucca.webp"
+    },
+    {
+      "id": "int-57",
+      "name": "Mercu",
+      "description": "HR and workplace management platform",
+      "category": "HR & People",
+      "image": "mercu.webp"
+    },
+    {
+      "id": "int-58",
+      "name": "Microsoft Entra ID",
+      "description": "Cloud identity and access management",
+      "category": "Identity & Security",
+      "image": "MicrosoftEntraID.webp"
+    },
+    {
+      "id": "int-59",
+      "name": "Micros Simphony",
+      "description": "Enterprise POS for hospitality industry",
+      "category": "POS & Retail",
+      "image": "microssimp.webp"
+    },
+    {
+      "id": "int-60",
+      "name": "MYOB",
+      "description": "Accounting and payroll for businesses",
+      "category": "Accounting & ERP",
+      "image": "MYOB.webp"
+    },
+    {
+      "id": "int-61",
+      "name": "Mypaye",
+      "description": "Payroll processing and management",
+      "category": "Payroll & Expenses",
+      "image": "Mypaye.webp"
+    },
+    {
+      "id": "int-62",
+      "name": "Namely",
+      "description": "HR, payroll, and benefits platform",
+      "category": "HR & People",
+      "image": "Namely.webp"
+    },
+    {
+      "id": "int-63",
+      "name": "NetSuite",
+      "description": "Cloud ERP and business management suite",
+      "category": "Accounting & ERP",
+      "image": "Netsuite.webp"
+    },
+    {
+      "id": "int-64",
+      "name": "Nmbrs",
+      "description": "HR and payroll software for Netherlands",
+      "category": "HR & People",
+      "image": "Nmbrs.webp"
+    },
+    {
+      "id": "int-65",
+      "name": "Officient",
+      "description": "Smart HR platform for modern teams",
+      "category": "HR & People",
+      "image": "Officient.webp"
+    },
+    {
+      "id": "int-66",
+      "name": "OneLogin",
+      "description": "Cloud identity and SSO platform",
+      "category": "Identity & Security",
+      "image": "OneLogin.webp"
+    },
+    {
+      "id": "int-67",
+      "name": "OnPay",
+      "description": "Payroll, HR, and benefits for small biz",
+      "category": "Payroll & Expenses",
+      "image": "OnPay.webp"
+    },
+    {
+      "id": "int-68",
+      "name": "Oracle",
+      "description": "Enterprise cloud ERP and HCM suite",
+      "category": "Accounting & ERP",
+      "image": "Oracle.webp"
+    },
+    {
+      "id": "int-69",
+      "name": "Ordermate",
+      "description": "Order management and POS integration",
+      "category": "POS & Retail",
+      "image": "Ordermate.webp"
+    },
+    {
+      "id": "int-70",
+      "name": "Oyster",
+      "description": "Global employment and distributed teams",
+      "category": "Payroll & Expenses",
+      "image": "Oyster.webp"
+    },
+    {
+      "id": "int-71",
+      "name": "PayCaptain",
+      "description": "Modern payroll payment platform",
+      "category": "Payroll & Expenses",
+      "image": "PayCaptain.webp"
+    },
+    {
+      "id": "int-72",
+      "name": "Paychex",
+      "description": "Payroll, HR, and benefits outsourcing",
+      "category": "Payroll & Expenses",
+      "image": "Paychex.webp"
+    },
+    {
+      "id": "int-73",
+      "name": "Paylocity",
+      "description": "Cloud payroll and HCM platform",
+      "category": "Payroll & Expenses",
+      "image": "Paylocity.webp"
+    },
+    {
+      "id": "int-74",
+      "name": "People HR",
+      "description": "Complete HR management for all teams",
+      "category": "HR & People",
+      "image": "PeopleHR.webp"
+    },
+    {
+      "id": "int-75",
+      "name": "Personio",
+      "description": "HR platform for small to mid-size companies",
+      "category": "HR & People",
+      "image": "PersonioSquare.webp"
+    },
+    {
+      "id": "int-76",
+      "name": "PingOne",
+      "description": "Identity and SSO for workforce",
+      "category": "Identity & Security",
+      "image": "PingOne.webp"
+    },
+    {
+      "id": "int-77",
+      "name": "Planday",
+      "description": "Employee scheduling and time tracking",
+      "category": "Time & Scheduling",
+      "image": "Planday.webp"
+    },
+    {
+      "id": "int-78",
+      "name": "Proliant",
+      "description": "Payroll and HR for small businesses",
+      "category": "Payroll & Expenses",
+      "image": "Proliant.webp"
+    },
+    {
+      "id": "int-79",
+      "name": "QuickBooks",
+      "description": "Accounting and payroll software",
+      "category": "Accounting & ERP",
+      "image": "Quickbooks.webp"
+    },
+    {
+      "id": "int-80",
+      "name": "Raptor",
+      "description": "Workforce scheduling and compliance",
+      "category": "Time & Scheduling",
+      "image": "raptor.webp"
+    },
+    {
+      "id": "int-81",
+      "name": "Redcat",
+      "description": "POS and back-office for hospitality",
+      "category": "POS & Retail",
+      "image": "Redcat.webp"
+    },
+    {
+      "id": "int-82",
+      "name": "Remote",
+      "description": "Global HR, payroll and compliance",
+      "category": "Payroll & Expenses",
+      "image": "Remote.webp"
+    },
+    {
+      "id": "int-83",
+      "name": "Revel",
+      "description": "iPad POS for hospitality and retail",
+      "category": "POS & Retail",
+      "image": "Revel.webp"
+    },
+    {
+      "id": "int-84",
+      "name": "Sage People",
+      "description": "Cloud HR and people management",
+      "category": "HR & People",
+      "image": "SagePeople.webp"
+    },
+    {
+      "id": "int-85",
+      "name": "SAP SuccessFactors",
+      "description": "Enterprise talent and HR management",
+      "category": "HR & People",
+      "image": "SapSuccessFactors.webp"
+    },
+    {
+      "id": "int-86",
+      "name": "ServiceM8",
+      "description": "Field service management and job tracking",
+      "category": "Industry Specific",
+      "image": "ServiceM8.webp"
+    },
+    {
+      "id": "int-87",
+      "name": "Sesame",
+      "description": "HR software for small businesses",
+      "category": "HR & People",
+      "image": "Sesame.webp"
+    },
+    {
+      "id": "int-88",
+      "name": "Smoothpay",
+      "description": "Streamlined payroll processing platform",
+      "category": "Payroll & Expenses",
+      "image": "Smoothpay.webp"
+    },
+    {
+      "id": "int-89",
+      "name": "Split Abilities",
+      "description": "Tip and wage allocation management",
+      "category": "Payroll & Expenses",
+      "image": "splitability.webp"
+    },
+    {
+      "id": "int-90",
+      "name": "Square",
+      "description": "All-in-one POS and payment processing",
+      "category": "POS & Retail",
+      "image": "Square.webp"
+    },
+    {
+      "id": "int-91",
+      "name": "Square Payroll",
+      "description": "Integrated payroll for Square merchants",
+      "category": "Payroll & Expenses",
+      "image": "SquarePayroll.webp"
+    },
+    {
+      "id": "int-92",
+      "name": "SuperPath",
+      "description": "Employee identity and access governance",
+      "category": "Identity & Security",
+      "image": "SuperPath.webp"
+    },
+    {
+      "id": "int-93",
+      "name": "SwiftPOS",
+      "description": "POS solution for hospitality venues",
+      "category": "POS & Retail",
+      "image": "Swiftpos.webp"
+    },
+    {
+      "id": "int-94",
+      "name": "Tapcheck",
+      "description": "On-demand earned wage access platform",
+      "category": "Payroll & Expenses",
+      "image": "Tapcheck.webp"
+    },
+    {
+      "id": "int-95",
+      "name": "TriNet",
+      "description": "PEO and HR outsourcing for SMBs",
+      "category": "Payroll & Expenses",
+      "image": "TriNet.webp"
+    },
+    {
+      "id": "int-96",
+      "name": "Workday",
+      "description": "Cloud HCM, payroll, and financial management",
+      "category": "Accounting & ERP",
+      "image": "Workday.webp"
+    },
+    {
+      "id": "int-97",
+      "name": "Xero",
+      "description": "Cloud accounting and payroll software",
+      "category": "Accounting & ERP",
+      "image": "Xero.webp"
+    },
+    {
+      "id": "int-98",
+      "name": "Zoho People",
+      "description": "Online HR management for businesses",
+      "category": "HR & People",
+      "image": "ZohoPeople.webp"
+    },
+    {
+      "id": "int-new-1",
+      "name": "AgentMail",
+      "description": "Agentic email inboxes for AI agents. Send and receive at...",
+      "category": "Integration",
+      "image": "AgentMail.webp"
+    },
+    {
+      "id": "int-new-2",
+      "name": "MotherDuck",
+      "description": "The serverless backend for analytics",
+      "category": "Storage",
+      "image": "MotherDuck.webp"
+    },
+    {
+      "id": "int-new-3",
+      "name": "Resend email",
+      "description": "Email for developers",
+      "category": "Messaging",
+      "image": "Resend-email.webp"
+    },
+    {
+      "id": "int-new-4",
+      "name": "Neon",
+      "description": "Postgres serverless platform designed to build reliable...",
+      "category": "Authentication",
+      "image": "Neon.webp"
+    },
+    {
+      "id": "int-new-5",
+      "name": "AWS",
+      "description": "Serverless, reliable, secure AWS Services.",
+      "category": "Searching",
+      "image": "AWS.webp"
+    },
+    {
+      "id": "int-new-6",
+      "name": "Upstash",
+      "description": "Serverless DB (Redis, Vector, Queue, Search)",
+      "category": "Searching",
+      "image": "Upstash.webp"
+    },
+    {
+      "id": "int-new-7",
+      "name": "Supabase",
+      "description": "Open-source Postgres development platform that scales to...",
+      "category": "Authentication",
+      "image": "Supabase.webp"
+    },
+    {
+      "id": "int-new-8",
+      "name": "Redis",
+      "description": "Official Redis Cloud — managed by the creators of Redis",
+      "category": "Storage",
+      "image": "Redis.webp"
+    },
+    {
+      "id": "int-new-9",
+      "name": "Nile",
+      "description": "PostgreSQL re-engineered for B2B apps",
+      "category": "Storage",
+      "image": "Nile.webp"
+    },
+    {
+      "id": "int-new-10",
+      "name": "fal",
+      "description": "Generative media platform for developers",
+      "category": "AI",
+      "image": "fal.webp"
+    },
+    {
+      "id": "int-new-11",
+      "name": "Deep Infra",
+      "description": "Deep Infra AI integration",
+      "category": "AI",
+      "image": "Deep-Infra.webp"
+    },
+    {
+      "id": "int-new-12",
+      "name": "Sentry",
+      "description": "Unified error and performance monitoring",
+      "category": "Observability",
+      "image": "Sentry.webp"
+    },
+    {
+      "id": "int-new-13",
+      "name": "Checkly",
+      "description": "Test & monitor with Playwright. Reliability built for...",
+      "category": "Monitoring",
+      "image": "Checkly.webp"
+    },
+    {
+      "id": "int-new-14",
+      "name": "Dash0",
+      "description": "Logs, Traces and Metrics - simplified.",
+      "category": "Observability",
+      "image": "Dash0.webp"
+    },
+    {
+      "id": "int-new-15",
+      "name": "Shopify",
+      "description": "Build and deploy high-performance Shopify storefronts",
+      "category": "Commerce",
+      "image": "Shopify.webp"
+    },
+    {
+      "id": "int-new-16",
+      "name": "Browserbase",
+      "description": "Autonomously read, write, and perform tasks on the web...",
+      "category": "Integration",
+      "image": "Browserbase.webp"
+    },
+    {
+      "id": "int-new-17",
+      "name": "AssistLoop",
+      "description": "Build an AI agent that handles support and escalates to...",
+      "category": "Integration",
+      "image": "AssistLoop.webp"
+    },
+    {
+      "id": "int-new-18",
+      "name": "cubic",
+      "description": "AI code reviews for complex codebases.",
+      "category": "Integration",
+      "image": "cubic.webp"
+    },
+    {
+      "id": "int-new-19",
+      "name": "Parallel",
+      "description": "The most accurate web search for AI— ranked results,...",
+      "category": "Integration",
+      "image": "Parallel.webp"
+    },
+    {
+      "id": "int-new-20",
+      "name": "Mixedbread Search",
+      "description": "The Search API for your data. Add mulitmodal &...",
+      "category": "Integration",
+      "image": "Mixedbread-Search.webp"
+    },
+    {
+      "id": "int-new-21",
+      "name": "CodeRabbit",
+      "description": "Cut Code Review Time & Bugs in Half. Instantly.",
+      "category": "Integration",
+      "image": "CodeRabbit.webp"
+    },
+    {
+      "id": "int-new-22",
+      "name": "Sourcery",
+      "description": "Instant AI code reviews that cut bugs and security...",
+      "category": "Integration",
+      "image": "Sourcery.webp"
+    },
+    {
+      "id": "int-new-23",
+      "name": "Corridor",
+      "description": "Instant security reviews and guardrails for AI coding",
+      "category": "Integration",
+      "image": "Corridor.webp"
+    },
+    {
+      "id": "int-new-24",
+      "name": "Stripe",
+      "description": "A fully integrated suite of financial and payments products.",
+      "category": "Payments",
+      "image": "Stripe.webp"
+    },
+    {
+      "id": "int-new-25",
+      "name": "Autonoma UI testing",
+      "description": "Testing platform where AI agents navigate your app...",
+      "category": "Integration",
+      "image": "Autonoma-UI-testing.webp"
+    },
+    {
+      "id": "int-new-26",
+      "name": "Kernel",
+      "description": "Crazy fast, open source infra for AI agents to access...",
+      "category": "Integration",
+      "image": "Kernel.webp"
+    },
+    {
+      "id": "int-new-27",
+      "name": "Chatbot",
+      "description": "Build AI agents for improved customer service and...",
+      "category": "Integration",
+      "image": "Chatbot.webp"
+    },
+    {
+      "id": "int-new-28",
+      "name": "Braintrust",
+      "description": "AI evaluation, monitoring, and observability for your...",
+      "category": "Integration",
+      "image": "Braintrust.webp"
+    },
+    {
+      "id": "int-new-29",
+      "name": "Kubiks",
+      "description": "Logs, Traces, Dashboards, Alerts, Automatic Pull...",
+      "category": "Integration",
+      "image": "Kubiks.webp"
+    },
+    {
+      "id": "int-new-30",
+      "name": "Convex",
+      "description": "Open-source backend platform that keeps your app in sync",
+      "category": "Storage",
+      "image": "Convex.webp"
+    },
+    {
+      "id": "int-new-31",
+      "name": "Firecrawl",
+      "description": "The web data API that lets AI agents search, scrape, and...",
+      "category": "Integration",
+      "image": "Firecrawl.webp"
+    },
+    {
+      "id": "int-new-32",
+      "name": "Rollbar",
+      "description": "Real-time crash & error reporting, $0/mo",
+      "category": "Observability",
+      "image": "Rollbar.webp"
+    },
+    {
+      "id": "int-new-33",
+      "name": "Prisma Postgres",
+      "description": "Instant Serverless Postgres",
+      "category": "Storage",
+      "image": "Prisma-Postgres.webp"
+    },
+    {
+      "id": "int-new-34",
+      "name": "Mux",
+      "description": "Add video to your app in minutes",
+      "category": "Video",
+      "image": "Mux.webp"
+    },
+    {
+      "id": "int-new-35",
+      "name": "Turso",
+      "description": "SQLite for the age of AI",
+      "category": "Storage",
+      "image": "Turso.webp"
+    },
+    {
+      "id": "int-new-36",
+      "name": "Auth0",
+      "description": "Auth for Users, APIs & Agents",
+      "category": "Authentication",
+      "image": "Auth0.webp"
+    },
+    {
+      "id": "int-new-37",
+      "name": "Descope",
+      "description": "Drag-and-drop auth for your Vercel apps and remote MCP...",
+      "category": "Integration",
+      "image": "Descope.webp"
+    },
+    {
+      "id": "int-new-38",
+      "name": "Inngest",
+      "description": "Real-time collaboration infrastructure for developers",
+      "category": "DevTools",
+      "image": "Inngest.webp"
+    },
+    {
+      "id": "int-new-39",
+      "name": "Statsig",
+      "description": "Performant Feature Flags, Experiments, Analytics, and...",
+      "category": "Analytics",
+      "image": "Statsig.webp"
+    },
+    {
+      "id": "int-new-40",
+      "name": "GrowthBook",
+      "description": "Open source experimentation and feature flag management.",
+      "category": "Experimentation",
+      "image": "GrowthBook.webp"
+    },
+    {
+      "id": "int-new-41",
+      "name": "MongoDB Atlas",
+      "description": "Document model, distributed architecture, robust search...",
+      "category": "Storage",
+      "image": "MongoDB-Atlas.webp"
+    },
+    {
+      "id": "int-new-42",
+      "name": "Clerk",
+      "description": "Drop-in authentication and subscription billing that...",
+      "category": "Authentication",
+      "image": "Clerk.webp"
+    },
+    {
+      "id": "int-new-43",
+      "name": "Sanity",
+      "description": "A customer-centric commerce platform",
+      "category": "CMS",
+      "image": "Sanity.webp"
+    },
+    {
+      "id": "int-new-44",
+      "name": "PostHog",
+      "description": "Understand your users - analytics, session replay,...",
+      "category": "Analytics",
+      "image": "PostHog.webp"
+    },
+    {
+      "id": "int-new-45",
+      "name": "ElevenLabs",
+      "description": "The most powerful AI text to speech API",
+      "category": "AI",
+      "image": "ElevenLabs.webp"
+    },
+    {
+      "id": "int-new-46",
+      "name": "LMNT",
+      "description": "Fast text-to-speech & voice cloning",
+      "category": "AI",
+      "image": "LMNT.webp"
+    },
+    {
+      "id": "int-new-47",
+      "name": "Perplexity API",
+      "description": "Access Perplexity's cutting edge LLMs",
+      "category": "AI",
+      "image": "Perplexity-API.webp"
+    },
+    {
+      "id": "int-new-48",
+      "name": "Replicate",
+      "description": "Run AI with an API.",
+      "category": "AI",
+      "image": "Replicate.webp"
+    },
+    {
+      "id": "int-new-49",
+      "name": "Together AI",
+      "description": "The cloud platform for generative AI",
+      "category": "AI",
+      "image": "Together-AI.webp"
+    },
+    {
+      "id": "int-new-50",
+      "name": "Vercel Web Analytics",
+      "description": "Privacy-friendly, first-party analytics",
+      "category": "Analytics",
+      "image": "Vercel-Web-Analytics.webp"
+    },
+    {
+      "id": "int-new-51",
+      "name": "DevCycle",
+      "description": "DevCycle Flags on Vercel Edge Config",
+      "category": "Analytics",
+      "image": "DevCycle.webp"
+    },
+    {
+      "id": "int-new-52",
+      "name": "Kameleoon",
+      "description": "Push Kameleoon config to Edge Config",
+      "category": "Analytics",
+      "image": "Kameleoon.webp"
+    },
+    {
+      "id": "int-new-53",
+      "name": "Split",
+      "description": "No latency feature flags made easy",
+      "category": "Analytics",
+      "image": "Split.webp"
+    },
+    {
+      "id": "int-new-54",
+      "name": "Agility CMS",
+      "description": "Create end-to-end digital experiences without relying on...",
+      "category": "CMS",
+      "image": "Agility-CMS.webp"
+    },
+    {
+      "id": "int-new-55",
+      "name": "Builder.io",
+      "description": "",
+      "category": "Integration",
+      "image": "Builder.io.webp"
+    },
+    {
+      "id": "int-new-56",
+      "name": "Contentful",
+      "description": "Manage and deliver omnichannel content with ease",
+      "category": "CMS",
+      "image": "Contentful.webp"
+    },
+    {
+      "id": "int-new-57",
+      "name": "Contentstack",
+      "description": "",
+      "category": "Integration",
+      "image": "Contentstack.webp"
+    },
+    {
+      "id": "int-new-58",
+      "name": "Formspree",
+      "description": "A form backend for your Vercel projects",
+      "category": "CMS",
+      "image": "Formspree.webp"
+    },
+    {
+      "id": "int-new-59",
+      "name": "Makeswift",
+      "description": "The visual builder for Next.js",
+      "category": "CMS",
+      "image": "Makeswift.webp"
+    },
+    {
+      "id": "int-new-60",
+      "name": "Sitecore XM Cloud",
+      "description": "",
+      "category": "Integration",
+      "image": "Sitecore-XM-Cloud.webp"
+    },
+    {
+      "id": "int-new-61",
+      "name": "Sitecore OrderCloud",
+      "description": "API-first B2X commerce",
+      "category": "Commerce",
+      "image": "Sitecore-OrderCloud.webp"
+    },
+    {
+      "id": "int-new-62",
+      "name": "Swell",
+      "description": "Future-proof headless commerce.",
+      "category": "Commerce",
+      "image": "Swell.webp"
+    },
+    {
+      "id": "int-new-63",
+      "name": "Wix",
+      "description": "Take advantage of best-in-class AWS infrastructure with...",
+      "category": "Commerce",
+      "image": "Wix.webp"
+    },
+    {
+      "id": "int-new-64",
+      "name": "Doppler",
+      "description": "Manage all your secrets in one place",
+      "category": "DevTools",
+      "image": "Doppler.webp"
+    },
+    {
+      "id": "int-new-65",
+      "name": "Liveblocks",
+      "description": "",
+      "category": "Integration",
+      "image": "Liveblocks.webp"
+    },
+    {
+      "id": "int-new-66",
+      "name": "Raycast",
+      "description": "View and modify your Vercel projects and deployments.",
+      "category": "DevTools",
+      "image": "Raycast.webp"
+    },
+    {
+      "id": "int-new-67",
+      "name": "Svix",
+      "description": "The enterprise ready webhooks service.",
+      "category": "DevTools",
+      "image": "Svix.webp"
+    },
+    {
+      "id": "int-new-68",
+      "name": "Terraform",
+      "description": "Infrastructure as Code Software Tool",
+      "category": "DevTools",
+      "image": "Terraform.webp"
+    },
+    {
+      "id": "int-new-69",
+      "name": "LaunchDarkly",
+      "description": "Feature flags, experimentation, and AI AgentControl to...",
+      "category": "Flags",
+      "image": "LaunchDarkly.webp"
+    },
+    {
+      "id": "int-new-70",
+      "name": "Axiom",
+      "description": "Logs, functions, and Web Vitals insights",
+      "category": "Logging",
+      "image": "Axiom.webp"
+    },
+    {
+      "id": "int-new-71",
+      "name": "Baselime",
+      "description": "Search, query and alert on Vercel logs",
+      "category": "Logging",
+      "image": "Baselime.webp"
+    },
+    {
+      "id": "int-new-72",
+      "name": "Better Stack - formerly Logtail",
+      "description": "Query logs like you query your database",
+      "category": "Logging",
+      "image": "Better-Stack---formerly-Logtail.webp"
+    },
+    {
+      "id": "int-new-73",
+      "name": "GraphJSON",
+      "description": "Slice, Dice and Visualize your logs",
+      "category": "Logging",
+      "image": "GraphJSON.webp"
+    },
+    {
+      "id": "int-new-74",
+      "name": "Logalert",
+      "description": "Easily set up alerts from your logs",
+      "category": "Logging",
+      "image": "Logalert.webp"
+    },
+    {
+      "id": "int-new-75",
+      "name": "Logflare",
+      "description": "Search, charts and alerts for logs",
+      "category": "Logging",
+      "image": "Logflare.webp"
+    },
+    {
+      "id": "int-new-76",
+      "name": "Profound Agent Analytics",
+      "description": "Monitor AI activity on your website",
+      "category": "Logging",
+      "image": "Profound-Agent-Analytics.webp"
+    },
+    {
+      "id": "int-new-77",
+      "name": "Sematext Logs",
+      "description": "Send logs to Sematext for easy debugging",
+      "category": "Logging",
+      "image": "Sematext-Logs.webp"
+    },
+    {
+      "id": "int-new-78",
+      "name": "Knock",
+      "description": "Messaging API for developers",
+      "category": "Messaging",
+      "image": "Knock.webp"
+    },
+    {
+      "id": "int-new-79",
+      "name": "Novu",
+      "description": "The open-source Agent Communication Infrastructure",
+      "category": "Messaging",
+      "image": "Novu.webp"
+    },
+    {
+      "id": "int-new-80",
+      "name": "Resend",
+      "description": "Email for developers",
+      "category": "Messaging",
+      "image": "Resend.webp"
+    },
+    {
+      "id": "int-new-81",
+      "name": "Slack",
+      "description": "Get Slack messages for comments, deployment status, and...",
+      "category": "Messaging",
+      "image": "Slack.webp"
+    },
+    {
+      "id": "int-new-82",
+      "name": "DebugBear",
+      "description": "Monitor site speed and Lighthouse scores",
+      "category": "Monitoring",
+      "image": "DebugBear.webp"
+    },
+    {
+      "id": "int-new-83",
+      "name": "Zeitgeist",
+      "description": "View and manage your Vercel deployments",
+      "category": "Monitoring",
+      "image": "Zeitgeist.webp"
+    },
+    {
+      "id": "int-new-84",
+      "name": "Datadog",
+      "description": "See it all in one place",
+      "category": "Observability",
+      "image": "Datadog.webp"
+    },
+    {
+      "id": "int-new-85",
+      "name": "Highlight",
+      "description": "Debug customer issues & frontend errors!",
+      "category": "Observability",
+      "image": "Highlight.webp"
+    },
+    {
+      "id": "int-new-86",
+      "name": "HyperDX",
+      "description": "Debug apps w/ Logs, APM & Session Replay",
+      "category": "Observability",
+      "image": "HyperDX.webp"
+    },
+    {
+      "id": "int-new-87",
+      "name": "New Relic",
+      "description": "Explore and analyze logs",
+      "category": "Observability",
+      "image": "New-Relic.webp"
+    },
+    {
+      "id": "int-new-88",
+      "name": "shipshape",
+      "description": "Blazing-fast deployment dashboards",
+      "category": "Observability",
+      "image": "shipshape.webp"
+    },
+    {
+      "id": "int-new-89",
+      "name": "Middleware",
+      "description": "AI-powered cloud observability platform.",
+      "category": "Observability",
+      "image": "Middleware.webp"
+    },
+    {
+      "id": "int-new-90",
+      "name": "GitHub Issues",
+      "description": "Convert comments to GitHub issues",
+      "category": "Productivity",
+      "image": "GitHub-Issues.webp"
+    },
+    {
+      "id": "int-new-91",
+      "name": "Jira",
+      "description": "Convert comments to Jira issues",
+      "category": "Productivity",
+      "image": "Jira.webp"
+    },
+    {
+      "id": "int-new-92",
+      "name": "Linear",
+      "description": "Convert comments to Linear issues",
+      "category": "Productivity",
+      "image": "Linear.webp"
+    },
+    {
+      "id": "int-new-93",
+      "name": "Meilisearch Cloud",
+      "description": "Fast and relevant search out of the box",
+      "category": "Searching",
+      "image": "Meilisearch-Cloud.webp"
+    },
+    {
+      "id": "int-new-94",
+      "name": "Arcjet",
+      "description": "Simple object storage service",
+      "category": "Security",
+      "image": "Arcjet.webp"
+    },
+    {
+      "id": "int-new-95",
+      "name": "AWS S3",
+      "description": "",
+      "category": "Integration",
+      "image": "AWS-S3.webp"
+    },
+    {
+      "id": "int-new-96",
+      "name": "Couchbase Capella",
+      "description": "Award-winning NoSQL Cloud Database",
+      "category": "Storage",
+      "image": "Couchbase-Capella.webp"
+    },
+    {
+      "id": "int-new-97",
+      "name": "DataStax Astra DB",
+      "description": "NoSQL and Vector DB for Generative AI",
+      "category": "Storage",
+      "image": "DataStax-Astra-DB.webp"
+    },
+    {
+      "id": "int-new-98",
+      "name": "Hasura",
+      "description": "Instant GraphQL API for all your data",
+      "category": "Storage",
+      "image": "Hasura.webp"
+    },
+    {
+      "id": "int-new-99",
+      "name": "Pinecone",
+      "description": "Power your AI products with Pinecone",
+      "category": "Storage",
+      "image": "Pinecone.webp"
+    },
+    {
+      "id": "int-new-100",
+      "name": "SingleStoreDB Cloud",
+      "description": "Connect your app to SingleStoreDB",
+      "category": "Storage",
+      "image": "SingleStoreDB-Cloud.webp"
+    },
+    {
+      "id": "int-new-101",
+      "name": "StepZen",
+      "description": "GraphQL Made Easy",
+      "category": "Storage",
+      "image": "StepZen.webp"
+    },
+    {
+      "id": "int-new-102",
+      "name": "Thin Backend",
+      "description": "Build postgres-based realtime backends",
+      "category": "Storage",
+      "image": "Thin-Backend.webp"
+    },
+    {
+      "id": "int-new-103",
+      "name": "TiDB Cloud",
+      "description": "Built-In Vector Serverless MySQL",
+      "category": "Storage",
+      "image": "TiDB-Cloud.webp"
+    },
+    {
+      "id": "int-new-104",
+      "name": "Tinybird",
+      "description": "Real-time analytics backend",
+      "category": "Storage",
+      "image": "Tinybird.webp"
+    },
+    {
+      "id": "int-new-105",
+      "name": "Xata",
+      "description": "Deploy preview branches of your database",
+      "category": "Storage",
+      "image": "Xata.webp"
+    },
+    {
+      "id": "int-new-106",
+      "name": "Tigris",
+      "description": "Global object storage service",
+      "category": "Storage",
+      "image": "Tigris.webp"
+    },
+    {
+      "id": "int-new-107",
+      "name": "Meticulous AI",
+      "description": "AI generated end-to-end tests",
+      "category": "Testing",
+      "image": "Meticulous-AI.webp"
+    },
+    {
+      "id": "int-new-108",
+      "name": "menu",
+      "description": "",
+      "category": "Integration",
+      "image": "menu.webp"
     }
   ]
 }
