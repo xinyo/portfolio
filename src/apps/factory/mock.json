@@ -2836,6 +2836,7 @@
   "integrationsInstalled": [
     { "id": "int-79" },
     { "id": "int-60" },
-    { "id": "int-97" }
+    { "id": "int-97" },
+    { "id": "int-new-24" }
   ]
 }
