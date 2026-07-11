@@ -13,6 +13,8 @@ import {
 } from "react";
 import { useTranslation } from "react-i18next";
 import { Link, Navigate, Route, Routes } from "react-router";
+
+import { usePageTitle } from "@/hooks/use-page-title";
 import logo from "./assets/logo.png";
 import "./css/styles.css";
 
@@ -67,6 +69,7 @@ function clampChatPanelWidth(width: number) {
 
 export function FactoryApp() {
   const { t } = useTranslation();
+  usePageTitle(t("factory.title"));
   const isNavPanelOpen = useFactoryStore((state) => state.isNavPanelOpen);
   const setIsNavPanelOpen = useFactoryStore((state) => state.setIsNavPanelOpen);
   const currentCompany = useFactoryStore((state) => state.currentCompany);

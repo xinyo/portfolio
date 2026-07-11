@@ -1,24 +1,25 @@
-import type { ComponentType } from "react";
 import {
   Blend,
   Boxes,
   Building2,
+  CalendarDays,
+  Clock,
   Contact,
   CreditCard,
   DollarSign,
   History,
-  LayoutDashboard,
-  LayoutGrid,
+  House,
   MapPin,
+  Package,
   ReceiptText,
   Settings,
+  ShoppingBag,
   Truck,
   Undo2,
   Users,
   Workflow,
-  CalendarDays,
-  Clock,
 } from "lucide-react";
+import type { ComponentType } from "react";
 
 type NavIcon = ComponentType<{ "aria-hidden"?: boolean | "true" }>;
 
@@ -52,7 +53,7 @@ export const defaultNavigationSections: NavSection[] = [
       {
         labelKey: "factory.navigation.items.overview",
         to: "/apps/factory",
-        icon: LayoutDashboard,
+        icon: House,
         end: true,
       },
     ],
@@ -63,7 +64,7 @@ export const defaultNavigationSections: NavSection[] = [
       {
         labelKey: "factory.navigation.items.productCategories",
         to: "/apps/factory/product-categories",
-        icon: LayoutGrid,
+        icon: Package,
       },
       {
         labelKey: "factory.navigation.items.materials",
@@ -83,7 +84,7 @@ export const defaultNavigationSections: NavSection[] = [
       {
         labelKey: "factory.navigation.items.customers",
         to: "/apps/factory/customers",
-        icon: Users,
+        icon: Contact,
       },
       {
         labelKey: "factory.navigation.items.priceLevelManager",
@@ -98,7 +99,7 @@ export const defaultNavigationSections: NavSection[] = [
       {
         labelKey: "factory.navigation.items.purchaseOrders",
         to: "/apps/factory/purchase-orders",
-        icon: ReceiptText,
+        icon: ShoppingBag,
       },
       {
         labelKey: "factory.navigation.items.suppliers",
