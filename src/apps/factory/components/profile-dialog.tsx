@@ -1,20 +1,20 @@
-import {
-  useEffect,
-  useMemo,
-  useState,
-  type ReactNode,
-} from "react";
+import { useEffect, useMemo, useState, type ReactNode } from "react";
 import {
   Apple,
   Bell,
   Braces,
   Check,
   Copy,
-  Trash2,
   KeyRound,
+  RectangleEllipsis,
+  Lock,
   Mail,
   Pencil,
+  Plug,
+  Plus,
+  Save,
   ShieldCheck,
+  Trash2,
   User,
   type LucideIcon,
 } from "lucide-react";
@@ -117,12 +117,30 @@ export function ProfileDialog({ open, onOpenChange }: ProfileDialogProps) {
   const { setIsDark } = useTheme(false);
   const { t } = useTranslation();
   const [activePanel, setActivePanel] = useState<ProfilePanel>("account");
-  const profileTabs = useMemo<Array<{ id: ProfileTab; label: string; icon: LucideIcon }>>(
+  const profileTabs = useMemo<
+    Array<{ id: ProfileTab; label: string; icon: LucideIcon }>
+  >(
     () => [
-      { id: "account", label: t("factory.profileDialog.tabs.account"), icon: User },
-      { id: "security", label: t("factory.profileDialog.tabs.security"), icon: ShieldCheck },
-      { id: "notifications", label: t("factory.profileDialog.tabs.notifications"), icon: Bell },
-      { id: "apiKeys", label: t("factory.profileDialog.tabs.apiKeys"), icon: Braces },
+      {
+        id: "account",
+        label: t("factory.profileDialog.tabs.account"),
+        icon: User,
+      },
+      {
+        id: "security",
+        label: t("factory.profileDialog.tabs.security"),
+        icon: ShieldCheck,
+      },
+      {
+        id: "notifications",
+        label: t("factory.profileDialog.tabs.notifications"),
+        icon: Bell,
+      },
+      {
+        id: "apiKeys",
+        label: t("factory.profileDialog.tabs.apiKeys"),
+        icon: Braces,
+      },
     ],
     [t],
   );
@@ -136,22 +154,30 @@ export function ProfileDialog({ open, onOpenChange }: ProfileDialogProps) {
       {
         id: "security",
         title: t("factory.profileDialog.notifications.securityAlerts"),
-        description: t("factory.profileDialog.notifications.securityAlertsDesc"),
+        description: t(
+          "factory.profileDialog.notifications.securityAlertsDesc",
+        ),
       },
       {
         id: "workflow",
         title: t("factory.profileDialog.notifications.workflowChanges"),
-        description: t("factory.profileDialog.notifications.workflowChangesDesc"),
+        description: t(
+          "factory.profileDialog.notifications.workflowChangesDesc",
+        ),
       },
       {
         id: "summary",
         title: t("factory.profileDialog.notifications.weeklySummaries"),
-        description: t("factory.profileDialog.notifications.weeklySummariesDesc"),
+        description: t(
+          "factory.profileDialog.notifications.weeklySummariesDesc",
+        ),
       },
       {
         id: "product",
         title: t("factory.profileDialog.notifications.productUpdates"),
-        description: t("factory.profileDialog.notifications.productUpdatesDesc"),
+        description: t(
+          "factory.profileDialog.notifications.productUpdatesDesc",
+        ),
       },
     ],
     [t],
@@ -313,7 +339,7 @@ export function ProfileDialog({ open, onOpenChange }: ProfileDialogProps) {
                 <button
                   key={tab.id}
                   type="button"
-                  className="factory-profile-tab"
+                  className="factory-profile-tab u-press"
                   data-active={activeTab === tab.id}
                   onClick={() => setActivePanel(tab.id)}
                 >
@@ -339,6 +365,7 @@ export function ProfileDialog({ open, onOpenChange }: ProfileDialogProps) {
               />
               <div className="factory-profile-actions">
                 <Button type="button" onClick={handleAvatarSave}>
+                  <Save aria-hidden="true" />
                   {t("factory.profileDialog.avatar.save")}
                 </Button>
               </div>
@@ -441,7 +468,9 @@ export function ProfileDialog({ open, onOpenChange }: ProfileDialogProps) {
               <SwitchRow
                 id="profile-keyboard-shortcuts"
                 title={t("factory.profileDialog.account.keyboardShortcuts")}
-                description={t("factory.profileDialog.account.keyboardShortcutsDesc")}
+                description={t(
+                  "factory.profileDialog.account.keyboardShortcutsDesc",
+                )}
                 checked={accountDraft.keyboardShortcuts}
                 onCheckedChange={(checked) =>
                   updateAccountDraft("keyboardShortcuts", checked)
@@ -450,9 +479,11 @@ export function ProfileDialog({ open, onOpenChange }: ProfileDialogProps) {
 
               <div className="factory-profile-actions">
                 <Button type="button" onClick={handleAccountSave}>
+                  <Save aria-hidden="true" />
                   {t("factory.profileDialog.account.update")}
                 </Button>
                 <Button type="button" variant="destructive">
+                  <Trash2 aria-hidden="true" />
                   {t("factory.profileDialog.account.delete")}
                 </Button>
               </div>
@@ -466,11 +497,14 @@ export function ProfileDialog({ open, onOpenChange }: ProfileDialogProps) {
             >
               <div className="factory-profile-setting-row">
                 <SettingCopy
-                  icon={ShieldCheck}
+                  icon={RectangleEllipsis}
                   title={t("factory.profileDialog.security.twoFactorAuth")}
-                  description={t("factory.profileDialog.security.twoFactorAuthDesc")}
+                  description={t(
+                    "factory.profileDialog.security.twoFactorAuthDesc",
+                  )}
                 />
                 <Button type="button" variant="outline">
+                  <RectangleEllipsis aria-hidden="true" />
                   {t("factory.profileDialog.security.configure")}
                 </Button>
               </div>
@@ -478,9 +512,12 @@ export function ProfileDialog({ open, onOpenChange }: ProfileDialogProps) {
                 <SettingCopy
                   icon={KeyRound}
                   title={t("factory.profileDialog.security.backupCodes")}
-                  description={t("factory.profileDialog.security.backupCodesDesc")}
+                  description={t(
+                    "factory.profileDialog.security.backupCodesDesc",
+                  )}
                 />
                 <Button type="button" variant="outline">
+                  <KeyRound aria-hidden="true" />
                   {t("factory.profileDialog.security.generate")}
                 </Button>
               </div>
@@ -493,13 +530,16 @@ export function ProfileDialog({ open, onOpenChange }: ProfileDialogProps) {
                     variant={isPasswordFormOpen ? "default" : "outline"}
                     onClick={handlePasswordAction}
                   >
+                    <Lock aria-hidden="true" />
                     {t("factory.profileDialog.security.updatePassword")}
                   </Button>
                 </div>
                 {isPasswordFormOpen && (
                   <>
                     <Field
-                      label={t("factory.profileDialog.security.currentPassword")}
+                      label={t(
+                        "factory.profileDialog.security.currentPassword",
+                      )}
                       id="profile-current-password"
                     >
                       <Input id="profile-current-password" type="password" />
@@ -577,6 +617,7 @@ export function ProfileDialog({ open, onOpenChange }: ProfileDialogProps) {
                 >
                   <PopoverTrigger asChild>
                     <Button type="button">
+                      <KeyRound aria-hidden="true" />
                       {t("factory.profileDialog.apiKeys.generateKey")}
                     </Button>
                   </PopoverTrigger>
@@ -604,6 +645,7 @@ export function ProfileDialog({ open, onOpenChange }: ProfileDialogProps) {
                           />
                         </Field>
                         <Button type="button" onClick={handleGenerateApiKey}>
+                          <Plus aria-hidden="true" />
                           {t("factory.profileDialog.apiKeys.generate")}
                         </Button>
                       </>
@@ -628,7 +670,9 @@ export function ProfileDialog({ open, onOpenChange }: ProfileDialogProps) {
                                 ? "factory-profile-copy-success"
                                 : undefined
                             }
-                            aria-label={t("factory.profileDialog.apiKeys.copyKey")}
+                            aria-label={t(
+                              "factory.profileDialog.apiKeys.copyKey",
+                            )}
                             onClick={() => handleCopyGeneratedKey(generatedKey)}
                           >
                             {isGeneratedKeyCopied ? <Check /> : <Copy />}
@@ -651,7 +695,9 @@ export function ProfileDialog({ open, onOpenChange }: ProfileDialogProps) {
                       type="button"
                       variant="destructive"
                       size="icon"
-                      aria-label={t("factory.profileDialog.apiKeys.deleteKey", { name: apiKey.name })}
+                      aria-label={t("factory.profileDialog.apiKeys.deleteKey", {
+                        name: apiKey.name,
+                      })}
                       onClick={() => handleDeleteApiKey(apiKey.id)}
                     >
                       <Trash2 />
@@ -797,6 +843,7 @@ function SignInMethod({
     <div className="factory-profile-setting-row">
       <SettingCopy icon={Icon} title={title} description={description} />
       <Button type="button" variant="outline">
+        <Plug aria-hidden="true" />
         {actionLabel}
       </Button>
     </div>

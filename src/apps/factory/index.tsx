@@ -79,6 +79,12 @@ export function FactoryApp() {
   } as CSSProperties;
 
   useEffect(() => {
+    document.body.classList.add("factory-app");
+
+    return () => document.body.classList.remove("factory-app");
+  }, []);
+
+  useEffect(() => {
     if (!isResizingChatPanel) {
       return;
     }

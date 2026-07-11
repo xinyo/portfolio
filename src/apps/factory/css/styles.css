@@ -1,4 +1,5 @@
 @import "./shadcn-theme.css";
+@import "./typography.css";
 @import "./utilities.css";
 
 .factory-app-page {
@@ -1665,7 +1666,7 @@ div:has(> .factory-customer-item-link:hover) {
   grid-template-columns: minmax(0, 1fr) auto;
   align-items: center;
   gap: 1rem;
-  padding: 1rem 0;
+  /* padding: 1rem 0; */
   /* border-top: 1px solid var(--border); */
 }
 
@@ -1743,7 +1744,12 @@ div:has(> .factory-customer-item-link:hover) {
 .factory-profile-key-list {
   display: flex;
   flex-direction: column;
-  border-bottom: 1px solid var(--border);
+
+  .factory-profile-key-row {
+    padding: 1rem 0;
+    border-top: 1px solid var(--border);
+  }
+
 }
 
 .factory-profile-key-row span {
