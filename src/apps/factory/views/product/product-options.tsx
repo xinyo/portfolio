@@ -72,6 +72,11 @@ export function ProductOptionsView() {
     <section className="factory-view factory-product-detail">
       <ProductViewHeader
         subtitle={t("factory.views.productDetail.productOptions.title")}
+        actions={
+          <Button type="button" onClick={save}>
+            {t("factory.views.productDetail.save")}
+          </Button>
+        }
       />
       <div className="factory-product-options-grid p-4">
         <FieldGroup>
@@ -112,6 +117,7 @@ export function ProductOptionsView() {
             >
               <SelectTrigger
                 id="factory-product-quantity-unit"
+                className="w-full"
                 aria-label={t(
                   "factory.views.productDetail.productOptions.quantityUnit",
                 )}
@@ -135,11 +141,9 @@ export function ProductOptionsView() {
             <FieldLabel htmlFor="factory-product-category">
               {t("factory.views.productDetail.productOptions.category")}
             </FieldLabel>
-            <Select
-              value={categoryId}
-              onValueChange={setCategoryId}
-            >
+            <Select value={categoryId} onValueChange={setCategoryId}>
               <SelectTrigger
+                className="w-full"
                 id="factory-product-category"
                 aria-label={t(
                   "factory.views.productDetail.productOptions.category",
@@ -181,11 +185,6 @@ export function ProductOptionsView() {
             />
           </Field>
         </FieldGroup>
-      </div>
-      <div className="factory-product-actions">
-        <Button type="button" onClick={save}>
-          {t("factory.views.productDetail.save")}
-        </Button>
       </div>
     </section>
   );

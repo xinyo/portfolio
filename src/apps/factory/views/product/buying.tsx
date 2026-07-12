@@ -64,6 +64,11 @@ export function ProductBuyingView() {
     <section className="factory-view factory-product-detail">
       <ProductViewHeader
         subtitle={t("factory.views.productDetail.buying.title")}
+        actions={
+          <Button type="button" onClick={save}>
+            {t("factory.views.productDetail.save")}
+          </Button>
+        }
       />
       <FieldGroup className="factory-product-buying-form">
         <Field>
@@ -118,11 +123,6 @@ export function ProductBuyingView() {
           </Select>
         </Field>
       </FieldGroup>
-      <div className="factory-product-actions">
-        <Button type="button" onClick={save}>
-          {t("factory.views.productDetail.save")}
-        </Button>
-      </div>
     </section>
   );
 }

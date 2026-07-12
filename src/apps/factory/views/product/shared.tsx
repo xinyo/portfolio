@@ -1,5 +1,5 @@
 import { ChevronsUpDown } from "lucide-react";
-import { useState } from "react";
+import { useState, type ReactNode } from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router";
 
@@ -45,7 +45,13 @@ export function ProductNotFound() {
   );
 }
 
-export function ProductViewHeader({ subtitle }: { subtitle: string }) {
+export function ProductViewHeader({
+  subtitle,
+  actions,
+}: {
+  subtitle: string;
+  actions?: ReactNode;
+}) {
   const { product } = useCurrentFactoryProduct();
 
   return (
@@ -54,6 +60,7 @@ export function ProductViewHeader({ subtitle }: { subtitle: string }) {
         <h2>{product?.name}</h2>
         <p className="factory-view-subtitle">{subtitle}</p>
       </div>
+      {actions}
     </div>
   );
 }

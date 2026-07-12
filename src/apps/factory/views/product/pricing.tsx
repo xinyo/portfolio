@@ -48,6 +48,16 @@ export function ProductPricingView() {
     <section className="factory-view factory-product-detail">
       <ProductViewHeader
         subtitle={t("factory.views.productDetail.pricing.title")}
+        actions={
+          <Button
+            type="button"
+            onClick={() =>
+              toast.success(t("factory.views.productDetail.saved"))
+            }
+          >
+            {t("factory.views.productDetail.save")}
+          </Button>
+        }
       />
       <ButtonGroup
         aria-label={t("factory.views.productDetail.pricing.viewLabel")}
@@ -133,14 +143,6 @@ export function ProductPricingView() {
             </TableBody>
           </Table>
         )}
-      </div>
-      <div className="factory-product-actions">
-        <Button
-          type="button"
-          onClick={() => toast.success(t("factory.views.productDetail.saved"))}
-        >
-          {t("factory.views.productDetail.save")}
-        </Button>
       </div>
     </section>
   );

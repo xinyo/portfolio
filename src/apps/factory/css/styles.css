@@ -796,9 +796,13 @@ div:has(> .factory-customer-item-link:hover) {
 
 .factory-product-options-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 1px minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1.5fr) 1px minmax(0, 1fr);
   gap: 2rem;
   width: min(100%, 960px);
+  padding: 2rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--card);
 }
 
 .factory-product-form-separator {
@@ -809,8 +813,6 @@ div:has(> .factory-customer-item-link:hover) {
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  min-height: 2.75rem;
-  gap: 1rem;
 }
 
 .factory-product-switch-field label {
@@ -819,6 +821,10 @@ div:has(> .factory-customer-item-link:hover) {
 
 .factory-product-buying-form {
   max-width: 600px;
+  padding: 2rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--card);
 }
 
 .factory-multi-select-trigger {
@@ -848,19 +854,12 @@ div:has(> .factory-customer-item-link:hover) {
   padding: 0;
 }
 
-.factory-product-actions {
-  display: flex;
-  justify-content: flex-end;
-  width: min(100%, 960px);
-  padding-top: 0.5rem;
-}
-
 .factory-product-pricing-table {
   width: min(100%, 960px);
   min-height: 8rem;
   overflow: hidden;
   border: 1px solid var(--border);
-  border-radius: 6px;
+  border-radius: var(--radius);
   background: var(--card);
 }
 
