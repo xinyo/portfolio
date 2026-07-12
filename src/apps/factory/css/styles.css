@@ -765,6 +765,20 @@ div:has(> .factory-customer-item-link:hover) {
   border-radius: 6px;
 }
 
+.factory-product-kit-content {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  gap: 0.875rem;
+  min-width: 0;
+}
+
+.factory-product-item-badges {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
 .factory-product-item-link:focus-visible {
   outline: 2px solid var(--foreground);
   outline-offset: 2px;
@@ -809,14 +823,23 @@ div:has(> .factory-customer-item-link:hover) {
 
 .factory-multi-select-trigger {
   width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  overflow: hidden;
   justify-content: space-between;
   font-weight: 400;
 }
 
 .factory-multi-select-trigger span {
+  flex: 1 1 0;
+  min-width: 0;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.factory-multi-select-trigger svg {
+  flex: 0 0 auto;
 }
 
 .factory-multi-select-content {
@@ -845,6 +868,11 @@ div:has(> .factory-customer-item-link:hover) {
   max-width: none;
   border: 0;
   border-radius: 0;
+}
+
+.factory-catalog-dialog-form {
+  display: grid;
+  gap: 1.5rem;
 }
 
 @media (max-width: 767px) {

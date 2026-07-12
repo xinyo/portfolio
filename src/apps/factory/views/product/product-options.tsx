@@ -4,7 +4,6 @@ import { toast } from "sonner";
 
 import {
   createEmptyProductConfiguration,
-  factoryCategories,
   factoryMaterials,
   useFactoryStore,
 } from "@/apps/factory/store";
@@ -50,9 +49,14 @@ export function ProductOptionsView() {
   const saveProductConfiguration = useFactoryStore(
     (state) => state.saveProductConfiguration,
   );
+  const categories = useFactoryStore((state) => state.categories);
+  const updateProductCategory = useFactoryStore(
+    (state) => state.updateProductCategory,
+  );
   const [draft, setDraft] = useState(
     () => savedConfiguration ?? createEmptyProductConfiguration(),
   );
+  const [categoryId, setCategoryId] = useState(() => product?.categoryId ?? "");
 
   if (!productId || !product) {
     return <ProductNotFound />;
@@ -60,6 +64,7 @@ export function ProductOptionsView() {
 
   function save() {
     saveProductConfiguration(productId!, draft);
+    updateProductCategory(productId!, categoryId);
     toast.success(t("factory.views.productDetail.saved"));
   }
 
@@ -131,10 +136,8 @@ export function ProductOptionsView() {
               {t("factory.views.productDetail.productOptions.category")}
             </FieldLabel>
             <Select
-              value={draft.categoryId ?? undefined}
-              onValueChange={(categoryId) =>
-                setDraft((current) => ({ ...current, categoryId }))
-              }
+              value={categoryId}
+              onValueChange={setCategoryId}
             >
               <SelectTrigger
                 id="factory-product-category"
@@ -147,7 +150,7 @@ export function ProductOptionsView() {
                 />
               </SelectTrigger>
               <SelectContent>
-                {factoryCategories.map((category) => (
+                {categories.map((category) => (
                   <SelectItem value={category.id} key={category.id}>
                     {category.name}
                   </SelectItem>

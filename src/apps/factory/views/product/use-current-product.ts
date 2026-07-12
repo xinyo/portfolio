@@ -1,12 +1,15 @@
 import { useParams } from "react-router";
 
-import { factoryProductsById } from "@/apps/factory/store";
+import { useFactoryStore } from "@/apps/factory/store";
 
 export function useCurrentFactoryProduct() {
   const { productId } = useParams();
+  const product = useFactoryStore((state) =>
+    productId ? state.productsById[productId] : undefined,
+  );
 
   return {
     productId,
-    product: productId ? factoryProductsById[productId] : undefined,
+    product,
   };
 }

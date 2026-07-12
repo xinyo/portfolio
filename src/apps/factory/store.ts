@@ -65,6 +65,7 @@ export type FactoryProduct = {
   name: string;
   code: string;
   image: string;
+  categoryId: string;
 };
 
 export type FactoryProductConfiguration = {
@@ -74,7 +75,6 @@ export type FactoryProductConfiguration = {
   trackCostsAndMarkups: boolean;
   taxFree: boolean;
   quantityUnit: string | null;
-  categoryId: string | null;
   materialIds: string[];
   supplierIds: string[];
   preferredSupplierId: string | null;
@@ -88,6 +88,7 @@ export type FactoryCategory = {
 export type FactoryProductKit = {
   id: string;
   name: string;
+  categoryId: string;
   productIds: string[];
 };
 
@@ -805,6 +806,10 @@ type FactoryStore = {
   integrationsById: Record<string, FactoryIntegration>;
   connectedIntegrationsById: Record<string, FactoryIntegration>;
   productConfigurations: Record<string, FactoryProductConfiguration>;
+  products: FactoryProduct[];
+  productsById: Record<string, FactoryProduct>;
+  productKits: FactoryProductKit[];
+  categories: FactoryCategory[];
   setLanguage: (language: FactoryLanguage) => void;
   setTimezone: (timezone: FactoryTimezone) => void;
   setIsNavPanelOpen: (isOpen: boolean) => void;
@@ -858,6 +863,10 @@ type FactoryStore = {
     productId: string,
     configuration: FactoryProductConfiguration,
   ) => void;
+  addProduct: (product: FactoryProduct) => void;
+  addProductKit: (kit: FactoryProductKit) => void;
+  addCategory: (category: FactoryCategory) => void;
+  updateProductCategory: (productId: string, categoryId: string) => void;
 };
 
 export function createEmptyProductConfiguration(): FactoryProductConfiguration {
@@ -868,7 +877,6 @@ export function createEmptyProductConfiguration(): FactoryProductConfiguration {
     trackCostsAndMarkups: false,
     taxFree: false,
     quantityUnit: null,
-    categoryId: null,
     materialIds: [],
     supplierIds: [],
     preferredSupplierId: null,
@@ -928,6 +936,10 @@ export const useFactoryStore = create<FactoryStore>((set) => {
     integrationsById: { ...factoryIntegrationsById },
     connectedIntegrationsById: { ...factoryConnectedIntegrationsById },
     productConfigurations: {},
+    products: [...factoryProducts],
+    productsById: { ...factoryProductsById },
+    productKits: [...factoryProductKits],
+    categories: [...factoryCategories],
     setLanguage: (language) => set({ language }),
     setTimezone: (timezone) => set({ timezone }),
     setIsNavPanelOpen: (isNavPanelOpen) => set({ isNavPanelOpen }),
@@ -1332,5 +1344,29 @@ export const useFactoryStore = create<FactoryStore>((set) => {
           [productId]: configuration,
         },
       })),
+    addProduct: (product) =>
+      set((state) => ({
+        products: [...state.products, product],
+        productsById: { ...state.productsById, [product.id]: product },
+      })),
+    addProductKit: (kit) =>
+      set((state) => ({ productKits: [...state.productKits, kit] })),
+    addCategory: (category) =>
+      set((state) => ({ categories: [...state.categories, category] })),
+    updateProductCategory: (productId, categoryId) =>
+      set((state) => {
+        const product = state.productsById[productId];
+        if (!product) return state;
+        const updatedProduct = { ...product, categoryId };
+        return {
+          products: state.products.map((item) =>
+            item.id === productId ? updatedProduct : item,
+          ),
+          productsById: {
+            ...state.productsById,
+            [productId]: updatedProduct,
+          },
+        };
+      }),
   };
 });

@@ -53,7 +53,6 @@ describe("factory product configuration", () => {
       trackCostsAndMarkups: false,
       taxFree: false,
       quantityUnit: null,
-      categoryId: null,
       materialIds: [],
       supplierIds: [],
       preferredSupplierId: null,

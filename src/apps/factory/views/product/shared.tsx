@@ -4,6 +4,10 @@ import { useTranslation } from "react-i18next";
 import { Link } from "react-router";
 
 import { useCurrentFactoryProduct } from "@/apps/factory/views/product/use-current-product";
+import {
+  formatMultiSelectValue,
+  type MultiSelectOption,
+} from "@/apps/factory/views/product/multi-select-model";
 import { Button } from "@/components/ui/button";
 import {
   Command,
@@ -18,11 +22,6 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-
-export type MultiSelectOption = {
-  value: string;
-  label: string;
-};
 
 export function ProductNotFound() {
   const { t } = useTranslation();
@@ -78,10 +77,14 @@ export function MultiSelect({
   emptyMessage: string;
   ariaLabel: string;
 }) {
+  const { t } = useTranslation();
   const [open, setOpen] = useState(false);
-  const selectedLabels = options
-    .filter((option) => value.includes(option.value))
-    .map((option) => option.label);
+  const displayValue = formatMultiSelectValue(
+    options,
+    value,
+    placeholder,
+    (count) => t("factory.views.productDetail.moreSelected", { count }),
+  );
 
   function toggleValue(optionValue: string) {
     onValueChange(
@@ -103,11 +106,7 @@ export function MultiSelect({
           aria-label={ariaLabel}
           className="factory-multi-select-trigger"
         >
-          <span>
-            {selectedLabels.length > 0
-              ? selectedLabels.join(", ")
-              : placeholder}
-          </span>
+          <span>{displayValue}</span>
           <ChevronsUpDown aria-hidden="true" className="size-4 opacity-50" />
         </Button>
       </PopoverTrigger>
