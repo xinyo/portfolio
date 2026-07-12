@@ -21,6 +21,10 @@ import "./css/styles.css";
 import { AiChat } from "@/apps/factory/components/ai-chat";
 import { FactoryNavigations } from "@/apps/factory/components/navigations";
 import { companyNameMap, useFactoryStore } from "@/apps/factory/store";
+import {
+  FACTORY_CUSTOM_COMPANY_ID,
+  isFactoryOnboardingComplete,
+} from "@/apps/factory/onboarding";
 import { CustomerDetailView } from "@/apps/factory/views/customer-detail";
 import { CustomersView } from "@/apps/factory/views/customers";
 import { DeliverySchedulingView } from "@/apps/factory/views/delivery-scheduling";
@@ -36,6 +40,7 @@ import { SuppliersView } from "@/apps/factory/views/suppliers";
 import { TeamView } from "@/apps/factory/views/team";
 import { TimesheetsView } from "@/apps/factory/views/timesheets";
 import { WorkflowView } from "@/apps/factory/views/workflow";
+import { WelcomeView } from "@/apps/factory/views/welcome";
 import { Button } from "@/components/ui/button";
 import {
   Collapsible,
@@ -70,9 +75,37 @@ function clampChatPanelWidth(width: number) {
 export function FactoryApp() {
   const { t } = useTranslation();
   usePageTitle(t("factory.title"));
+
+  useEffect(() => {
+    document.body.classList.add("factory-app");
+
+    return () => document.body.classList.remove("factory-app");
+  }, []);
+
+  return (
+    <Routes>
+      <Route path="welcome" element={<WelcomeView />} />
+      <Route path="*" element={<FactoryRouteGuard />} />
+    </Routes>
+  );
+}
+
+function FactoryRouteGuard() {
+  const customCompanyName = useFactoryStore((state) => state.customCompanyName);
+
+  if (!isFactoryOnboardingComplete(customCompanyName)) {
+    return <Navigate to="/apps/factory/welcome" replace />;
+  }
+
+  return <FactoryDashboard />;
+}
+
+function FactoryDashboard() {
+  const { t } = useTranslation();
   const isNavPanelOpen = useFactoryStore((state) => state.isNavPanelOpen);
   const setIsNavPanelOpen = useFactoryStore((state) => state.setIsNavPanelOpen);
   const currentCompany = useFactoryStore((state) => state.currentCompany);
+  const customCompanyName = useFactoryStore((state) => state.customCompanyName);
   const setCurrentCompany = useFactoryStore((state) => state.setCurrentCompany);
   const [isChatPanelOpen, setIsChatPanelOpen] = useState(false);
   const [chatPanelWidth, setChatPanelWidth] = useState(CHAT_PANEL_MIN_WIDTH);
@@ -80,12 +113,6 @@ export function FactoryApp() {
   const pageStyle = {
     "--chat-panel-width": `${chatPanelWidth}px`,
   } as CSSProperties;
-
-  useEffect(() => {
-    document.body.classList.add("factory-app");
-
-    return () => document.body.classList.remove("factory-app");
-  }, []);
 
   useEffect(() => {
     if (!isResizingChatPanel) {
@@ -192,6 +219,11 @@ export function FactoryApp() {
                     {name}
                   </SelectItem>
                 ))}
+                {customCompanyName && (
+                  <SelectItem value={FACTORY_CUSTOM_COMPANY_ID}>
+                    {customCompanyName}
+                  </SelectItem>
+                )}
               </SelectContent>
             </Select>
             <div className="flex gap-2 ml-auto">

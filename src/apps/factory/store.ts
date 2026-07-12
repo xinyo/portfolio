@@ -3,6 +3,10 @@ import type { Edge, Node, XYPosition } from "@xyflow/react";
 
 import mockData from "@/apps/factory/mock.json";
 import {
+  FACTORY_CUSTOM_COMPANY_ID,
+  readFactoryCustomCompany,
+} from "@/apps/factory/onboarding";
+import {
   comparePlainDate,
   instantToPlainDate,
   type FactoryTimesheetDateRange,
@@ -718,6 +722,7 @@ type FactoryStore = {
   timezone: FactoryTimezone;
   isNavPanelOpen: boolean;
   currentCompany: string;
+  customCompanyName: string | null;
   salesOrderColumnViews: FactoryColumnView[];
   activeSalesOrderViewId: string;
   customers: FactoryCustomer[];
@@ -739,6 +744,8 @@ type FactoryStore = {
   setTimezone: (timezone: FactoryTimezone) => void;
   setIsNavPanelOpen: (isOpen: boolean) => void;
   setCurrentCompany: (company: string) => void;
+  setCustomCompany: (companyName: string) => void;
+  clearCustomCompany: () => void;
   setSalesOrderColumnViews: (views: FactoryColumnView[]) => void;
   setActiveSalesOrderViewId: (id: string) => void;
   addCustomer: (customer: FactoryCustomer) => void;
@@ -801,12 +808,16 @@ function getInitialTimezone(): FactoryTimezone {
 }
 
 export const useFactoryStore = create<FactoryStore>((set) => {
-  const initialCompany = Array.from(companyNameMap.keys())[0] || "acme-corp";
+  const customCompanyName = readFactoryCustomCompany();
+  const initialCompany = customCompanyName
+    ? FACTORY_CUSTOM_COMPANY_ID
+    : Array.from(companyNameMap.keys())[0] || "acme-corp";
   return {
     language: getInitialLanguage(),
     timezone: getInitialTimezone(),
     isNavPanelOpen: true,
     currentCompany: initialCompany,
+    customCompanyName,
     salesOrderColumnViews: defaultSalesOrderColumnViews,
     activeSalesOrderViewId: "default",
     customers: [...factoryCustomers],
@@ -836,6 +847,16 @@ export const useFactoryStore = create<FactoryStore>((set) => {
     setTimezone: (timezone) => set({ timezone }),
     setIsNavPanelOpen: (isNavPanelOpen) => set({ isNavPanelOpen }),
     setCurrentCompany: (currentCompany) => set({ currentCompany }),
+    setCustomCompany: (customCompanyName) =>
+      set({
+        customCompanyName,
+        currentCompany: FACTORY_CUSTOM_COMPANY_ID,
+      }),
+    clearCustomCompany: () =>
+      set({
+        customCompanyName: null,
+        currentCompany: Array.from(companyNameMap.keys())[0] || "acme-corp",
+      }),
     setSalesOrderColumnViews: (salesOrderColumnViews) =>
       set({ salesOrderColumnViews }),
     setActiveSalesOrderViewId: (activeSalesOrderViewId) =>

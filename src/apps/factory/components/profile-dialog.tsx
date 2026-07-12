@@ -22,6 +22,7 @@ import { toast } from "sonner";
 import { useTranslation } from "react-i18next";
 
 import { FactoryAvatarPicker } from "@/apps/factory/components/avatar-picker";
+import { removeFactoryCustomCompany } from "@/apps/factory/onboarding";
 import {
   createFactoryApiKey,
   joinFactoryUserName,
@@ -114,6 +115,9 @@ function getInitials(name: string) {
 export function ProfileDialog({ open, onOpenChange }: ProfileDialogProps) {
   const user = useFactoryStore((state) => state.user);
   const updateUserProfile = useFactoryStore((state) => state.updateUserProfile);
+  const clearCustomCompany = useFactoryStore(
+    (state) => state.clearCustomCompany,
+  );
   const { setIsDark } = useTheme(false);
   const { t } = useTranslation();
   const [activePanel, setActivePanel] = useState<ProfilePanel>("account");
@@ -242,6 +246,12 @@ export function ProfileDialog({ open, onOpenChange }: ProfileDialogProps) {
     }
 
     toast.success(t("factory.profileDialog.actions.profileSaved"));
+  }
+
+  function handleDeleteAccount() {
+    removeFactoryCustomCompany();
+    onOpenChange(false);
+    clearCustomCompany();
   }
 
   function handleAvatarSave() {
@@ -482,7 +492,11 @@ export function ProfileDialog({ open, onOpenChange }: ProfileDialogProps) {
                   <Save aria-hidden="true" />
                   {t("factory.profileDialog.account.update")}
                 </Button>
-                <Button type="button" variant="destructive">
+                <Button
+                  type="button"
+                  variant="destructive"
+                  onClick={handleDeleteAccount}
+                >
                   <Trash2 aria-hidden="true" />
                   {t("factory.profileDialog.account.delete")}
                 </Button>

@@ -18,6 +18,22 @@
   },
   "factory": {
     "title": "Factory",
+    "welcome": {
+      "eyebrow": "Welcome to Factory",
+      "title": "Modernise your workshop",
+      "description": "Let's get started by creating your workspace.",
+      "firstName": "First name",
+      "lastName": "Last name",
+      "companyName": "Business name",
+      "submit": "Create workspace",
+      "loading": {
+        "logoAlt": "Factory",
+        "progressLabel": "Workspace creation progress"
+      },
+      "validation": {
+        "required": "This field is required."
+      }
+    },
     "views": {
       "overview": {
         "title": "Overview"
