@@ -1,6 +1,6 @@
 import { NavLink, useLocation } from "react-router";
 import { useTranslation } from "react-i18next";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import {
   CalendarClock,
   CreditCard,
@@ -23,6 +23,7 @@ import { CollapsibleContent } from "@/components/ui/collapsible";
 import { Button } from "@/components/ui/button";
 import { SearchDialog } from "@/apps/factory/components/search-dialog";
 import { ProfileDialog } from "@/apps/factory/components/profile-dialog";
+import { BillingDialog } from "@/apps/factory/components/billing-dialog";
 import { useTheme } from "@/hooks/use-theme";
 import {
   DropdownMenu,
@@ -62,6 +63,8 @@ export function FactoryNavigations() {
   const { setIsDark } = useTheme(false);
   const leftPanelModel = getFactoryLeftPanelModel(location.pathname);
   const [isProfileDialogOpen, setIsProfileDialogOpen] = useState(false);
+  const [isBillingDialogOpen, setIsBillingDialogOpen] = useState(false);
+  const accountTriggerRef = useRef<HTMLButtonElement>(null);
 
   const isNavPanelOpen = useFactoryStore((state) => state.isNavPanelOpen);
   const user = useFactoryStore((state) => state.user);
@@ -112,6 +115,7 @@ export function FactoryNavigations() {
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <button
+              ref={accountTriggerRef}
               className="factory-account-trigger"
               type="button"
               aria-label={t("factory.account.openMenu", { name: user.name })}
@@ -137,7 +141,7 @@ export function FactoryNavigations() {
               <User />
               {t("factory.account.menu.profile")}
             </DropdownMenuItem>
-            <DropdownMenuItem>
+            <DropdownMenuItem onSelect={() => setIsBillingDialogOpen(true)}>
               <CreditCard />
               {t("factory.account.menu.billing")}
             </DropdownMenuItem>
@@ -243,6 +247,16 @@ export function FactoryNavigations() {
         <ProfileDialog
           open={isProfileDialogOpen}
           onOpenChange={setIsProfileDialogOpen}
+        />
+        <BillingDialog
+          open={isBillingDialogOpen}
+          onOpenChange={(isOpen) => {
+            setIsBillingDialogOpen(isOpen);
+
+            if (!isOpen) {
+              queueMicrotask(() => accountTriggerRef.current?.focus());
+            }
+          }}
         />
       </footer>
     </>

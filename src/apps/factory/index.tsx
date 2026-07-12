@@ -78,7 +78,7 @@ export function FactoryApp() {
   const [chatPanelWidth, setChatPanelWidth] = useState(CHAT_PANEL_MIN_WIDTH);
   const [isResizingChatPanel, setIsResizingChatPanel] = useState(false);
   const pageStyle = {
-    "--factory-chat-panel-width": `${chatPanelWidth}px`,
+    "--chat-panel-width": `${chatPanelWidth}px`,
   } as CSSProperties;
 
   useEffect(() => {

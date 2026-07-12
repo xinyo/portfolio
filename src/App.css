@@ -14,9 +14,11 @@
 }
 
 .profolio-home{
-  width: min(100%, 1200px);
+  width: 100%;
   margin: 0 auto;
   height: 100vh;
+  background-image: radial-gradient(color-mix(in oklch, var(--foreground) 25%, transparent) 3%, transparent 0);
+  background-size: 35px 35px;
 }
 
 #center {

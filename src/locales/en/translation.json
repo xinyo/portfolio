@@ -130,7 +130,11 @@
         }
       },
       "priceLevelManager": {
-        "title": "Price Level Manager"
+        "title": "Price Level Manager",
+        "introducing": "Introducing: Price Level Manager",
+        "description": "Create and manage custom pricing tiers for your products and services. Streamline your pricing strategy with predefined templates.",
+        "startWithTemplate": "Start with template",
+        "createMyPriceLevel": "Create my price level"
       },
       "purchaseOrders": {
         "title": "Purchase Orders"
@@ -389,6 +393,44 @@
         "avatarSaved": "Avatar saved",
         "passwordSaved": "Password saved",
         "apiKeyCopied": "API key copied"
+      }
+    },
+    "billingDialog": {
+      "title": "Billing",
+      "description": "Review the workspace plan, billing details, and invoice history.",
+      "summary": "Manage how this workspace is billed.",
+      "close": "Close billing dialog",
+      "plan": {
+        "current": "Current plan",
+        "active": "Active",
+        "interval": "/ {{interval}}",
+        "seats": "{{count}} seats",
+        "renews": "Renews {{date}}",
+        "upgrade": "Upgrade plan"
+      },
+      "payment": {
+        "title": "Billing method",
+        "edit": "Edit billing method",
+        "cardLabel": "{{brand}} ending in {{lastFour}}, expires {{expiry}}"
+      },
+      "email": {
+        "title": "Billing email",
+        "edit": "Edit billing email"
+      },
+      "address": {
+        "title": "Billing address",
+        "edit": "Edit billing address"
+      },
+      "invoices": {
+        "title": "Invoices",
+        "description": "Your recent workspace billing history.",
+        "number": "Invoice",
+        "date": "Date",
+        "status": "Status",
+        "amount": "Amount",
+        "statuses": {
+          "paid": "Paid"
+        }
       }
     }
   },

@@ -32,6 +32,63 @@
   "trial": {
     "badgeLabel": "14-day trial"
   },
+  "billing": {
+    "plan": {
+      "name": "Factory Pro",
+      "priceCents": 7900,
+      "currency": "AUD",
+      "interval": "month",
+      "seats": 8,
+      "renewalDate": "2026-08-01"
+    },
+    "paymentMethod": {
+      "brand": "Visa",
+      "holderName": "Avery Morgan",
+      "lastFour": "4242",
+      "expiryMonth": 9,
+      "expiryYear": 2028
+    },
+    "billingEmail": "avery@factory.example",
+    "billingAddress": {
+      "line1": "48 Harbour Street",
+      "line2": "Sydney NSW 2000",
+      "country": "Australia"
+    },
+    "invoices": [
+      {
+        "id": "invoice-2026-07",
+        "number": "INV-2026-007",
+        "issueDate": "2026-07-01",
+        "amountCents": 7900,
+        "currency": "AUD",
+        "status": "paid"
+      },
+      {
+        "id": "invoice-2026-06",
+        "number": "INV-2026-006",
+        "issueDate": "2026-06-01",
+        "amountCents": 7900,
+        "currency": "AUD",
+        "status": "paid"
+      },
+      {
+        "id": "invoice-2026-05",
+        "number": "INV-2026-005",
+        "issueDate": "2026-05-01",
+        "amountCents": 7900,
+        "currency": "AUD",
+        "status": "paid"
+      },
+      {
+        "id": "invoice-2026-04",
+        "number": "INV-2026-004",
+        "issueDate": "2026-04-01",
+        "amountCents": 4900,
+        "currency": "AUD",
+        "status": "paid"
+      }
+    ]
+  },
   "employees": [
     {
       "id": "emp-1",
