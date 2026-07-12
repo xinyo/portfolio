@@ -7,6 +7,11 @@ import {
   Contact,
   CreditCard,
   DollarSign,
+  FileCheck2,
+  FileCog,
+  FileInput,
+  FileText,
+  Files,
   History,
   House,
   MapPin,
@@ -253,6 +258,63 @@ export function getWorkflowNavigationSections(): NavSection[] {
   ];
 }
 
+export function getSettingsNavigationSections(): NavSection[] {
+  const basePath = "/apps/factory/settings";
+
+  return [
+    {
+      items: [
+        {
+          labelKey: "factory.navigation.contextual.settings.back",
+          to: "/apps/factory",
+          icon: Undo2,
+          end: true,
+          variant: "back",
+        },
+      ],
+    },
+    {
+      items: [
+        {
+          labelKey: "factory.navigation.contextual.settings.company",
+          to: `${basePath}/company`,
+          icon: Building2,
+        },
+        {
+          labelKey: "factory.navigation.contextual.settings.quotes",
+          to: `${basePath}/quotes`,
+          icon: FileText,
+        },
+        {
+          labelKey: "factory.navigation.contextual.settings.orderConfirmation",
+          to: `${basePath}/order-confirmation`,
+          icon: FileCheck2,
+        },
+        {
+          labelKey: "factory.navigation.contextual.settings.invoicing",
+          to: `${basePath}/invoicing`,
+          icon: ReceiptText,
+        },
+        {
+          labelKey: "factory.navigation.contextual.settings.documentTemplates",
+          to: `${basePath}/document-templates`,
+          icon: Files,
+        },
+        {
+          labelKey: "factory.navigation.contextual.settings.pdfSettings",
+          to: `${basePath}/pdf`,
+          icon: FileCog,
+        },
+        {
+          labelKey: "factory.navigation.contextual.settings.orderImporter",
+          to: `${basePath}/order-importer`,
+          icon: FileInput,
+        },
+      ],
+    },
+  ];
+}
+
 export function getFactoryLeftPanelModel(
   pathname: string,
 ): FactoryLeftPanelModel {
@@ -261,6 +323,16 @@ export function getFactoryLeftPanelModel(
   if (customerId) {
     return {
       sections: getCustomerNavigationSections(customerId),
+      showSearch: true,
+    };
+  }
+
+  if (
+    pathname === "/apps/factory/settings" ||
+    pathname.startsWith("/apps/factory/settings/")
+  ) {
+    return {
+      sections: getSettingsNavigationSections(),
       showSearch: true,
     };
   }

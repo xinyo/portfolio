@@ -37,6 +37,13 @@ import { PriceLevelManagerView } from "@/apps/factory/views/price-level-manager"
 import { ProductCategoriesView } from "@/apps/factory/views/product-categories";
 import { PurchaseOrdersView } from "@/apps/factory/views/purchase-orders";
 import { SalesOrdersView } from "@/apps/factory/views/sales-orders";
+import { CompanySettingsView } from "@/apps/factory/views/settings/company";
+import { DocumentTemplatesSettingsView } from "@/apps/factory/views/settings/document-templates";
+import { InvoicingSettingsView } from "@/apps/factory/views/settings/invoicing";
+import { OrderConfirmationSettingsView } from "@/apps/factory/views/settings/order-confirmation";
+import { OrderImporterSettingsView } from "@/apps/factory/views/settings/order-importer";
+import { PdfSettingsView } from "@/apps/factory/views/settings/pdf";
+import { QuotesSettingsView } from "@/apps/factory/views/settings/quotes";
 import { SuppliersView } from "@/apps/factory/views/suppliers";
 import { TeamView } from "@/apps/factory/views/team";
 import { TimesheetsView } from "@/apps/factory/views/timesheets";
@@ -301,6 +308,35 @@ function FactoryDashboard() {
               <Route path="timesheets" element={<TimesheetsView />} />
               <Route path="integrations" element={<IntegrationsView />} />
               <Route path="team" element={<TeamView />} />
+              <Route
+                path="settings"
+                element={<Navigate to="company" replace />}
+              />
+              <Route
+                path="settings/company"
+                element={<CompanySettingsView />}
+              />
+              <Route
+                path="settings/quotes"
+                element={<QuotesSettingsView />}
+              />
+              <Route
+                path="settings/order-confirmation"
+                element={<OrderConfirmationSettingsView />}
+              />
+              <Route
+                path="settings/invoicing"
+                element={<InvoicingSettingsView />}
+              />
+              <Route
+                path="settings/document-templates"
+                element={<DocumentTemplatesSettingsView />}
+              />
+              <Route path="settings/pdf" element={<PdfSettingsView />} />
+              <Route
+                path="settings/order-importer"
+                element={<OrderImporterSettingsView />}
+              />
               <Route
                 path="*"
                 element={<Navigate to="/apps/factory" replace />}

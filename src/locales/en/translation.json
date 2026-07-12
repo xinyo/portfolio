@@ -145,6 +145,29 @@
           "description": "The selected customer could not be found."
         }
       },
+      "settings": {
+        "company": {
+          "title": "Company"
+        },
+        "quotes": {
+          "title": "Quotes"
+        },
+        "orderConfirmation": {
+          "title": "Order confirmation"
+        },
+        "invoicing": {
+          "title": "Invoicing"
+        },
+        "documentTemplates": {
+          "title": "Document templates"
+        },
+        "pdfSettings": {
+          "title": "PDF Settings"
+        },
+        "orderImporter": {
+          "title": "Order Importer"
+        }
+      },
       "priceLevelManager": {
         "title": "Price Level Manager",
         "introducing": "Introducing: Price Level Manager",
@@ -292,6 +315,16 @@
           "new": "New workflow",
           "save": "Save workflow",
           "open": "Open workflow"
+        },
+        "settings": {
+          "back": "Back to Overview",
+          "company": "Company",
+          "quotes": "Quotes",
+          "orderConfirmation": "Order confirmation",
+          "invoicing": "Invoicing",
+          "documentTemplates": "Document templates",
+          "pdfSettings": "PDF Settings",
+          "orderImporter": "Order Importer"
         }
       }
     },

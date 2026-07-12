@@ -1,4 +1,4 @@
-import { NavLink, useLocation } from "react-router";
+import { NavLink, useLocation, useNavigate } from "react-router";
 import { useTranslation } from "react-i18next";
 import { useRef, useState } from "react";
 import {
@@ -59,6 +59,7 @@ import {
 export function FactoryNavigations() {
   const { t } = useTranslation();
   const location = useLocation();
+  const navigate = useNavigate();
   const { trial } = mockData;
   const { setIsDark } = useTheme(false);
   const leftPanelModel = getFactoryLeftPanelModel(location.pathname);
@@ -145,7 +146,9 @@ export function FactoryNavigations() {
               <CreditCard />
               {t("factory.account.menu.billing")}
             </DropdownMenuItem>
-            <DropdownMenuItem>
+            <DropdownMenuItem
+              onSelect={() => navigate("/apps/factory/settings/company")}
+            >
               <Settings />
               {t("factory.account.menu.settings")}
             </DropdownMenuItem>
