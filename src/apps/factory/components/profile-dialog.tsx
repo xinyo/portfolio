@@ -32,6 +32,7 @@ import {
   factoryApiKeys,
   factoryAppearanceOptions,
   factoryLanguageOptions,
+  factoryLanguageLabelKeys,
   factoryLocations,
   factoryTimezoneOptions,
   useFactoryStore,
@@ -448,7 +449,7 @@ export function ProfileDialog({ open, onOpenChange }: ProfileDialogProps) {
                   }
                   options={factoryLanguageOptions.map((language) => ({
                     value: language,
-                    label: language,
+                    label: t(factoryLanguageLabelKeys[language]),
                   }))}
                 />
                 <SelectField

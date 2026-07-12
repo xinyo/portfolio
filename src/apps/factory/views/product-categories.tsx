@@ -1,6 +1,13 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { ChevronDown, EllipsisVertical, Plus, Search } from "lucide-react";
+import { Link } from "react-router";
+import {
+  Boxes,
+  ChevronDown,
+  EllipsisVertical,
+  Plus,
+  Search,
+} from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -28,16 +35,32 @@ import { ProductDialog } from "@/apps/factory/dialogs/product-dialog";
 import { CategoryDialog } from "@/apps/factory/dialogs/category-dialog";
 import { ProductKitDialog } from "@/apps/factory/dialogs/product-kit-dialog";
 import {
-  factoryProducts,
-  factoryCategories,
+  useFactoryStore,
   type FactoryProduct,
+  type FactoryProductKit,
 } from "@/apps/factory/store";
+import {
+  filterFactoryCatalog,
+  getCatalogCategoryName,
+} from "@/apps/factory/product-catalog";
+import { Badge } from "@/components/ui/badge";
 
 export function ProductCategoriesView() {
   const { t } = useTranslation();
   const [productDialogOpen, setProductDialogOpen] = useState(false);
   const [categoryDialogOpen, setCategoryDialogOpen] = useState(false);
   const [productKitDialogOpen, setProductKitDialogOpen] = useState(false);
+  const [query, setQuery] = useState("");
+  const [categoryId, setCategoryId] = useState("all");
+  const products = useFactoryStore((state) => state.products);
+  const productKits = useFactoryStore((state) => state.productKits);
+  const categories = useFactoryStore((state) => state.categories);
+  const catalogItems = filterFactoryCatalog(
+    products,
+    productKits,
+    query,
+    categoryId,
+  );
 
   return (
     <section className="factory-view">
@@ -82,10 +105,15 @@ export function ProductCategoriesView() {
               aria-label={t(
                 "factory.views.productCategories.searchPlaceholder",
               )}
+              value={query}
+              onChange={(event) => setQuery(event.target.value)}
             />
           </div>
           <Select>
-            <SelectTrigger className="w-[180px]">
+            <SelectTrigger
+              className="w-[180px]"
+              aria-label={t("factory.views.productCategories.filterByLabel")}
+            >
               <SelectValue
                 placeholder={t("factory.views.productCategories.filterByLabel")}
               />
@@ -99,8 +127,13 @@ export function ProductCategoriesView() {
               <SelectItem value="label-c">Label C</SelectItem>
             </SelectContent>
           </Select>
-          <Select>
-            <SelectTrigger className="w-[200px]">
+          <Select value={categoryId} onValueChange={setCategoryId}>
+            <SelectTrigger
+              className="w-[200px]"
+              aria-label={t(
+                "factory.views.productCategories.categoryFilterLabel",
+              )}
+            >
               <SelectValue
                 placeholder={t(
                   "factory.views.productCategories.filterByCategory",
@@ -111,7 +144,7 @@ export function ProductCategoriesView() {
               <SelectItem value="all">
                 {t("factory.views.productCategories.filterByCategory")}
               </SelectItem>
-              {factoryCategories.map((cat) => (
+              {categories.map((cat) => (
                 <SelectItem key={cat.id} value={cat.id}>
                   {cat.name}
                 </SelectItem>
@@ -122,9 +155,33 @@ export function ProductCategoriesView() {
       </div>
 
       <div className="factory-product-list">
-        {factoryProducts.map((product: FactoryProduct) => (
-          <ProductItem key={product.id} product={product} t={t} />
-        ))}
+        {catalogItems.length === 0 ? (
+          <div className="factory-detail-empty">
+            {t("factory.views.productCategories.empty")}
+          </div>
+        ) : (
+          catalogItems.map(({ type, item }) => {
+            const categoryName =
+              getCatalogCategoryName(categories, item.categoryId) ??
+              t("factory.views.productCategories.uncategorized");
+
+            return type === "product" ? (
+              <ProductItem
+                key={`product-${item.id}`}
+                product={item}
+                categoryName={categoryName}
+                t={t}
+              />
+            ) : (
+              <ProductKitItem
+                key={`kit-${item.id}`}
+                kit={item}
+                categoryName={categoryName}
+                t={t}
+              />
+            );
+          })
+        )}
       </div>
 
       <ProductDialog
@@ -145,23 +202,35 @@ export function ProductCategoriesView() {
 
 function ProductItem({
   product,
+  categoryName,
   t,
 }: {
   product: FactoryProduct;
+  categoryName: string;
   t: (key: string) => string;
 }) {
   return (
-    <Item variant="outline" size="default">
-      <ItemMedia variant="image">
-        <img src={product.image} alt={product.name} />
-      </ItemMedia>
-      <ItemContent>
-        <ItemTitle>{product.name}</ItemTitle>
-        <ItemDescription>{product.code}</ItemDescription>
-      </ItemContent>
+    <Item variant="outline" size="default" className="factory-product-item">
+      <Link
+        className="factory-product-item-link u-press"
+        to={`/apps/factory/product/${product.id}/product-options`}
+      >
+        <ItemMedia variant="image">
+          <img src={product.image} alt={product.name} />
+        </ItemMedia>
+        <ItemContent>
+          <ItemTitle>{product.name}</ItemTitle>
+          <ItemDescription>{product.code}</ItemDescription>
+        </ItemContent>
+      </Link>
+      <Badge variant="outline">{categoryName}</Badge>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button variant="ghost" size="icon-sm" aria-label="More options">
+          <Button
+            variant="ghost"
+            size="icon-sm"
+            aria-label={t("factory.views.productCategories.moreOptions")}
+          >
             <EllipsisVertical className="size-4" />
           </Button>
         </DropdownMenuTrigger>
@@ -174,6 +243,40 @@ function ProductItem({
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
+    </Item>
+  );
+}
+
+function ProductKitItem({
+  kit,
+  categoryName,
+  t,
+}: {
+  kit: FactoryProductKit;
+  categoryName: string;
+  t: (key: string, options?: Record<string, unknown>) => string;
+}) {
+  return (
+    <Item variant="outline" size="default" className="factory-product-item">
+      <div className="factory-product-kit-content">
+        <ItemMedia variant="icon">
+          <Boxes aria-hidden="true" />
+        </ItemMedia>
+        <ItemContent>
+          <ItemTitle>{kit.name}</ItemTitle>
+          <ItemDescription>
+            {t("factory.views.productCategories.productCount", {
+              count: kit.productIds.length,
+            })}
+          </ItemDescription>
+        </ItemContent>
+      </div>
+      <div className="factory-product-item-badges">
+        <Badge variant="outline">{categoryName}</Badge>
+        <Badge variant="secondary">
+          {t("factory.views.productCategories.kitBadge")}
+        </Badge>
+      </div>
     </Item>
   );
 }

@@ -35,6 +35,9 @@ import { OverviewView } from "@/apps/factory/views/overview";
 import { PlannersView } from "@/apps/factory/views/planners";
 import { PriceLevelManagerView } from "@/apps/factory/views/price-level-manager";
 import { ProductCategoriesView } from "@/apps/factory/views/product-categories";
+import { ProductBuyingView } from "@/apps/factory/views/product/buying";
+import { ProductOptionsView } from "@/apps/factory/views/product/product-options";
+import { ProductPricingView } from "@/apps/factory/views/product/pricing";
 import { PurchaseOrdersView } from "@/apps/factory/views/purchase-orders";
 import { SalesOrdersView } from "@/apps/factory/views/sales-orders";
 import { CompanySettingsView } from "@/apps/factory/views/settings/company";
@@ -265,6 +268,22 @@ function FactoryDashboard() {
               <Route
                 path="product-categories"
                 element={<ProductCategoriesView />}
+              />
+              <Route
+                path="product/:productId"
+                element={<Navigate to="product-options" replace />}
+              />
+              <Route
+                path="product/:productId/product-options"
+                element={<ProductOptionsView />}
+              />
+              <Route
+                path="product/:productId/buying"
+                element={<ProductBuyingView />}
+              />
+              <Route
+                path="product/:productId/pricing"
+                element={<ProductPricingView />}
               />
               <Route path="materials" element={<MaterialsView />} />
               <Route path="sales-orders" element={<SalesOrdersView />} />

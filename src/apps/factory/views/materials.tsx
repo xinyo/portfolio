@@ -3,10 +3,8 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
 import { MaterialDialog } from "@/apps/factory/dialogs/material-dialog";
-import {
-  factoryMaterials,
-  type FactoryMaterial,
-} from "@/apps/factory/store";
+import { filterFactoryMaterials } from "@/apps/factory/material-model";
+import { useFactoryStore, type FactoryMaterial } from "@/apps/factory/store";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -33,6 +31,9 @@ import {
 export function MaterialsView() {
   const { t } = useTranslation();
   const [materialDialogOpen, setMaterialDialogOpen] = useState(false);
+  const [query, setQuery] = useState("");
+  const materials = useFactoryStore((state) => state.materials);
+  const filteredMaterials = filterFactoryMaterials(materials, query);
 
   return (
     <section className="factory-view">
@@ -61,6 +62,8 @@ export function MaterialsView() {
               aria-label={t(
                 "factory.views.materials.searchPlaceholder",
               )}
+              value={query}
+              onChange={(event) => setQuery(event.target.value)}
             />
           </div>
           <Select>
@@ -82,9 +85,15 @@ export function MaterialsView() {
       </div>
 
       <div className="factory-product-list">
-        {factoryMaterials.map((material: FactoryMaterial) => (
-          <MaterialItem key={material.id} material={material} t={t} />
-        ))}
+        {filteredMaterials.length === 0 ? (
+          <div className="factory-detail-empty">
+            {t("factory.views.materials.empty")}
+          </div>
+        ) : (
+          filteredMaterials.map((material: FactoryMaterial) => (
+            <MaterialItem key={material.id} material={material} t={t} />
+          ))
+        )}
       </div>
 
       <MaterialDialog

@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import type { Edge, Node, XYPosition } from "@xyflow/react";
 
+import i18n from "@/i18n";
 import mockData from "@/apps/factory/mock.json";
 import {
   FACTORY_CUSTOM_COMPANY_ID,
@@ -53,6 +54,20 @@ export type FactoryLanguage = (typeof factoryLanguageOptions)[number];
 export type FactoryTimezone = (typeof factoryTimezoneOptions)[number];
 export type FactoryAppearance = (typeof factoryAppearanceOptions)[number];
 
+/** Maps display language names to i18n language codes. */
+export const factoryLanguageToCode: Record<FactoryLanguage, string> = {
+  English: "en",
+  Deutsch: "de",
+  "中文": "zh",
+};
+
+/** Maps display language names to their i18n translation label keys. */
+export const factoryLanguageLabelKeys: Record<FactoryLanguage, string> = {
+  English: "factory.account.menu.english",
+  Deutsch: "factory.account.menu.deutsch",
+  "中文": "factory.account.menu.chinese",
+};
+
 export const companyNameMap = new Map<string, string>([
   ["acme-corp", "Acme Corporation"],
   ["tech-solutions", "Tech Solutions Inc."],
@@ -65,6 +80,19 @@ export type FactoryProduct = {
   name: string;
   code: string;
   image: string;
+  categoryId: string;
+};
+
+export type FactoryProductConfiguration = {
+  buyItem: boolean;
+  sellItem: boolean;
+  trackStock: boolean;
+  trackCostsAndMarkups: boolean;
+  taxFree: boolean;
+  quantityUnit: string | null;
+  materialIds: string[];
+  supplierIds: string[];
+  preferredSupplierId: string | null;
 };
 
 export type FactoryCategory = {
@@ -75,6 +103,7 @@ export type FactoryCategory = {
 export type FactoryProductKit = {
   id: string;
   name: string;
+  categoryId: string;
   productIds: string[];
 };
 
@@ -128,6 +157,39 @@ export type FactoryCustomerBooking = {
   customerName: string;
   start: string;
   end: string;
+};
+
+export type FactorySupplierPurchaseHistory = {
+  id: string;
+  createdDate: string;
+  createdBy: string;
+  totalCost: number;
+  status: "draft" | "submitted" | "Received" | "billed" | "archived";
+};
+
+export type FactorySupplierContact = {
+  id: string;
+  contactName: string;
+  email: string;
+  phone: string;
+  mobile: string;
+  avatar: string;
+  archived: boolean;
+};
+
+export type FactorySupplier = {
+  id: string;
+  name: string;
+  country: string;
+  abn: string;
+  address: string;
+  city: string;
+  postCode: string;
+  state: string;
+  image: string;
+  contacts: FactorySupplierContact[];
+  purchaseHistory: FactorySupplierPurchaseHistory[];
+  suppliedProducts: { productId: string; supplyPrice: number }[];
 };
 
 export type FactoryEmployee = {
@@ -258,20 +320,21 @@ export type FactorySalesOrder = {
 };
 
 export const factoryProducts: FactoryProduct[] = mockData.products;
+export const factoryProductsById: Record<string, FactoryProduct> =
+  Object.fromEntries(factoryProducts.map((product) => [product.id, product]));
 export const factoryCategories: FactoryCategory[] = mockData.categories;
 export const factoryProductKits: FactoryProductKit[] = mockData.productKits;
 export const factoryMaterials: FactoryMaterial[] = mockData.materials;
 export const factoryIntegrationCategories: FactoryIntegrationCategory[] =
   mockData.integrationCategories;
-export const factoryIntegrations: FactoryIntegration[] = mockData.integrations.map(
-  (integration) => ({
+export const factoryIntegrations: FactoryIntegration[] =
+  mockData.integrations.map((integration) => ({
     ...integration,
     image:
       integrationImageModules[
         `/src/assets/integrations/${integration.image}`
       ] ?? integration.image,
-  }),
-);
+  }));
 export const factoryIntegrationsById: Record<string, FactoryIntegration> =
   Object.fromEntries(
     factoryIntegrations.map((integration) => [integration.id, integration]),
@@ -321,6 +384,22 @@ export const factoryCustomers: FactoryCustomer[] = mockData.customers.map(
     })),
   }),
 );
+export const factorySuppliers: FactorySupplier[] = mockData.suppliers.map(
+  (s) => ({
+    ...s,
+    image: resolveImage(s.image),
+    purchaseHistory: s.purchaseHistory.map((purchase) => ({
+      ...purchase,
+      status: purchase.status as FactorySupplierPurchaseHistory["status"],
+    })),
+    contacts: s.contacts.map((contact) => ({
+      ...contact,
+      avatar: resolveImage(contact.avatar),
+    })),
+  }),
+);
+export const factorySuppliersById: Record<string, FactorySupplier> =
+  Object.fromEntries(factorySuppliers.map((s) => [s.id, s]));
 export const factorySalesOrders: FactorySalesOrder[] = mockData.salesOrders;
 export const factoryUser: FactoryUser = {
   id: mockData.user.id ?? "user-1",
@@ -740,6 +819,12 @@ type FactoryStore = {
   selectedWorkflowElementId: string | null;
   integrationsById: Record<string, FactoryIntegration>;
   connectedIntegrationsById: Record<string, FactoryIntegration>;
+  productConfigurations: Record<string, FactoryProductConfiguration>;
+  products: FactoryProduct[];
+  productsById: Record<string, FactoryProduct>;
+  productKits: FactoryProductKit[];
+  categories: FactoryCategory[];
+  materials: FactoryMaterial[];
   setLanguage: (language: FactoryLanguage) => void;
   setTimezone: (timezone: FactoryTimezone) => void;
   setIsNavPanelOpen: (isOpen: boolean) => void;
@@ -789,7 +874,30 @@ type FactoryStore = {
   setSelectedWorkflowElementId: (id: string | null) => void;
   addConnectedIntegration: (id: string) => void;
   removeConnectedIntegration: (id: string) => void;
+  saveProductConfiguration: (
+    productId: string,
+    configuration: FactoryProductConfiguration,
+  ) => void;
+  addProduct: (product: FactoryProduct) => void;
+  addProductKit: (kit: FactoryProductKit) => void;
+  addCategory: (category: FactoryCategory) => void;
+  updateProductCategory: (productId: string, categoryId: string) => void;
+  addMaterial: (material: FactoryMaterial) => void;
 };
+
+export function createEmptyProductConfiguration(): FactoryProductConfiguration {
+  return {
+    buyItem: false,
+    sellItem: false,
+    trackStock: false,
+    trackCostsAndMarkups: false,
+    taxFree: false,
+    quantityUnit: null,
+    materialIds: [],
+    supplierIds: [],
+    preferredSupplierId: null,
+  };
+}
 
 function getInitialLanguage(): FactoryLanguage {
   return factoryLanguageOptions.includes(
@@ -843,7 +951,16 @@ export const useFactoryStore = create<FactoryStore>((set) => {
     selectedWorkflowElementId: null,
     integrationsById: { ...factoryIntegrationsById },
     connectedIntegrationsById: { ...factoryConnectedIntegrationsById },
-    setLanguage: (language) => set({ language }),
+    productConfigurations: {},
+    products: [...factoryProducts],
+    productsById: { ...factoryProductsById },
+    productKits: [...factoryProductKits],
+    categories: [...factoryCategories],
+    materials: [...factoryMaterials],
+    setLanguage: (language) => {
+      set({ language });
+      void i18n.changeLanguage(factoryLanguageToCode[language]);
+    },
     setTimezone: (timezone) => set({ timezone }),
     setIsNavPanelOpen: (isNavPanelOpen) => set({ isNavPanelOpen }),
     setCurrentCompany: (currentCompany) => set({ currentCompany }),
@@ -1240,5 +1357,38 @@ export const useFactoryStore = create<FactoryStore>((set) => {
           state.connectedIntegrationsById;
         return { connectedIntegrationsById };
       }),
+    saveProductConfiguration: (productId, configuration) =>
+      set((state) => ({
+        productConfigurations: {
+          ...state.productConfigurations,
+          [productId]: configuration,
+        },
+      })),
+    addProduct: (product) =>
+      set((state) => ({
+        products: [...state.products, product],
+        productsById: { ...state.productsById, [product.id]: product },
+      })),
+    addProductKit: (kit) =>
+      set((state) => ({ productKits: [...state.productKits, kit] })),
+    addCategory: (category) =>
+      set((state) => ({ categories: [...state.categories, category] })),
+    updateProductCategory: (productId, categoryId) =>
+      set((state) => {
+        const product = state.productsById[productId];
+        if (!product) return state;
+        const updatedProduct = { ...product, categoryId };
+        return {
+          products: state.products.map((item) =>
+            item.id === productId ? updatedProduct : item,
+          ),
+          productsById: {
+            ...state.productsById,
+            [productId]: updatedProduct,
+          },
+        };
+      }),
+    addMaterial: (material) =>
+      set((state) => ({ materials: [...state.materials, material] })),
   };
 });

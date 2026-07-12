@@ -1,0 +1,591 @@
+{
+  "get_started": "Ein großartiges Produkt beginnt mit Klarheit über das Problem und endet mit ästhetischer Zurückhaltung im Design.",
+  "intro": "Als Design Engineer entwickle ich gerne Software, die Ihre Zeit respektiert.",
+  "hero_primary_btn": "Mehr über mich",
+  "hero_secondary_btn": "Konzepte entdecken",
+  "explore": {
+    "kicker": "Entdecken",
+    "title": "Konzepte, Systeme und Produktexperimente.",
+    "description": "Ein Raum für gesammelte Ideen, Oberflächenstudien und technische Notizen, die Strategie, Benutzerfreundlichkeit und Implementierungsdetails verbinden.",
+    "home": "Startseite",
+    "gallery": [
+      {
+        "slug": "factory",
+        "title": "Factory.app",
+        "subtitle": "Online-Werkzeuge für Fertigungsbetriebe zur Erstellung von Aufträgen, Zusammenarbeit an Projekten, Terminplanung und Zeiterfassung an einem Ort."
+      }
+    ]
+  },
+  "factory": {
+    "title": "Factory",
+    "welcome": {
+      "eyebrow": "Willkommen bei Factory",
+      "title": "Modernisieren Sie Ihre Werkstatt",
+      "description": "Lassen Sie uns mit der Erstellung Ihres Arbeitsbereichs beginnen.",
+      "firstName": "Vorname",
+      "lastName": "Nachname",
+      "companyName": "Firmenname",
+      "submit": "Arbeitsbereich erstellen",
+      "loading": {
+        "logoAlt": "Factory",
+        "progressLabel": "Fortschritt der Arbeitsbereichserstellung"
+      },
+      "validation": {
+        "required": "Dieses Feld ist erforderlich."
+      }
+    },
+    "views": {
+      "overview": {
+        "title": "Übersicht"
+      },
+      "productCategories": {
+        "title": "Produktkategorien",
+        "subtitle": "Organisieren und verwalten Sie Ihre Produkte, Kategorien und Kits an einem Ort.",
+        "addNew": "Neu hinzufügen",
+        "addProduct": "Produkt hinzufügen",
+        "addCategory": "Kategorie hinzufügen",
+        "addProductKit": "Produkt-Kit hinzufügen",
+        "searchPlaceholder": "Produkte suchen...",
+        "filterByLabel": "Nach Label filtern",
+        "allLabels": "Alle Labels",
+        "filterByCategory": "Alle Kategorien",
+        "categoryFilterLabel": "Produkte und Kits nach Kategorie filtern",
+        "cancel": "Abbrechen",
+        "save": "Speichern",
+        "moreOptions": "Weitere Produktoptionen",
+        "productName": "Produktname",
+        "productCode": "Produktcode",
+        "category": "Kategorie",
+        "kitName": "Produkt-Kit-Name",
+        "kitProducts": "Produkte",
+        "categoryName": "Kategoriename",
+        "required": "Dieses Feld ist erforderlich.",
+        "selectProduct": "Wählen Sie mindestens ein Produkt aus.",
+        "productCreated": "Produkt erstellt.",
+        "productKitCreated": "Produkt-Kit erstellt.",
+        "categoryCreated": "Produktkategorie erstellt.",
+        "kitBadge": "Kit",
+        "productCount_one": "{{count}} Produkt",
+        "productCount_other": "{{count}} Produkte",
+        "empty": "Keine Produkte oder Kits entsprechen diesen Filtern.",
+        "uncategorized": "Ohne Kategorie",
+        "duplicate": "Duplizieren",
+        "delete": "Löschen"
+      },
+      "productDetail": {
+        "save": "Speichern",
+        "saved": "Produktänderungen gespeichert.",
+        "selectOne": "Option auswählen",
+        "selectMany": "Eine oder mehrere auswählen",
+        "search": "Optionen suchen...",
+        "noResults": "Keine Optionen gefunden.",
+        "moreSelected": "+ {{count}} weitere",
+        "productOptions": {
+          "title": "Produktoptionen",
+          "buyItem": "Ich kaufe diesen Artikel",
+          "sellItem": "Ich verkaufe diesen Artikel",
+          "trackStock": "Ich erfasse den Bestand für diesen Artikel",
+          "trackCostsAndMarkups": "Ich erfasse Kosten und Aufschläge für diesen Artikel",
+          "taxFree": "Dieser Artikel wird steuerfrei gekauft und verkauft",
+          "quantityUnit": "Gekauft und verkauft in",
+          "category": "Produktkategorie",
+          "materials": "Verfügbare Materialien",
+          "quantityUnits": {
+            "basicQuantities": "Basis-Mengeneinheiten",
+            "linealMetres": "Laufmeter",
+            "customFormula": "Benutzerdefinierte Formel",
+            "squareMetres": "Quadratmeter"
+          }
+        },
+        "buying": {
+          "title": "Einkauf",
+          "suppliers": "Lieferanten",
+          "preferredSupplier": "Bevorzugter Lieferant"
+        },
+        "pricing": {
+          "title": "Preisgestaltung",
+          "viewLabel": "Preistabelle",
+          "buying": "Einkauf",
+          "selling": "Verkauf",
+          "tracking": "Verfolgung",
+          "noSupplierPrices": "Keine gespeicherten Lieferanten haben einen Preis für dieses Produkt.",
+          "cost": "Kosten",
+          "markup": "Aufschlag",
+          "price": "Preis",
+          "onHand": "Bestand",
+          "promised": "Zugesagt",
+          "available": "Verfügbar",
+          "onTheWay": "Unterwegs"
+        },
+        "notFound": {
+          "title": "Produkt nicht gefunden",
+          "description": "Das ausgewählte Produkt konnte nicht gefunden werden."
+        }
+      },
+      "materials": {
+        "title": "Materialien",
+        "subtitle": "Verfolgen Sie Rohmaterialien, Verbrauchsmaterialien und Betriebsstoffe in der Produktion.",
+        "addMaterial": "Material hinzufügen",
+        "searchPlaceholder": "Materialien suchen...",
+        "filterByLabel": "Nach Label filtern",
+        "allLabels": "Alle Labels",
+        "materialName": "Materialname",
+        "materialCode": "Materialcode",
+        "imageUrl": "Bild-URL",
+        "required": "Dieses Feld ist erforderlich.",
+        "created": "Material erstellt.",
+        "empty": "Keine Materialien entsprechen Ihrer Suche.",
+        "cancel": "Abbrechen",
+        "save": "Speichern",
+        "duplicate": "Duplizieren",
+        "delete": "Löschen"
+      },
+      "salesOrders": {
+        "title": "Verkaufsaufträge",
+        "subtitle": "Erstellen und verwalten Sie Kundenaufträge, verfolgen Sie Zahlungen und überwachen Sie den Lieferstatus.",
+        "createOrder": "Auftrag erstellen",
+        "searchPlaceholder": "Aufträge suchen...",
+        "columns": "Spalten",
+        "cancel": "Abbrechen",
+        "save": "Speichern"
+      },
+      "customers": {
+        "title": "Kunden",
+        "subtitle": "Verwalten Sie Kundenkonten, Kontaktdaten und Geschäftsinformationen.",
+        "addCustomer": "Kunde hinzufügen",
+        "editCustomer": "Kunde bearbeiten",
+        "searchPlaceholder": "Kunden suchen...",
+        "cancel": "Abbrechen",
+        "create": "Erstellen",
+        "save": "Speichern",
+        "edit": "Bearbeiten",
+        "delete": "Löschen",
+        "country": "Land",
+        "customerName": "Kundenname",
+        "customerNameHint": "Vollständiger Name des Kunden oder des Unternehmens",
+        "phone": "Telefon",
+        "abn": "ABN",
+        "abnHint": "Australische Unternehmensnummer (falls zutreffend)",
+        "address": "Adresse",
+        "suburbCity": "Stadtteil / Stadt",
+        "postCode": "Postleitzahl / ZIP-Code",
+        "state": "Bundesstaat",
+        "selectState": "Bundesstaat auswählen",
+        "unsavedTitle": "Ungespeicherte Änderungen",
+        "unsavedDescription": "Sie haben ungespeicherte Änderungen. Möchten Sie diese wirklich verwerfen?",
+        "keepEditing": "Weiter bearbeiten",
+        "discard": "Verwerfen",
+        "states": {
+          "NSW": "New South Wales",
+          "VIC": "Victoria",
+          "QLD": "Queensland",
+          "WA": "Western Australia",
+          "SA": "South Australia",
+          "TAS": "Tasmania",
+          "ACT": "Australian Capital Territory",
+          "NT": "Northern Territory"
+        }
+      },
+      "customerDetail": {
+        "orderHistory": {
+          "title": "Auftragshistorie",
+          "empty": "Für diesen Kunden wurden noch keine Aufträge erfasst."
+        },
+        "billingAddress": {
+          "title": "Rechnungsadresse"
+        },
+        "deliveryAddress": {
+          "title": "Lieferadresse"
+        },
+        "contacts": {
+          "title": "Kontakte",
+          "addContact": "Kontakt hinzufügen",
+          "editContact": "Kontakt bearbeiten",
+          "searchPlaceholder": "Kontakte suchen...",
+          "empty": "Keine aktiven Kontakte entsprechen diesem Kunden.",
+          "contactName": "Kontaktname",
+          "email": "E-Mail",
+          "phone": "Telefon",
+          "mobile": "Mobil",
+          "avatar": "Avatar",
+          "selectAvatar": "Avatar auswählen",
+          "archive": "Archivieren"
+        },
+        "settings": {
+          "title": "Einstellungen"
+        },
+        "notFound": {
+          "title": "Kunde nicht gefunden",
+          "description": "Der ausgewählte Kunde konnte nicht gefunden werden."
+        }
+      },
+      "settings": {
+        "company": {
+          "title": "Unternehmen"
+        },
+        "quotes": {
+          "title": "Angebote"
+        },
+        "orderConfirmation": {
+          "title": "Auftragsbestätigung"
+        },
+        "invoicing": {
+          "title": "Rechnungsstellung"
+        },
+        "documentTemplates": {
+          "title": "Dokumentenvorlagen"
+        },
+        "pdfSettings": {
+          "title": "PDF-Einstellungen"
+        },
+        "orderImporter": {
+          "title": "Auftragsimport"
+        }
+      },
+      "priceLevelManager": {
+        "title": "Preisstufen-Manager",
+        "introducing": "Neu: Preisstufen-Manager",
+        "description": "Optimieren Sie Ihre Preisstrategie mit vordefinierten Vorlagen.",
+        "startWithTemplate": "Mit Vorlage beginnen",
+        "createMyPriceLevel": "Meine Preisstufe erstellen"
+      },
+      "purchaseOrders": {
+        "title": "Bestellungen"
+      },
+      "suppliers": {
+        "title": "Lieferanten"
+      },
+      "workflow": {
+        "title": "Workflow",
+        "sidebarLabel": "Workflow-Werkzeuge",
+        "canvasLabel": "Workflow-Canvas",
+        "newWorkflowName": "Neuer Workflow-Name",
+        "newWorkflowPlaceholder": "Workflow-Name",
+        "newWorkflow": "Workflow erstellen",
+        "openWorkflow": "Workflow öffnen",
+        "saveWorkflow": "Workflow speichern",
+        "unsaved": "Ungespeicherte Workflow-Änderungen",
+        "unsavedShort": "Ungespeichert",
+        "nodeTools": "Knoten",
+        "canvasTools": "Canvas",
+        "addContainer": "Container hinzufügen",
+        "addItem": "Element hinzufügen",
+        "fitView": "Ansicht anpassen",
+        "duplicateSelected": "Auswahl duplizieren",
+        "deleteSelected": "Auswahl löschen",
+        "clearCanvas": "Canvas leeren",
+        "nodeLabel": "Workflow-Knotenbeschriftung",
+        "saveLabel": "Knotenbeschriftung speichern"
+      },
+      "planners": {
+        "title": "Planer",
+        "subtitle": "Planen Sie Kundenbuchungen, indem Sie Kunden in verfügbare Kalender-Slots ziehen.",
+        "customers": "Kunden",
+        "customerList": "Kunden-Terminplanungsliste",
+        "dragHint": "Ziehen Sie einen Kunden in einen freien Slot.",
+        "searchPlaceholder": "Kunden suchen...",
+        "noCustomers": "Keine Kunden entsprechen Ihrer Suche.",
+        "viewToggle": "Kalenderansicht",
+        "day": "Tag",
+        "week": "Woche",
+        "month": "Monat",
+        "today": "Heute",
+        "previous": "Vorheriger Zeitraum",
+        "next": "Nächster Zeitraum"
+      },
+      "deliveryScheduling": {
+        "title": "Lieferterminplanung"
+      },
+      "integrations": {
+        "title": "Integrationen",
+        "subtitle": "Verbinden Sie die Werkzeuge, die Ihr Team verwendet, um den Arbeitsfluss aufrechtzuerhalten.",
+        "marketplace": "Marktplatz",
+        "connectedIntegrations": "Verbundene Integrationen",
+        "searchPlaceholder": "Integrationen suchen...",
+        "filterByCategory": "Nach Kategorie filtern",
+        "allCategories": "Alle Kategorien",
+        "connected": "Verbunden",
+        "connect": "Verbinden",
+        "disconnect": "Trennen",
+        "moreOptions": "Weitere Optionen für {{name}}",
+        "noConnected": "Es sind noch keine Integrationen verbunden. Besuchen Sie den Marktplatz, um eine zu verbinden.",
+        "noMatches": "Keine Integrationen entsprechen Ihrer Suche und Ihren Kategorie-Filtern."
+      },
+      "team": {
+        "title": "Team",
+        "subtitle": "Verwalten Sie Ihre Teammitglieder und deren Kontodaten.",
+        "addEmployee": "Mitarbeiter hinzufügen",
+        "editEmployee": "Mitarbeiter bearbeiten",
+        "searchPlaceholder": "Teammitglieder suchen...",
+        "name": "Name",
+        "email": "E-Mail",
+        "accountType": "Kontotyp",
+        "empty": "Keine Teammitglieder gefunden."
+      },
+      "timesheets": {
+        "title": "Stundenzettel",
+        "subtitle": "Überprüfen Sie die Stundenzettel der Mitarbeiter nach Datumsbereich, Standort und Mitarbeiter.",
+        "employees": "Mitarbeiter",
+        "employeeList": "Stundenzettel-Mitarbeiterliste",
+        "employeeHint": "Wählen Sie einen Mitarbeiter aus, um die Stundenzettel zu filtern.",
+        "searchEmployees": "Mitarbeiter suchen...",
+        "noEmployees": "Keine Mitarbeiter entsprechen diesen Filtern.",
+        "selectDateRange": "Datumsbereich auswählen",
+        "selectLocation": "Standort auswählen",
+        "allLocations": "Alle Standorte",
+        "unknownEmployee": "Unbekannter Mitarbeiter",
+        "dateLabel": "Stundenzettel-Datum",
+        "timeLabel": "Schichtzeit",
+        "noTimesheets": "Keine Stundenzettel entsprechen diesen Filtern."
+      }
+    },
+    "navigation": {
+      "search": "Suchen...",
+      "label": "Factory-Navigation",
+      "collapse": "Navigationsbereich einklappen",
+      "expand": "Navigationsbereich ausklappen",
+      "sections": {
+        "general": "Allgemein",
+        "products": "Produkte",
+        "sales": "Verkauf",
+        "purchasing": "Einkauf",
+        "productivity": "Produktivität",
+        "team": "Team"
+      },
+      "items": {
+        "overview": "Übersicht",
+        "productCategories": "Produktkategorien",
+        "materials": "Materialien",
+        "salesOrders": "Verkaufsaufträge",
+        "customers": "Kunden",
+        "priceLevelManager": "Preisstufen-Manager",
+        "purchaseOrders": "Bestellungen",
+        "suppliers": "Lieferanten",
+        "workflow": "Workflow",
+        "planners": "Planer",
+        "deliveryScheduling": "Lieferterminplanung",
+        "timesheets": "Stundenzettel",
+        "integrations": "Integrationen",
+        "team": "Team"
+      },
+      "contextual": {
+        "customers": {
+          "back": "Zurück zu Kunden",
+          "orderHistory": "Auftragshistorie",
+          "billingAddress": "Rechnungsadresse",
+          "deliveryAddress": "Lieferadresse",
+          "contacts": "Kontakte",
+          "settings": "Einstellungen"
+        },
+        "products": {
+          "back": "Zurück zu Produktkategorien",
+          "productOptions": "Produktoptionen",
+          "buying": "Einkauf",
+          "pricing": "Preisgestaltung"
+        },
+        "planners": {
+          "back": "Zurück zur Übersicht"
+        },
+        "timesheets": {
+          "back": "Zurück zur Übersicht"
+        },
+        "workflow": {
+          "back": "Zurück zur Übersicht",
+          "actions": "Workflow",
+          "new": "Neuer Workflow",
+          "save": "Workflow speichern",
+          "open": "Workflow öffnen"
+        },
+        "settings": {
+          "back": "Zurück zur Übersicht",
+          "company": "Unternehmen",
+          "quotes": "Angebote",
+          "orderConfirmation": "Auftragsbestätigung",
+          "invoicing": "Rechnungsstellung",
+          "documentTemplates": "Dokumentenvorlagen",
+          "pdfSettings": "PDF-Einstellungen",
+          "orderImporter": "Auftragsimport"
+        }
+      }
+    },
+    "chat": {
+      "title": "Factory KI",
+      "collapse": "KI-Chat-Bereich einklappen",
+      "expand": "KI-Chat-Bereich ausklappen",
+      "loading": "Assistent wird vorbereitet",
+      "inputLabel": "Nachricht an KI-Assistenten",
+      "inputPlaceholder": "Fragen Sie zu dieser Fabrik...",
+      "send": "Nachricht senden",
+      "resize": "Größe des KI-Chat-Bereichs ändern"
+    },
+    "account": {
+      "openMenu": "Kontomenü für {{name}} öffnen",
+      "menu": {
+        "profile": "Profil",
+        "billing": "Abrechnung",
+        "settings": "Einstellungen",
+        "appearance": "Darstellung",
+        "light": "Hell",
+        "dark": "Dunkel",
+        "system": "System",
+        "language": "Sprache",
+        "english": "Englisch",
+        "deutsch": "Deutsch",
+        "chinese": "Chinesisch",
+        "timezone": "Zeitzone",
+        "local": "Lokal",
+        "helpSupport": "Hilfe & Support",
+        "keyboardShortcuts": "Tastaturkürzel",
+        "upgrade": "Upgrade",
+        "logout": "Abmelden"
+      }
+    },
+    "profileDialog": {
+      "title": "Profileinstellungen",
+      "description": "Verwalten Sie Ihr Konto, Sicherheit, Benachrichtigungen und API-Schlüssel.",
+      "tabs": {
+        "label": "Profilabschnitte",
+        "account": "Konto",
+        "security": "Sicherheit",
+        "notifications": "Benachrichtigungen",
+        "apiKeys": "API-Schlüssel"
+      },
+      "avatar": {
+        "title": "Avatar auswählen",
+        "subtitle": "Wählen Sie den Avatar, den Ihre Teammitglieder im Arbeitsbereich sehen.",
+        "save": "Avatar speichern",
+        "selectLabel": "Profil-Avatar auswählen",
+        "optionPrefix": "Avatar-Option"
+      },
+      "account": {
+        "title": "Konto",
+        "subtitle": "Aktualisieren Sie die Profil- und Arbeitsbereichseinstellungen, die von Factory verwendet werden.",
+        "firstName": "Vorname",
+        "lastName": "Nachname",
+        "email": "E-Mail",
+        "location": "Standort",
+        "language": "Sprache",
+        "timezone": "Zeitzone",
+        "appearance": "Darstellung",
+        "keyboardShortcuts": "Tastaturkürzel",
+        "keyboardShortcutsDesc": "Aktivieren Sie Arbeitsbereich-Kürzel wie die Befehlssuche.",
+        "update": "Konto aktualisieren",
+        "delete": "Konto löschen"
+      },
+      "security": {
+        "title": "Sicherheit",
+        "subtitle": "Verwalten Sie Anmeldeschutz, Wiederherstellungszugriff und Anmeldemethoden.",
+        "twoFactorAuth": "Zwei-Faktor-Authentifizierung",
+        "twoFactorAuthDesc": "Fügen Sie einen zweiten Verifizierungsschritt hinzu, um Ihr Konto zu schützen.",
+        "configure": "Konfigurieren",
+        "backupCodes": "Backup-Codes",
+        "backupCodesDesc": "Einmalige Wiederherstellungscodes für den Notfallzugriff generieren.",
+        "generate": "Generieren",
+        "password": "Passwort",
+        "updatePassword": "Passwort aktualisieren",
+        "currentPassword": "Aktuelles Passwort",
+        "newPassword": "Neues Passwort",
+        "repeatPassword": "Neues Passwort wiederholen",
+        "signInMethods": "Anmeldemethoden",
+        "google": "Google",
+        "googleDesc": "Mit Ihrem Google-Konto anmelden.",
+        "apple": "Apple",
+        "appleDesc": "Mit Ihrem Apple-Konto anmelden.",
+        "connect": "Verbinden"
+      },
+      "notifications": {
+        "title": "Benachrichtigungen",
+        "subtitle": "Wählen Sie, was Sie unterbrechen darf und was warten kann.",
+        "email": "E-Mail-Benachrichtigungen",
+        "emailDesc": "Wichtige Factory-Arbeitsbereichs-Updates per E-Mail erhalten.",
+        "securityAlerts": "Sicherheitswarnungen",
+        "securityAlertsDesc": "Über Anmelde- und Berechtigungsänderungen benachrichtigt werden.",
+        "workflowChanges": "Workflow-Änderungen",
+        "workflowChangesDesc": "Mich benachrichtigen, wenn Produktionsworkflows aktualisiert werden.",
+        "weeklySummaries": "Wochenübersichten",
+        "weeklySummariesDesc": "Eine kompakte Zusammenfassung der Aktivitäten und offenen Arbeiten senden.",
+        "productUpdates": "Produktupdates",
+        "productUpdatesDesc": "Versionshinweise und Ankündigungen neuer Funktionen anzeigen."
+      },
+      "apiKeys": {
+        "title": "API-Schlüssel",
+        "subtitle": "Testschlüssel für lokale Integrationen und Automatisierungstests generieren.",
+        "activeKeys": "Aktive Schlüssel",
+        "activeKeysDesc": "Generierte Schlüssel werden nur einmal angezeigt und dann ausgeblendet.",
+        "generateKey": "Schlüssel generieren",
+        "newKeyTitle": "Neuer API-Schlüssel",
+        "newKeyDesc": "Benennen Sie diesen Schlüssel vor der Generierung.",
+        "keyName": "Schlüsselname",
+        "generate": "Generieren",
+        "copyKey": "Diesen Schlüssel jetzt kopieren",
+        "deleteKey": "Schlüssel {{name}} löschen"
+      },
+      "actions": {
+        "profileSaved": "Profil gespeichert",
+        "avatarSaved": "Avatar gespeichert",
+        "passwordSaved": "Passwort gespeichert",
+        "apiKeyCopied": "API-Schlüssel kopiert"
+      }
+    },
+    "billingDialog": {
+      "title": "Abrechnung",
+      "description": "Überprüfen Sie den Arbeitsbereichs-Tarif, die Abrechnungsdetails und den Rechnungsverlauf.",
+      "summary": "Verwalten Sie die Abrechnung dieses Arbeitsbereichs.",
+      "close": "Abrechnungsdialog schließen",
+      "plan": {
+        "current": "Aktueller Tarif",
+        "active": "Aktiv",
+        "interval": "/ {{interval}}",
+        "seats": "{{count}} Plätze",
+        "renews": "Verlängert am {{date}}",
+        "upgrade": "Tarif upgraden"
+      },
+      "payment": {
+        "title": "Zahlungsmethode",
+        "edit": "Zahlungsmethode bearbeiten",
+        "cardLabel": "{{brand}} endet auf {{lastFour}}, läuft ab {{expiry}}"
+      },
+      "email": {
+        "title": "Abrechnungs-E-Mail",
+        "edit": "Abrechnungs-E-Mail bearbeiten"
+      },
+      "address": {
+        "title": "Rechnungsadresse",
+        "edit": "Rechnungsadresse bearbeiten"
+      },
+      "invoices": {
+        "title": "Rechnungen",
+        "description": "Ihr aktueller Arbeitsbereichs-Abrechnungsverlauf.",
+        "number": "Rechnung",
+        "date": "Datum",
+        "status": "Status",
+        "amount": "Betrag",
+        "statuses": {
+          "paid": "Bezahlt"
+        }
+      }
+    }
+  },
+  "operating_principles": {
+    "title": "Handlungsgrundsätze",
+    "headline": "Großartige Software fühlt sich unvermeidlich an.",
+    "items": [
+      {
+        "title": "Klarheit vor Klugheit",
+        "body": "Eine Benutzeroberfläche sollte sich selbst erklären. Wenn sie ein Tutorial benötigt, ist sie fehlerhaft. Ich konzentriere mich darauf, kognitive Last zu reduzieren, damit Benutzer ihre eigentliche Arbeit erledigen können."
+      },
+      {
+        "title": "Systemdenken",
+        "body": "Ein Button ist nie nur ein Button. Er ist Teil eines Zustandsautomaten, einer API-Grenze und einer Designsprache. Ich entwickle vollständige vertikale Lösungsschnitte."
+      },
+      {
+        "title": "Handwerkliche Details",
+        "body": "Der Unterschied zwischen gut und großartig sind hundert kleine Details. Mikrointeraktionen, perfekte Typografie und kein Layout-Shift."
+      },
+      {
+        "title": "Ruhige Umsetzung",
+        "body": "Keine unnötigen Animationen. Kein Scroll-Jacking. Nur schnelle, zugängliche und widerstandsfähige Anwendungen, die die Plattform des Benutzers respektieren."
+      }
+    ]
+  }
+}

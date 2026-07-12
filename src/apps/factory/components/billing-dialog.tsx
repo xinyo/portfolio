@@ -1,4 +1,5 @@
 import { ArrowUpRight, Pencil } from "lucide-react";
+import { useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 
 import {
@@ -49,6 +50,7 @@ function BillingEditButton({ label }: BillingEditButtonProps) {
 
 export function BillingDialog({ open, onOpenChange }: BillingDialogProps) {
   const { t } = useTranslation();
+  const cardAnimationFrame = useRef<number | null>(null);
   const { plan, paymentMethod, billingEmail, billingAddress, invoices } =
     factoryBilling;
   const planPrice = formatFactoryBillingAmount(
@@ -56,6 +58,56 @@ export function BillingDialog({ open, onOpenChange }: BillingDialogProps) {
     plan.currency,
   );
   const expiry = `${String(paymentMethod.expiryMonth).padStart(2, "0")}/${String(paymentMethod.expiryYear).slice(-2)}`;
+
+  useEffect(
+    () => () => {
+      if (cardAnimationFrame.current !== null) {
+        cancelAnimationFrame(cardAnimationFrame.current);
+      }
+    },
+    [],
+  );
+
+  function updateCardTilt(event: React.PointerEvent<HTMLDivElement>) {
+    if (event.pointerType === "touch") return;
+
+    const card = event.currentTarget;
+    const { clientX, clientY } = event;
+
+    if (cardAnimationFrame.current !== null) {
+      cancelAnimationFrame(cardAnimationFrame.current);
+    }
+
+    cardAnimationFrame.current = requestAnimationFrame(() => {
+      const bounds = card.getBoundingClientRect();
+      const x = Math.min(Math.max((clientX - bounds.left) / bounds.width, 0), 1);
+      const y = Math.min(Math.max((clientY - bounds.top) / bounds.height, 0), 1);
+
+      card.style.setProperty("--card-rotate-x", `${(0.5 - y) * 10}deg`);
+      card.style.setProperty("--card-rotate-y", `${(x - 0.5) * 10}deg`);
+      card.style.setProperty("--card-light-x", `${x * 100}%`);
+      card.style.setProperty("--card-light-y", `${y * 100}%`);
+      card.dataset.tilted = "true";
+      cardAnimationFrame.current = null;
+    });
+  }
+
+  function resetCardTilt(event: React.PointerEvent<HTMLDivElement>) {
+    const card = event.currentTarget;
+
+    if (cardAnimationFrame.current !== null) {
+      cancelAnimationFrame(cardAnimationFrame.current);
+    }
+
+    cardAnimationFrame.current = requestAnimationFrame(() => {
+      card.style.setProperty("--card-rotate-x", "0deg");
+      card.style.setProperty("--card-rotate-y", "0deg");
+      card.style.setProperty("--card-light-x", "50%");
+      card.style.setProperty("--card-light-y", "50%");
+      delete card.dataset.tilted;
+      cardAnimationFrame.current = null;
+    });
+  }
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
@@ -123,6 +175,9 @@ export function BillingDialog({ open, onOpenChange }: BillingDialogProps) {
             <div
               className="factory-billing-card"
               role="img"
+              onPointerMove={updateCardTilt}
+              onPointerLeave={resetCardTilt}
+              onPointerCancel={resetCardTilt}
               aria-label={t("factory.billingDialog.payment.cardLabel", {
                 brand: paymentMethod.brand,
                 lastFour: paymentMethod.lastFour,

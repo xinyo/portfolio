@@ -4,6 +4,7 @@ import {
   Building2,
   CalendarDays,
   Clock,
+  CircleDollarSign,
   Contact,
   CreditCard,
   DollarSign,
@@ -15,10 +16,12 @@ import {
   History,
   House,
   MapPin,
+  ListChecks,
   Package,
   ReceiptText,
   Settings,
   ShoppingBag,
+  ShoppingCart,
   Truck,
   Undo2,
   Users,
@@ -159,6 +162,49 @@ export function getCustomerIdFromPathname(pathname: string) {
   const match = pathname.match(/^\/apps\/factory\/customers\/([^/]+)/);
 
   return match?.[1] ?? null;
+}
+
+export function getProductIdFromPathname(pathname: string) {
+  const match = pathname.match(/^\/apps\/factory\/product\/([^/]+)/);
+
+  return match?.[1] ?? null;
+}
+
+export function getProductNavigationSections(productId: string): NavSection[] {
+  const basePath = `/apps/factory/product/${productId}`;
+
+  return [
+    {
+      items: [
+        {
+          labelKey: "factory.navigation.contextual.products.back",
+          to: "/apps/factory/product-categories",
+          icon: Undo2,
+          end: true,
+          variant: "back",
+        },
+      ],
+    },
+    {
+      items: [
+        {
+          labelKey: "factory.navigation.contextual.products.productOptions",
+          to: `${basePath}/product-options`,
+          icon: ListChecks,
+        },
+        {
+          labelKey: "factory.navigation.contextual.products.buying",
+          to: `${basePath}/buying`,
+          icon: ShoppingCart,
+        },
+        {
+          labelKey: "factory.navigation.contextual.products.pricing",
+          to: `${basePath}/pricing`,
+          icon: CircleDollarSign,
+        },
+      ],
+    },
+  ];
 }
 
 export function getCustomerNavigationSections(
@@ -319,6 +365,14 @@ export function getFactoryLeftPanelModel(
   pathname: string,
 ): FactoryLeftPanelModel {
   const customerId = getCustomerIdFromPathname(pathname);
+  const productId = getProductIdFromPathname(pathname);
+
+  if (productId) {
+    return {
+      sections: getProductNavigationSections(productId),
+      showSearch: true,
+    };
+  }
 
   if (customerId) {
     return {

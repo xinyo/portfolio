@@ -49,10 +49,78 @@
         "filterByLabel": "Filter by label",
         "allLabels": "All labels",
         "filterByCategory": "All categories",
+        "categoryFilterLabel": "Filter products and kits by category",
         "cancel": "Cancel",
         "save": "Save",
+        "moreOptions": "More product options",
+        "productName": "Product name",
+        "productCode": "Product code",
+        "category": "Category",
+        "kitName": "Product kit name",
+        "kitProducts": "Products",
+        "categoryName": "Category name",
+        "required": "This field is required.",
+        "selectProduct": "Select at least one product.",
+        "productCreated": "Product created.",
+        "productKitCreated": "Product kit created.",
+        "categoryCreated": "Product category created.",
+        "kitBadge": "Kit",
+        "productCount_one": "{{count}} product",
+        "productCount_other": "{{count}} products",
+        "empty": "No products or kits match these filters.",
+        "uncategorized": "Uncategorized",
         "duplicate": "Duplicate",
         "delete": "Delete"
+      },
+      "productDetail": {
+        "save": "Save",
+        "saved": "Product changes saved.",
+        "selectOne": "Select an option",
+        "selectMany": "Select one or more",
+        "search": "Search options...",
+        "noResults": "No options found.",
+        "moreSelected": "+ {{count}} more",
+        "productOptions": {
+          "title": "Product Options",
+          "buyItem": "I buy this item",
+          "sellItem": "I sell this item",
+          "trackStock": "I track stock for this item",
+          "trackCostsAndMarkups": "I track costs and markups for this item",
+          "taxFree": "This item is bought and sold tax-free",
+          "quantityUnit": "Bought and sold in",
+          "category": "Product category",
+          "materials": "Available materials",
+          "quantityUnits": {
+            "basicQuantities": "Basic quantities",
+            "linealMetres": "Lineal metres",
+            "customFormula": "Custom formula",
+            "squareMetres": "Square metres"
+          }
+        },
+        "buying": {
+          "title": "Buying",
+          "suppliers": "Suppliers",
+          "preferredSupplier": "Preferred supplier"
+        },
+        "pricing": {
+          "title": "Pricing",
+          "viewLabel": "Pricing table",
+          "buying": "Buying",
+          "selling": "Selling",
+          "tracking": "Tracking",
+          "noSupplierPrices": "No saved suppliers have a price for this product.",
+          "cost": "Cost",
+          "markup": "Markup",
+          "price": "Price",
+          "onHand": "On Hand",
+          "promised": "Promised",
+          "available": "Available",
+          "onTheWay": "On The Way"
+        },
+        "notFound": {
+          "title": "Product not found",
+          "description": "The selected product could not be found."
+        }
       },
       "materials": {
         "title": "Materials",
@@ -61,6 +129,12 @@
         "searchPlaceholder": "Search materials...",
         "filterByLabel": "Filter by label",
         "allLabels": "All labels",
+        "materialName": "Material name",
+        "materialCode": "Material code",
+        "imageUrl": "Image URL",
+        "required": "This field is required.",
+        "created": "Material created.",
+        "empty": "No materials match your search.",
         "cancel": "Cancel",
         "save": "Save",
         "duplicate": "Duplicate",
@@ -171,7 +245,7 @@
       "priceLevelManager": {
         "title": "Price Level Manager",
         "introducing": "Introducing: Price Level Manager",
-        "description": "Create and manage custom pricing tiers for your products and services. Streamline your pricing strategy with predefined templates.",
+        "description": "Streamline your pricing strategy with predefined templates.",
         "startWithTemplate": "Start with template",
         "createMyPriceLevel": "Create my price level"
       },
@@ -303,6 +377,12 @@
           "contacts": "Contacts",
           "settings": "Settings"
         },
+        "products": {
+          "back": "Back to Product Categories",
+          "productOptions": "Product Options",
+          "buying": "Buying",
+          "pricing": "Pricing"
+        },
         "planners": {
           "back": "Back to Overview"
         },
@@ -349,6 +429,9 @@
         "dark": "Dark",
         "system": "System",
         "language": "Language",
+        "english": "English",
+        "deutsch": "Deutsch",
+        "chinese": "中文",
         "timezone": "Timezone",
         "local": "Local",
         "helpSupport": "Help & Support",

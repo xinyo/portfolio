@@ -183,60 +183,70 @@
       "id": "prod-1",
       "name": "Steel Bracket 304",
       "code": "BRK-304-SS",
+      "categoryId": "cat-1",
       "image": "https://picsum.photos/seed/steel-bracket/80/80"
     },
     {
       "id": "prod-2",
       "name": "Aluminum Extrusion 40x40",
       "code": "EXT-4040-AL",
+      "categoryId": "cat-1",
       "image": "https://picsum.photos/seed/aluminum-ext/80/80"
     },
     {
       "id": "prod-3",
       "name": "CNC Milled Base Plate",
       "code": "CNC-BP-01",
+      "categoryId": "cat-1",
       "image": "https://picsum.photos/seed/cnc-plate/80/80"
     },
     {
       "id": "prod-4",
       "name": "Acrylic Lens Cover",
       "code": "LNS-ACR-55",
+      "categoryId": "cat-5",
       "image": "https://picsum.photos/seed/acrylic-lens/80/80"
     },
     {
       "id": "prod-5",
       "name": "Nylon Spacer M6",
       "code": "SPC-NYL-M6",
+      "categoryId": "cat-2",
       "image": "https://picsum.photos/seed/nylon-spacer/80/80"
     },
     {
       "id": "prod-6",
       "name": "Stainless Steel Bolt M8x30",
       "code": "BLT-SS-M830",
+      "categoryId": "cat-2",
       "image": "https://picsum.photos/seed/ss-bolt/80/80"
     },
     {
       "id": "prod-7",
       "name": "Rubber Gasket DN50",
       "code": "GSK-RBR-50",
+      "categoryId": "cat-3",
       "image": "https://picsum.photos/seed/rubber-gasket/80/80"
     },
     {
       "id": "prod-8",
       "name": "Copper Connector 90°",
       "code": "CNN-CU-90",
+      "categoryId": "cat-2",
       "image": "https://picsum.photos/seed/copper-conn/80/80"
     },
     {
       "id": "prod-9",
       "name": "Linear Rail 600mm",
       "code": "RL-LNR-600",
+      "categoryId": "cat-4",
       "image": "https://picsum.photos/seed/linear-rail/80/80"
     },
     {
       "id": "prod-10",
       "name": "Polycarbonate Sheet 3mm",
       "code": "SHT-PC-3",
+      "categoryId": "cat-5",
       "image": "https://picsum.photos/seed/pc-sheet/80/80"
     }
   ],
@@ -266,26 +276,31 @@
     {
       "id": "kit-1",
       "name": "Frame Assembly Kit A",
+      "categoryId": "cat-1",
       "productIds": ["prod-1", "prod-2", "prod-5"]
     },
     {
       "id": "kit-2",
       "name": "Mounting Hardware Set",
+      "categoryId": "cat-2",
       "productIds": ["prod-6", "prod-5", "prod-8"]
     },
     {
       "id": "kit-3",
       "name": "Enclosure Pack",
+      "categoryId": "cat-5",
       "productIds": ["prod-3", "prod-4", "prod-10"]
     },
     {
       "id": "kit-4",
       "name": "Rail System Bundle",
+      "categoryId": "cat-4",
       "productIds": ["prod-9", "prod-2", "prod-7"]
     },
     {
       "id": "kit-5",
       "name": "Gasket Service Kit",
+      "categoryId": "cat-3",
       "productIds": ["prod-7", "prod-5"]
     }
   ],
@@ -2895,5 +2910,269 @@
     { "id": "int-60" },
     { "id": "int-97" },
     { "id": "int-new-24" }
+  ],
+  "suppliers": [
+    {
+      "id": "supp-1",
+      "name": "MetalCore Supplies",
+      "country": "Australia",
+      "abn": "88 111 222 333",
+      "address": "42 Steelworks Ave",
+      "city": "Wollongong",
+      "postCode": "2500",
+      "state": "NSW",
+      "image": "https://picsum.photos/seed/metalcore-supplier/80/80",
+      "contacts": [
+        {
+          "id": "supp-contact-1-1",
+          "contactName": "James O'Brien",
+          "email": "james.obrien@metalcore.example",
+          "phone": "+61 2 4222 0101",
+          "mobile": "+61 412 555 101",
+          "avatar": "/src/assets/avatar/agent_avatar_16.svg",
+          "archived": false
+        },
+        {
+          "id": "supp-contact-1-2",
+          "contactName": "Emma Walsh",
+          "email": "emma.walsh@metalcore.example",
+          "phone": "+61 2 4222 0102",
+          "mobile": "+61 413 555 102",
+          "avatar": "/src/assets/avatar/agent_avatar_17.svg",
+          "archived": false
+        }
+      ],
+      "purchaseHistory": [
+        {
+          "id": "ph-1-1",
+          "createdDate": "2026-02-10",
+          "createdBy": "emp-1",
+          "totalCost": 18450.0,
+          "status": "Received"
+        },
+        {
+          "id": "ph-1-2",
+          "createdDate": "2026-05-22",
+          "createdBy": "emp-4",
+          "totalCost": 9200.0,
+          "status": "billed"
+        }
+      ],
+      "suppliedProducts": [
+        { "productId": "prod-1", "supplyPrice": 4.85 },
+        { "productId": "prod-6", "supplyPrice": 0.95 }
+      ]
+    },
+    {
+      "id": "supp-2",
+      "name": "Precision Plastics Co.",
+      "country": "Australia",
+      "abn": "44 555 666 777",
+      "address": "88 Polymer Rd",
+      "city": "Adelaide",
+      "postCode": "5000",
+      "state": "SA",
+      "image": "https://picsum.photos/seed/precision-plastics/80/80",
+      "contacts": [
+        {
+          "id": "supp-contact-2-1",
+          "contactName": "Sophie Chen",
+          "email": "sophie.chen@precisionplastics.example",
+          "phone": "+61 8 8333 0201",
+          "mobile": "+61 414 555 201",
+          "avatar": "/src/assets/avatar/agent_avatar_18.svg",
+          "archived": false
+        },
+        {
+          "id": "supp-contact-2-2",
+          "contactName": "Liam Mitchell",
+          "email": "liam.mitchell@precisionplastics.example",
+          "phone": "+61 8 8333 0202",
+          "mobile": "+61 415 555 202",
+          "avatar": "/src/assets/avatar/agent_avatar_19.svg",
+          "archived": false
+        }
+      ],
+      "purchaseHistory": [
+        {
+          "id": "ph-2-1",
+          "createdDate": "2026-01-18",
+          "createdBy": "emp-2",
+          "totalCost": 6750.0,
+          "status": "Received"
+        },
+        {
+          "id": "ph-2-2",
+          "createdDate": "2026-06-05",
+          "createdBy": "emp-5",
+          "totalCost": 12300.0,
+          "status": "submitted"
+        }
+      ],
+      "suppliedProducts": [
+        { "productId": "prod-4", "supplyPrice": 3.40 },
+        { "productId": "prod-10", "supplyPrice": 12.15 }
+      ]
+    },
+    {
+      "id": "supp-3",
+      "name": "Allied Fasteners Group",
+      "country": "Australia",
+      "abn": "11 222 333 444",
+      "address": "7 Bolt Boulevard",
+      "city": "Brisbane",
+      "postCode": "4000",
+      "state": "QLD",
+      "image": "https://picsum.photos/seed/allied-fasteners/80/80",
+      "contacts": [
+        {
+          "id": "supp-contact-3-1",
+          "contactName": "Nathan Cooper",
+          "email": "nathan.cooper@alliedfasteners.example",
+          "phone": "+61 7 3555 0301",
+          "mobile": "+61 416 555 301",
+          "avatar": "/src/assets/avatar/agent_avatar_20.svg",
+          "archived": false
+        },
+        {
+          "id": "supp-contact-3-2",
+          "contactName": "Isabel Torres",
+          "email": "isabel.torres@alliedfasteners.example",
+          "phone": "+61 7 3555 0302",
+          "mobile": "+61 417 555 302",
+          "avatar": "/src/assets/avatar/agent_avatar_21.svg",
+          "archived": false
+        }
+      ],
+      "purchaseHistory": [
+        {
+          "id": "ph-3-1",
+          "createdDate": "2026-03-12",
+          "createdBy": "emp-1",
+          "totalCost": 5400.0,
+          "status": "Received"
+        },
+        {
+          "id": "ph-3-2",
+          "createdDate": "2026-04-28",
+          "createdBy": "emp-7",
+          "totalCost": 2800.0,
+          "status": "billed"
+        },
+        {
+          "id": "ph-3-3",
+          "createdDate": "2026-07-01",
+          "createdBy": "emp-4",
+          "totalCost": 8900.0,
+          "status": "draft"
+        }
+      ],
+      "suppliedProducts": [
+        { "productId": "prod-5", "supplyPrice": 0.55 },
+        { "productId": "prod-6", "supplyPrice": 0.85 }
+      ]
+    },
+    {
+      "id": "supp-4",
+      "name": "Advanced Materials Ltd.",
+      "country": "Australia",
+      "abn": "66 777 888 999",
+      "address": "25 Alloy Lane",
+      "city": "Sydney",
+      "postCode": "2000",
+      "state": "NSW",
+      "image": "https://picsum.photos/seed/advanced-materials/80/80",
+      "contacts": [
+        {
+          "id": "supp-contact-4-1",
+          "contactName": "Olivia Park",
+          "email": "olivia.park@advancedmaterials.example",
+          "phone": "+61 2 9444 0401",
+          "mobile": "+61 418 555 401",
+          "avatar": "/src/assets/avatar/agent_avatar_22.svg",
+          "archived": false
+        },
+        {
+          "id": "supp-contact-4-2",
+          "contactName": "Jack Bennett",
+          "email": "jack.bennett@advancedmaterials.example",
+          "phone": "+61 2 9444 0402",
+          "mobile": "+61 419 555 402",
+          "avatar": "/src/assets/avatar/agent_avatar_23.svg",
+          "archived": false
+        }
+      ],
+      "purchaseHistory": [
+        {
+          "id": "ph-4-1",
+          "createdDate": "2026-02-25",
+          "createdBy": "emp-2",
+          "totalCost": 22100.0,
+          "status": "archived"
+        },
+        {
+          "id": "ph-4-2",
+          "createdDate": "2026-06-18",
+          "createdBy": "emp-8",
+          "totalCost": 15750.0,
+          "status": "submitted"
+        }
+      ],
+      "suppliedProducts": [
+        { "productId": "prod-2", "supplyPrice": 18.50 },
+        { "productId": "prod-9", "supplyPrice": 42.00 }
+      ]
+    },
+    {
+      "id": "supp-5",
+      "name": "SealTech Industries",
+      "country": "Australia",
+      "abn": "33 444 555 666",
+      "address": "16 Gasket Way",
+      "city": "Newcastle",
+      "postCode": "2300",
+      "state": "NSW",
+      "image": "https://picsum.photos/seed/sealtech-industries/80/80",
+      "contacts": [
+        {
+          "id": "supp-contact-5-1",
+          "contactName": "Mia Fletcher",
+          "email": "mia.fletcher@sealtech.example",
+          "phone": "+61 2 4999 0501",
+          "mobile": "+61 420 555 501",
+          "avatar": "/src/assets/avatar/agent_avatar_24.svg",
+          "archived": false
+        },
+        {
+          "id": "supp-contact-5-2",
+          "contactName": "Leo Gardner",
+          "email": "leo.gardner@sealtech.example",
+          "phone": "+61 2 4999 0502",
+          "mobile": "+61 421 555 502",
+          "avatar": "/src/assets/avatar/agent_avatar_01.svg",
+          "archived": false
+        }
+      ],
+      "purchaseHistory": [
+        {
+          "id": "ph-5-1",
+          "createdDate": "2026-01-30",
+          "createdBy": "emp-1",
+          "totalCost": 3800.0,
+          "status": "Received"
+        },
+        {
+          "id": "ph-5-2",
+          "createdDate": "2026-05-14",
+          "createdBy": "emp-3",
+          "totalCost": 11050.0,
+          "status": "billed"
+        }
+      ],
+      "suppliedProducts": [
+        { "productId": "prod-7", "supplyPrice": 2.60 },
+        { "productId": "prod-8", "supplyPrice": 1.75 }
+      ]
+    }
   ]
 }

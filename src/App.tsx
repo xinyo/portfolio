@@ -5,7 +5,7 @@ import { useTheme } from "@/hooks/use-theme";
 import { About } from "@/views/about";
 import { Explore } from "@/views/explore";
 import { ArrowRight, ChevronRight } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { BrowserRouter, Link, Route, Routes } from "react-router";
 
@@ -26,6 +26,57 @@ function HomePage() {
   // }) as PrincipleItem[];
   const { isDark, setIsDark } = useTheme();
   const [hovered, setHovered] = useState(false);
+  const titleAnimationFrame = useRef<number | null>(null);
+
+  useEffect(
+    () => () => {
+      if (titleAnimationFrame.current !== null) {
+        cancelAnimationFrame(titleAnimationFrame.current);
+      }
+    },
+    [],
+  );
+
+  function updateTitleTilt(event: React.PointerEvent<HTMLHeadingElement>) {
+    if (event.pointerType === "touch") return;
+
+    const title = event.currentTarget;
+    const { clientX, clientY } = event;
+
+    if (titleAnimationFrame.current !== null) {
+      cancelAnimationFrame(titleAnimationFrame.current);
+    }
+
+    titleAnimationFrame.current = requestAnimationFrame(() => {
+      const bounds = title.getBoundingClientRect();
+      const x = Math.min(Math.max((clientX - bounds.left) / bounds.width, 0), 1);
+      const y = Math.min(Math.max((clientY - bounds.top) / bounds.height, 0), 1);
+
+      title.style.setProperty("--title-rotate-x", `${(0.5 - y) * 8}deg`);
+      title.style.setProperty("--title-rotate-y", `${(x - 0.5) * 8}deg`);
+      title.style.setProperty("--title-light-x", `${x * 100}%`);
+      title.style.setProperty("--title-light-y", `${y * 100}%`);
+      title.dataset.tilted = "true";
+      titleAnimationFrame.current = null;
+    });
+  }
+
+  function resetTitleTilt(event: React.PointerEvent<HTMLHeadingElement>) {
+    const title = event.currentTarget;
+
+    if (titleAnimationFrame.current !== null) {
+      cancelAnimationFrame(titleAnimationFrame.current);
+    }
+
+    titleAnimationFrame.current = requestAnimationFrame(() => {
+      title.style.setProperty("--title-rotate-x", "0deg");
+      title.style.setProperty("--title-rotate-y", "0deg");
+      title.style.setProperty("--title-light-x", "50%");
+      title.style.setProperty("--title-light-y", "50%");
+      delete title.dataset.tilted;
+      titleAnimationFrame.current = null;
+    });
+  }
 
   return (
     <>
@@ -41,7 +92,14 @@ function HomePage() {
             />
           </div>
           <div className="hero-title">
-            <h1>{t("get_started")}</h1>
+            <h1
+              className="hero-title-tilt"
+              onPointerMove={updateTitleTilt}
+              onPointerLeave={resetTitleTilt}
+              onPointerCancel={resetTitleTilt}
+            >
+              {t("get_started")}
+            </h1>
             {/* <p>
               <Trans i18nKey="intro"></Trans>
             </p> */}

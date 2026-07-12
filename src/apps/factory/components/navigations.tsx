@@ -42,6 +42,7 @@ import { FactoryAvatar } from "@/apps/factory/components/Avatar";
 import mockData from "@/apps/factory/mock.json";
 import {
   factoryLanguageOptions,
+  factoryLanguageLabelKeys,
   factoryTimezoneOptions,
   useFactoryStore,
   type FactoryLanguage,
@@ -177,7 +178,9 @@ export function FactoryNavigations() {
               <DropdownMenuSubTrigger>
                 <Languages />
                 {t("factory.account.menu.language")}
-                <DropdownMenuShortcut>{language}</DropdownMenuShortcut>
+                <DropdownMenuShortcut>
+                  {t(factoryLanguageLabelKeys[language])}
+                </DropdownMenuShortcut>
               </DropdownMenuSubTrigger>
               <DropdownMenuSubContent>
                 <DropdownMenuRadioGroup
@@ -191,7 +194,7 @@ export function FactoryNavigations() {
                       value={languageOption}
                       key={languageOption}
                     >
-                      {languageOption}
+                      {t(factoryLanguageLabelKeys[languageOption])}
                     </DropdownMenuRadioItem>
                   ))}
                 </DropdownMenuRadioGroup>
