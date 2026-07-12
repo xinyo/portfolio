@@ -4,6 +4,7 @@ import {
   Menu,
   PanelLeftClose,
   PanelRightClose,
+  X,
 } from "lucide-react";
 import {
   useEffect,
@@ -322,6 +323,14 @@ function FactoryDashboard() {
           <div className="factory-chat-panel-header">
             <BotMessageSquare aria-hidden="true" />
             <span>{t("factory.chat.title")}</span>
+            <button
+              type="button"
+              className="factory-chat-close"
+              aria-label={t("factory.chat.collapse")}
+              onClick={() => setIsChatPanelOpen(false)}
+            >
+              <X aria-hidden="true" />
+            </button>
           </div>
           <AiChat isOpen={isChatPanelOpen} />
         </CollapsibleContent>
