@@ -160,7 +160,7 @@ export type FactorySupplier = {
   image: string;
   contacts: FactorySupplierContact[];
   purchaseHistory: FactorySupplierPurchaseHistory[];
-  suppliedProducts: string[];
+  suppliedProducts: { productId: string; supplyPrice: number }[];
 };
 
 export type FactoryEmployee = {
