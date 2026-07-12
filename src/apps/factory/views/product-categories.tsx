@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router";
 import { ChevronDown, EllipsisVertical, Plus, Search } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -151,17 +152,26 @@ function ProductItem({
   t: (key: string) => string;
 }) {
   return (
-    <Item variant="outline" size="default" className="u-press">
-      <ItemMedia variant="image">
-        <img src={product.image} alt={product.name} />
-      </ItemMedia>
-      <ItemContent>
-        <ItemTitle>{product.name}</ItemTitle>
-        <ItemDescription>{product.code}</ItemDescription>
-      </ItemContent>
+    <Item variant="outline" size="default" className="factory-product-item">
+      <Link
+        className="factory-product-item-link u-press"
+        to={`/apps/factory/product/${product.id}/product-options`}
+      >
+        <ItemMedia variant="image">
+          <img src={product.image} alt={product.name} />
+        </ItemMedia>
+        <ItemContent>
+          <ItemTitle>{product.name}</ItemTitle>
+          <ItemDescription>{product.code}</ItemDescription>
+        </ItemContent>
+      </Link>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button variant="ghost" size="icon-sm" aria-label="More options">
+          <Button
+            variant="ghost"
+            size="icon-sm"
+            aria-label={t("factory.views.productCategories.moreOptions")}
+          >
             <EllipsisVertical className="size-4" />
           </Button>
         </DropdownMenuTrigger>

@@ -67,6 +67,19 @@ export type FactoryProduct = {
   image: string;
 };
 
+export type FactoryProductConfiguration = {
+  buyItem: boolean;
+  sellItem: boolean;
+  trackStock: boolean;
+  trackCostsAndMarkups: boolean;
+  taxFree: boolean;
+  quantityUnit: string | null;
+  categoryId: string | null;
+  materialIds: string[];
+  supplierIds: string[];
+  preferredSupplierId: string | null;
+};
+
 export type FactoryCategory = {
   id: string;
   name: string;
@@ -291,6 +304,8 @@ export type FactorySalesOrder = {
 };
 
 export const factoryProducts: FactoryProduct[] = mockData.products;
+export const factoryProductsById: Record<string, FactoryProduct> =
+  Object.fromEntries(factoryProducts.map((product) => [product.id, product]));
 export const factoryCategories: FactoryCategory[] = mockData.categories;
 export const factoryProductKits: FactoryProductKit[] = mockData.productKits;
 export const factoryMaterials: FactoryMaterial[] = mockData.materials;
@@ -358,6 +373,10 @@ export const factorySuppliers: FactorySupplier[] = mockData.suppliers.map(
   (s) => ({
     ...s,
     image: resolveImage(s.image),
+    purchaseHistory: s.purchaseHistory.map((purchase) => ({
+      ...purchase,
+      status: purchase.status as FactorySupplierPurchaseHistory["status"],
+    })),
     contacts: s.contacts.map((contact) => ({
       ...contact,
       avatar: resolveImage(contact.avatar),
@@ -785,6 +804,7 @@ type FactoryStore = {
   selectedWorkflowElementId: string | null;
   integrationsById: Record<string, FactoryIntegration>;
   connectedIntegrationsById: Record<string, FactoryIntegration>;
+  productConfigurations: Record<string, FactoryProductConfiguration>;
   setLanguage: (language: FactoryLanguage) => void;
   setTimezone: (timezone: FactoryTimezone) => void;
   setIsNavPanelOpen: (isOpen: boolean) => void;
@@ -834,7 +854,26 @@ type FactoryStore = {
   setSelectedWorkflowElementId: (id: string | null) => void;
   addConnectedIntegration: (id: string) => void;
   removeConnectedIntegration: (id: string) => void;
+  saveProductConfiguration: (
+    productId: string,
+    configuration: FactoryProductConfiguration,
+  ) => void;
 };
+
+export function createEmptyProductConfiguration(): FactoryProductConfiguration {
+  return {
+    buyItem: false,
+    sellItem: false,
+    trackStock: false,
+    trackCostsAndMarkups: false,
+    taxFree: false,
+    quantityUnit: null,
+    categoryId: null,
+    materialIds: [],
+    supplierIds: [],
+    preferredSupplierId: null,
+  };
+}
 
 function getInitialLanguage(): FactoryLanguage {
   return factoryLanguageOptions.includes(
@@ -888,6 +927,7 @@ export const useFactoryStore = create<FactoryStore>((set) => {
     selectedWorkflowElementId: null,
     integrationsById: { ...factoryIntegrationsById },
     connectedIntegrationsById: { ...factoryConnectedIntegrationsById },
+    productConfigurations: {},
     setLanguage: (language) => set({ language }),
     setTimezone: (timezone) => set({ timezone }),
     setIsNavPanelOpen: (isNavPanelOpen) => set({ isNavPanelOpen }),
@@ -1285,5 +1325,12 @@ export const useFactoryStore = create<FactoryStore>((set) => {
           state.connectedIntegrationsById;
         return { connectedIntegrationsById };
       }),
+    saveProductConfiguration: (productId, configuration) =>
+      set((state) => ({
+        productConfigurations: {
+          ...state.productConfigurations,
+          [productId]: configuration,
+        },
+      })),
   };
 });
