@@ -312,15 +312,14 @@ export const factoryProductKits: FactoryProductKit[] = mockData.productKits;
 export const factoryMaterials: FactoryMaterial[] = mockData.materials;
 export const factoryIntegrationCategories: FactoryIntegrationCategory[] =
   mockData.integrationCategories;
-export const factoryIntegrations: FactoryIntegration[] = mockData.integrations.map(
-  (integration) => ({
+export const factoryIntegrations: FactoryIntegration[] =
+  mockData.integrations.map((integration) => ({
     ...integration,
     image:
       integrationImageModules[
         `/src/assets/integrations/${integration.image}`
       ] ?? integration.image,
-  }),
-);
+  }));
 export const factoryIntegrationsById: Record<string, FactoryIntegration> =
   Object.fromEntries(
     factoryIntegrations.map((integration) => [integration.id, integration]),
@@ -810,6 +809,7 @@ type FactoryStore = {
   productsById: Record<string, FactoryProduct>;
   productKits: FactoryProductKit[];
   categories: FactoryCategory[];
+  materials: FactoryMaterial[];
   setLanguage: (language: FactoryLanguage) => void;
   setTimezone: (timezone: FactoryTimezone) => void;
   setIsNavPanelOpen: (isOpen: boolean) => void;
@@ -867,6 +867,7 @@ type FactoryStore = {
   addProductKit: (kit: FactoryProductKit) => void;
   addCategory: (category: FactoryCategory) => void;
   updateProductCategory: (productId: string, categoryId: string) => void;
+  addMaterial: (material: FactoryMaterial) => void;
 };
 
 export function createEmptyProductConfiguration(): FactoryProductConfiguration {
@@ -940,6 +941,7 @@ export const useFactoryStore = create<FactoryStore>((set) => {
     productsById: { ...factoryProductsById },
     productKits: [...factoryProductKits],
     categories: [...factoryCategories],
+    materials: [...factoryMaterials],
     setLanguage: (language) => set({ language }),
     setTimezone: (timezone) => set({ timezone }),
     setIsNavPanelOpen: (isNavPanelOpen) => set({ isNavPanelOpen }),
@@ -1368,5 +1370,7 @@ export const useFactoryStore = create<FactoryStore>((set) => {
           },
         };
       }),
+    addMaterial: (material) =>
+      set((state) => ({ materials: [...state.materials, material] })),
   };
 });

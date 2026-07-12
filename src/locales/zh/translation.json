@@ -1,0 +1,588 @@
+{
+  "get_started": "优秀的产品始于对问题的清晰认识，终于对设计的美学克制。",
+  "intro": "作为一名设计工程师，我喜欢构建尊重您时间的软件。",
+  "hero_primary_btn": "关于我",
+  "hero_secondary_btn": "探索概念",
+  "explore": {
+    "kicker": "探索",
+    "title": "概念、系统和产品实验。",
+    "description": "汇集创意、界面研究和工程笔记的空间，连接策略、可用性与实现细节。",
+    "home": "首页",
+    "gallery": [
+      {
+        "slug": "factory",
+        "title": "Factory.app",
+        "subtitle": "面向制造商的在线工具，可在一个平台上创建订单、协作工作、安排任务和跟踪时间。"
+      }
+    ]
+  },
+  "factory": {
+    "title": "Factory",
+    "welcome": {
+      "eyebrow": "欢迎使用 Factory",
+      "title": "让您的车间现代化",
+      "description": "让我们从创建工作区开始。",
+      "firstName": "名",
+      "lastName": "姓",
+      "companyName": "企业名称",
+      "submit": "创建工作区",
+      "loading": {
+        "logoAlt": "Factory",
+        "progressLabel": "工作区创建进度"
+      },
+      "validation": {
+        "required": "此为必填字段。"
+      }
+    },
+    "views": {
+      "overview": {
+        "title": "概览"
+      },
+      "productCategories": {
+        "title": "产品类别",
+        "subtitle": "在一个地方组织和管理您的产品、类别和套件。",
+        "addNew": "新增",
+        "addProduct": "添加产品",
+        "addCategory": "添加类别",
+        "addProductKit": "添加产品套件",
+        "searchPlaceholder": "搜索产品...",
+        "filterByLabel": "按标签筛选",
+        "allLabels": "所有标签",
+        "filterByCategory": "所有类别",
+        "categoryFilterLabel": "按类别筛选产品和套件",
+        "cancel": "取消",
+        "save": "保存",
+        "moreOptions": "更多产品选项",
+        "productName": "产品名称",
+        "productCode": "产品编码",
+        "category": "类别",
+        "kitName": "产品套件名称",
+        "kitProducts": "产品",
+        "categoryName": "类别名称",
+        "required": "此为必填字段。",
+        "selectProduct": "请至少选择一个产品。",
+        "productCreated": "产品已创建。",
+        "productKitCreated": "产品套件已创建。",
+        "categoryCreated": "产品类别已创建。",
+        "kitBadge": "套件",
+        "productCount_one": "{{count}} 个产品",
+        "productCount_other": "{{count}} 个产品",
+        "empty": "没有产品或套件匹配这些筛选条件。",
+        "uncategorized": "未分类",
+        "duplicate": "复制",
+        "delete": "删除"
+      },
+      "productDetail": {
+        "save": "保存",
+        "saved": "产品更改已保存。",
+        "selectOne": "选择一个选项",
+        "selectMany": "选择一个或多个",
+        "search": "搜索选项...",
+        "noResults": "未找到选项。",
+        "moreSelected": "+ 还有 {{count}} 个",
+        "productOptions": {
+          "title": "产品选项",
+          "buyItem": "我购买此商品",
+          "sellItem": "我销售此商品",
+          "trackStock": "我跟踪此商品的库存",
+          "trackCostsAndMarkups": "我跟踪此商品的成本和加价",
+          "taxFree": "此商品买卖免税",
+          "quantityUnit": "买卖单位",
+          "category": "产品类别",
+          "materials": "可用材料",
+          "quantityUnits": {
+            "basicQuantities": "基本数量",
+            "linealMetres": "延米",
+            "customFormula": "自定义公式",
+            "squareMetres": "平方米"
+          }
+        },
+        "buying": {
+          "title": "采购",
+          "suppliers": "供应商",
+          "preferredSupplier": "首选供应商"
+        },
+        "pricing": {
+          "title": "定价",
+          "viewLabel": "定价表",
+          "buying": "采购价",
+          "selling": "销售价",
+          "tracking": "跟踪",
+          "noSupplierPrices": "已保存的供应商中没有一个为此产品提供价格。",
+          "cost": "成本",
+          "markup": "加价",
+          "price": "价格",
+          "onHand": "在手库存",
+          "promised": "已承诺",
+          "available": "可用",
+          "onTheWay": "在途"
+        },
+        "notFound": {
+          "title": "产品未找到",
+          "description": "未找到所选产品。"
+        }
+      },
+      "materials": {
+        "title": "材料",
+        "subtitle": "跟踪生产中使用的原材料、消耗品和供应品。",
+        "addMaterial": "添加材料",
+        "searchPlaceholder": "搜索材料...",
+        "filterByLabel": "按标签筛选",
+        "allLabels": "所有标签",
+        "materialName": "材料名称",
+        "materialCode": "材料编码",
+        "imageUrl": "图片 URL",
+        "required": "此为必填字段。",
+        "created": "材料已创建。",
+        "empty": "没有材料匹配您的搜索。",
+        "cancel": "取消",
+        "save": "保存",
+        "duplicate": "复制",
+        "delete": "删除"
+      },
+      "salesOrders": {
+        "title": "销售订单",
+        "subtitle": "创建和管理客户订单，跟踪付款并监控交货状态。",
+        "createOrder": "创建订单",
+        "searchPlaceholder": "搜索订单...",
+        "columns": "列",
+        "cancel": "取消",
+        "save": "保存"
+      },
+      "customers": {
+        "title": "客户",
+        "subtitle": "管理客户账户、联系方式和业务信息。",
+        "addCustomer": "添加客户",
+        "editCustomer": "编辑客户",
+        "searchPlaceholder": "搜索客户...",
+        "cancel": "取消",
+        "create": "创建",
+        "save": "保存",
+        "edit": "编辑",
+        "delete": "删除",
+        "country": "国家",
+        "customerName": "客户名称",
+        "customerNameHint": "客户或公司的全名",
+        "phone": "电话",
+        "abn": "澳大利亚商业编号（ABN）",
+        "abnHint": "澳大利亚商业编号（如适用）",
+        "address": "地址",
+        "suburbCity": "区 / 城市",
+        "postCode": "邮政编码",
+        "state": "州/领地",
+        "selectState": "选择州/领地",
+        "unsavedTitle": "未保存的更改",
+        "unsavedDescription": "您有未保存的更改。确定要放弃吗？",
+        "keepEditing": "继续编辑",
+        "discard": "放弃",
+        "states": {
+          "NSW": "新南威尔士州",
+          "VIC": "维多利亚州",
+          "QLD": "昆士兰州",
+          "WA": "西澳大利亚州",
+          "SA": "南澳大利亚州",
+          "TAS": "塔斯马尼亚州",
+          "ACT": "澳大利亚首都领地",
+          "NT": "北领地"
+        }
+      },
+      "customerDetail": {
+        "orderHistory": {
+          "title": "订单历史",
+          "empty": "此客户尚未记录任何订单。"
+        },
+        "billingAddress": {
+          "title": "账单地址"
+        },
+        "deliveryAddress": {
+          "title": "送货地址"
+        },
+        "contacts": {
+          "title": "联系人",
+          "addContact": "添加联系人",
+          "editContact": "编辑联系人",
+          "searchPlaceholder": "搜索联系人...",
+          "empty": "没有活跃的联系人匹配此客户。",
+          "contactName": "联系人姓名",
+          "email": "邮箱",
+          "phone": "电话",
+          "mobile": "手机",
+          "avatar": "头像",
+          "selectAvatar": "选择头像",
+          "archive": "归档"
+        },
+        "settings": {
+          "title": "设置"
+        },
+        "notFound": {
+          "title": "客户未找到",
+          "description": "未找到所选客户。"
+        }
+      },
+      "settings": {
+        "company": {
+          "title": "公司"
+        },
+        "quotes": {
+          "title": "报价"
+        },
+        "orderConfirmation": {
+          "title": "订单确认"
+        },
+        "invoicing": {
+          "title": "开票"
+        },
+        "documentTemplates": {
+          "title": "文档模板"
+        },
+        "pdfSettings": {
+          "title": "PDF 设置"
+        },
+        "orderImporter": {
+          "title": "订单导入"
+        }
+      },
+      "priceLevelManager": {
+        "title": "价格等级管理器",
+        "introducing": "全新上线：价格等级管理器",
+        "description": "使用预设模板简化您的定价策略。",
+        "startWithTemplate": "从模板开始",
+        "createMyPriceLevel": "创建我的价格等级"
+      },
+      "purchaseOrders": {
+        "title": "采购订单"
+      },
+      "suppliers": {
+        "title": "供应商"
+      },
+      "workflow": {
+        "title": "工作流",
+        "sidebarLabel": "工作流工具",
+        "canvasLabel": "工作流画布",
+        "newWorkflowName": "新工作流名称",
+        "newWorkflowPlaceholder": "工作流名称",
+        "newWorkflow": "创建工作流",
+        "openWorkflow": "打开工作流",
+        "saveWorkflow": "保存工作流",
+        "unsaved": "未保存的工作流更改",
+        "unsavedShort": "未保存",
+        "nodeTools": "节点",
+        "canvasTools": "画布",
+        "addContainer": "添加容器",
+        "addItem": "添加项目",
+        "fitView": "适应视图",
+        "duplicateSelected": "复制所选",
+        "deleteSelected": "删除所选",
+        "clearCanvas": "清空画布",
+        "nodeLabel": "工作流节点标签",
+        "saveLabel": "保存节点标签"
+      },
+      "planners": {
+        "title": "排程器",
+        "subtitle": "通过将客户拖入可用的日历时段来安排客户预约。",
+        "customers": "客户",
+        "customerList": "客户排程列表",
+        "dragHint": "将客户拖入空闲时段。",
+        "searchPlaceholder": "搜索客户...",
+        "noCustomers": "没有客户匹配您的搜索。",
+        "viewToggle": "日历视图",
+        "day": "日",
+        "week": "周",
+        "month": "月",
+        "today": "今天",
+        "previous": "上一时段",
+        "next": "下一时段"
+      },
+      "deliveryScheduling": {
+        "title": "交货排程"
+      },
+      "integrations": {
+        "title": "集成",
+        "subtitle": "连接您的团队使用的工具，保持工作流畅。",
+        "marketplace": "应用市场",
+        "connectedIntegrations": "已连接的集成",
+        "searchPlaceholder": "搜索集成...",
+        "filterByCategory": "按类别筛选",
+        "allCategories": "所有类别",
+        "connected": "已连接",
+        "connect": "连接",
+        "disconnect": "断开",
+        "moreOptions": "{{name}} 的更多选项",
+        "noConnected": "尚未连接任何集成。请访问应用市场进行连接。",
+        "noMatches": "没有集成匹配您的搜索和类别筛选条件。"
+      },
+      "team": {
+        "title": "团队",
+        "subtitle": "管理您的团队成员及其账户详细信息。",
+        "addEmployee": "添加员工",
+        "editEmployee": "编辑员工",
+        "searchPlaceholder": "搜索团队成员...",
+        "name": "姓名",
+        "email": "邮箱",
+        "accountType": "账户类型",
+        "empty": "未找到团队成员。"
+      },
+      "timesheets": {
+        "title": "工时表",
+        "subtitle": "按日期范围、地点和员工查看员工工时表。",
+        "employees": "员工",
+        "employeeList": "工时表员工列表",
+        "employeeHint": "选择一名员工以筛选工时表。",
+        "searchEmployees": "搜索员工...",
+        "noEmployees": "没有员工匹配这些筛选条件。",
+        "selectDateRange": "选择日期范围",
+        "selectLocation": "选择地点",
+        "allLocations": "所有地点",
+        "unknownEmployee": "未知员工",
+        "dateLabel": "工时表日期",
+        "timeLabel": "班次时间",
+        "noTimesheets": "没有工时表匹配这些筛选条件。"
+      }
+    },
+    "navigation": {
+      "search": "搜索...",
+      "label": "Factory 导航",
+      "collapse": "折叠导航面板",
+      "expand": "展开导航面板",
+      "sections": {
+        "general": "通用",
+        "products": "产品",
+        "sales": "销售",
+        "purchasing": "采购",
+        "productivity": "生产力",
+        "team": "团队"
+      },
+      "items": {
+        "overview": "概览",
+        "productCategories": "产品类别",
+        "materials": "材料",
+        "salesOrders": "销售订单",
+        "customers": "客户",
+        "priceLevelManager": "价格等级管理器",
+        "purchaseOrders": "采购订单",
+        "suppliers": "供应商",
+        "workflow": "工作流",
+        "planners": "排程器",
+        "deliveryScheduling": "交货排程",
+        "timesheets": "工时表",
+        "integrations": "集成",
+        "team": "团队"
+      },
+      "contextual": {
+        "customers": {
+          "back": "返回客户",
+          "orderHistory": "订单历史",
+          "billingAddress": "账单地址",
+          "deliveryAddress": "送货地址",
+          "contacts": "联系人",
+          "settings": "设置"
+        },
+        "products": {
+          "back": "返回产品类别",
+          "productOptions": "产品选项",
+          "buying": "采购",
+          "pricing": "定价"
+        },
+        "planners": {
+          "back": "返回概览"
+        },
+        "timesheets": {
+          "back": "返回概览"
+        },
+        "workflow": {
+          "back": "返回概览",
+          "actions": "工作流",
+          "new": "新建工作流",
+          "save": "保存工作流",
+          "open": "打开工作流"
+        },
+        "settings": {
+          "back": "返回概览",
+          "company": "公司",
+          "quotes": "报价",
+          "orderConfirmation": "订单确认",
+          "invoicing": "开票",
+          "documentTemplates": "文档模板",
+          "pdfSettings": "PDF 设置",
+          "orderImporter": "订单导入"
+        }
+      }
+    },
+    "chat": {
+      "title": "Factory AI",
+      "collapse": "折叠 AI 聊天面板",
+      "expand": "展开 AI 聊天面板",
+      "loading": "正在准备助手",
+      "inputLabel": "向 AI 助手发送消息",
+      "inputPlaceholder": "询问关于此工厂的问题",
+      "send": "发送消息",
+      "resize": "调整 AI 聊天面板大小"
+    },
+    "account": {
+      "openMenu": "打开 {{name}} 的账户菜单",
+      "menu": {
+        "profile": "个人资料",
+        "billing": "账单",
+        "settings": "设置",
+        "appearance": "外观",
+        "light": "浅色",
+        "dark": "深色",
+        "system": "系统",
+        "language": "语言",
+        "timezone": "时区",
+        "local": "本地",
+        "helpSupport": "帮助与支持",
+        "keyboardShortcuts": "键盘快捷键",
+        "upgrade": "升级",
+        "logout": "退出登录"
+      }
+    },
+    "profileDialog": {
+      "title": "个人资料设置",
+      "description": "管理您的账户、安全、通知和 API 密钥。",
+      "tabs": {
+        "label": "个人资料板块",
+        "account": "账户",
+        "security": "安全",
+        "notifications": "通知",
+        "apiKeys": "API 密钥"
+      },
+      "avatar": {
+        "title": "选择头像",
+        "subtitle": "选择您在工作区中向团队成员展示的头像。",
+        "save": "保存头像",
+        "selectLabel": "选择个人资料头像",
+        "optionPrefix": "头像选项"
+      },
+      "account": {
+        "title": "账户",
+        "subtitle": "更新 Factory 使用的个人资料和工作区偏好设置。",
+        "firstName": "名",
+        "lastName": "姓",
+        "email": "邮箱",
+        "location": "位置",
+        "language": "语言",
+        "timezone": "时区",
+        "appearance": "外观",
+        "keyboardShortcuts": "键盘快捷键",
+        "keyboardShortcutsDesc": "启用工作区快捷键，例如命令搜索。",
+        "update": "更新账户",
+        "delete": "删除账户"
+      },
+      "security": {
+        "title": "安全",
+        "subtitle": "管理登录保护、恢复访问和登录方式。",
+        "twoFactorAuth": "双重身份验证",
+        "twoFactorAuthDesc": "添加第二个验证步骤以保护您的账户。",
+        "configure": "配置",
+        "backupCodes": "备用验证码",
+        "backupCodesDesc": "生成一次性恢复码以供紧急访问使用。",
+        "generate": "生成",
+        "password": "密码",
+        "updatePassword": "更新密码",
+        "currentPassword": "当前密码",
+        "newPassword": "新密码",
+        "repeatPassword": "重复新密码",
+        "signInMethods": "登录方式",
+        "google": "Google",
+        "googleDesc": "使用您的 Google 账户登录。",
+        "apple": "Apple",
+        "appleDesc": "使用您的 Apple 账户登录。",
+        "connect": "连接"
+      },
+      "notifications": {
+        "title": "通知",
+        "subtitle": "选择哪些可以打扰您，哪些可以稍后处理。",
+        "email": "邮件通知",
+        "emailDesc": "通过邮件接收重要的工厂工作区更新。",
+        "securityAlerts": "安全警报",
+        "securityAlertsDesc": "收到有关登录和权限变更的通知。",
+        "workflowChanges": "工作流变更",
+        "workflowChangesDesc": "当生产工作流更新时通知我。",
+        "weeklySummaries": "每周摘要",
+        "weeklySummariesDesc": "发送活动和待办工作的精简摘要。",
+        "productUpdates": "产品更新",
+        "productUpdatesDesc": "显示版本说明和新功能公告。"
+      },
+      "apiKeys": {
+        "title": "API 密钥",
+        "subtitle": "为本地集成和自动化测试生成测试密钥。",
+        "activeKeys": "活跃密钥",
+        "activeKeysDesc": "生成的密钥仅显示一次，之后将被隐藏。",
+        "generateKey": "生成密钥",
+        "newKeyTitle": "新 API 密钥",
+        "newKeyDesc": "在生成之前为此密钥命名。",
+        "keyName": "密钥名称",
+        "generate": "生成",
+        "copyKey": "立即复制此密钥",
+        "deleteKey": "删除 {{name}} 密钥"
+      },
+      "actions": {
+        "profileSaved": "个人资料已保存",
+        "avatarSaved": "头像已保存",
+        "passwordSaved": "密码已保存",
+        "apiKeyCopied": "API 密钥已复制"
+      }
+    },
+    "billingDialog": {
+      "title": "账单",
+      "description": "查看工作区套餐、账单详情和发票历史。",
+      "summary": "管理工作区的计费方式。",
+      "close": "关闭账单对话框",
+      "plan": {
+        "current": "当前套餐",
+        "active": "活跃",
+        "interval": "/ {{interval}}",
+        "seats": "{{count}} 个席位",
+        "renews": "续费日期 {{date}}",
+        "upgrade": "升级套餐"
+      },
+      "payment": {
+        "title": "付款方式",
+        "edit": "编辑付款方式",
+        "cardLabel": "{{brand}}，尾号 {{lastFour}}，到期 {{expiry}}"
+      },
+      "email": {
+        "title": "账单邮箱",
+        "edit": "编辑账单邮箱"
+      },
+      "address": {
+        "title": "账单地址",
+        "edit": "编辑账单地址"
+      },
+      "invoices": {
+        "title": "发票",
+        "description": "您近期的工作区账单历史。",
+        "number": "发票号",
+        "date": "日期",
+        "status": "状态",
+        "amount": "金额",
+        "statuses": {
+          "paid": "已付款"
+        }
+      }
+    }
+  },
+  "operating_principles": {
+    "title": "运营原则",
+    "headline": "优秀的软件让人觉得理所当然。",
+    "items": [
+      {
+        "title": "清晰胜于巧妙",
+        "body": "界面应当不言自明。如果它需要教程才能使用，那它就是有问题的。我专注于减少认知负荷，让用户能够完成他们真正的工作。"
+      },
+      {
+        "title": "系统思维",
+        "body": "一个按钮从来不仅仅是一个按钮。它是一个状态机的一部分、一个 API 边界和一种设计语言。我构建完整的垂直切片。"
+      },
+      {
+        "title": "精心打磨的细节",
+        "body": "优秀与伟大的差距在于一百个微小的细节。微交互、完美的排版和零布局偏移。"
+      },
+      {
+        "title": "低调执行",
+        "body": "没有多余的动画，没有滚动劫持。只有快速、无障碍、高弹性的应用程序，尊重用户所使用的平台。"
+      }
+    ]
+  }
+}

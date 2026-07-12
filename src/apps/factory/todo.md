@@ -1,6 +1,6 @@
 ## product
 
-1. take customer item in navigation-model as example, add a sub layer navigation for product-categories.tsx, click product will redirect to route /product/{id}/[navigate item] top is back to product-cagegories, below is navigation item: `Product Options`, `Buying`, `Pricing`. default route is the 1st item. each one should have view file in views/product folder.
+1. take customer item in navigation-model as example, product item should have hover effect, add a sub layer navigation for product-categories.tsx, click product will redirect to route /product/{id}/[navigate item] top is back to product-cagegories, below is navigation item: `Product Options`, `Buying`, `Pricing`. default route is the 1st item. each one should have view file in views/product folder.
 2. in Product options view, use Field component and Seperate component to creat a 2-colum form.
    1st section are Switch with: i buy this item, i sell this item, I track stock this item, I track costs and markups for this item, item is brought/sold tax-free
    2nd section are Selects,

@@ -4,7 +4,6 @@ import { toast } from "sonner";
 
 import {
   createEmptyProductConfiguration,
-  factoryMaterials,
   useFactoryStore,
 } from "@/apps/factory/store";
 import {
@@ -50,6 +49,7 @@ export function ProductOptionsView() {
     (state) => state.saveProductConfiguration,
   );
   const categories = useFactoryStore((state) => state.categories);
+  const materials = useFactoryStore((state) => state.materials);
   const updateProductCategory = useFactoryStore(
     (state) => state.updateProductCategory,
   );
@@ -171,7 +171,7 @@ export function ProductOptionsView() {
               ariaLabel={t(
                 "factory.views.productDetail.productOptions.materials",
               )}
-              options={factoryMaterials.map((material) => ({
+              options={materials.map((material) => ({
                 value: material.id,
                 label: material.name,
               }))}
