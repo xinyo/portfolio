@@ -151,7 +151,7 @@ function ProductItem({
   t: (key: string) => string;
 }) {
   return (
-    <Item variant="outline" size="default">
+    <Item variant="outline" size="default" className="u-press">
       <ItemMedia variant="image">
         <img src={product.image} alt={product.name} />
       </ItemMedia>
