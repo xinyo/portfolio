@@ -171,7 +171,7 @@
       "priceLevelManager": {
         "title": "Price Level Manager",
         "introducing": "Introducing: Price Level Manager",
-        "description": "Create and manage custom pricing tiers for your products and services. Streamline your pricing strategy with predefined templates.",
+        "description": "Streamline your pricing strategy with predefined templates.",
         "startWithTemplate": "Start with template",
         "createMyPriceLevel": "Create my price level"
       },
