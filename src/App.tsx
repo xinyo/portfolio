@@ -4,7 +4,7 @@ import { Toaster } from "@/components/ui/sonner";
 import { useTheme } from "@/hooks/use-theme";
 import { About } from "@/views/about";
 import { Explore } from "@/views/explore";
-import { ArrowRight, ChevronRight } from "lucide-react";
+import { ArrowRight, ChevronRight, Moon, Sun } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { BrowserRouter, Link, Route, Routes } from "react-router";
@@ -13,17 +13,17 @@ import "./App.css";
 import heroImgAttack from "./assets/logo-attack.webp";
 import heroImg from "./assets/logo.webp";
 
-// type PrincipleItem = {
-//   title: string;
-//   body: string;
-// };
+type PrincipleItem = {
+  title: string;
+  body: string;
+};
 
 function HomePage() {
   const { t } = useTranslation();
   const [count, setCount] = useState(0);
-  // const principles = t("operating_principles.items", {
-  //   returnObjects: true,
-  // }) as PrincipleItem[];
+  const principles = t("operating_principles.items", {
+    returnObjects: true,
+  }) as PrincipleItem[];
   const { isDark, setIsDark } = useTheme();
   const [hovered, setHovered] = useState(false);
   const titleAnimationFrame = useRef<number | null>(null);
@@ -49,8 +49,14 @@ function HomePage() {
 
     titleAnimationFrame.current = requestAnimationFrame(() => {
       const bounds = title.getBoundingClientRect();
-      const x = Math.min(Math.max((clientX - bounds.left) / bounds.width, 0), 1);
-      const y = Math.min(Math.max((clientY - bounds.top) / bounds.height, 0), 1);
+      const x = Math.min(
+        Math.max((clientX - bounds.left) / bounds.width, 0),
+        1,
+      );
+      const y = Math.min(
+        Math.max((clientY - bounds.top) / bounds.height, 0),
+        1,
+      );
 
       title.style.setProperty("--title-rotate-x", `${(0.5 - y) * 8}deg`);
       title.style.setProperty("--title-rotate-y", `${(x - 0.5) * 8}deg`);
@@ -81,6 +87,17 @@ function HomePage() {
   return (
     <>
       <div className="profolio-home flex flex-col items-center justify-center gap-8">
+        <header className="home-header">
+          <Button
+            type="button"
+            variant="ghost"
+            size="icon"
+            onClick={() => setIsDark((d) => !d)}
+            aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
+          >
+            {isDark ? <Sun size={18} /> : <Moon size={18} />}
+          </Button>
+        </header>
         <section id="center">
           <div className="hero">
             <img
@@ -93,7 +110,7 @@ function HomePage() {
           </div>
           <div className="hero-title">
             <h1
-              className="hero-title-tilt"
+              className="hero-title-tilt text-5xl"
               onPointerMove={updateTitleTilt}
               onPointerLeave={resetTitleTilt}
               onPointerCancel={resetTitleTilt}
@@ -122,37 +139,26 @@ function HomePage() {
                 <ChevronRight />
               </Link>
             </Button>
-            <Button
-              type="button"
-              variant="ghost"
-              size="icon"
-              onClick={() => setIsDark((d) => !d)}
-              aria-label={
-                isDark ? "Switch to light mode" : "Switch to dark mode"
-              }
-            >
-              {isDark ? "\u2600" : "\u2601"}
-            </Button>
           </div>
         </section>
 
-        {/* <section
-        className="principles-section"
-        aria-labelledby="principles-title"
-      >
-        <div className="principles-heading">
-          <p className="section-kicker">{t("operating_principles.title")}</p>
-          <h2 id="principles-title">{t("operating_principles.headline")}</h2>
-        </div>
-        <div className="principles-list">
-          {principles.map((principle) => (
-            <article className="principle" key={principle.title}>
-              <h3>{principle.title}</h3>
-              <p>{principle.body}</p>
-            </article>
-          ))}
-        </div>
-      </section> */}
+        <section
+          className="principles-section"
+          aria-labelledby="principles-title"
+        >
+          <div className="principles-heading">
+            <p className="section-kicker">{t("operating_principles.title")}</p>
+            <h2 id="principles-title">{t("operating_principles.headline")}</h2>
+          </div>
+          <div className="principles-list">
+            {principles.map((principle) => (
+              <article className="principle" key={principle.title}>
+                <h3>{principle.title}</h3>
+                <p>{principle.body}</p>
+              </article>
+            ))}
+          </div>
+        </section>
       </div>
     </>
   );

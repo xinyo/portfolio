@@ -16,10 +16,27 @@
 .profolio-home{
   width: 100%;
   margin: 0 auto;
-  height: 100vh;
+  min-height: 100vh;
+  position: relative;
   background-image: radial-gradient(color-mix(in oklch, var(--foreground) 25%, transparent) 3%, transparent 0);
   background-size: 35px 35px;
+  section {
+    max-width: min(80vw, 1200px);
+  }
 }
+
+.home-header {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  padding: 24px 32px 0;
+  box-sizing: border-box;
+  pointer-events: none;
+}
+
 
 #center {
   display: flex;
@@ -29,19 +46,14 @@
   place-items: center;
   flex-grow: 1; 
 
-  & h1 {
-    margin: 0;
+  & h1 { 
     font-family: var(--heading);
     font-weight: 500;
     font-size: clamp(1.5rem, 4vw, 2.5rem); 
-    line-height: 118%;
+    line-height: 118%; 
   }
 
   .hero-title {
-    max-width: min(80vw, 1200px);
-    h1 {
-      margin-bottom: 2rem;
-    }
     p {
       max-width: min(80vw, 800px);
       margin: 0 auto;
