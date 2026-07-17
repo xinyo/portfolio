@@ -14,6 +14,7 @@
 }
 
 .profolio-home{
+  --section-title: 0.875rem;
   width: 100%;
   margin: 0 auto;
   min-height: 100vh;
@@ -31,10 +32,27 @@
   right: 0;
   width: 100%;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
   padding: 24px 32px 0;
   box-sizing: border-box;
   pointer-events: none;
+}
+
+.home-header > * {
+  pointer-events: auto;
+}
+
+.home-header .hero {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+}
+
+.home-header .logo {
+  height: 48px;
+  width: auto;
 }
 
 
@@ -44,7 +62,8 @@
   gap: 25px;
   place-content: center;
   place-items: center;
-  flex-grow: 1; 
+  flex-grow: 1;
+  flex-basis: 60vh;
 
   & h1 { 
     font-family: var(--heading);
@@ -53,16 +72,17 @@
     line-height: 118%; 
   }
 
+  @media (max-width: 1024px) {
+    padding: 32px 20px 24px;
+    gap: 18px;
+  }
+
   .hero-title {
+    margin-bottom: 2rem;
     p {
       max-width: min(80vw, 800px);
       margin: 0 auto;
     }
-  }
-
-  @media (max-width: 1024px) {
-    padding: 32px 20px 24px;
-    gap: 18px;
   }
 }
 
@@ -141,8 +161,8 @@
 
 .view-kicker {
   color: var(--primary);
-  font-size: 0.875rem;
-  font-weight: 600;
+  font-size: var(--section-title);
+  font-weight: 700;
   text-transform: uppercase;
 }
 
@@ -428,7 +448,7 @@
 .section-kicker {
   margin: 0;
   color: var(--primary);
-  font-size: 0.78rem;
+  font-size: var(--section-title);
   font-weight: 700;
   letter-spacing: 0.08em;
   line-height: 1;
@@ -476,7 +496,7 @@
   max-width: 34rem;
   margin: 0;
   color: var(--text);
-  font-size: 0.98rem;
+  font-size: 0.8rem;
   line-height: 1.6;
 }
 

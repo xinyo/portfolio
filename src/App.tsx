@@ -1,13 +1,16 @@
-import { FactoryApp } from "@/apps/factory";
 import { Button } from "@/components/ui/button";
 import { Toaster } from "@/components/ui/sonner";
 import { useTheme } from "@/hooks/use-theme";
 import { About } from "@/views/about";
 import { Explore } from "@/views/explore";
 import { ArrowRight, ChevronRight, Moon, Sun } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { Suspense, lazy, useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { BrowserRouter, Link, Route, Routes } from "react-router";
+
+const FactoryApp = lazy(() =>
+  import("@/apps/factory").then((m) => ({ default: m.FactoryApp })),
+);
 
 import "./App.css";
 import heroImgAttack from "./assets/logo-attack.webp";
@@ -88,6 +91,15 @@ function HomePage() {
     <>
       <div className="profolio-home flex flex-col items-center justify-center gap-8">
         <header className="home-header">
+          <div className="hero">
+            <img
+              src={hovered ? heroImgAttack : heroImg}
+              alt="Hero"
+              className="logo"
+              onMouseEnter={() => setHovered(true)}
+              onMouseLeave={() => setHovered(false)}
+            />
+          </div>
           <Button
             type="button"
             variant="ghost"
@@ -99,15 +111,6 @@ function HomePage() {
           </Button>
         </header>
         <section id="center">
-          <div className="hero">
-            <img
-              src={hovered ? heroImgAttack : heroImg}
-              alt="Hero"
-              className="logo"
-              onMouseEnter={() => setHovered(true)}
-              onMouseLeave={() => setHovered(false)}
-            />
-          </div>
           <div className="hero-title">
             <h1
               className="hero-title-tilt text-5xl"
@@ -171,7 +174,14 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/about" element={<About />} />
         <Route path="/explore" element={<Explore />} />
-        <Route path="/apps/factory/*" element={<FactoryApp />} />
+        <Route
+          path="/apps/factory/*"
+          element={
+            <Suspense fallback={null}>
+              <FactoryApp />
+            </Suspense>
+          }
+        />
       </Routes>
       <Toaster />
     </BrowserRouter>
