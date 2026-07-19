@@ -1,7 +1,6 @@
-import { create } from "zustand";
 import type { Edge, Node, XYPosition } from "@xyflow/react";
+import { create } from "zustand";
 
-import i18n from "@/i18n";
 import mockData from "@/apps/factory/mock.json";
 import {
   FACTORY_CUSTOM_COMPANY_ID,
@@ -12,6 +11,7 @@ import {
   instantToPlainDate,
   type FactoryTimesheetDateRange,
 } from "@/apps/factory/timesheet-date";
+import i18n from "@/i18n";
 
 const avatarModules = import.meta.glob("@/assets/avatar/*.svg", {
   eager: true,
@@ -58,14 +58,14 @@ export type FactoryAppearance = (typeof factoryAppearanceOptions)[number];
 export const factoryLanguageToCode: Record<FactoryLanguage, string> = {
   English: "en",
   Deutsch: "de",
-  "中文": "zh",
+  中文: "zh",
 };
 
 /** Maps display language names to their i18n translation label keys. */
 export const factoryLanguageLabelKeys: Record<FactoryLanguage, string> = {
   English: "factory.account.menu.english",
   Deutsch: "factory.account.menu.deutsch",
-  "中文": "factory.account.menu.chinese",
+  中文: "factory.account.menu.chinese",
 };
 
 export const companyNameMap = new Map<string, string>([
@@ -872,6 +872,8 @@ type FactoryStore = {
   duplicateSelectedWorkflowNode: () => void;
   clearActiveWorkflow: () => void;
   setSelectedWorkflowElementId: (id: string | null) => void;
+  renameWorkflow: (id: string, name: string) => void;
+  deleteWorkflow: (id: string) => void;
   addConnectedIntegration: (id: string) => void;
   removeConnectedIntegration: (id: string) => void;
   saveProductConfiguration: (
@@ -1333,6 +1335,32 @@ export const useFactoryStore = create<FactoryStore>((set) => {
       })),
     setSelectedWorkflowElementId: (selectedWorkflowElementId) =>
       set({ selectedWorkflowElementId }),
+    renameWorkflow: (id, name) =>
+      set((state) => {
+        const trimmed = name.trim();
+        if (!trimmed) return state;
+        return {
+          workflows: state.workflows.map((workflow) =>
+            workflow.id === id ? { ...workflow, name: trimmed } : workflow,
+          ),
+          workflowDraftDirty: true,
+        };
+      }),
+    deleteWorkflow: (id) =>
+      set((state) => {
+        const remaining = state.workflows.filter((w) => w.id !== id);
+        const wasActive = state.activeWorkflowId === id;
+        return {
+          workflows: remaining,
+          activeWorkflowId: wasActive
+            ? (remaining[0]?.id ?? "")
+            : state.activeWorkflowId,
+          workflowDraftDirty: wasActive ? false : state.workflowDraftDirty,
+          selectedWorkflowElementId: wasActive
+            ? null
+            : state.selectedWorkflowElementId,
+        };
+      }),
     addConnectedIntegration: (id) =>
       set((state) => {
         const integration = state.integrationsById[id];

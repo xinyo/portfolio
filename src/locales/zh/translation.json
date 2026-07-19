@@ -275,7 +275,13 @@
         "deleteSelected": "删除所选",
         "clearCanvas": "清空画布",
         "nodeLabel": "工作流节点标签",
-        "saveLabel": "保存节点标签"
+        "saveLabel": "保存节点标签",
+        "editWorkflow": "重命名工作流",
+        "deleteWorkflow": "删除工作流",
+        "deleteWorkflowTitle": "删除\"{{name}}\"?",
+        "deleteWorkflowDescription": "这将删除工作流及其内容。此操作无法撤消。",
+        "delete": "删除",
+        "cancel": "取消"
       },
       "planners": {
         "title": "排程器",

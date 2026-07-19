@@ -275,7 +275,13 @@
         "deleteSelected": "Auswahl löschen",
         "clearCanvas": "Canvas leeren",
         "nodeLabel": "Workflow-Knotenbeschriftung",
-        "saveLabel": "Knotenbeschriftung speichern"
+        "saveLabel": "Knotenbeschriftung speichern",
+        "editWorkflow": "Workflow umbenennen",
+        "deleteWorkflow": "Workflow löschen",
+        "deleteWorkflowTitle": "\"{{name}}\" löschen?",
+        "deleteWorkflowDescription": "Dies entfernt den Workflow und seinen Inhalt. Dies kann nicht rückgängig gemacht werden.",
+        "delete": "Löschen",
+        "cancel": "Abbrechen"
       },
       "planners": {
         "title": "Planer",

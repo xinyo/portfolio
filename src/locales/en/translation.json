@@ -275,7 +275,13 @@
         "deleteSelected": "Delete selected",
         "clearCanvas": "Clear canvas",
         "nodeLabel": "Workflow node label",
-        "saveLabel": "Save node label"
+        "saveLabel": "Save node label",
+        "editWorkflow": "Rename workflow",
+        "deleteWorkflow": "Delete workflow",
+        "deleteWorkflowTitle": "Delete \"{{name}}\"?",
+        "deleteWorkflowDescription": "This removes the workflow and its contents. This can't be undone.",
+        "delete": "Delete",
+        "cancel": "Cancel"
       },
       "planners": {
         "title": "Planners",

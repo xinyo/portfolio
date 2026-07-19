@@ -1,11 +1,13 @@
 import {
   Check,
   Copy,
+  EllipsisVertical,
   Expand,
   FilePlus2,
   FolderOpen,
   Maximize2,
   PackagePlus,
+  Pencil,
   Save,
   Trash2,
 } from "lucide-react";
@@ -17,14 +19,30 @@ import {
   useFactoryStore,
   type FactoryWorkflowNodeType,
 } from "@/apps/factory/store";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
+import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Input } from "@/components/ui/input";
 import {
   Select,
   SelectContent,
@@ -52,6 +70,11 @@ export function WorkflowSidebar() {
   const { t } = useTranslation();
   const [newWorkflowName, setNewWorkflowName] = useState("");
   const [newWorkflowOpen, setNewWorkflowOpen] = useState(false);
+  const [editWorkflowOpen, setEditWorkflowOpen] = useState(false);
+  const [editWorkflowName, setEditWorkflowName] = useState("");
+  const [deleteWorkflowTargetId, setDeleteWorkflowTargetId] = useState<
+    string | null
+  >(null);
   const workflows = useFactoryStore((state) => state.workflows);
   const activeWorkflowId = useFactoryStore((state) => state.activeWorkflowId);
   const workflowDraftDirty = useFactoryStore(
@@ -65,6 +88,8 @@ export function WorkflowSidebar() {
   const saveActiveWorkflow = useFactoryStore(
     (state) => state.saveActiveWorkflow,
   );
+  const renameWorkflow = useFactoryStore((state) => state.renameWorkflow);
+  const deleteWorkflow = useFactoryStore((state) => state.deleteWorkflow);
   const deleteWorkflowElements = useFactoryStore(
     (state) => state.deleteWorkflowElements,
   );
@@ -84,6 +109,20 @@ export function WorkflowSidebar() {
     createWorkflow(newWorkflowName);
     setNewWorkflowName("");
     setNewWorkflowOpen(false);
+  }
+
+  function handleRenameWorkflow() {
+    if (activeWorkflowId && editWorkflowName.trim()) {
+      renameWorkflow(activeWorkflowId, editWorkflowName);
+      setEditWorkflowOpen(false);
+    }
+  }
+
+  function handleDeleteWorkflow() {
+    if (deleteWorkflowTargetId) {
+      deleteWorkflow(deleteWorkflowTargetId);
+      setDeleteWorkflowTargetId(null);
+    }
   }
 
   function handleDragStart(
@@ -115,21 +154,49 @@ export function WorkflowSidebar() {
             </SelectContent>
           </Select>
 
-          <Popover open={newWorkflowOpen} onOpenChange={setNewWorkflowOpen}>
-            <PopoverTrigger asChild>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
               <Button
                 type="button"
+                size="icon"
                 variant="outline"
-                size="icon-sm"
                 aria-label={t("factory.views.workflow.newWorkflow")}
               >
-                <FilePlus2 aria-hidden="true" />
+                <EllipsisVertical aria-hidden="true" />
               </Button>
-            </PopoverTrigger>
-            <PopoverContent>
-              <Label htmlFor="factory-workflow-name">
-                {t("factory.views.workflow.newWorkflowName")}
-              </Label>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end" className="w-50">
+              <DropdownMenuItem onClick={() => setNewWorkflowOpen(true)}>
+                <FilePlus2 aria-hidden="true" />
+                {t("factory.views.workflow.newWorkflow")}
+              </DropdownMenuItem>
+              <DropdownMenuItem
+                onClick={() => {
+                  setEditWorkflowName(activeWorkflow?.name ?? "");
+                  setEditWorkflowOpen(true);
+                }}
+              >
+                <Pencil aria-hidden="true" />
+                {t("factory.views.workflow.editWorkflow")}
+              </DropdownMenuItem>
+              <DropdownMenuItem
+                variant="destructive"
+                disabled={workflows.length <= 1}
+                onClick={() => setDeleteWorkflowTargetId(activeWorkflowId)}
+              >
+                <Trash2 aria-hidden="true" />
+                {t("factory.views.workflow.deleteWorkflow")}
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+
+          <Dialog open={newWorkflowOpen} onOpenChange={setNewWorkflowOpen}>
+            <DialogContent>
+              <DialogHeader>
+                <DialogTitle>
+                  {t("factory.views.workflow.newWorkflowName")}
+                </DialogTitle>
+              </DialogHeader>
               <div className="factory-workflow-inline-control">
                 <Input
                   id="factory-workflow-name"
@@ -142,15 +209,73 @@ export function WorkflowSidebar() {
                 <Button
                   type="button"
                   variant="outline"
-                  size="icon-sm"
+                  size="icon"
                   aria-label={t("factory.views.workflow.newWorkflow")}
                   onClick={handleCreateWorkflow}
                 >
                   <Check aria-hidden="true" />
                 </Button>
               </div>
-            </PopoverContent>
-          </Popover>
+            </DialogContent>
+          </Dialog>
+
+          <Dialog open={editWorkflowOpen} onOpenChange={setEditWorkflowOpen}>
+            <DialogContent>
+              <DialogHeader>
+                <DialogTitle>
+                  {t("factory.views.workflow.editWorkflow")}
+                </DialogTitle>
+              </DialogHeader>
+              <div className="factory-workflow-inline-control">
+                <Input
+                  id="factory-workflow-rename"
+                  value={editWorkflowName}
+                  onChange={(event) => setEditWorkflowName(event.target.value)}
+                  placeholder={t(
+                    "factory.views.workflow.newWorkflowPlaceholder",
+                  )}
+                />
+                <Button
+                  type="button"
+                  variant="outline"
+                  size="icon"
+                  aria-label={t("factory.views.workflow.editWorkflow")}
+                  onClick={handleRenameWorkflow}
+                >
+                  <Check aria-hidden="true" />
+                </Button>
+              </div>
+            </DialogContent>
+          </Dialog>
+
+          <AlertDialog
+            open={!!deleteWorkflowTargetId}
+            onOpenChange={(o) => !o && setDeleteWorkflowTargetId(null)}
+          >
+            <AlertDialogContent>
+              <AlertDialogHeader>
+                <AlertDialogTitle>
+                  {t("factory.views.workflow.deleteWorkflowTitle", {
+                    name: activeWorkflow?.name ?? "",
+                  })}
+                </AlertDialogTitle>
+                <AlertDialogDescription>
+                  {t("factory.views.workflow.deleteWorkflowDescription")}
+                </AlertDialogDescription>
+              </AlertDialogHeader>
+              <AlertDialogFooter>
+                <AlertDialogCancel>
+                  {t("factory.views.workflow.cancel")}
+                </AlertDialogCancel>
+                <AlertDialogAction
+                  className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+                  onClick={handleDeleteWorkflow}
+                >
+                  {t("factory.views.workflow.delete")}
+                </AlertDialogAction>
+              </AlertDialogFooter>
+            </AlertDialogContent>
+          </AlertDialog>
         </div>
 
         <Button
