@@ -146,7 +146,8 @@ function HomePage() {
         </section>
 
         <section
-          className="principles-section"
+          className="hidden"
+          originClass="principles-section"
           aria-labelledby="principles-title"
         >
           <div className="principles-heading">
