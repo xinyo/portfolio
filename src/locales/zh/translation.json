@@ -263,7 +263,7 @@
         "newWorkflowPlaceholder": "工作流名称",
         "newWorkflow": "创建工作流",
         "openWorkflow": "打开工作流",
-        "saveWorkflow": "保存工作流",
+        "saveWorkflow": "工作流已保存",
         "unsaved": "未保存的工作流更改",
         "unsavedShort": "未保存",
         "nodeTools": "节点",

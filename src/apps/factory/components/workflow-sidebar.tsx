@@ -1,9 +1,9 @@
 import {
+  Check,
   Copy,
   Expand,
   FilePlus2,
   FolderOpen,
-  GitBranchPlus,
   Maximize2,
   PackagePlus,
   Save,
@@ -20,6 +20,11 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 import {
   Select,
   SelectContent,
@@ -46,22 +51,29 @@ function requestWorkflowFitView() {
 export function WorkflowSidebar() {
   const { t } = useTranslation();
   const [newWorkflowName, setNewWorkflowName] = useState("");
+  const [newWorkflowOpen, setNewWorkflowOpen] = useState(false);
   const workflows = useFactoryStore((state) => state.workflows);
   const activeWorkflowId = useFactoryStore((state) => state.activeWorkflowId);
-  const workflowDraftDirty = useFactoryStore((state) => state.workflowDraftDirty);
+  const workflowDraftDirty = useFactoryStore(
+    (state) => state.workflowDraftDirty,
+  );
   const selectedWorkflowElementId = useFactoryStore(
     (state) => state.selectedWorkflowElementId,
   );
   const createWorkflow = useFactoryStore((state) => state.createWorkflow);
   const openWorkflow = useFactoryStore((state) => state.openWorkflow);
-  const saveActiveWorkflow = useFactoryStore((state) => state.saveActiveWorkflow);
+  const saveActiveWorkflow = useFactoryStore(
+    (state) => state.saveActiveWorkflow,
+  );
   const deleteWorkflowElements = useFactoryStore(
     (state) => state.deleteWorkflowElements,
   );
   const duplicateSelectedWorkflowNode = useFactoryStore(
     (state) => state.duplicateSelectedWorkflowNode,
   );
-  const clearActiveWorkflow = useFactoryStore((state) => state.clearActiveWorkflow);
+  const clearActiveWorkflow = useFactoryStore(
+    (state) => state.clearActiveWorkflow,
+  );
 
   const activeWorkflow = useMemo(
     () => workflows.find((workflow) => workflow.id === activeWorkflowId),
@@ -71,6 +83,7 @@ export function WorkflowSidebar() {
   function handleCreateWorkflow() {
     createWorkflow(newWorkflowName);
     setNewWorkflowName("");
+    setNewWorkflowOpen(false);
   }
 
   function handleDragStart(
@@ -87,57 +100,69 @@ export function WorkflowSidebar() {
       aria-label={t("factory.views.workflow.sidebarLabel")}
     >
       <div className="factory-workflow-sidebar-group">
-        <div className="factory-workflow-sidebar-heading">
-          <GitBranchPlus aria-hidden="true" />
-          <span>{activeWorkflow?.name ?? t("factory.views.workflow.title")}</span>
-          {workflowDraftDirty && (
-            <span className="factory-workflow-dirty" aria-label={t("factory.views.workflow.unsaved")}>
-              {t("factory.views.workflow.unsavedShort")}
-            </span>
-          )}
-        </div>
-
-        <Label htmlFor="factory-workflow-name">
-          {t("factory.views.workflow.newWorkflowName")}
-        </Label>
         <div className="factory-workflow-inline-control">
-          <Input
-            id="factory-workflow-name"
-            value={newWorkflowName}
-            onChange={(event) => setNewWorkflowName(event.target.value)}
-            placeholder={t("factory.views.workflow.newWorkflowPlaceholder")}
-          />
-          <Button
-            type="button"
-            variant="outline"
-            size="icon-sm"
-            aria-label={t("factory.views.workflow.newWorkflow")}
-            onClick={handleCreateWorkflow}
-          >
-            <FilePlus2 aria-hidden="true" />
-          </Button>
+          <Select value={activeWorkflowId} onValueChange={openWorkflow}>
+            <SelectTrigger id="factory-workflow-open" className="w-full">
+              <FolderOpen aria-hidden="true" />
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent>
+              {workflows.map((workflow) => (
+                <SelectItem key={workflow.id} value={workflow.id}>
+                  {workflow.name}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+
+          <Popover open={newWorkflowOpen} onOpenChange={setNewWorkflowOpen}>
+            <PopoverTrigger asChild>
+              <Button
+                type="button"
+                variant="outline"
+                size="icon-sm"
+                aria-label={t("factory.views.workflow.newWorkflow")}
+              >
+                <FilePlus2 aria-hidden="true" />
+              </Button>
+            </PopoverTrigger>
+            <PopoverContent>
+              <Label htmlFor="factory-workflow-name">
+                {t("factory.views.workflow.newWorkflowName")}
+              </Label>
+              <div className="factory-workflow-inline-control">
+                <Input
+                  id="factory-workflow-name"
+                  value={newWorkflowName}
+                  onChange={(event) => setNewWorkflowName(event.target.value)}
+                  placeholder={t(
+                    "factory.views.workflow.newWorkflowPlaceholder",
+                  )}
+                />
+                <Button
+                  type="button"
+                  variant="outline"
+                  size="icon-sm"
+                  aria-label={t("factory.views.workflow.newWorkflow")}
+                  onClick={handleCreateWorkflow}
+                >
+                  <Check aria-hidden="true" />
+                </Button>
+              </div>
+            </PopoverContent>
+          </Popover>
         </div>
 
-        <Label htmlFor="factory-workflow-open">
-          {t("factory.views.workflow.openWorkflow")}
-        </Label>
-        <Select value={activeWorkflowId} onValueChange={openWorkflow}>
-          <SelectTrigger id="factory-workflow-open" className="w-full">
-            <FolderOpen aria-hidden="true" />
-            <SelectValue />
-          </SelectTrigger>
-          <SelectContent>
-            {workflows.map((workflow) => (
-              <SelectItem key={workflow.id} value={workflow.id}>
-                {workflow.name}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
-
-        <Button type="button" variant="default" onClick={saveActiveWorkflow}>
+        <Button
+          type="button"
+          variant="default"
+          onClick={saveActiveWorkflow}
+          disabled={!workflowDraftDirty}
+        >
           <Save aria-hidden="true" />
-          {t("factory.views.workflow.saveWorkflow")}
+          {workflowDraftDirty
+            ? t("factory.views.workflow.unsavedShort")
+            : t("factory.views.workflow.saveWorkflow")}
         </Button>
       </div>
 
@@ -171,7 +196,11 @@ export function WorkflowSidebar() {
         <p className="factory-workflow-sidebar-label">
           {t("factory.views.workflow.canvasTools")}
         </p>
-        <Button type="button" variant="outline" onClick={requestWorkflowFitView}>
+        <Button
+          type="button"
+          variant="outline"
+          onClick={requestWorkflowFitView}
+        >
           <Expand aria-hidden="true" />
           {t("factory.views.workflow.fitView")}
         </Button>
@@ -196,7 +225,11 @@ export function WorkflowSidebar() {
           <Trash2 aria-hidden="true" />
           {t("factory.views.workflow.deleteSelected")}
         </Button>
-        <Button type="button" variant="destructive" onClick={clearActiveWorkflow}>
+        <Button
+          type="button"
+          variant="destructive"
+          onClick={clearActiveWorkflow}
+        >
           <Trash2 aria-hidden="true" />
           {t("factory.views.workflow.clearCanvas")}
         </Button>
