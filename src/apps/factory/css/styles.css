@@ -1548,6 +1548,7 @@ div:has(> .factory-customer-item-link:hover) {
 .factory-workflow-sidebar-group {
   display: grid;
   gap: 0.625rem;
+  text-align: left;
 }
 
 .factory-workflow-sidebar-heading {
@@ -1587,16 +1588,6 @@ div:has(> .factory-customer-item-link:hover) {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
   gap: 0.5rem;
-}
-
-.factory-workflow-sidebar-label {
-  margin: 0;
-  color: var(--muted-foreground);
-  font-size: 0.75rem;
-  font-weight: 800;
-  letter-spacing: 0;
-  line-height: 1.2;
-  text-transform: uppercase;
 }
 
 .factory-workflow-view {

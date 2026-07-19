@@ -3,8 +3,8 @@ import {
   Boxes,
   Building2,
   CalendarDays,
-  Clock,
   CircleDollarSign,
+  Clock,
   Contact,
   CreditCard,
   DollarSign,
@@ -15,8 +15,8 @@ import {
   Files,
   History,
   House,
-  MapPin,
   ListChecks,
+  MapPin,
   Package,
   ReceiptText,
   Settings,
@@ -120,11 +120,6 @@ export const defaultNavigationSections: NavSection[] = [
     labelKey: "factory.navigation.sections.productivity",
     items: [
       {
-        labelKey: "factory.navigation.items.workflow",
-        to: "/apps/factory/workflow",
-        icon: Workflow,
-      },
-      {
         labelKey: "factory.navigation.items.planners",
         to: "/apps/factory/planners",
         icon: CalendarDays,
@@ -143,6 +138,11 @@ export const defaultNavigationSections: NavSection[] = [
         labelKey: "factory.navigation.items.integrations",
         to: "/apps/factory/integrations",
         icon: Blend,
+      },
+      {
+        labelKey: "factory.navigation.items.workflow",
+        to: "/apps/factory/workflow",
+        icon: Workflow,
       },
     ],
   },

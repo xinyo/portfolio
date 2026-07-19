@@ -36,7 +36,42 @@
     },
     "views": {
       "overview": {
-        "title": "Overview"
+        "title": "Overview",
+        "area": {
+          "title": "Orders area chart",
+          "description": "Showing total sales and purchase orders for the last 3 months",
+          "rangeLabel": "Select chart time range",
+          "last90Days": "Last 3 months",
+          "last30Days": "Last 30 days",
+          "last7Days": "Last 7 days"
+        },
+        "bar": {
+          "title": "Orders by status",
+          "description": "Current sales order volume"
+        },
+        "line": {
+          "title": "Revenue and cost",
+          "description": "Monthly sales order value"
+        },
+        "radar": {
+          "title": "Labour performance",
+          "description": "Estimated and actual hours by order status"
+        },
+        "metrics": {
+          "salesOrders": "Sales orders",
+          "purchaseOrders": "Purchase orders",
+          "orders": "Orders",
+          "revenue": "Revenue",
+          "cost": "Cost",
+          "estimatedHours": "Estimated hours",
+          "actualHours": "Actual hours"
+        },
+        "statuses": {
+          "pending": "Pending",
+          "inProgress": "In progress",
+          "onHold": "On hold",
+          "completed": "Completed"
+        }
       },
       "productCategories": {
         "title": "Product Categories",
@@ -263,9 +298,9 @@
         "newWorkflowPlaceholder": "Workflow name",
         "newWorkflow": "Create workflow",
         "openWorkflow": "Open workflow",
-        "saveWorkflow": "Save workflow",
+        "saveWorkflow": "Workflow Saved",
         "unsaved": "Unsaved workflow changes",
-        "unsavedShort": "Unsaved",
+        "unsavedShort": "Save Workflow",
         "nodeTools": "Nodes",
         "canvasTools": "Canvas",
         "addContainer": "Add container",
@@ -275,7 +310,13 @@
         "deleteSelected": "Delete selected",
         "clearCanvas": "Clear canvas",
         "nodeLabel": "Workflow node label",
-        "saveLabel": "Save node label"
+        "saveLabel": "Save node label",
+        "editWorkflow": "Rename workflow",
+        "deleteWorkflow": "Delete workflow",
+        "deleteWorkflowTitle": "Delete \"{{name}}\"?",
+        "deleteWorkflowDescription": "This removes the workflow and its contents. This can't be undone.",
+        "delete": "Delete",
+        "cancel": "Cancel"
       },
       "planners": {
         "title": "Planners",
