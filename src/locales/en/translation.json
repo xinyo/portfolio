@@ -36,7 +36,42 @@
     },
     "views": {
       "overview": {
-        "title": "Overview"
+        "title": "Overview",
+        "area": {
+          "title": "Orders area chart",
+          "description": "Showing total sales and purchase orders for the last 3 months",
+          "rangeLabel": "Select chart time range",
+          "last90Days": "Last 3 months",
+          "last30Days": "Last 30 days",
+          "last7Days": "Last 7 days"
+        },
+        "bar": {
+          "title": "Orders by status",
+          "description": "Current sales order volume"
+        },
+        "line": {
+          "title": "Revenue and cost",
+          "description": "Monthly sales order value"
+        },
+        "radar": {
+          "title": "Labour performance",
+          "description": "Estimated and actual hours by order status"
+        },
+        "metrics": {
+          "salesOrders": "Sales orders",
+          "purchaseOrders": "Purchase orders",
+          "orders": "Orders",
+          "revenue": "Revenue",
+          "cost": "Cost",
+          "estimatedHours": "Estimated hours",
+          "actualHours": "Actual hours"
+        },
+        "statuses": {
+          "pending": "Pending",
+          "inProgress": "In progress",
+          "onHold": "On hold",
+          "completed": "Completed"
+        }
       },
       "productCategories": {
         "title": "Product Categories",

@@ -36,7 +36,42 @@
     },
     "views": {
       "overview": {
-        "title": "Übersicht"
+        "title": "Übersicht",
+        "area": {
+          "title": "Flächendiagramm der Aufträge",
+          "description": "Gesamte Verkaufs- und Einkaufsaufträge der letzten 3 Monate",
+          "rangeLabel": "Zeitraum des Diagramms auswählen",
+          "last90Days": "Letzte 3 Monate",
+          "last30Days": "Letzte 30 Tage",
+          "last7Days": "Letzte 7 Tage"
+        },
+        "bar": {
+          "title": "Aufträge nach Status",
+          "description": "Aktuelles Verkaufsauftragsvolumen"
+        },
+        "line": {
+          "title": "Umsatz und Kosten",
+          "description": "Monatlicher Verkaufsauftragswert"
+        },
+        "radar": {
+          "title": "Arbeitsleistung",
+          "description": "Geschätzte und tatsächliche Stunden nach Auftragsstatus"
+        },
+        "metrics": {
+          "salesOrders": "Verkaufsaufträge",
+          "purchaseOrders": "Einkaufsaufträge",
+          "orders": "Aufträge",
+          "revenue": "Umsatz",
+          "cost": "Kosten",
+          "estimatedHours": "Geschätzte Stunden",
+          "actualHours": "Tatsächliche Stunden"
+        },
+        "statuses": {
+          "pending": "Ausstehend",
+          "inProgress": "In Bearbeitung",
+          "onHold": "Pausiert",
+          "completed": "Abgeschlossen"
+        }
       },
       "productCategories": {
         "title": "Produktkategorien",

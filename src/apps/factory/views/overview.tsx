@@ -1,6 +1,27 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Area, AreaChart, CartesianGrid, XAxis } from "recharts";
+import {
+  Area,
+  AreaChart,
+  Bar,
+  BarChart,
+  CartesianGrid,
+  Line,
+  LineChart,
+  PolarAngleAxis,
+  PolarGrid,
+  Radar,
+  RadarChart,
+  XAxis,
+} from "recharts";
+import { Temporal } from "temporal-polyfill";
+
+import {
+  formatOverviewDate,
+  formatOverviewMonth,
+  overviewMonthlyOrderData,
+  overviewOrderStatusData,
+} from "@/apps/factory/overview-model";
 
 import {
   Card,
@@ -119,36 +140,68 @@ const chartData = [
   { date: "2024-06-30", desktop: 446, mobile: 400 },
 ];
 
-const chartConfig = {
-  visitors: {
-    label: "Sales orders",
-  },
-  desktop: {
-    label: "Sales orders",
-    color: "var(--chart-1)",
-  },
-  mobile: {
-    label: "Purchase orders",
-    color: "var(--chart-2)",
-  },
-} satisfies ChartConfig;
-
 export function OverviewView() {
-  const { t } = useTranslation();
+  const { i18n, t } = useTranslation();
   const [timeRange, setTimeRange] = useState("90d");
+  const locale = i18n.resolvedLanguage ?? i18n.language;
+
+  const areaChartConfig = {
+    visitors: {
+      label: t("factory.views.overview.metrics.salesOrders"),
+    },
+    desktop: {
+      label: t("factory.views.overview.metrics.salesOrders"),
+      color: "var(--chart-1)",
+    },
+    mobile: {
+      label: t("factory.views.overview.metrics.purchaseOrders"),
+      color: "var(--chart-2)",
+    },
+  } satisfies ChartConfig;
+
+  const barChartConfig = {
+    orders: {
+      label: t("factory.views.overview.metrics.orders"),
+      color: "var(--chart-1)",
+    },
+  } satisfies ChartConfig;
+
+  const lineChartConfig = {
+    revenue: {
+      label: t("factory.views.overview.metrics.revenue"),
+      color: "var(--chart-1)",
+    },
+    cost: {
+      label: t("factory.views.overview.metrics.cost"),
+      color: "var(--chart-2)",
+    },
+  } satisfies ChartConfig;
+
+  const radarChartConfig = {
+    estimatedHours: {
+      label: t("factory.views.overview.metrics.estimatedHours"),
+      color: "var(--chart-1)",
+    },
+    actualHours: {
+      label: t("factory.views.overview.metrics.actualHours"),
+      color: "var(--chart-2)",
+    },
+  } satisfies ChartConfig;
+
+  const formatStatus = (value: string | number) =>
+    t(`factory.views.overview.statuses.${String(value)}`);
 
   const filteredData = chartData.filter((item) => {
-    const date = new Date(item.date);
-    const referenceDate = new Date("2024-06-30");
+    const date = Temporal.PlainDate.from(item.date);
+    const referenceDate = Temporal.PlainDate.from("2024-06-30");
     let daysToSubtract = 90;
     if (timeRange === "30d") {
       daysToSubtract = 30;
     } else if (timeRange === "7d") {
       daysToSubtract = 7;
     }
-    const startDate = new Date(referenceDate);
-    startDate.setDate(startDate.getDate() - daysToSubtract);
-    return date >= startDate;
+    const startDate = referenceDate.subtract({ days: daysToSubtract });
+    return Temporal.PlainDate.compare(date, startDate) >= 0;
   });
 
   return (
@@ -157,37 +210,41 @@ export function OverviewView() {
       <Card className="pt-0">
         <CardHeader className="flex items-center gap-2 space-y-0 border-b py-5 sm:flex-row">
           <div className="grid flex-1 gap-1">
-            <CardTitle>Orders Area Chart</CardTitle>
+            <CardTitle>{t("factory.views.overview.area.title")}</CardTitle>
             <CardDescription>
-              Showing total sales and purchase orders for the last 3 months
+              {t("factory.views.overview.area.description")}
             </CardDescription>
           </div>
           <Select value={timeRange} onValueChange={setTimeRange}>
             <SelectTrigger
               className="hidden w-[160px] rounded-lg sm:ml-auto sm:flex"
-              aria-label="Select a value"
+              aria-label={t("factory.views.overview.area.rangeLabel")}
             >
-              <SelectValue placeholder="Last 3 months" />
+              <SelectValue
+                placeholder={t("factory.views.overview.area.last90Days")}
+              />
             </SelectTrigger>
             <SelectContent className="rounded-xl">
               <SelectItem value="90d" className="rounded-lg">
-                Last 3 months
+                {t("factory.views.overview.area.last90Days")}
               </SelectItem>
               <SelectItem value="30d" className="rounded-lg">
-                Last 30 days
+                {t("factory.views.overview.area.last30Days")}
               </SelectItem>
               <SelectItem value="7d" className="rounded-lg">
-                Last 7 days
+                {t("factory.views.overview.area.last7Days")}
               </SelectItem>
             </SelectContent>
           </Select>
         </CardHeader>
         <CardContent className="px-2 pt-4 sm:px-6 sm:pt-6">
           <ChartContainer
-            config={chartConfig}
+            config={areaChartConfig}
             className="aspect-auto h-[250px] w-full"
+            role="img"
+            aria-label={t("factory.views.overview.area.description")}
           >
-            <AreaChart data={filteredData}>
+            <AreaChart data={filteredData} accessibilityLayer>
               <defs>
                 <linearGradient id="fillDesktop" x1="0" y1="0" x2="0" y2="1">
                   <stop
@@ -221,24 +278,15 @@ export function OverviewView() {
                 axisLine={false}
                 tickMargin={8}
                 minTickGap={32}
-                tickFormatter={(value) => {
-                  const date = new Date(value);
-                  return date.toLocaleDateString("en-US", {
-                    month: "short",
-                    day: "numeric",
-                  });
-                }}
+                tickFormatter={(value) => formatOverviewDate(value, locale)}
               />
               <ChartTooltip
                 cursor={false}
                 content={
                   <ChartTooltipContent
-                    labelFormatter={(value) => {
-                      return new Date(value).toLocaleDateString("en-US", {
-                        month: "short",
-                        day: "numeric",
-                      });
-                    }}
+                    labelFormatter={(value) =>
+                      formatOverviewDate(String(value), locale)
+                    }
                     indicator="dot"
                   />
                 }
@@ -262,6 +310,158 @@ export function OverviewView() {
           </ChartContainer>
         </CardContent>
       </Card>
+      <div className="grid gap-4 pt-4 md:grid-cols-2 xl:grid-cols-3">
+        <Card className="pt-0">
+          <CardHeader className="border-b py-5">
+            <CardTitle>{t("factory.views.overview.bar.title")}</CardTitle>
+            <CardDescription>
+              {t("factory.views.overview.bar.description")}
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="px-2 pt-4 sm:px-6">
+            <ChartContainer
+              config={barChartConfig}
+              className="aspect-auto h-[220px] w-full"
+              role="img"
+              aria-label={t("factory.views.overview.bar.description")}
+            >
+              <BarChart data={overviewOrderStatusData} accessibilityLayer>
+                <CartesianGrid vertical={false} />
+                <XAxis
+                  dataKey="status"
+                  tickLine={false}
+                  axisLine={false}
+                  tickMargin={8}
+                  tickFormatter={formatStatus}
+                />
+                <ChartTooltip
+                  cursor={false}
+                  content={
+                    <ChartTooltipContent
+                      labelFormatter={(value) =>
+                        formatStatus(String(value))
+                      }
+                      indicator="dot"
+                    />
+                  }
+                />
+                <Bar
+                  dataKey="orders"
+                  fill="var(--color-orders)"
+                  radius={[4, 4, 0, 0]}
+                />
+              </BarChart>
+            </ChartContainer>
+          </CardContent>
+        </Card>
+
+        <Card className="pt-0">
+          <CardHeader className="border-b py-5">
+            <CardTitle>{t("factory.views.overview.line.title")}</CardTitle>
+            <CardDescription>
+              {t("factory.views.overview.line.description")}
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="px-2 pt-4 sm:px-6">
+            <ChartContainer
+              config={lineChartConfig}
+              className="aspect-auto h-[220px] w-full"
+              role="img"
+              aria-label={t("factory.views.overview.line.description")}
+            >
+              <LineChart data={overviewMonthlyOrderData} accessibilityLayer>
+                <CartesianGrid vertical={false} />
+                <XAxis
+                  dataKey="month"
+                  tickLine={false}
+                  axisLine={false}
+                  tickMargin={8}
+                  tickFormatter={(value) =>
+                    formatOverviewMonth(value, locale)
+                  }
+                />
+                <ChartTooltip
+                  cursor={false}
+                  content={
+                    <ChartTooltipContent
+                      labelFormatter={(value) =>
+                        formatOverviewMonth(String(value), locale)
+                      }
+                      indicator="dot"
+                    />
+                  }
+                />
+                <Line
+                  dataKey="revenue"
+                  type="natural"
+                  stroke="var(--color-revenue)"
+                  strokeWidth={2}
+                  dot={false}
+                />
+                <Line
+                  dataKey="cost"
+                  type="natural"
+                  stroke="var(--color-cost)"
+                  strokeWidth={2}
+                  dot={false}
+                />
+                <ChartLegend content={<ChartLegendContent />} />
+              </LineChart>
+            </ChartContainer>
+          </CardContent>
+        </Card>
+
+        <Card className="pt-0 md:col-span-2 xl:col-span-1">
+          <CardHeader className="border-b py-5">
+            <CardTitle>{t("factory.views.overview.radar.title")}</CardTitle>
+            <CardDescription>
+              {t("factory.views.overview.radar.description")}
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="px-2 pt-4 sm:px-6">
+            <ChartContainer
+              config={radarChartConfig}
+              className="aspect-auto h-[220px] w-full"
+              role="img"
+              aria-label={t("factory.views.overview.radar.description")}
+            >
+              <RadarChart data={overviewOrderStatusData} accessibilityLayer>
+                <ChartTooltip
+                  cursor={false}
+                  content={
+                    <ChartTooltipContent
+                      labelFormatter={(value) =>
+                        formatStatus(String(value))
+                      }
+                      indicator="dot"
+                    />
+                  }
+                />
+                <PolarGrid />
+                <PolarAngleAxis
+                  dataKey="status"
+                  tickFormatter={formatStatus}
+                />
+                <Radar
+                  dataKey="estimatedHours"
+                  fill="var(--color-estimatedHours)"
+                  fillOpacity={0.25}
+                  stroke="var(--color-estimatedHours)"
+                  strokeWidth={2}
+                />
+                <Radar
+                  dataKey="actualHours"
+                  fill="var(--color-actualHours)"
+                  fillOpacity={0.2}
+                  stroke="var(--color-actualHours)"
+                  strokeWidth={2}
+                />
+                <ChartLegend content={<ChartLegendContent />} />
+              </RadarChart>
+            </ChartContainer>
+          </CardContent>
+        </Card>
+      </div>
     </section>
   );
 }

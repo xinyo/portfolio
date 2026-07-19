@@ -292,7 +292,7 @@ export function WorkflowSidebar() {
       </div>
 
       <div className="factory-workflow-sidebar-group">
-        <p className="factory-workflow-sidebar-label">
+        <p className="factory-nav-section-label">
           {t("factory.views.workflow.nodeTools")}
         </p>
         <Button
@@ -318,7 +318,7 @@ export function WorkflowSidebar() {
       </div>
 
       <div className="factory-workflow-sidebar-group">
-        <p className="factory-workflow-sidebar-label">
+        <p className="factory-nav-section-label">
           {t("factory.views.workflow.canvasTools")}
         </p>
         <Button
