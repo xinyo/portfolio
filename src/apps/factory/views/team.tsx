@@ -3,6 +3,7 @@ import { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 import { EditEmployeeDialog } from "@/apps/factory/dialogs/edit-employee-dialog";
+import { useFactoryListQuery } from "@/apps/factory/hooks/use-factory-list-query";
 import { filterTeamMembers, useFactoryStore } from "@/apps/factory/store";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
@@ -25,7 +26,7 @@ import {
 
 export function TeamView() {
   const { t } = useTranslation();
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useFactoryListQuery();
   const [dialogOpen, setDialogOpen] = useState(false);
   const [editingEmployeeId, setEditingEmployeeId] = useState<string | null>(
     null,

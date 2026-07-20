@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
 import { MaterialDialog } from "@/apps/factory/dialogs/material-dialog";
+import { useFactoryListQuery } from "@/apps/factory/hooks/use-factory-list-query";
 import { filterFactoryMaterials } from "@/apps/factory/material-model";
 import { useFactoryStore, type FactoryMaterial } from "@/apps/factory/store";
 import { Button } from "@/components/ui/button";
@@ -31,7 +32,7 @@ import {
 export function MaterialsView() {
   const { t } = useTranslation();
   const [materialDialogOpen, setMaterialDialogOpen] = useState(false);
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useFactoryListQuery();
   const materials = useFactoryStore((state) => state.materials);
   const filteredMaterials = filterFactoryMaterials(materials, query);
 

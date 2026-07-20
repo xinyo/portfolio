@@ -5,6 +5,8 @@ import { useTranslation } from "react-i18next";
 
 import { ViewSelector } from "@/apps/factory/components/view-selector";
 import { SalesOrderDialog } from "@/apps/factory/dialogs/sales-order-dialog";
+import { useFactoryListQuery } from "@/apps/factory/hooks/use-factory-list-query";
+import { filterFactorySalesOrders } from "@/apps/factory/search-model";
 import {
   factorySalesOrders,
   useFactoryStore,
@@ -28,6 +30,7 @@ const makeId = () =>
 export function SalesOrdersView() {
   const { t } = useTranslation();
   const [salesOrderDialogOpen, setSalesOrderDialogOpen] = useState(false);
+  const [query, setQuery] = useFactoryListQuery();
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
 
   const {
@@ -116,6 +119,10 @@ export function SalesOrdersView() {
   const toggleableColumns = salesOrderColumns.filter(
     (col) => col.enableHiding !== false,
   );
+  const filteredSalesOrders = filterFactorySalesOrders(
+    factorySalesOrders,
+    query,
+  );
 
   const toolbar = (
     <div className="flex items-center gap-2">
@@ -125,6 +132,8 @@ export function SalesOrdersView() {
           className="factory-search-input"
           placeholder={t("factory.views.salesOrders.searchPlaceholder")}
           aria-label={t("factory.views.salesOrders.searchPlaceholder")}
+          value={query}
+          onChange={(event) => setQuery(event.target.value)}
         />
       </div>
       <Button variant="outline" size="icon" aria-label="Filters">
@@ -199,7 +208,7 @@ export function SalesOrdersView() {
 
       <DataTable
         columns={salesOrderColumns}
-        data={factorySalesOrders}
+        data={filteredSalesOrders}
         toolbar={toolbar}
         columnVisibility={columnVisibility}
         onColumnVisibilityChange={setColumnVisibility}

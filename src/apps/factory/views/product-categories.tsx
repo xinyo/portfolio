@@ -34,6 +34,7 @@ import {
 import { ProductDialog } from "@/apps/factory/dialogs/product-dialog";
 import { CategoryDialog } from "@/apps/factory/dialogs/category-dialog";
 import { ProductKitDialog } from "@/apps/factory/dialogs/product-kit-dialog";
+import { useFactoryListQuery } from "@/apps/factory/hooks/use-factory-list-query";
 import {
   useFactoryStore,
   type FactoryProduct,
@@ -50,7 +51,7 @@ export function ProductCategoriesView() {
   const [productDialogOpen, setProductDialogOpen] = useState(false);
   const [categoryDialogOpen, setCategoryDialogOpen] = useState(false);
   const [productKitDialogOpen, setProductKitDialogOpen] = useState(false);
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useFactoryListQuery();
   const [categoryId, setCategoryId] = useState("all");
   const products = useFactoryStore((state) => state.products);
   const productKits = useFactoryStore((state) => state.productKits);

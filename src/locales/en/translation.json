@@ -18,6 +18,25 @@
   },
   "factory": {
     "title": "Factory",
+    "search": {
+      "title": "Search Factory workspace",
+      "description": "Search pages and business records across Factory.",
+      "placeholder": "Search products, orders, customers, and more...",
+      "inputLabel": "Search Factory workspace",
+      "noResults": "No matching pages or records found.",
+      "groups": {
+        "page": "Pages",
+        "product": "Products",
+        "productKit": "Product kits",
+        "customer": "Customers",
+        "contact": "Contacts",
+        "salesOrder": "Sales orders",
+        "material": "Materials",
+        "supplier": "Suppliers",
+        "teamMember": "Team members",
+        "integration": "Integrations"
+      }
+    },
     "welcome": {
       "eyebrow": "Welcome to Factory",
       "title": "Modernise your workshop",
@@ -210,6 +229,7 @@
         "unsavedDescription": "You have unsaved changes. Are you sure you want to discard them?",
         "keepEditing": "Keep editing",
         "discard": "Discard",
+        "empty": "No customers match your search.",
         "states": {
           "NSW": "New South Wales",
           "VIC": "Victoria",
@@ -288,7 +308,14 @@
         "title": "Purchase Orders"
       },
       "suppliers": {
-        "title": "Suppliers"
+        "title": "Suppliers",
+        "subtitle": "Review supplier details, contacts, and supplied products.",
+        "searchPlaceholder": "Search suppliers...",
+        "empty": "No suppliers match your search.",
+        "contacts_one": "{{count}} contact",
+        "contacts_other": "{{count}} contacts",
+        "products_one": "{{count}} supplied product",
+        "products_other": "{{count}} supplied products"
       },
       "workflow": {
         "title": "Workflow",

@@ -4,6 +4,8 @@ import { useTranslation } from "react-i18next";
 import { Link } from "react-router";
 
 import { CustomerDialog } from "@/apps/factory/dialogs/customer-dialog";
+import { useFactoryListQuery } from "@/apps/factory/hooks/use-factory-list-query";
+import { filterFactoryCustomers } from "@/apps/factory/search-model";
 import { useFactoryStore, type FactoryCustomer } from "@/apps/factory/store";
 import { Button } from "@/components/ui/button";
 import {
@@ -27,8 +29,10 @@ export function CustomersView() {
   const [editingCustomerId, setEditingCustomerId] = useState<string | null>(
     null,
   );
+  const [query, setQuery] = useFactoryListQuery();
   const customers = useFactoryStore((s) => s.customers);
   const deleteCustomer = useFactoryStore((s) => s.deleteCustomer);
+  const filteredCustomers = filterFactoryCustomers(customers, query);
 
   function handleAdd() {
     setEditingCustomerId(null);
@@ -70,21 +74,29 @@ export function CustomersView() {
               className="factory-search-input"
               placeholder={t("factory.views.customers.searchPlaceholder")}
               aria-label={t("factory.views.customers.searchPlaceholder")}
+              value={query}
+              onChange={(event) => setQuery(event.target.value)}
             />
           </div>
         </div>
       </div>
 
       <div className="factory-product-list">
-        {customers.map((customer: FactoryCustomer) => (
-          <CustomerItem
-            key={customer.id}
-            customer={customer}
-            t={t}
-            onEdit={handleEdit}
-            onDelete={deleteCustomer}
-          />
-        ))}
+        {filteredCustomers.length > 0 ? (
+          filteredCustomers.map((customer: FactoryCustomer) => (
+            <CustomerItem
+              key={customer.id}
+              customer={customer}
+              t={t}
+              onEdit={handleEdit}
+              onDelete={deleteCustomer}
+            />
+          ))
+        ) : (
+          <p className="factory-detail-empty">
+            {t("factory.views.customers.empty")}
+          </p>
+        )}
       </div>
 
       <CustomerDialog
