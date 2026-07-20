@@ -2593,3 +2593,32 @@ div:has(> .factory-customer-item-link:hover) {
     gap: 0.25rem;
   }
 }
+
+body.factory-app .factory-global-search {
+  gap: 0;
+  overflow: hidden;
+  padding: 0;
+}
+
+body.factory-app .factory-global-search-copy {
+  display: flex;
+  min-width: 0;
+  flex: 1;
+  flex-direction: column;
+}
+
+body.factory-app .factory-global-search-copy > span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+body.factory-app .factory-global-search-copy > span:last-child:not(:first-child) {
+  color: var(--muted-foreground);
+  font-size: 0.75rem;
+}
+
+body.factory-app .factory-supplier-meta {
+  align-items: flex-end;
+  text-align: right;
+}

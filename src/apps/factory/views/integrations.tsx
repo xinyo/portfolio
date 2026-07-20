@@ -5,7 +5,7 @@ import {
   Store,
   Waypoints,
 } from "lucide-react";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 import {
@@ -14,6 +14,7 @@ import {
   useFactoryStore,
   type FactoryIntegration,
 } from "@/apps/factory/store";
+import { useFactoryListQuery } from "@/apps/factory/hooks/use-factory-list-query";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -58,8 +59,10 @@ const integrationCategoryGroups = integrationCategoryGroupOrder.map(
 
 export function IntegrationsView() {
   const { t } = useTranslation();
-  const [mode, setMode] = useState<IntegrationsViewMode>("connected");
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useFactoryListQuery();
+  const [mode, setMode] = useState<IntegrationsViewMode>(
+    query ? "marketplace" : "connected",
+  );
   const [categoryId, setCategoryId] = useState("all");
   const [isCategoryPopoverOpen, setIsCategoryPopoverOpen] = useState(false);
   const integrationsById = useFactoryStore((state) => state.integrationsById);
@@ -72,6 +75,12 @@ export function IntegrationsView() {
   const removeConnectedIntegration = useFactoryStore(
     (state) => state.removeConnectedIntegration,
   );
+
+  useEffect(() => {
+    if (query) {
+      setMode("marketplace");
+    }
+  }, [query]);
 
   const visibleIntegrations = useMemo(() => {
     const source =

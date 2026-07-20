@@ -18,6 +18,25 @@
   },
   "factory": {
     "title": "Factory",
+    "search": {
+      "title": "Factory-Arbeitsbereich durchsuchen",
+      "description": "Durchsuchen Sie Seiten und Geschäftsdaten in Factory.",
+      "placeholder": "Produkte, Aufträge, Kunden und mehr suchen...",
+      "inputLabel": "Factory-Arbeitsbereich durchsuchen",
+      "noResults": "Keine passenden Seiten oder Datensätze gefunden.",
+      "groups": {
+        "page": "Seiten",
+        "product": "Produkte",
+        "productKit": "Produktsets",
+        "customer": "Kunden",
+        "contact": "Kontakte",
+        "salesOrder": "Verkaufsaufträge",
+        "material": "Materialien",
+        "supplier": "Lieferanten",
+        "teamMember": "Teammitglieder",
+        "integration": "Integrationen"
+      }
+    },
     "welcome": {
       "eyebrow": "Willkommen bei Factory",
       "title": "Modernisieren Sie Ihre Werkstatt",
@@ -210,6 +229,7 @@
         "unsavedDescription": "Sie haben ungespeicherte Änderungen. Möchten Sie diese wirklich verwerfen?",
         "keepEditing": "Weiter bearbeiten",
         "discard": "Verwerfen",
+        "empty": "Keine Kunden entsprechen Ihrer Suche.",
         "states": {
           "NSW": "New South Wales",
           "VIC": "Victoria",
@@ -288,7 +308,14 @@
         "title": "Bestellungen"
       },
       "suppliers": {
-        "title": "Lieferanten"
+        "title": "Lieferanten",
+        "subtitle": "Lieferantendetails, Kontakte und gelieferte Produkte anzeigen.",
+        "searchPlaceholder": "Lieferanten suchen...",
+        "empty": "Keine Lieferanten entsprechen Ihrer Suche.",
+        "contacts_one": "{{count}} Kontakt",
+        "contacts_other": "{{count}} Kontakte",
+        "products_one": "{{count}} geliefertes Produkt",
+        "products_other": "{{count}} gelieferte Produkte"
       },
       "workflow": {
         "title": "Workflow",

@@ -18,6 +18,25 @@
   },
   "factory": {
     "title": "Factory",
+    "search": {
+      "title": "搜索 Factory 工作区",
+      "description": "搜索 Factory 中的页面和业务记录。",
+      "placeholder": "搜索产品、订单、客户等...",
+      "inputLabel": "搜索 Factory 工作区",
+      "noResults": "未找到匹配的页面或记录。",
+      "groups": {
+        "page": "页面",
+        "product": "产品",
+        "productKit": "产品套件",
+        "customer": "客户",
+        "contact": "联系人",
+        "salesOrder": "销售订单",
+        "material": "材料",
+        "supplier": "供应商",
+        "teamMember": "团队成员",
+        "integration": "集成"
+      }
+    },
     "welcome": {
       "eyebrow": "欢迎使用 Factory",
       "title": "让您的车间现代化",
@@ -210,6 +229,7 @@
         "unsavedDescription": "您有未保存的更改。确定要放弃吗？",
         "keepEditing": "继续编辑",
         "discard": "放弃",
+        "empty": "没有符合搜索条件的客户。",
         "states": {
           "NSW": "新南威尔士州",
           "VIC": "维多利亚州",
@@ -288,7 +308,14 @@
         "title": "采购订单"
       },
       "suppliers": {
-        "title": "供应商"
+        "title": "供应商",
+        "subtitle": "查看供应商详情、联系人和所供产品。",
+        "searchPlaceholder": "搜索供应商...",
+        "empty": "没有符合搜索条件的供应商。",
+        "contacts_one": "{{count}} 位联系人",
+        "contacts_other": "{{count}} 位联系人",
+        "products_one": "{{count}} 种所供产品",
+        "products_other": "{{count}} 种所供产品"
       },
       "workflow": {
         "title": "工作流",

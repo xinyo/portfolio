@@ -10,6 +10,7 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
 import { EditContactDialog } from "@/apps/factory/dialogs/edit-contact-dialog";
+import { useFactoryListQuery } from "@/apps/factory/hooks/use-factory-list-query";
 import {
   filterCustomerContacts,
   useFactoryStore,
@@ -40,7 +41,7 @@ type ContactsPanelProps = {
 
 export function ContactsPanel({ customer }: ContactsPanelProps) {
   const { t } = useTranslation();
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useFactoryListQuery();
   const [contactDialogOpen, setContactDialogOpen] = useState(false);
   const [editingContactId, setEditingContactId] = useState<string | null>(null);
   const archiveCustomerContact = useFactoryStore(
