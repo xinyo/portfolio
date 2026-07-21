@@ -89,7 +89,7 @@ function HomePage() {
 
   return (
     <>
-      <div className="profolio-home flex flex-col items-center justify-center gap-8">
+      <div className="portfolio-home flex flex-col items-center justify-center gap-8">
         <header className="home-header">
           <div className="hero">
             <img
