@@ -55,7 +55,7 @@ export function useFormattedTemporalDate(
       // Temporal.Instant.from is STRICT. It will throw if the ISO string is invalid.
       // No more NaN dates or silent browser-specific parsing failures!
       targetInstant = Temporal.Instant.from(isoString);
-    } catch (e) {
+    } catch {
       console.warn(
         `Invalid ISO 8601 string passed to useFormattedTemporalDate: ${isoString}`,
       );

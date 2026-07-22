@@ -117,32 +117,32 @@ function WorkflowCanvas() {
 
   const handleNodesChange = useCallback(
     (changes: NodeChange<FactoryWorkflowNode>[]) => {
-      setWorkflowNodes(applyNodeChanges(changes, nodes));
+      setWorkflowNodes((prev) => applyNodeChanges(changes, prev));
     },
-    [nodes, setWorkflowNodes],
+    [setWorkflowNodes],
   );
 
   const handleEdgesChange = useCallback(
     (changes: EdgeChange[]) => {
-      setWorkflowEdges(applyEdgeChanges(changes, edges));
+      setWorkflowEdges((prev) => applyEdgeChanges(changes, prev));
     },
-    [edges, setWorkflowEdges],
+    [setWorkflowEdges],
   );
 
   const handleConnect = useCallback(
     (connection: Connection) => {
-      setWorkflowEdges(
+      setWorkflowEdges((prev) =>
         addEdge(
           {
             ...connection,
             type: "smoothstep",
             animated: false,
           },
-          edges,
+          prev,
         ),
       );
     },
-    [edges, setWorkflowEdges],
+    [setWorkflowEdges],
   );
 
   const handleDrop = useCallback(
@@ -179,18 +179,17 @@ function WorkflowCanvas() {
         return;
       }
 
-      const parent = getWorkflowNodeParent(
-        nodes.filter((item) => item.id !== node.id),
-        node.position,
-      );
+      setWorkflowNodes((prev) => {
+        const parent = getWorkflowNodeParent(
+          prev.filter((item) => item.id !== node.id),
+          node.position,
+        );
 
-      if (!parent || parent.id === node.parentId) {
-        setWorkflowNodes(nodes);
-        return;
-      }
+        if (!parent || parent.id === node.parentId) {
+          return prev;
+        }
 
-      setWorkflowNodes(
-        nodes.map((item) =>
+        return prev.map((item) =>
           item.id === node.id
             ? {
                 ...item,
@@ -201,10 +200,10 @@ function WorkflowCanvas() {
                 },
               }
             : item,
-        ),
-      );
+        );
+      });
     },
-    [nodes, setWorkflowNodes],
+    [setWorkflowNodes],
   );
 
   return (
