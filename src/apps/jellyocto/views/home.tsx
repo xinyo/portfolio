@@ -1,3 +1,4 @@
+import JellyoctoIcon from "@/apps/jellyocto/assets/logo-icon.svg";
 import JellyoctoLogo from "@/apps/jellyocto/assets/logo.svg";
 
 export function JellyoctoHome() {
@@ -5,6 +6,7 @@ export function JellyoctoHome() {
     <main className="jellyocto-page">
       <h1>Jellyocto</h1>
       <img src={JellyoctoLogo} alt="Jellyocto logo" />
+      <img src={JellyoctoIcon} />
     </main>
   );
 }
