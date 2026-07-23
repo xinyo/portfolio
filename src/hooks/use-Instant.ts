@@ -57,7 +57,7 @@ export function useFormattedTemporalDate(
       targetInstant = Temporal.Instant.from(isoString);
     } catch (e) {
       console.warn(
-        `Invalid ISO 8601 string passed to useFormattedTemporalDate: ${isoString}`,
+        `Invalid ISO 8601 string passed to useFormattedTemporalDate: ${isoString}. ${e}`,
       );
       return null;
     }

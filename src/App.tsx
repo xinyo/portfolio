@@ -23,7 +23,6 @@ type PrincipleItem = {
 
 function HomePage() {
   const { t } = useTranslation();
-  const [count, setCount] = useState(0);
   const principles = t("operating_principles.items", {
     returnObjects: true,
   }) as PrincipleItem[];

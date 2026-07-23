@@ -69,8 +69,8 @@ function WorkflowCanvas() {
     () => workflows.find((item) => item.id === activeWorkflowId),
     [activeWorkflowId, workflows],
   );
-  const nodes = workflow?.nodes ?? [];
-  const edges = workflow?.edges ?? [];
+  const nodes = useMemo(() => workflow?.nodes ?? [], [workflow?.nodes]);
+  const edges = useMemo(() => workflow?.edges ?? [], [workflow?.edges]);
 
   const addNodeAtPosition = useCallback(
     (type: FactoryWorkflowNodeType, position: XYPosition) => {
