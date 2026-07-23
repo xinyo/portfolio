@@ -722,6 +722,41 @@ function getNodeHeight(node: FactoryWorkflowNode) {
       : WORKFLOW_ITEM_HEIGHT;
 }
 
+export function getWorkflowNodeAddTarget(
+  nodes: FactoryWorkflowNode[],
+  type: FactoryWorkflowNodeType,
+  fallbackPosition: XYPosition,
+  selectedElementId: string | null,
+): { position: XYPosition; parentId?: string } {
+  if (type !== "item" || !selectedElementId) {
+    return { position: fallbackPosition };
+  }
+
+  const selectedContainer = nodes.find(
+    (node) =>
+      node.id === selectedElementId && node.data.nodeType === "container",
+  );
+
+  if (!selectedContainer) {
+    return { position: fallbackPosition };
+  }
+
+  const childY = Math.max(
+    48,
+    ...nodes
+      .filter((node) => node.parentId === selectedContainer.id)
+      .map((node) => node.position.y + getNodeHeight(node) + 16),
+  );
+
+  return {
+    parentId: selectedContainer.id,
+    position: {
+      x: selectedContainer.position.x + 16,
+      y: selectedContainer.position.y + childY,
+    },
+  };
+}
+
 export function getAutoGrownWorkflowNodes(
   nodes: FactoryWorkflowNode[],
 ): FactoryWorkflowNode[] {
@@ -780,6 +815,57 @@ export function getWorkflowNodeParent(
       position.y <= node.position.y + height
     );
   });
+}
+
+export function reparentWorkflowItem(
+  nodes: FactoryWorkflowNode[],
+  draggedNode: FactoryWorkflowNode,
+): FactoryWorkflowNode[] {
+  if (draggedNode.data.nodeType !== "item") {
+    return nodes;
+  }
+
+  const storedNode = nodes.find((node) => node.id === draggedNode.id);
+  if (!storedNode) {
+    return nodes;
+  }
+
+  const currentParent = nodes.find(
+    (node) => node.id === storedNode.parentId,
+  );
+  const canvasPosition = currentParent
+    ? {
+        x: currentParent.position.x + draggedNode.position.x,
+        y: currentParent.position.y + draggedNode.position.y,
+      }
+    : draggedNode.position;
+  const candidateNodes = nodes.filter((node) => node.id !== draggedNode.id);
+  const nextParent =
+    getWorkflowNodeParent(
+      candidateNodes.filter((node) => node.id !== currentParent?.id),
+      canvasPosition,
+    ) ??
+    getWorkflowNodeParent(
+      candidateNodes.filter((node) => node.id === currentParent?.id),
+      canvasPosition,
+    );
+  const nextNode = {
+    ...storedNode,
+    parentId: nextParent?.id,
+    position: nextParent
+      ? {
+          x: Math.max(16, canvasPosition.x - nextParent.position.x),
+          y: Math.max(48, canvasPosition.y - nextParent.position.y),
+        }
+      : canvasPosition,
+  };
+
+  if (nextParent?.id === storedNode.parentId) {
+    return nodes.map((node) => (node.id === nextNode.id ? nextNode : node));
+  }
+
+  // React Flow requires parent nodes to occur before their children.
+  return [...nodes.filter((node) => node.id !== nextNode.id), nextNode];
 }
 
 export type FactoryColumnView = {
@@ -859,8 +945,16 @@ type FactoryStore = {
   createWorkflow: (name?: string) => string;
   openWorkflow: (id: string) => void;
   saveActiveWorkflow: () => void;
-  setWorkflowNodes: (nodes: FactoryWorkflowNode[]) => void;
-  setWorkflowEdges: (edges: FactoryWorkflowEdge[]) => void;
+  setWorkflowNodes: (
+    nodes:
+      | FactoryWorkflowNode[]
+      | ((prev: FactoryWorkflowNode[]) => FactoryWorkflowNode[]),
+  ) => void;
+  setWorkflowEdges: (
+    edges:
+      | FactoryWorkflowEdge[]
+      | ((prev: FactoryWorkflowEdge[]) => FactoryWorkflowEdge[]),
+  ) => void;
   addWorkflowNode: (
     type: FactoryWorkflowNodeType,
     position: XYPosition,
@@ -1171,23 +1265,33 @@ export const useFactoryStore = create<FactoryStore>((set) => {
         ),
         workflowDraftDirty: false,
       })),
-    setWorkflowNodes: (nodes) =>
+    setWorkflowNodes: (nodesOrFn) =>
       set((state) => ({
         workflows: state.workflows.map((workflow) =>
           workflow.id === state.activeWorkflowId
             ? {
                 ...workflow,
-                nodes: getAutoGrownWorkflowNodes(nodes),
+                nodes: getAutoGrownWorkflowNodes(
+                  typeof nodesOrFn === "function"
+                    ? nodesOrFn(workflow.nodes)
+                    : nodesOrFn,
+                ),
               }
             : workflow,
         ),
         workflowDraftDirty: true,
       })),
-    setWorkflowEdges: (edges) =>
+    setWorkflowEdges: (edgesOrFn) =>
       set((state) => ({
         workflows: state.workflows.map((workflow) =>
           workflow.id === state.activeWorkflowId
-            ? { ...workflow, edges }
+            ? {
+                ...workflow,
+                edges:
+                  typeof edgesOrFn === "function"
+                    ? edgesOrFn(workflow.edges)
+                    : edgesOrFn,
+              }
             : workflow,
         ),
         workflowDraftDirty: true,

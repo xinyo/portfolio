@@ -36,7 +36,8 @@ import {
   WORKFLOW_FIT_VIEW_EVENT,
 } from "@/apps/factory/components/workflow-sidebar";
 import {
-  getWorkflowNodeParent,
+  getWorkflowNodeAddTarget,
+  reparentWorkflowItem,
   useFactoryStore,
   type FactoryWorkflowNode,
   type FactoryWorkflowNodeData,
@@ -61,6 +62,9 @@ function WorkflowCanvas() {
   const setWorkflowNodes = useFactoryStore((state) => state.setWorkflowNodes);
   const setWorkflowEdges = useFactoryStore((state) => state.setWorkflowEdges);
   const addWorkflowNode = useFactoryStore((state) => state.addWorkflowNode);
+  const selectedWorkflowElementId = useFactoryStore(
+    (state) => state.selectedWorkflowElementId,
+  );
   const setSelectedWorkflowElementId = useFactoryStore(
     (state) => state.setSelectedWorkflowElementId,
   );
@@ -73,8 +77,12 @@ function WorkflowCanvas() {
   const edges = useMemo(() => workflow?.edges ?? [], [workflow?.edges]);
 
   const addNodeAtPosition = useCallback(
-    (type: FactoryWorkflowNodeType, position: XYPosition) => {
-      addWorkflowNode(type, position);
+    (
+      type: FactoryWorkflowNodeType,
+      position: XYPosition,
+      parentId?: string,
+    ) => {
+      addWorkflowNode(type, position, { parentId });
     },
     [addWorkflowNode],
   );
@@ -88,9 +96,16 @@ function WorkflowCanvas() {
         y: bounds ? bounds.top + bounds.height / 2 : window.innerHeight / 2,
       });
 
-      addNodeAtPosition(type, position);
+      const target = getWorkflowNodeAddTarget(
+        nodes,
+        type,
+        position,
+        selectedWorkflowElementId,
+      );
+
+      addNodeAtPosition(type, target.position, target.parentId);
     },
-    [addNodeAtPosition, reactFlow],
+    [addNodeAtPosition, nodes, reactFlow, selectedWorkflowElementId],
   );
 
   useEffect(() => {
@@ -117,32 +132,32 @@ function WorkflowCanvas() {
 
   const handleNodesChange = useCallback(
     (changes: NodeChange<FactoryWorkflowNode>[]) => {
-      setWorkflowNodes(applyNodeChanges(changes, nodes));
+      setWorkflowNodes((prevNodes) => applyNodeChanges(changes, prevNodes));
     },
-    [nodes, setWorkflowNodes],
+    [setWorkflowNodes],
   );
 
   const handleEdgesChange = useCallback(
     (changes: EdgeChange[]) => {
-      setWorkflowEdges(applyEdgeChanges(changes, edges));
+      setWorkflowEdges((prevEdges) => applyEdgeChanges(changes, prevEdges));
     },
-    [edges, setWorkflowEdges],
+    [setWorkflowEdges],
   );
 
   const handleConnect = useCallback(
     (connection: Connection) => {
-      setWorkflowEdges(
+      setWorkflowEdges((prevEdges) =>
         addEdge(
           {
             ...connection,
             type: "smoothstep",
             animated: false,
           },
-          edges,
+          prevEdges,
         ),
       );
     },
-    [edges, setWorkflowEdges],
+    [setWorkflowEdges],
   );
 
   const handleDrop = useCallback(
@@ -179,32 +194,11 @@ function WorkflowCanvas() {
         return;
       }
 
-      const parent = getWorkflowNodeParent(
-        nodes.filter((item) => item.id !== node.id),
-        node.position,
-      );
-
-      if (!parent || parent.id === node.parentId) {
-        setWorkflowNodes(nodes);
-        return;
-      }
-
-      setWorkflowNodes(
-        nodes.map((item) =>
-          item.id === node.id
-            ? {
-                ...item,
-                parentId: parent.id,
-                position: {
-                  x: Math.max(16, node.position.x - parent.position.x),
-                  y: Math.max(48, node.position.y - parent.position.y),
-                },
-              }
-            : item,
-        ),
-      );
+      setWorkflowNodes((prevNodes) => {
+        return reparentWorkflowItem(prevNodes, node);
+      });
     },
-    [nodes, setWorkflowNodes],
+    [setWorkflowNodes],
   );
 
   return (

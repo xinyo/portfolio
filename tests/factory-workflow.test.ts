@@ -4,6 +4,8 @@ import {
   createWorkflowNode,
   defaultWorkflow,
   getAutoGrownWorkflowNodes,
+  getWorkflowNodeAddTarget,
+  reparentWorkflowItem,
   useFactoryStore,
   type FactoryWorkflow,
 } from "@/apps/factory/store";
@@ -147,5 +149,69 @@ describe("factory workflow store", () => {
 
     expect(grownContainer?.style?.width).toBeGreaterThan(300);
     expect(grownContainer?.style?.height).toBeGreaterThan(210);
+  });
+
+  it("targets the selected container when adding an item from the toolbar", () => {
+    const firstContainer = createWorkflowNode(
+      "container",
+      { x: 40, y: 60 },
+      "First",
+      { id: "container-first" },
+    );
+    const secondContainer = createWorkflowNode(
+      "container",
+      { x: 440, y: 60 },
+      "Second",
+      { id: "container-second" },
+    );
+
+    expect(
+      getWorkflowNodeAddTarget(
+        [firstContainer, secondContainer],
+        "item",
+        { x: 900, y: 700 },
+        firstContainer.id,
+      ),
+    ).toMatchObject({
+      parentId: firstContainer.id,
+      position: { x: 56, y: 108 },
+    });
+  });
+
+  it("reparents a dragged item using its absolute canvas position", () => {
+    const firstContainer = createWorkflowNode(
+      "container",
+      { x: 100, y: 100 },
+      "First",
+      { id: "container-first" },
+    );
+    const item = createWorkflowNode("item", { x: 24, y: 64 }, "Item", {
+      id: "item-dragged",
+      parentId: firstContainer.id,
+    });
+    const secondContainer = createWorkflowNode(
+      "container",
+      { x: 500, y: 100 },
+      "Second",
+      { id: "container-second" },
+    );
+
+    const movedNodes = reparentWorkflowItem(
+      [firstContainer, item, secondContainer],
+      {
+        ...item,
+        // React Flow reports a child drag position relative to its old parent.
+        position: { x: 424, y: 64 },
+      },
+    );
+    const movedItem = movedNodes.find((node) => node.id === item.id);
+
+    expect(movedItem).toMatchObject({
+      parentId: secondContainer.id,
+      position: { x: 24, y: 64 },
+    });
+    expect(movedNodes.indexOf(secondContainer)).toBeLessThan(
+      movedNodes.findIndex((node) => node.id === item.id),
+    );
   });
 });
