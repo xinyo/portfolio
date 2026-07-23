@@ -13,6 +13,11 @@
         "slug": "factory",
         "title": "Factory.app",
         "subtitle": "Online-Werkzeuge für Fertigungsbetriebe zur Erstellung von Aufträgen, Zusammenarbeit an Projekten, Terminplanung und Zeiterfassung an einem Ort."
+      },
+      {
+        "slug": "jellyocto",
+        "title": "Jellyocto",
+        "subtitle": "Demnächst verfügbar."
       }
     ]
   },

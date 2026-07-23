@@ -13,6 +13,11 @@
         "slug": "factory",
         "title": "Factory.app",
         "subtitle": "面向制造商的在线工具，可在一个平台上创建订单、协作工作、安排任务和跟踪时间。"
+      },
+      {
+        "slug": "jellyocto",
+        "title": "Jellyocto",
+        "subtitle": "即将推出。"
       }
     ]
   },

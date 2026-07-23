@@ -13,6 +13,11 @@
         "slug": "factory",
         "title": "Factory.app",
         "subtitle": "Online tools for fabricators to create orders, collaborate on work, schedule jobs and track time from one location."
+      },
+      {
+        "slug": "jellyocto",
+        "title": "Jellyocto",
+        "subtitle": "Coming soon."
       }
     ]
   },

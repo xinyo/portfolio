@@ -13,6 +13,7 @@ type GalleryItem = {
 
 const appRoutes: Record<string, string> = {
   factory: "/apps/factory",
+  jellyocto: "/apps/jellyocto",
 };
 
 export function Explore() {
@@ -38,7 +39,7 @@ export function Explore() {
         </Button>
       </div>
 
-      <section className="subapp-gallery" aria-label={t("explore.kicker")}>
+      <section className="subapp-gallery flex" aria-label={t("explore.kicker")}>
         {gallery.map((item) => (
           <Link
             className="subapp-card"
