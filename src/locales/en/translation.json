@@ -9,6 +9,8 @@
     "description": "A space for collected ideas, interface studies, and engineering notes that connect strategy, usability, and implementation detail.",
     "home": "Home",
     "collectionLabel": "Work collection",
+    "blackDiscCollectionLabel": "Vinyl work collection",
+    "revealBlackDisc": "Reveal {{title}} record",
     "revealProject": "Reveal {{title}} cover",
     "openProject": "Open {{title}} in a new tab",
     "previewOnly": "Concept preview",

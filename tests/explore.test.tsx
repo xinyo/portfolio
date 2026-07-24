@@ -5,16 +5,22 @@ import { describe, expect, it } from "vitest";
 import "@/i18n";
 import { Explore } from "@/views/explore";
 import {
+  activateBlackDisc,
   activateExploreItem,
   activateExploreItemByTouch,
+  blackDiscItems,
   blurExploreItem,
+  calculateBlackDiscTilt,
+  deactivateBlackDisc,
   exploreFontVariants,
   exploreItems,
   focusExploreItem,
   hoverExploreItem,
+  initialBlackDiscInteractionState,
   initialExploreInteractionState,
   leaveExploreItem,
   resetExploreInteraction,
+  toggleBlackDiscByTouch,
 } from "@/views/explore-model";
 
 const hexColor = /^#[0-9a-f]{6}$/i;
@@ -87,6 +93,24 @@ describe("Explore collection data", () => {
         href: "/apps/factory",
       }),
     ]);
+  });
+});
+
+describe("Explore vinyl collection data", () => {
+  it("provides exactly three unique, locally illustrated vinyl items", () => {
+    expect(blackDiscItems).toHaveLength(3);
+    expect(new Set(blackDiscItems.map(({ slug }) => slug)).size).toBe(3);
+    expect(blackDiscItems.map(({ title }) => title)).toEqual([
+      "Night Signal",
+      "Red Thread",
+      "Low Fidelity",
+    ]);
+
+    for (const item of blackDiscItems) {
+      expect(item.title.trim()).not.toBe("");
+      expect(item.subtitle.trim()).not.toBe("");
+      expect(item.coverImage).toMatch(/^data:image\/svg\+xml/);
+    }
   });
 });
 
@@ -171,6 +195,64 @@ describe("Explore collection interaction model", () => {
   });
 });
 
+describe("Explore vinyl interaction model", () => {
+  it("toggles a touched sleeve and transfers selection between sleeves", () => {
+    const opened = toggleBlackDiscByTouch(
+      initialBlackDiscInteractionState,
+      "night-signal",
+    );
+    const transferred = toggleBlackDiscByTouch(opened, "red-thread");
+
+    expect(opened).toEqual({
+      activeSlug: "night-signal",
+      activationSource: "touch",
+    });
+    expect(transferred).toEqual({
+      activeSlug: "red-thread",
+      activationSource: "touch",
+    });
+    expect(toggleBlackDiscByTouch(transferred, "red-thread")).toEqual(
+      initialBlackDiscInteractionState,
+    );
+  });
+
+  it("only closes pointer and keyboard states from their matching source", () => {
+    const hovered = activateBlackDisc("night-signal", "mouse");
+    const focused = activateBlackDisc("night-signal", "keyboard");
+
+    expect(deactivateBlackDisc(hovered, "night-signal", "mouse")).toEqual(
+      initialBlackDiscInteractionState,
+    );
+    expect(deactivateBlackDisc(focused, "night-signal", "mouse")).toBe(focused);
+    expect(deactivateBlackDisc(focused, "night-signal", "keyboard")).toEqual(
+      initialBlackDiscInteractionState,
+    );
+  });
+
+  it("calculates centered and clamped five-degree cursor tilt", () => {
+    const bounds = { left: 100, top: 200, width: 400, height: 400 };
+
+    expect(calculateBlackDiscTilt(300, 400, bounds)).toEqual({
+      rotateXDeg: 0,
+      rotateYDeg: 0,
+      lightXPercent: 50,
+      lightYPercent: 50,
+    });
+    expect(calculateBlackDiscTilt(0, 0, bounds)).toEqual({
+      rotateXDeg: 5,
+      rotateYDeg: -5,
+      lightXPercent: 0,
+      lightYPercent: 0,
+    });
+    expect(calculateBlackDiscTilt(900, 900, bounds)).toEqual({
+      rotateXDeg: -5,
+      rotateYDeg: 5,
+      lightXPercent: 100,
+      lightYPercent: 100,
+    });
+  });
+});
+
 describe("Explore collection markup", () => {
   it("renders a labelled collection with accessible project controls", () => {
     const markup = renderToStaticMarkup(
@@ -180,6 +262,8 @@ describe("Explore collection markup", () => {
     );
 
     expect(markup).toContain('aria-label="Work collection"');
+    expect(markup).toContain('aria-label="Vinyl work collection"');
+    expect(markup).toContain('aria-label="Reveal Night Signal record"');
     expect(markup).toContain('aria-label="Open Factory.app in a new tab"');
     expect(markup).toContain('aria-label="Reveal Atlas cover"');
     expect(markup.match(/class="disc-item"/g)).toHaveLength(
@@ -197,5 +281,14 @@ describe("Explore collection markup", () => {
       );
     }
     expect(markup.match(/target="_blank"/g)).toHaveLength(1);
+    expect(markup.match(/class="black-disc"/g)).toHaveLength(
+      blackDiscItems.length,
+    );
+    expect(markup.match(/class="black-disc-record"/g)).toHaveLength(
+      blackDiscItems.length,
+    );
+    expect(markup.match(/class="black-disc-sleeve"/g)).toHaveLength(
+      blackDiscItems.length,
+    );
   });
 });

@@ -1,4 +1,7 @@
-import { mockItems } from "@/views/explore/mock";
+import {
+  blackDiscItems as mockBlackDiscItems,
+  mockItems,
+} from "@/views/explore/mock";
 
 export const exploreFontVariants = [
   "plex",
@@ -24,6 +27,34 @@ export type ExploreItem = {
   restingTiltDeg: number;
 };
 
+export type BlackDiscItem = {
+  slug: string;
+  title: string;
+  subtitle: string;
+  coverImage: string;
+};
+
+export type BlackDiscActivationSource = "mouse" | "keyboard" | "touch";
+
+export type BlackDiscInteractionState = {
+  activeSlug: string | null;
+  activationSource: BlackDiscActivationSource | null;
+};
+
+export type BlackDiscTilt = {
+  rotateXDeg: number;
+  rotateYDeg: number;
+  lightXPercent: number;
+  lightYPercent: number;
+};
+
+export type BlackDiscBounds = {
+  left: number;
+  top: number;
+  width: number;
+  height: number;
+};
+
 export type ExploreActivationSource = "mouse" | "keyboard" | "touch";
 
 export type ExploreInteractionState = {
@@ -44,6 +75,70 @@ export const initialExploreInteractionState: ExploreInteractionState = {
 };
 
 export const exploreItems = mockItems as ExploreItem[];
+export const blackDiscItems = mockBlackDiscItems as BlackDiscItem[];
+
+export const initialBlackDiscInteractionState: BlackDiscInteractionState = {
+  activeSlug: null,
+  activationSource: null,
+};
+
+export function activateBlackDisc(
+  slug: string,
+  activationSource: Exclude<BlackDiscActivationSource, "touch">,
+): BlackDiscInteractionState {
+  return {
+    activeSlug: slug,
+    activationSource,
+  };
+}
+
+export function deactivateBlackDisc(
+  state: BlackDiscInteractionState,
+  slug: string,
+  activationSource: Exclude<BlackDiscActivationSource, "touch">,
+): BlackDiscInteractionState {
+  if (
+    state.activeSlug !== slug ||
+    state.activationSource !== activationSource
+  ) {
+    return state;
+  }
+
+  return initialBlackDiscInteractionState;
+}
+
+export function toggleBlackDiscByTouch(
+  state: BlackDiscInteractionState,
+  slug: string,
+): BlackDiscInteractionState {
+  if (state.activeSlug === slug && state.activationSource === "touch") {
+    return initialBlackDiscInteractionState;
+  }
+
+  return {
+    activeSlug: slug,
+    activationSource: "touch",
+  };
+}
+
+export function calculateBlackDiscTilt(
+  clientX: number,
+  clientY: number,
+  bounds: BlackDiscBounds,
+  maxTiltDeg = 5,
+): BlackDiscTilt {
+  const width = Math.max(bounds.width, 1);
+  const height = Math.max(bounds.height, 1);
+  const x = Math.min(Math.max((clientX - bounds.left) / width, 0), 1);
+  const y = Math.min(Math.max((clientY - bounds.top) / height, 0), 1);
+
+  return {
+    rotateXDeg: (0.5 - y) * maxTiltDeg * 2,
+    rotateYDeg: (x - 0.5) * maxTiltDeg * 2,
+    lightXPercent: x * 100,
+    lightYPercent: y * 100,
+  };
+}
 
 export function activateExploreItem(
   slug: string,

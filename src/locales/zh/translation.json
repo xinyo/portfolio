@@ -9,6 +9,8 @@
     "description": "汇集创意、界面研究和工程笔记的空间，连接策略、可用性与实现细节。",
     "home": "首页",
     "collectionLabel": "作品集",
+    "blackDiscCollectionLabel": "黑胶作品集",
+    "revealBlackDisc": "显示 {{title}} 唱片",
     "revealProject": "显示 {{title}} 封面",
     "openProject": "在新标签页中打开 {{title}}",
     "previewOnly": "概念预览",

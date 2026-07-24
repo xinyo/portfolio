@@ -9,6 +9,8 @@
     "description": "Ein Raum für gesammelte Ideen, Oberflächenstudien und technische Notizen, die Strategie, Benutzerfreundlichkeit und Implementierungsdetails verbinden.",
     "home": "Startseite",
     "collectionLabel": "Projektsammlung",
+    "blackDiscCollectionLabel": "Vinyl-Projektsammlung",
+    "revealBlackDisc": "Schallplatte von {{title}} anzeigen",
     "revealProject": "Cover von {{title}} anzeigen",
     "openProject": "{{title}} in einem neuen Tab öffnen",
     "previewOnly": "Konzeptvorschau",

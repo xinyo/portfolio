@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 900">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="1" x2="1" y2="0">
+      <stop stop-color="#171918"/>
+      <stop offset="1" stop-color="#56615a"/>
+    </linearGradient>
+    <filter id="grain">
+      <feTurbulence baseFrequency=".8" numOctaves="3" seed="7"/>
+      <feColorMatrix values="1 0 0 0 0
+                             0 1 0 0 0
+                             0 0 1 0 0
+                             0 0 0 .14 0"/>
+    </filter>
+  </defs>
+  <rect width="900" height="900" fill="url(#bg)"/>
+  <rect x="98" y="106" width="704" height="688" fill="#c3b99f" opacity=".18"/>
+  <g fill="none" stroke-linecap="square">
+    <path d="M130 625 274 254l128 408 121-287 133 244 115-390" stroke="#d2cbb9" stroke-width="29"/>
+    <path d="M130 625 274 254l128 408 121-287 133 244 115-390" stroke="#7f8e82" stroke-width="10"/>
+  </g>
+  <rect width="900" height="900" filter="url(#grain)" opacity=".75"/>
+</svg>

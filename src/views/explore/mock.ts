@@ -8,6 +8,9 @@ import mosaicSvg from "@/assets/covers/mosaic.svg";
 import relaySvg from "@/assets/covers/relay.svg";
 import signalSvg from "@/assets/covers/signal.svg";
 import tempoSvg from "@/assets/covers/tempo.svg";
+import lowFidelitySvg from "@/assets/cover/low-fidelity.svg";
+import nightSignalSvg from "@/assets/cover/night-signal.svg";
+import redThreadSvg from "@/assets/cover/red-thread.svg";
 
 const coverImages: Record<string, string> = {
   aperture: apertureSvg,
@@ -146,5 +149,26 @@ export const mockItems = [
     fontVariant: "system",
     caseThicknessPx: 40,
     restingTiltDeg: -3.4,
+  },
+];
+
+export const blackDiscItems = [
+  {
+    slug: "night-signal",
+    title: "Night Signal",
+    subtitle: "Interfaces for the hours between systems.",
+    coverImage: nightSignalSvg,
+  },
+  {
+    slug: "red-thread",
+    title: "Red Thread",
+    subtitle: "A study in continuity, rhythm, and restraint.",
+    coverImage: redThreadSvg,
+  },
+  {
+    slug: "low-fidelity",
+    title: "Low Fidelity",
+    subtitle: "Rough ideas shaped into useful, tactile tools.",
+    coverImage: lowFidelitySvg,
   },
 ];

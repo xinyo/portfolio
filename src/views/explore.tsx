@@ -1,25 +1,36 @@
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import {
+  useEffect,
+  useRef,
+  useState,
   type CSSProperties,
   type FocusEvent,
   type MouseEvent,
   type PointerEvent,
-  useRef,
-  useState,
 } from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router";
 
+import vintageRecord from "@/assets/disc/vintage-red.avif";
 import { Button } from "@/components/ui/button";
 import {
+  activateBlackDisc,
   activateExploreItemByTouch,
+  blackDiscItems,
   blurExploreItem,
+  calculateBlackDiscTilt,
+  deactivateBlackDisc,
   exploreItems,
   focusExploreItem,
   hoverExploreItem,
+  initialBlackDiscInteractionState,
   initialExploreInteractionState,
   leaveExploreItem,
   resetExploreInteraction,
+  toggleBlackDiscByTouch,
+  type BlackDiscActivationSource,
+  type BlackDiscInteractionState,
+  type BlackDiscItem,
   type ExploreInteractionState,
   type ExploreItem,
 } from "@/views/explore-model";
@@ -65,6 +76,161 @@ function DiscCuboid({ item, isActive, previewLabel }: DiscCuboidProps) {
   );
 }
 
+type BlackDiscCardProps = {
+  item: BlackDiscItem;
+  isOpen: boolean;
+  revealLabel: string;
+  onActivate: (
+    slug: string,
+    activationSource: Exclude<BlackDiscActivationSource, "touch">,
+  ) => void;
+  onDeactivate: (
+    slug: string,
+    activationSource: Exclude<BlackDiscActivationSource, "touch">,
+  ) => void;
+  onToggleTouch: (slug: string) => void;
+};
+
+function resetBlackDiscTilt(card: HTMLButtonElement) {
+  card.style.setProperty("--black-disc-rotate-x", "0deg");
+  card.style.setProperty("--black-disc-rotate-y", "0deg");
+  card.style.setProperty("--black-disc-light-x", "50%");
+  card.style.setProperty("--black-disc-light-y", "50%");
+  delete card.dataset.tilted;
+}
+
+function BlackDiscCard({
+  item,
+  isOpen,
+  revealLabel,
+  onActivate,
+  onDeactivate,
+  onToggleTouch,
+}: BlackDiscCardProps) {
+  const cardRef = useRef<HTMLButtonElement | null>(null);
+  const animationFrameRef = useRef<number | null>(null);
+  const lastPointerTypeRef = useRef<string | null>(null);
+
+  useEffect(
+    () => () => {
+      if (animationFrameRef.current !== null) {
+        cancelAnimationFrame(animationFrameRef.current);
+      }
+    },
+    [],
+  );
+
+  useEffect(() => {
+    if (!isOpen && cardRef.current) {
+      resetBlackDiscTilt(cardRef.current);
+    }
+  }, [isOpen]);
+
+  function updateTilt(event: PointerEvent<HTMLButtonElement>) {
+    if (event.pointerType !== "mouse") return;
+
+    const card = event.currentTarget;
+    const { clientX, clientY } = event;
+
+    if (animationFrameRef.current !== null) {
+      cancelAnimationFrame(animationFrameRef.current);
+    }
+
+    animationFrameRef.current = requestAnimationFrame(() => {
+      const tilt = calculateBlackDiscTilt(
+        clientX,
+        clientY,
+        card.getBoundingClientRect(),
+      );
+      card.style.setProperty(
+        "--black-disc-rotate-x",
+        `${tilt.rotateXDeg}deg`,
+      );
+      card.style.setProperty(
+        "--black-disc-rotate-y",
+        `${tilt.rotateYDeg}deg`,
+      );
+      card.style.setProperty(
+        "--black-disc-light-x",
+        `${tilt.lightXPercent}%`,
+      );
+      card.style.setProperty(
+        "--black-disc-light-y",
+        `${tilt.lightYPercent}%`,
+      );
+      card.dataset.tilted = "true";
+      animationFrameRef.current = null;
+    });
+  }
+
+  function resetTilt(card: HTMLButtonElement) {
+    if (animationFrameRef.current !== null) {
+      cancelAnimationFrame(animationFrameRef.current);
+      animationFrameRef.current = null;
+    }
+    resetBlackDiscTilt(card);
+  }
+
+  return (
+    <button
+      ref={cardRef}
+      className="black-disc"
+      type="button"
+      data-open={isOpen || undefined}
+      aria-expanded={isOpen}
+      aria-label={revealLabel}
+      onPointerEnter={(event) => {
+        if (event.pointerType === "mouse") {
+          onActivate(item.slug, "mouse");
+        }
+      }}
+      onPointerMove={updateTilt}
+      onPointerLeave={(event) => {
+        resetTilt(event.currentTarget);
+        if (event.pointerType === "mouse") {
+          onDeactivate(item.slug, "mouse");
+        }
+      }}
+      onPointerCancel={(event) => {
+        lastPointerTypeRef.current = null;
+        resetTilt(event.currentTarget);
+        if (event.pointerType === "mouse") {
+          onDeactivate(item.slug, "mouse");
+        }
+      }}
+      onPointerDown={(event) => {
+        lastPointerTypeRef.current = event.pointerType;
+      }}
+      onClick={() => {
+        const pointerType = lastPointerTypeRef.current;
+        lastPointerTypeRef.current = null;
+        if (pointerType === "touch" || pointerType === "pen") {
+          onToggleTouch(item.slug);
+        }
+      }}
+      onFocus={(event) => {
+        if (event.currentTarget.matches(":focus-visible")) {
+          lastPointerTypeRef.current = null;
+          onActivate(item.slug, "keyboard");
+        }
+      }}
+      onBlur={() => onDeactivate(item.slug, "keyboard")}
+    >
+      <span className="black-disc-record" aria-hidden="true">
+        <img src={vintageRecord} alt="" />
+      </span>
+      <span className="black-disc-sleeve" aria-hidden="true">
+        <img className="black-disc-cover" src={item.coverImage} alt="" />
+        <span className="black-disc-sleeve-shine" />
+        <span className="black-disc-copy">
+          <span className="black-disc-title">{item.title}</span>
+          <span className="black-disc-subtitle">{item.subtitle}</span>
+        </span>
+      </span>
+    </button>
+  );
+}
+
 type LastInputSource = "mouse" | "keyboard" | "touch" | "pen" | null;
 
 export function Explore() {
@@ -72,6 +238,8 @@ export function Explore() {
   const [interaction, setInteraction] = useState<ExploreInteractionState>(
     initialExploreInteractionState,
   );
+  const [blackDiscInteraction, setBlackDiscInteraction] =
+    useState<BlackDiscInteractionState>(initialBlackDiscInteractionState);
   const interactionRef = useRef(interaction);
   const suppressNextClickRef = useRef(false);
   const lastInputSourceRef = useRef<LastInputSource>(null);
@@ -86,6 +254,10 @@ export function Explore() {
   function resetInteraction() {
     suppressNextClickRef.current = false;
     updateInteraction(resetExploreInteraction());
+  }
+
+  function resetBlackDiscInteraction() {
+    setBlackDiscInteraction(initialBlackDiscInteractionState);
   }
 
   function handlePointerEnter(
@@ -154,8 +326,13 @@ export function Explore() {
 
   function handlePagePointerDown(event: PointerEvent<HTMLElement>) {
     const target = event.target;
-    if (target instanceof Element && target.closest(".disc-item")) return;
-    resetInteraction();
+    const isDiscItem =
+      target instanceof Element && Boolean(target.closest(".disc-item"));
+    const isBlackDisc =
+      target instanceof Element && Boolean(target.closest(".black-disc"));
+
+    if (!isDiscItem) resetInteraction();
+    if (!isBlackDisc) resetBlackDiscInteraction();
   }
 
   const pageStyle = {
@@ -171,7 +348,10 @@ export function Explore() {
       onPointerDownCapture={handlePagePointerDown}
       onKeyDown={(event) => {
         lastInputSourceRef.current = "keyboard";
-        if (event.key === "Escape") resetInteraction();
+        if (event.key === "Escape") {
+          resetInteraction();
+          resetBlackDiscInteraction();
+        }
       }}
     >
       <div className="explore-header">
@@ -190,6 +370,42 @@ export function Explore() {
       </div>
 
       <section
+        className="black-disc-section"
+        aria-label={t("explore.blackDiscCollectionLabel")}
+      >
+        <div className="black-disc-collection">
+          <ul className="black-disc-row">
+            {blackDiscItems.map((item) => (
+              <li className="black-disc-slot" key={item.slug}>
+                <BlackDiscCard
+                  item={item}
+                  isOpen={blackDiscInteraction.activeSlug === item.slug}
+                  revealLabel={t("explore.revealBlackDisc", {
+                    title: item.title,
+                  })}
+                  onActivate={(slug, activationSource) => {
+                    setBlackDiscInteraction(
+                      activateBlackDisc(slug, activationSource),
+                    );
+                  }}
+                  onDeactivate={(slug, activationSource) => {
+                    setBlackDiscInteraction((state) =>
+                      deactivateBlackDisc(state, slug, activationSource),
+                    );
+                  }}
+                  onToggleTouch={(slug) => {
+                    setBlackDiscInteraction((state) =>
+                      toggleBlackDiscByTouch(state, slug),
+                    );
+                  }}
+                />
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <section
         className="disc-collection"
         aria-label={t("explore.collectionLabel")}
       >
@@ -201,10 +417,7 @@ export function Explore() {
                 "--disc-background": item.backgroundColor,
                 "--disc-foreground": item.spineLabelColor,
                 "--disc-thickness": `${item.caseThicknessPx}px`,
-                "--disc-hit-width": `${Math.max(
-                  44,
-                  item.caseThicknessPx,
-                )}px`,
+                "--disc-hit-width": `${Math.max(44, item.caseThicknessPx)}px`,
                 "--disc-resting-tilt": `${item.restingTiltDeg}deg`,
               } as CustomProperties;
               const commonProps = {
