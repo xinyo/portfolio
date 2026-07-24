@@ -4,13 +4,13 @@ import continuumSvg from "@/assets/covers/continuum.svg";
 import factorySvg from "@/assets/covers/factory.svg";
 import fieldNotesSvg from "@/assets/covers/field-notes.svg";
 import ledgerSvg from "@/assets/covers/ledger.svg";
+import lowFidelitySvg from "@/assets/covers/low-fidelity.svg";
 import mosaicSvg from "@/assets/covers/mosaic.svg";
+import nightSignalSvg from "@/assets/covers/night-signal.svg";
+import redThreadSvg from "@/assets/covers/red-thread.svg";
 import relaySvg from "@/assets/covers/relay.svg";
 import signalSvg from "@/assets/covers/signal.svg";
 import tempoSvg from "@/assets/covers/tempo.svg";
-import lowFidelitySvg from "@/assets/cover/low-fidelity.svg";
-import nightSignalSvg from "@/assets/cover/night-signal.svg";
-import redThreadSvg from "@/assets/cover/red-thread.svg";
 
 const coverImages: Record<string, string> = {
   aperture: apertureSvg,
@@ -27,12 +27,10 @@ const coverImages: Record<string, string> = {
 
 export const mockItems = [
   {
-    slug: "factory",
-    title: "Factory.app",
-    subtitle:
-      "A connected workspace for orders, production, scheduling, and time.",
-    href: "/apps/factory",
-    coverImage: coverImages.factory,
+    slug: "night-signal",
+    title: "Night Signal",
+    subtitle: "Interfaces for the hours between systems.",
+    coverImage: nightSignalSvg,
     backgroundColor: "#a9b7a7",
     foregroundColor: "#17211a",
     spineLabelColor: "#17211a",
@@ -154,10 +152,12 @@ export const mockItems = [
 
 export const blackDiscItems = [
   {
-    slug: "night-signal",
-    title: "Night Signal",
-    subtitle: "Interfaces for the hours between systems.",
-    coverImage: nightSignalSvg,
+    slug: "factory",
+    title: "Factory.app",
+    subtitle:
+      "A connected workspace for orders, production, scheduling, and time.",
+    href: "/apps/factory",
+    coverImage: coverImages.factory,
   },
   {
     slug: "red-thread",

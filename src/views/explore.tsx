@@ -190,6 +190,8 @@ function BlackDiscCard({
         lastPointerTypeRef.current = null;
         if (pointerType === "touch" || pointerType === "pen") {
           onToggleTouch(item.slug);
+        } else if (item.href) {
+          window.open(item.href, "_blank", "noopener,noreferrer");
         }
       }}
       onFocus={(event) => {
@@ -208,6 +210,7 @@ function BlackDiscCard({
         <span className="black-disc-sleeve-shine" />
         <span className="black-disc-copy">
           <span className="black-disc-title">{item.title}</span>
+          {item.href && <ArrowUpRight></ArrowUpRight>}
           <span className="black-disc-subtitle">{item.subtitle}</span>
         </span>
       </span>
@@ -364,9 +367,11 @@ export function Explore() {
                 <BlackDiscCard
                   item={item}
                   isOpen={blackDiscInteraction.activeSlug === item.slug}
-                  revealLabel={t("explore.revealBlackDisc", {
-                    title: item.title,
-                  })}
+                  revealLabel={
+                    item.href
+                      ? t("explore.openProject", { title: item.title })
+                      : t("explore.revealBlackDisc", { title: item.title })
+                  }
                   onActivate={(slug, activationSource) => {
                     setBlackDiscInteraction(
                       activateBlackDisc(slug, activationSource),

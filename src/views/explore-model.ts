@@ -32,6 +32,7 @@ export type BlackDiscItem = {
   title: string;
   subtitle: string;
   coverImage: string;
+  href?: string;
 };
 
 export type BlackDiscActivationSource = "mouse" | "keyboard" | "touch";

@@ -242,7 +242,6 @@
   margin: 0;
   align-items: center;
   gap: clamp(32px, 4vw, 72px);
-  padding: 0 calc(var(--black-disc-size) * 0.62) 0 clamp(0px, 5vw, 64px);
   box-sizing: border-box;
   list-style: none;
 }
@@ -295,9 +294,6 @@
   aspect-ratio: 1;
   overflow: hidden;
   border-radius: 50%;
-  box-shadow:
-    0 28px 54px rgb(0 0 0 / 0.22),
-    0 8px 18px rgb(0 0 0 / 0.2);
   transform: translateX(0) rotate(-8deg);
   transform-origin: center;
   transition:
@@ -310,7 +306,7 @@
   box-shadow:
     0 36px 72px rgb(0 0 0 / 0.3),
     0 12px 24px rgb(0 0 0 / 0.24);
-  transform: translateX(58%) rotate(14deg);
+  transform: translateX(38%) rotate(14deg);
 }
 
 .explore-page .black-disc-record img {
@@ -586,7 +582,6 @@
 
 .disc-face-spine {
   display: flex;
-  align-items: center;
   justify-content: center;
   background:
     linear-gradient(
@@ -656,12 +651,8 @@
 .disc-spine-label {
   max-height: calc(100% - 56px);
   overflow: hidden;
-  font-size: 0.78rem;
-  font-weight: 720;
-  letter-spacing: 0.055em;
   line-height: 1;
   text-overflow: ellipsis;
-  text-transform: uppercase;
   white-space: nowrap;
   writing-mode: vertical-rl;
   transform: rotate(180deg);
@@ -669,22 +660,41 @@
 
 .disc-item[data-font="plex"] .disc-case {
   font-family: "IBM Plex Sans Variable", "IBM Plex Sans", sans-serif;
+  .disc-face-spine {
+    letter-spacing: 1rem;
+    font-size: large;
+    text-transform: uppercase;
+    font-weight: 200;
+  }
 }
 
 .disc-item[data-font="nunito"] .disc-case {
   font-family: "Nunito Sans Variable", "Nunito Sans", sans-serif;
+  .disc-face-spine {
+    font-size: 1.3rem;
+    font-weight: 500;
+  }
 }
 
 .disc-item[data-font="serif"] .disc-case {
   font-family: Georgia, "Times New Roman", serif;
+  .disc-face-spine {
+    font-size: 0.8rem;
+    letter-spacing: 2rem;
+  }
 }
 
 .disc-item[data-font="mono"] .disc-case {
   font-family: var(--mono);
+  .disc-face-spine {
+    align-items: center;
+  }
 }
 
 .disc-item[data-font="system"] .disc-case {
   font-family: system-ui, "Segoe UI", sans-serif;
+  .disc-face-spine {
+  }
 }
 
 .disc-face-front img {
@@ -793,7 +803,6 @@
   .explore-page .black-disc-row {
     min-width: max-content;
     gap: clamp(24px, 8vw, 42px);
-    padding-inline: 0 calc(var(--black-disc-size) * 0.62);
     flex-direction: column;
   }
 
