@@ -11,7 +11,7 @@ import {
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router";
 
-import vintageRecord from "@/assets/disc/vintage-red.avif";
+import vintageRecord from "@/assets/disc/vintage-red.webp";
 import { Button } from "@/components/ui/button";
 import {
   activateBlackDisc,
@@ -94,8 +94,6 @@ type BlackDiscCardProps = {
 function resetBlackDiscTilt(card: HTMLButtonElement) {
   card.style.setProperty("--black-disc-rotate-x", "0deg");
   card.style.setProperty("--black-disc-rotate-y", "0deg");
-  card.style.setProperty("--black-disc-light-x", "50%");
-  card.style.setProperty("--black-disc-light-y", "50%");
   delete card.dataset.tilted;
 }
 
@@ -142,22 +140,8 @@ function BlackDiscCard({
         clientY,
         card.getBoundingClientRect(),
       );
-      card.style.setProperty(
-        "--black-disc-rotate-x",
-        `${tilt.rotateXDeg}deg`,
-      );
-      card.style.setProperty(
-        "--black-disc-rotate-y",
-        `${tilt.rotateYDeg}deg`,
-      );
-      card.style.setProperty(
-        "--black-disc-light-x",
-        `${tilt.lightXPercent}%`,
-      );
-      card.style.setProperty(
-        "--black-disc-light-y",
-        `${tilt.lightYPercent}%`,
-      );
+      card.style.setProperty("--black-disc-rotate-x", `${tilt.rotateXDeg}deg`);
+      card.style.setProperty("--black-disc-rotate-y", `${tilt.rotateYDeg}deg`);
       card.dataset.tilted = "true";
       animationFrameRef.current = null;
     });

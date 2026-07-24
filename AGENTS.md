@@ -23,5 +23,7 @@
 - Prefer form element / component have aria label to meet WACG requirement.
 - Use javascript Date is forbidden in src and tests. Always use Temporal.
 - large dataset in store prefer indexed by id, prefer Record type or Map, Set, but not array.
+- animation/transition UI changes prefer have a dev control panel with slider to control ALL the UI animation/transition values, include but no limit to mouse track event, tilt angle/duration/gap/ease...etc.
+
 
 <!-- - Mock external dependencies like `uuid` in tests. -->
