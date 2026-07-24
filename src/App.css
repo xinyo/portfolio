@@ -544,8 +544,8 @@
 
 .disc-face-front {
   overflow: hidden;
-  border: 5px solid rgb(238 240 238 / 0.4);
-  border-radius: 2px;
+  border: 1px solid rgb(238 240 238 / 0.4);
+  /* border-radius: 2px; */
   background: #191919;
   box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.48);
   transform: translateZ(calc(var(--disc-thickness) / 2));
@@ -694,6 +694,7 @@
 .disc-item[data-font="system"] .disc-case {
   font-family: system-ui, "Segoe UI", sans-serif;
   .disc-face-spine {
+    color: var(--background);
   }
 }
 
